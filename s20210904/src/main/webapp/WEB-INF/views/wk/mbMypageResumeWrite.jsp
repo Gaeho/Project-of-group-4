@@ -15,16 +15,22 @@
 	var addResAppend="";
 	$(document).ready( function() {
     	$(document).on("click", "#addResumeDetail", function() {
-      		
-      		addResAppend="회사명 <input type='text' name='com_name_ar[]' placeholder ='회사명을 입력해주세요'><br>"
+      		addResAppend="<div id='resDetail"+car_code_num+"'>"
+      					+"회사명 <input type='text' name='com_name_ar[]' placeholder ='회사명을 입력해주세요'><br>"
 						+"근무기간  <input type='date' name='emp_date1_ar[]'> - <input type='date' name='emp_date2_ar[]'><br>"
 						+"근무부서 <input type='text' name='emp_dept_ar[]' placeholder ='부서명을 입력해주세요'><br>"
-						+"담당업무 <input type='text' name='task_ar[]' placeholder ='담당한 업무를 입력해주세요'><p>"
-						+"<input type='hidden' name='car_code_ar[]' value='"+car_code_num+"'><p>";
+						+"담당업무 <input type='text' name='task_ar[]' placeholder ='담당한 업무를 입력해주세요'>&nbsp;&nbsp;&nbsp;"
+						+"<input type='button' value='경력사항 삭제' id='deleteResDetail' onclick='deleteResumeDetail("+car_code_num+")'><p>"
+						+"<input type='hidden' name='car_code_ar[]' value='"+car_code_num+"'><p></div>";
       		$("#resumeDetail").append(addResAppend);
       		car_code_num+=1;
     	});
   	});
+	
+	function deleteResumeDetail(car_code_num){
+		alert(car_code_num);
+		$("#resDetail"+car_code_num).remove();
+	}
 	
 </script>
 
@@ -59,15 +65,20 @@
 	<c:if test="${memberdetail.user_edu >= 3 }">
 		&nbsp;&nbsp;대학교, 대학원<br>
 		학교명 <input type="text" name="univ_name" placeholder ="대학교명을 입력해주세요"><br>
-		재학기간 <br>
+		재학기간 <input type="date" name="univ_date1"> - <input type="date" name="univ_date2"><br>
 		전공 <input type="text" name="univ_mjr" placeholder ="전공명을 입력해주세요"><p>
 	</c:if>
 	
 	<p>
 	경력사항 
 	<div id="resumeDetail"></div>
-	<input type="button" value="+추가 생성" id="addResumeDetail" onclick="addResumeDetail"><br>
+	<input type="button" value="+추가 생성" id="addResumeDetail"><br>
 	
+	
+	
+	<p>
+	기타 링크<br>
+	<textarea rows="10" cols="40" name="res_etc_link"></textarea><p>
 	
 	<input type="submit" value="작성완료">
 </form>

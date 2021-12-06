@@ -7,7 +7,7 @@
 	<insert id="WkResumeDetailWrite" parameterType="WkResumeDetail">
 		<foreach collection="ResumeDetailList" item="items" index="index" open="INSERT ALL " close="SELECT * FROM DUAL">
 			into S20210904.RESUME_DETAIL (user_id,res_code,car_code,com_name,emp_date,emp_dept,task) 
-			values (#{user_id},#{res_code},#{items.car_code},#{items.com_name},null,#{items.emp_dept},#{items.task})
+			values (#{user_id},#{res_code},#{items.car_code},#{items.com_name},#{items.emp_date},#{items.emp_dept},#{items.task})
 		</foreach>
 	</insert>
 	
@@ -16,6 +16,14 @@
 		where user_id=#{user_id}
 		and res_code=#{res_code}
 	</delete>
+	
+	<select id="WkResumeDetailSelect" parameterType="Resume" resultType="ResumeDetail">
+		select * from S20210904.RESUME_DETAIL
+		where user_id=#{user_id}
+		and res_code=#{res_code}
+	</select>
+	
+
 	
 	
 </mapper>

@@ -56,6 +56,7 @@
 <h1>mbMypageResume</h1><p><p>
 
 ${mbid }의 이력서<br>
+<c:if test="${not empty msg}">${msg }<br> </c:if>
 <c:forEach var="resumelist" items="${resumelist}" varStatus="status">
 	${status.count} &nbsp;&nbsp; ${resumelist.res_title} &nbsp;&nbsp; ${resumelist.res_date} &nbsp;&nbsp; ${resumelist.rep_res}
 	&nbsp;&nbsp; ${resumelist.comm_ctx} &nbsp;&nbsp; &nbsp;&nbsp; <input type="button" value="대표이력서">
