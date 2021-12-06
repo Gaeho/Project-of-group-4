@@ -13,27 +13,181 @@ public class ShMemberServiceImpl implements ShMemberService {
 	@Autowired
 	private ShMemberDao md;
 
-	//ê°œì¸ íšŒì›ê°€ìž… 
+	//°³ÀÎ È¸¿ø°¡ÀÔ 
 	@Override
 	public int joinmember(Member member) {
-		System.out.println("ShUserServiceImpl joinuser Start...");
-		System.out.println("ShUserServiceImpl joinusermember.getUser_id()->"+member.getUser_id());
-		System.out.println("ShUserServiceImpl joinusermember.getUser_pw()->"+member.getUser_pw());
+		System.out.println("ShMemberrServiceImpl joinmember Start...");
+		System.out.println("ShMemberServiceImpl member.getUser_id()->"+member.getUser_id());
+		System.out.println("ShMemberServiceImpl member.getUser_pw()->"+member.getUser_pw());
 		int joinmember = md.joinmember(member);
 		//System.out.println("ShUserServiceImpl joinuser.getUser_name() "+);
 		
 		return joinmember;
 	}
 	
-	//ê¸°ì—… íšŒì›ê°€ìž…
+	//±â¾÷ È¸¿ø°¡ÀÔ
 	@Override
 	public int joincom(Company company) {
-		System.out.println("ShUserServiceImpl joincom Start...");
+		System.out.println("ShMemberServiceImpl joincom Start...");
 		int joincom = md.joincom(company);
 		
 		return joincom;
 	}
+
+	//°³ÀÎ ·Î±×ÀÎ
+	@Override
+	public int login(Member mem) {
+		System.out.println("ShMemberServiceImpl mem Start... ");
+		System.out.println("ShMemberServiceImpl mem.getUser_id()->" + mem.getUser_id());
+		int loginCnt = md.login(mem);
+		System.out.println("ShMemberServiceImpl login  loginCnt->" + loginCnt);
+		
+		return loginCnt;
+	}
+
+	//±â¾÷ ·Î±×ÀÎ
+	@Override
+	public int Comlogin(Company com) {
+		System.out.println("ShMemberServiceImpl com Start...");
+		System.out.println("ShMemberServiceImpl com.getCom_id()->" + com.getCom_id());
+		int ComloginCnt = md.Comlogin(com);
+		
+		return ComloginCnt;
+	}
+	//°³ÀÎ È¸¿ø ¾ÆÀÌµð Ã£±â 
+	@Override
+	public String findID(Member member) {
+		System.out.println("ShMemberServiceImpl findIdForm Start..");
+		System.out.println("ShMemberServiceImpl findIdForm getUser_name->"+member.getUser_name());
+		System.out.println("ShMemberServiceImpl findIdForm getUser_email->"+member.getUser_email());
+		String user_id = md.findID(member);
+		return user_id;
+	}
+	//±â¾÷ È¸¿ø ¾ÆÀÌµð Ã£±â
+	@Override
+	public String findID(Company company) {
+		System.out.println("ShMemberServiceImpl findComIdForm Start....");
+		System.out.println("ShMemberServiceImpl findComIdForm company.getCom_name()->" + company.getCom_name());
+		System.out.println("ShMemberServiceImpl findComIdForm company.getCom_id()->" + company.getCom_user());
+		System.out.println("ShMemberServiceImpl findComIdForm company.getCom_regnum()->" + company.getCom_regnum());
+		System.out.println("ShMemberServiceImpl findComIdForm company.getCom_email()->" + company.getCom_email());
+		String com_id = md.findID(company);
+		
+		return com_id;
+	}
+	//°³ÀÎ È¸¿ø ºñ¹Ð¹øÈ£ Ã£±â 
+
+	@Override
+	public int tempSavePw(Member member) {
+		int result = 0;
+		System.out.println("ShMemberServiceImpl tempSavePw Start..");
+		System.out.println("ShMemberServiceImpl tempSavePw member.getUser_id()->"+member.getUser_id());
+		System.out.println("ShMemberServiceImpl tempSavePw member.getUser_pw()->"+member.getUser_pw());
+		 result = md.tempSavePw(member);
+		return result;
+	}
+
+	//±â¾÷ È¸¿ø ºñ¹Ð¹øÈ£ Ã£±â
+	@Override
+	public int tempComSavePw(Company company) {
+		int result = 0; 
+		System.out.println("ShMemberServiceImpl tempComSavePw Start...");
+		System.out.println("ShMemberServiceImpl tempComSavePw company.getCom_id()->" + company.getCom_id());
+		System.out.println("shMemberServiceImpl tempComSavePw company.getCom_user()->" +company.getCom_user());
+		result = md.tempComSavePw(company);
+		
+		return result;
+	}
+	
+
+	
+
+
+
+
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// ½ÇÆÐÀÛµé
+	//°³ÀÎ ¾ÆÀÌµðÃ£±â
+//	@Override
+//	public Member findId(Member mem) {
+//		System.out.println("ShMemberServiceImpl mem Start...");
+//		System.out.println("ShMemberServiceImpl mem.getUser_id()->" + mem.getUser_id());
+//		Member findmemId = md.findId(mem);
+//		
+//		return findmemId;
+//	}
+
+
+	
+	
+
+
+	//°³ÀÎ ·Î±×ÀÎ 
+//		@Override
+//		public Member login(String user_id, String user_pw) {
+//			System.out.println("ShMemberServiceImpl login Start...");
+//			Member mem = md.login(user_id,user_pw);
+//			System.out.println("ShMemberServiceImpl login mem.getUser_id()->"+mem.getUser_id());
+//			
+//			return mem;
+//		}
+
+	
+	/*
+	//·Î±×ÀÎ
+	@Override
+	public int login(Member member, Company company) {
+		System.out.println("SHMemberServiceImpl login ");
+		int login = md.login(member,company);
+		return login;
+	}
+	
+	*/
+//	@Override
+//	public Member findId(Map<String, Object> memberMap) {
+//		System.out.println("ShMemberServiceImpl memberMap Start..");
+//
+//		String user_name = (String) memberMap.get("user_name");
+//		String user_email = (String) memberMap.get("user_email");
+//		Member member = md.findId(memberMap);
+//		
+//		return member;
+//	}
 }

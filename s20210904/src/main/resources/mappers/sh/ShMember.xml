@@ -10,10 +10,57 @@
 		
 	<insert id="ShJoinCompany" parameterType="Company">
 		insert into COMPANY values (#{com_id},#{com_pw},#{com_name},#{com_tel},#{com_addr},#{com_email},
-																		#{com_sec},#{com_regnum},#{com_mgr_tel})
-	
-	
+																		#{com_user},#{com_sec},#{com_bus},#{com_regnum},#{com_mgr_tel},#{com_web},#{com_img},#{com_grade})
 	</insert>
+	
+	<select id="ShLogin"  parameterType="Member"  resultType="int"> 
+		select count(*) 
+		from member
+		where user_id = #{user_id} and user_pw = #{user_pw}
+	</select>
+	
+	<select id="ShComLogin" parameterType="Company" resultType="int">
+		select count(*)
+		from company
+		where com_id = #{com_id} and com_pw = #{com_pw}
+	</select>
+
+	<select id="ShFindId"  parameterType="Member"  resultType="String">
+		select user_id from member
+		where user_name=#{user_name} 
+		and     user_email=#{user_email}
+	
+	</select>
+	
+	<select id="ShFindComId" parameterType="Company" resultType="String">
+		select com_id from company 
+		where com_name=#{com_name}
+		and      com_user=#{com_user}
+		and      com_regnum=#{com_regnum}
+		and      com_email=#{com_email}
+	
+	</select>
+
+	<update id="ShFindPw"  parameterType="Member">
+		update member 
+		set user_pw = #{user_pw} 
+		where user_name = #{user_name}
+		and     user_id=#{user_id}
+		and      user_email=#{user_email}
+	</update>
+	
+	<update id="ShFindComPw"  parameterType="Company">
+		update company 
+		set com_pw = #{com_pw}
+		where com_name = #{com_name}
+		and     com_user = #{com_user}
+		and     com_id = #{com_id}
+		and     com_regnum = #{com_regnum}
+		and     com_email = #{com_email}
+	
+	</update>
+
+
 
 
 </mapper>

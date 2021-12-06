@@ -14,13 +14,13 @@ public class ShMemberDaoImpl implements ShMemberDao {
 	@Autowired
 	private SqlSession session;
 	
-	//ê°œì¸ íšŒì›ê°€ì… 
+	//°³ÀÎ È¸¿ø°¡ÀÔ 
 	@Override
 	public int joinmember(Member member) {
 		int joinmember= 0;
 		System.out.println("ShMemberDaoImpl joinmember Start...");
 		try {
-			 member.setUser_img(""); //ì´ë¯¸ì§€ëŠ” nullê°’
+			 member.setUser_img(""); //ÀÌ¹ÌÁö´Â null°ª
 			System.out.println("ShMemberDaoImpl joinmember.getUser_id()->"+member.getUser_id());
 			System.out.println("ShMemberDaoImpl joinmember.getUser_pw()->"+member.getUser_pw());
 			joinmember = session.insert("ShJoinMember", member);
@@ -30,21 +30,185 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		return joinmember;
 	}
 
-	//ê¸°ì—… íšŒì›ê°€ì…
+	//±â¾÷ È¸¿ø°¡ÀÔ
 	@Override
 	public int joincom(Company company) {
 		int joincom = 0;
-		System.out.println("ShUserDaoImpl joincom Start...");
+		System.out.println("ShMemberDaoImpl joincom Start...");
 		try {
+			company.setCom_bus(""); //»ç¾÷  null°ª
+			company.setCom_tel(""); //±â¾÷ÀüÈ­¹øÈ£ null°ª 
+			company.setCom_web(""); //±â¾÷ È¨ÆäÀÌÁö  null°ª
+			company.setCom_img("");//±â¾÷ ÀÌ¹ÌÁö  null°ª
+			System.out.println("ShMemberDaoImpl company.getCom_id()->"+company.getCom_id());
+			System.out.println("ShMemberDaoImpl company.getCom_pw()->"+company.getCom_pw());
 			joincom=session.insert("ShJoinCompany" , company);
 		} catch (Exception e) {
-			System.out.println("ShUserDaoImpl joincom Exception" + e.getMessage());
+			System.out.println("ShMemberDaoImpl joincom Exception->" + e.getMessage());
 		}
 		return joincom;
 	}
+
+	//°³ÀÎ ·Î±×ÀÎ 
+	@Override
+	public int login(Member mem) {
+		int loginCnt = 0;
+		System.out.println("ShMemberDaoImpl login Start...");
+		try {
+			System.out.println("ShMemberDaoImpl mem.getUser_id()->" + mem.getUser_id());
+			System.out.println("ShMemberDaoImpl mem.getUser_pw()->" + mem.getUser_pw());
+			loginCnt = session.selectOne("ShLogin", mem);
+		} catch (Exception e) {
+			System.out.println("ShMemberDaoImpl login Exception->" + e.getMessage());
+		}
+		System.out.println("ShMemberDaoImpl loginCnt->" + loginCnt);
+		return loginCnt;
+	}
+
+	//±â¾÷ ·Î±×ÀÎ 
+	@Override
+	public int Comlogin(Company com) {
+		int ComloginCnt = 0; 
+		System.out.println("ShMemberDaoImpl Comlogin Start...");
+		try {
+			System.out.println("ShMemberDaoImpl com.getCom_id()->" + com.getCom_id());
+			ComloginCnt = session.selectOne("ShComLogin",com);
+		} catch (Exception e) {
+		System.out.println("ShMemberDaoImpl Comlogin Exception->" + e.getMessage());
+		}
+		return ComloginCnt;
+	}
+
+	//°³ÀÎ È¸¿ø ¾ÆÀÌµğ Ã£±â 
+	@Override
+	public String findID(Member member) {
+		System.out.println("ShMemberDaoImpl findId Start..");
+		System.out.println("ShMemberDaoImpl findId getUser_name->"+member.getUser_name());
+		System.out.println("ShMemberDaoImpl findId getUser_email->"+member.getUser_email());
+		String user_id = "";
+		try {
+			user_id = session.selectOne("ShFindId",member);
+			if (user_id ==null) user_id = "Á¸ÀçÇÏ´Â ¾ÆÀÌµğ°¡ ¾ø³×¿ä ¤Ğ¤Ğ È¸¿ø°¡ÀÔ ¸ÕÀú ÇÏ½Ç·¡¿ä?";
+			System.out.println("ShMemberDaoImpl findId user_id->"+user_id);
+		} catch (Exception e) {
+		System.out.println("ShMemberDaoImpl findId Exception->" + e.getMessage());
+		}
+	return user_id;
+	}
+	//±â¾÷ È¸¿ø ¾ÆÀÌµğ Ã£±â 
+	@Override
+	public String findID(Company company) {
+		System.out.println("ShMemberDaoImpl findComId Start..");
+		System.out.println("ShMemberDaoImpl findCom company.getCom_name()->"+company.getCom_name());
+		System.out.println("ShMemberDaoImpl findCom company.getCom_user()->"+company.getCom_user());
+		System.out.println("ShMemberDaoImpl findCom company.getCom_regnum()->"+company.getCom_regnum());
+		String com_id = "";
+		
+		try {
+			com_id = session.selectOne("ShFindComId", company);
+			if(com_id == null) com_id = "Á¸ÀçÇÏ´Â ¾ÆÀÌµğ°¡ ¾ø³×¿ä ¤Ğ¤Ğ È¸¿ø°¡ÀÔ ¸ÕÀú ÇÏ½Ç·¡¿ä?";
+					System.out.println("ShMemberDaoImpl findComId com_id->"+com_id);
+		} catch (Exception e) {
+			System.out.println("ShMemberDaoImpl findComId Exception->" + e.getMessage());
+		}
+	 return com_id;
+	}
+
+	//°³ÀÎ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
+	@Override
+	public int tempSavePw(Member member) {
+		int result = 0;
+		System.out.println("ShMemberDaoImpl tempSavePw Start..");
+		System.out.println("ShMemberDaoImpl tempSavePw member.getUser_id()->"+member.getUser_id());
+		System.out.println("ShMemberDaoImpl tempSavePw member.getUser_pw()->"+member.getUser_pw());
+		// int  result = md.tempSavePw(member);
+		try {
+			result = session.update("ShFindPw",member);
+			if (result>0)		System.out.println("ShMemberDaoImpl ShFindPw ¼öÁ¤ ¼º°ø");
+		} catch (Exception e) {
+			System.out.println("ShMemberDaoImpl ShFindPw Exception->" + e.getMessage());
+		}
+
+		return result;
+	}
+
+	//±â¾÷ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
+	@Override
+	public int tempComSavePw(Company company) {
+		int result = 0; 
+		System.out.println("ShMemberDaoImpl tempComSavePw Start...");
+		System.out.println("ShMemberDaoImpl tempComSavePw company.getCom_id()->" + company.getCom_id());
+		System.out.println("ShMemberDaomImpl tempComSavePw company.getCom_user()->" + company.getCom_user());
+		try {
+			result = session.update("ShFindComPw" , company);
+			if (result > 0) System.out.println("ShMemberDaoImpl ShFindComPw ¼öÁ¤ ¼º°ø ");
+		} catch (Exception e) {
+			System.out.println("ShMemberDaoImpl ShFindComPw Exception - > "+ e.getMessage());
+		}
+		
+		return result;
+	}
+
+	
 	
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//½ÇÆĞÀÛµé
+//	//°³ÀÎ ¾ÆÀÌµğ Ã£±â
+//	@Override
+//	public Member findId(Member mem) {
+//		Member findmemId = new Member();
+//		System.out.println("ShMemberDaoImpl findId Start...");
+//		try {
+//			System.out.println("ShMemberDaoImpl mem.getUser_id()->"+ mem.getUser_id());
+//			findmemId = session.selectOne("ShFindId" , mem);
+//		} catch (Exception e) {
+//		System.out.println("ShMemberDaoImpl findId Exception->" + e.getMessage());
+//		}
+//		return findmemId;
+//	}
+
+
+
+	
+	
+	//HashMap ½áº»°Å 
+	//°³ÀÎ·Î±×ÀÎ
+//		@Override
+//		public Member login(String user_id,String user_pw) {
+//			Map<String ,String> mem = null;
+//			System.out.println("ShMemberDaoImpl login Start...");
+//			try {
+//				mem = session.selectMap("ShLogin",user_id,user_pw);
+//				//System.out.println("ShMemberDaoImpl login mem.getUser_id()->"+mem.getUser_id());
+//			} catch (Exception e) {
+//				System.out.println("ShMemberDaoImpl login Exception->" + e.getMessage());
+//			}
+//			return (Member) mem;
+//		}
+//	
+	//°³ÀÎ ¾ÆÀÌµğÃ£±â
+//		@Override
+//		public Member findId(Map<String, Object> memberMap) {
+//		
+//			
+//				return session.selectOne("MEMBER.findId", memberMap);
+//
+//		}
 
 
 }
