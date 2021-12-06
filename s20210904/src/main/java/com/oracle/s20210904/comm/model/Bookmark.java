@@ -10,5 +10,8 @@ import lombok.Setter;
 public class Bookmark {
 	private String com_id;
 	private String user_id;
+	private int it_bookmark;
 	private Date mrk_date;
+	private int start;
+	private int end;
 }

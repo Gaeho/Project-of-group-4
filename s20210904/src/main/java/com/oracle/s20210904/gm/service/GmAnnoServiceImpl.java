@@ -171,6 +171,13 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				ad.likeinsert(scrap);
 			}
 			
+			// 스크랩 취소
+			@Override
+			public void likedelete(Scrap scrap) {
+				System.out.println("GmAnnoServiceImpl likedelete Start...");
+				ad.likedelete(scrap);
+				
+			}
 			// 스크랩 유무 
 			@Override
 			public int likegetinfo(Scrap scrap) {
