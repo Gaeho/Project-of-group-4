@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Post;
 import com.oracle.s20210904.comm.model.Member;
@@ -101,5 +102,53 @@ public class DsAdminServiceImpl implements DsAdminService {
 	public List<DsComm> getDsCommList(DsComm dsComm) {
 		List<DsComm> dsCommList = dsAdminDao.getDsCommList(dsComm);
 		return dsCommList;
+	}
+	@Override
+	public List<Post> getNoticeList(Post post) {
+		List<Post> noticeList = dsAdminDao.getNoticeList(post);
+		return noticeList;
+	}
+	@Override
+	public List<Post> getQnaList(Post post) {
+		List<Post> qnaList = dsAdminDao.getQnaList(post);
+		return qnaList;
+	}
+	@Override
+	public int ntotCnt() {
+		int ntotCnt = dsAdminDao.ntotCnt();
+		return ntotCnt;
+	}
+	@Override
+	public int qtotCnt() {
+		int qtotCnt = dsAdminDao.qtotCnt();
+		return qtotCnt;
+	}
+	@Override
+	public int memberDel(String user_id) {
+		int result = dsAdminDao.memberDel(user_id);
+		return result;
+	}
+	
+	@Override
+	public int joinRefuse(String comId) {
+		int result = dsAdminDao.joinRefuse(comId);
+		return result;
+	}
+	@Override
+	public int companyDel(String comId) {
+		int result = dsAdminDao.companyDel(comId);
+		return result;
+	}
+	
+	@Override
+	public List<Comm> getMainCate() {
+		List<Comm> mainCate = dsAdminDao.getMainCate();
+		return mainCate;
+	}
+	
+	@Override
+	public int maxSubCate(String mainCate) {
+		int result = dsAdminDao.maxSubCate(mainCate);
+		return result;
 	}
 }
