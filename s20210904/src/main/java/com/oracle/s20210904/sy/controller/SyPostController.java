@@ -40,16 +40,18 @@ public class SyPostController {
 	 * return "sy/postList"; }
 	 */
 	
-	public String syPostView(@ModelAttribute("post") Post post, HttpServletRequest request, Model model) throws Exception {
-		int userId = Integer.parseInt(request.getParameter("userId"));
-		post.setUser_id(userId);
-		
-		Post resultPost = syPostServiceImpl.selectPostDetail(post);
-		model.addAttribute("result", resultPost);
-		
-		return "redirect:testList.do";
-		
-	}
+	/*
+	 * public String syPostView(@ModelAttribute("post") Post post,
+	 * HttpServletRequest request, Model model) throws Exception { int userId =
+	 * Integer.parseInt(request.getParameter("userId")); post.setUser_id(userId);
+	 * 
+	 * Post resultPost = syPostServiceImpl.selectPostDetail(post);
+	 * model.addAttribute("result", resultPost);
+	 * 
+	 * return "redirect:testList.do";
+	 * 
+	 * }
+	 */
 
 	// 게시글 작성
 	@RequestMapping(value = "")
