@@ -90,11 +90,26 @@ local.properties
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
 #.classpath
-mvnw
-mvnw.cmd
+\mvnw
+\mvnw.cmd
 
 ### Eclipse Patch ###
 # Spring Boot Tooling
 .sts4-cache/
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
+
+# soras add 
+.lock
+.log
+.plugins
+.mvn
+\version.ini
+.settings
+Servers
+\mvnw
+\mvnw.cmd
+.mylyn
+/.metadata/
+.project
+.classpath
