@@ -27,4 +27,31 @@ public class DsAdminRestController {
 		Company company = dsAdminService.getCompany(com);
 		return company;
 	}
+	
+	@GetMapping(value="memberDel")
+	public int memberDel(String user_id) {
+		int result= dsAdminService.memberDel(user_id);
+		return result;
+	}
+	
+	@GetMapping(value="joinRefuse")
+	public int joinRefuse(String comId) {
+		int result = dsAdminService.joinRefuse(comId);
+		return result;
+	}
+	
+	@GetMapping(value="companyDel")
+	public int companyDel(String comId) {
+		int result = dsAdminService.companyDel(comId);
+		return result;
+	}
+	
+	@GetMapping(value="maxSubCate")
+	public int maxSubCate(String mainCate) {
+		int result = dsAdminService.maxSubCate(mainCate);
+		result = result+1;
+		return result;
+	}
+	
+	
 }
