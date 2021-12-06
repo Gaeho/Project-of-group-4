@@ -76,6 +76,8 @@ public class GmAnnoListController {
 	@GetMapping(value = "detail")
 	public String detail(String anno_code, ComAnnounce com, Model model) {
 		
+		String user_id ="dmdtla054";
+		
 		System.out.println("GmAnnoListController detail Start...");
 		System.out.println("anno_code->"+anno_code);
 		ComAnnounce comanno = as.detail(anno_code);
@@ -87,6 +89,15 @@ public class GmAnnoListController {
 		System.out.println("comanno.getAnno_title()-> "+comanno.getAnno_title());
 		System.out.println("comanno.getJob_tag()-> "+comanno.getJob_tag());
 		System.out.println("----------------------------------------");
+		
+		// 스크랩 유무
+		Scrap scrap = new Scrap();
+		scrap.setAnno_code(anno_code);
+		scrap.setUser_id(user_id);
+		
+		int itlike = as.likegetinfo(scrap);
+		model.addAttribute("itlike",itlike);
+		
 		
 		// 공통 테이블에서 값 가져오기
 		// 모집 직종 
@@ -168,25 +179,27 @@ public class GmAnnoListController {
 		@ResponseBody
 		public String scrap (String anno_code, String user_id, int it_like, Model model) {
 			System.out.println("GmAnnoListController scrap Start...");
-//			Scrap scrap = new Scrap();
-//			scrap.setAnno_code(anno_code);
-//			scrap.setUser_id(user_id);
-			System.out.println("------------------------------------");
+			
+			Scrap scrap = new Scrap();
+			scrap.setAnno_code(anno_code);
+			scrap.setUser_id(user_id);
 			
 			System.out.println("GmAnnoListController scrap anno_code->"+anno_code);
 			System.out.println("GmAnnoListController scrap user_id->"+user_id);
 			System.out.println("GmAnnoListController scrap it_like->"+it_like);
 			
-			/*
-			 * int itlike = 0; int check = as.likecnt(scrap);
-			 * System.out.println("Controller check ->" + check);
-			 * 
-			 * if (check == 0) { as.likeinsert(scrap); } else if (check == 1) { itlike =
-			 * as.likegetinfo(scrap); System.out.println("insert 안되었어~"); }
-			 * 
-			 * model.addAttribute("itlike", itlike);
-			 */
-			return "1";
+			/* int check = as.likecnt(scrap); */
+			String imgSrc = null; // ajax로 리턴 될 놈 ex)img에 들어갈 src
+			
+			if (it_like == 0) { 		// 스크랩하기
+				as.likeinsert(scrap);
+				imgSrc = "스크랩취소IMGSRC";
+			} else if (it_like == 1) { 	// 스크랩취소
+				as.likedelete(scrap);
+				imgSrc = "스크랩하기IMGSRC";
+			}
+
+			return imgSrc;
 
 		 }
 		
