@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Post;
 import com.oracle.s20210904.comm.model.Member;
@@ -31,7 +32,7 @@ public class DsAdminDaoImpl implements DsAdminDao {
 		
 		return result;
 	}
-	
+	// 페이징 안된 QnA
 	@Override
 	public List<Post> getQnaList() {
 		List<Post> qnaList = session.selectList("DsQnaList");
@@ -102,5 +103,55 @@ public class DsAdminDaoImpl implements DsAdminDao {
 	public List<DsComm> getDsCommList(DsComm dsComm) {
 		List<DsComm> dsCommList = session.selectList("DsCommList",dsComm);
 		return dsCommList;
+	}
+	
+	@Override
+	public List<Post> getNoticeList(Post post) {
+		List<Post> noticeList = session.selectList("DsNoticeList",post);
+		return noticeList;
+	}
+	// 페이징 QnA
+	@Override
+	public List<Post> getQnaList(Post post) {
+		List<Post> qnaList = session.selectList("DsQnAList",post);
+		return qnaList;
+	}
+	@Override
+	public int ntotCnt() {
+		int ntotCnt = session.selectOne("DsntotCnt");
+		return ntotCnt;
+	}
+	@Override
+	public int qtotCnt() {
+		int qtotCnt = session.selectOne("DsqtotCnt");
+		return qtotCnt;
+	}
+	@Override
+	public int memberDel(String user_id) {
+		int result = session.update("DsMemberDel",user_id);
+		return result;
+	}
+	@Override
+	public int joinRefuse(String comId) {
+		int result = session.update("DsJoinRefuse",comId);
+		return result;
+	}
+	
+	@Override
+	public int companyDel(String comId) {
+		int result = session.update("DsCompanyDel",comId);
+		return result;
+	}
+	
+	@Override
+	public List<Comm> getMainCate() {
+		List<Comm> mainCate = session.selectList("DsMainCate");
+		return mainCate;
+	}
+	
+	@Override
+	public int maxSubCate(String mainCate) {
+		int result = session.selectOne("maxSubCate",mainCate);
+		return result;
 	}
 }

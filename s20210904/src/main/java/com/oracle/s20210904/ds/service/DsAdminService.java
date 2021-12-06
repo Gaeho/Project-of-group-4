@@ -3,6 +3,7 @@ package com.oracle.s20210904.ds.service;
 import java.util.List;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Post;
 import com.oracle.s20210904.comm.model.Member;
@@ -26,5 +27,14 @@ public interface DsAdminService {
 	Company getCompany(Company com);
 	int ttotCnt();
 	List<DsComm> getDsCommList(DsComm dsComm);
+	int qtotCnt();
+	int ntotCnt();
+	List<Post> getQnaList(Post post);
+	List<Post> getNoticeList(Post post);
+	int memberDel(String user_id);
+	int joinRefuse(String comId);
+	int companyDel(String comId);
+	List<Comm> getMainCate();
+	int maxSubCate(String mainCate);
 
 }
