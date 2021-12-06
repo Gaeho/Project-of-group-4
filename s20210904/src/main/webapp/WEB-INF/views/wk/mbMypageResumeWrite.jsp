@@ -58,7 +58,7 @@
 		학교명 <input type="text" name="hs_name" placeholder ="고등학교명을 입력해주세요"><br>
 		전공계열 
 		<select name="hs_mjr">
-			<c:forEach var="commlist" items="${commlist }">
+			<c:forEach var="commlist" items="${hs_mjr_commlist }">
 				<option value="${commlist.sub_cat }">${commlist.comm_ctx }</option>
 			</c:forEach>
 		</select> 
@@ -75,9 +75,27 @@
 	경력사항 
 	<div id="resumeDetail"></div>
 	<input type="button" value="+추가 생성" id="addResumeDetail"><br>
+	<p>
+	희망직종태그 <select name="res_tag1">
+		<option value="">선택안함</option>
+		<c:forEach var="commlist" items="${tag1_commlist }">
+			<option value="${commlist.sub_cat }">${commlist.comm_ctx }</option>
+		</c:forEach>
+	</select>
+	<p>
+	희망기술태그1 <select name="res_tag2">
+		<option value="">선택안함</option>
+		<c:forEach var="commlist" items="${tag2_commlist }">
+			<option value="${commlist.sub_cat }">${commlist.comm_ctx }</option>
+		</c:forEach>
+	</select>
 	
-	
-	
+	희망기술태그2 <select name="res_tag3">
+		<option value="">선택안함</option>
+		<c:forEach var="commlist" items="${tag2_commlist }">
+			<option value="${commlist.sub_cat }">${commlist.comm_ctx }</option>
+		</c:forEach>
+	</select>
 	<p>
 	기타 링크<br>
 	<textarea rows="10" cols="40" name="res_etc_link"></textarea><p>
