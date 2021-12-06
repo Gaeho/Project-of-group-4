@@ -118,7 +118,15 @@ public class WkMbMypageController {
 		
 		String main_cat="062";
 		List<WkCommDto> commlist=ms.commList(main_cat);
-		model.addAttribute("commlist", commlist);
+		model.addAttribute("hs_mjr_commlist", commlist);
+		
+		main_cat="001";
+		commlist=ms.commList(main_cat);
+		model.addAttribute("tag1_commlist", commlist);
+		
+		main_cat="002";
+		commlist=ms.commList(main_cat);
+		model.addAttribute("tag2_commlist", commlist);
 		
 		Member memberdetail=ms.memberDetail(mbid);
 		model.addAttribute("memberdetail", memberdetail);
@@ -184,10 +192,18 @@ public class WkMbMypageController {
 			
 			model.addAttribute("resumedetail", resume);
 			model.addAttribute("resumeDetailList", resumeDetailList);
-			String main_cat="062";
 			
+			String main_cat="062";
 			List<WkCommDto> commlist=ms.commList(main_cat);
 			model.addAttribute("commlist", commlist);
+			
+			main_cat="001";
+			commlist=ms.commList(main_cat);
+			model.addAttribute("tag1_commlist", commlist);
+			
+			main_cat="002";
+			commlist=ms.commList(main_cat);
+			model.addAttribute("tag2_commlist", commlist);
 			
 			Member memberdetail=ms.memberDetail(mbid);
 			model.addAttribute("memberdetail", memberdetail);

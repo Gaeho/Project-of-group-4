@@ -9,7 +9,8 @@
 		on r.res_sts=c.sub_cat 
 		where r.user_id =#{mbid}
 		and r.res_sts!='003'
-		and c.main_cat='065'
+		and c.main_cat='063'
+		order by res_date desc
 	</select>
 	
 	<select id="WkResumeMaxRescode" parameterType="String" resultType="int">
