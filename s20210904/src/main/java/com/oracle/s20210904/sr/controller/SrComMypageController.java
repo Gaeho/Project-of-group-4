@@ -6,8 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Bookmark;
+import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.Company;
+import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.service.Paging;
@@ -150,5 +156,124 @@ public class SrComMypageController {
 		
 		return "sr/comMemberSearchMenu";
 	}
+	
+	// 북마크회원
+		@GetMapping(value = "ComMarkMember")
+		public String ComMarkMember(Member member, Model model, String currentPage, CommCompany CommCompany , Bookmark bookmark, MemBmark memBmark) {
+			
+			//------------------------------------------------------------------------
+			
+			System.out.println("SrComMypageController ComMarkMember가 시작되었다귱~~");
+			int total = scms.total();
+			System.out.println("SrComMypageController total=>" + total);
+			// Paging
+			Paging pg = new Paging(total, currentPage);
+			// list
+			bookmark.setStart(pg.getStart()); // 1
+			bookmark.setEnd(pg.getEnd()); // 5
+			
+			//--------------------------------------------------------------------------
+			
+			System.out.println("SrComMypageController listBmark 시작");
+
+			List<Bookmark> listBmark = scms.listBmark1(bookmark);
+
+			System.out.println("SrComMypageController listBmark size=>"+listBmark.size());
+
+			for (Bookmark listBmarkk : listBmark) {
+				System.out.println("listBmarkk.getUser_id=>" + listBmarkk.getUser_id());
+				System.out.println("listBmarkk.getCom_id=>" + listBmarkk.getCom_id());
+			}
+			
+			//---------------------------------------------------------------------------
+			// company
+			CommCompany commCompany1 = null;
+			commCompany1 = scms.comInfo(CommCompany);
+			//---------------------------------------------------------------------------
+			
+			/*
+			 * MemBmark memBmark1=null; memBmark1=scms.memBmark2(memBmark);
+			 */
+			
+			
+			//---------------------------------------------------------------------------
+
+			model.addAttribute("total", total);
+			model.addAttribute("listBmark", listBmark);
+			System.out.println("listBmark 확인=>" + listBmark);
+			System.out.println("listBmark 확인=>" + model);
+			model.addAttribute("pg", pg);
+			model.addAttribute("commCompany1", commCompany1);
+//			model.addAttribute("memBmark1", memBmark1);
+
+			// ---------------------------------------------------------------------------
+			
+			// 북마크 유무
+			String com_id ="tlstprp5184";
+			//String user_id = "dmdtla054";
+			
+			//Bookmark bookmark = new Bookmark();
+			bookmark.setCom_id(com_id);
+			//bookmark.setUser_id(user_id);
+			
+			int itbookmark = scms.bookmarkgetinfo(bookmark);
+			model.addAttribute("itbookmark", itbookmark);
+
+
+			return "sr/comMarkMemberMenu";
+		}
+		
+		// 북마크 개인 상세
+		@GetMapping(value = "detail2")
+		public String detail(String user_id, Member member, Model model) {
+			System.out.println("SrComMypageController detail Start...");
+			Member mem = scms.userdetail(user_id);
+			model.addAttribute("mem", mem);
+			System.out.println("----------------------------------------");
+			System.out.println("mem.getUser_name()->"+mem.getUser_name());
+			System.out.println("mem.getUser_email()->"+mem.getUser_email());
+			System.out.println("mem.getUser_tel()->"+mem.getUser_tel());
+			System.out.println("mem.getUser_addr()->"+mem.getUser_addr());
+			System.out.println("----------------------------------------");		
+			
+			// 공통 테이블에서 원하는 직종 가져오기
+			System.out.println("SrComMypageController jobtag Start...");
+			Comm jobtag = scms.jobtag(mem);
+			System.out.println("SrComMypageController jobtag.getComm_ctx()->"+jobtag.getComm_ctx());
+			model.addAttribute("jobtag", jobtag);
+		
+			
+			return "sr/comMarkMemDetail";
+		}
+		
+		// 북마크
+		@RequestMapping(value = "bookmark", produces = "application/text;charset=UTF-8")
+		@ResponseBody
+		public String bookmark (String com_id, String user_id, int it_bookmark, Model model) {
+			System.out.println("SrComMypageController bookmark Start...");
+			
+			Bookmark bookmark = new Bookmark();
+			bookmark.setCom_id(com_id);
+			bookmark.setUser_id(user_id);
+			
+			System.out.println("SrComMypageController bookmark com_id->"+com_id);
+			System.out.println("SrComMypageController bookmark user_id->"+user_id);
+			System.out.println("SrComMypageController bookmark it_bookmark->"+it_bookmark);
+			
+			/* int check = as.likecnt(scrap); */
+			String imgSrc = null; // ajax로 리턴 될 놈 ex)img에 들어갈 src
+			
+			
+			if (it_bookmark == 0) { // 스크랩하기
+				scms.bookmarkinsert(bookmark);
+				imgSrc = "북마크취소IMGSRC";
+			} else if (it_bookmark == 1) { // 스크랩취소
+				scms.bookmarkdelete(bookmark);
+				imgSrc = "북마크하기IMGSRC";
+			}
+
+			return imgSrc;
+
+		 }
 
 }

@@ -195,6 +195,18 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				}
 				
 			}
+			
+			// 스크랩 취소
+			@Override
+			public void likedelete(Scrap scrap) {
+				System.out.println("GmAnnoDaoImpl likedelete Start...");
+				try {
+					session.delete("GmLikeDelete", scrap);
+				} catch (Exception e) {
+					System.out.println("GmAnnoDaoImpl likedelete Exception "+e.getMessage());
+				}
+				
+			}
 
 			// 스크랩 유무
 			@Override

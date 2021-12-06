@@ -12,34 +12,35 @@
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <link href="css/gm/GmAnnoDetail.css" rel="stylesheet" type="text/css">
 <title>코딩몬</title>
-<script type="text/javascript" src="js/jquery.js"></script>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 
 	/* EmpController */
 	function setScrap(){
 		alert("setScrap Start..");  
-		anno_code = $('#anno_code').val(),
-		user_id = $('#user_id').val(),
-		it_like = $('#it_like').val(),
+		var anno_code = $('#anno_code').val()
+		var user_id = $('#user_id').val()
+		var it_like = $('#it_like').val()
 		alert("setScrap anno_code->"+ anno_code);  
 		alert("setScrap user_id->"+user_id);  
 		alert("setScrap it_like->"+it_like);  
 	
 	 	$.ajax({
 			url:"<%=context%>/scrap",
-			data:{"anno_code" : anno_code,
-			      "user_id"   : user_id,
-			      "it_like"   : it_like
+			data:{anno_code : anno_code,
+			      user_id   : user_id,
+			      it_like   : it_like
 			    },	/*  */
 			dataType:'text',			/* 서버에서 내려온 data 형식 */
 			success:function(data){		/* 요청이 성공됬을때 실행되는 callback 함수 */
-				alert("success data"+data);  
-				if(data == 1){
-					console.log("좋아요");
-					$('#likecheck').val(0);
-					$('#likebtn').attr()
-				}		
-			}	
+					alert("success data"+data);  
+					alert("성공");
+					/* $('#likebtn').val(data); */
+					location.reload(); // 페이지 리로드
+			},
+			error:function(){
+				alert("에러 발생");
+			}
 			
 		}); 
 		
@@ -49,33 +50,32 @@
 </head>
 <body>
 
-<%@ include file="/WEB-INF/views/header.jsp"%>
+<%@ include file="header.jsp" %>
 
 	<!-------------------------------------------------------------------------------------->
 	<div class="detail">
 	  <div class="detail_title">
 		<h2>공고 상세</h2>
 		  <div class="com_name">
-			<tr><td>${comanno.com_name}&nbsp;&nbsp;&nbsp;
+			<tr><td>${comanno.com_name}&nbsp;&nbsp;&nbsp;</td>
 			<td>
 			  <c:choose>
 			    <c:when test="${itlike == 0}">
-			      <input type="button" class = "btn btn_light" id="likebtn" value="스크랩 " onclick="setScrap()">
-					      <input type="hidden" id="likecheck" value="${itlike}">
+			      <input type="button" class = "btn btn_light" id="likebtn" value="스크랩  ☆ " onclick="setScrap()">
+				  <input type="hidden" id="likecheck" value="${itlike}">
 			    </c:when>
 			    
-			<%--     <c:when test="${itlike == 1}"> 
-			      <input type="button" class = "btn btn_danger" id="likebtn" value="★ "></button>
+		        <c:when test="${itlike == 1}"> 
+			      <input type="button" class = "btn btn_danger" id="likebtn" value="스크랩 ★" onclick="setScrap()">
 			      <input type="hidden" id="likecheck" value="${itlike}">
-			    </c:when> --%>
+			    </c:when>
 			  </c:choose>
 			  
-			     <input type="button" class = "btn btn_danger" id="likebtn" value="스크랩 " onclick="setScrap()">
-				 <input type="button" value="관심기업등록 ♥" >
+			     <!-- <input type="button" class = "btn btn_danger" id="likebtn" value="스크랩 " onclick="setScrap()"> -->
 				 <input type="button" value="지원하기" onclick="location.href='GmApplyList'">
 				    anno_code : <input type="text" id="anno_code"    value="1"          ><p>
 				    user_id :   <input type="text" id="user_id"      value="dmdtla054"  ><p>
-				    it_like :   <input type="text" id="it_like"      value="1"         ><p>
+				    it_like :   <input type="text" id="it_like"      value="${itlike }"         ><p>
 				 
 			
 			</td></tr>
@@ -132,6 +132,6 @@
 	</div>
 	<!-------------------------------------------------------------------------------------->
 	<br><br><br>
-	<%@ include file="/WEB-INF/views/footer.jsp"%>
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

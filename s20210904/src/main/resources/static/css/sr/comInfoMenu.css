@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.testcss {
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+}
+
+.menuBox {
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	padding: 8px 16px;
+	background-color: black;
+	border: 1px solid white;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.menuBox:hover {
+	color: black;
+	background-color: white;
+}

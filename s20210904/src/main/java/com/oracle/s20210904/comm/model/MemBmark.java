@@ -1,12 +1,17 @@
 package com.oracle.s20210904.comm.model;
 
-import lombok.Setter;
-import lombok.Getter;
+import java.sql.Date;
 
+import lombok.Getter;
+import lombok.Setter;
 @Getter
 @Setter
-public class Member {
+public class MemBmark {
+	
+	//comm
 	private String user_id;
+	
+	//member
 	private String user_pw;
 	private String user_name;
 	private String user_sex;
@@ -15,8 +20,14 @@ public class Member {
 	private String user_addr;
 	private String user_tel;
 	private String user_email;
-	private String user_job_tag;
 	private String user_img;
+	
+	//bookmark
+	private String com_id;
+	private Date mrk_date;
+	
+	//조회용
 	private int start;
 	private int end;
+
 }

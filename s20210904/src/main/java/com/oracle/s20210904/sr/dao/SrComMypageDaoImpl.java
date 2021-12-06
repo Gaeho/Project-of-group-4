@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Bookmark;
+import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
@@ -105,4 +108,95 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		List<CommMemResume> commMemResumeList=session.selectList("SrCommMemResumeList", commMemResume);
 		return commMemResumeList;
 	}
+	
+	//북마크회원
+		@Override
+		public List<Bookmark> listBmark3(Bookmark bookmark) {
+			
+			System.out.println("SrComMypageDaoImpl listBmark 시작!!");
+			List<Bookmark> listBmark4=null;
+			try {
+				listBmark4 = session.selectList("SrMemBmarkList", bookmark);
+				System.out.println("SrComMypageDaoImpl listBmark listBmark.size"+listBmark4.size());
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl listBmark 오류"+e.getMessage());
+			}
+			return listBmark4;
+		}
+		
+		// 북마크 개인 상세
+		@Override
+		public Member userdetail(String user_id) {
+			System.out.println("SrComMypageDaoImpl userdetail Start...");
+			Member mem = null;
+			try {
+				mem = session.selectOne("SrUserDetail", user_id);
+				System.out.println("Dao mem.getUser_name()->"+mem.getUser_name());
+				System.out.println("Dao mem.getUser_addr()->"+mem.getUser_addr());
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl userdetail error"+e.getMessage());
+			}
+			
+			return mem;
+		}
+
+		// 공통 테이블에서 원하는 직종 가져오기
+		@Override
+		public Comm jobtag(Member mem) {
+			System.out.println("SrComMypageDaoImpl jobtag Start...");
+			Comm jobtag = null;
+			try {
+				jobtag = session.selectOne("SrJobTag", mem);
+				System.out.println("Dao jobtag.getComm_ctx()->"+jobtag.getComm_ctx());
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl jobtag error"+e.getMessage());
+			}
+			return jobtag;
+		}
+
+		// 북마크 유무
+		@Override
+		public int getinfo(Bookmark bookmark) {
+			System.out.println("SrComMypageDaoImpl getinfo Start...");
+			int getinfo = 0;
+			try {
+				getinfo = session.selectOne("SrGetInfo", bookmark);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl getinfo error"+e.getMessage());
+			}
+			return getinfo;
+		}
+
+		
+		// 북마크 추가
+		@Override
+		public void bookmarkinsert(Bookmark bookmark) {
+			System.out.println("SrComMypageDaoImpl bookmarkinsert Start...");
+			try {
+				session.insert("SrBminsert", bookmark);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl bookmarkinsert error"+e.getMessage());
+			}
+			
+			
+		}
+
+		// 북마크 삭제
+		@Override
+		public void bookmarkdelete(Bookmark bookmark) {
+			System.out.println("SrComMypageDaoImpl bookmarkdelete Start...");
+			try {
+				session.delete("SrBmdelete", bookmark);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl bookmarkdelete error"+e.getMessage());
+			}
+			
+		}
+		
+	
+	
+	
+	
+	
+	
 }

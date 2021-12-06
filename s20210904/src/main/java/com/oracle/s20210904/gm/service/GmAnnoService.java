@@ -45,6 +45,8 @@ public interface GmAnnoService {
 
 	Resume selResume(Resume resume);
 
+	void likedelete(Scrap scrap);
+
 	
 	
 	

@@ -61,7 +61,7 @@
 		<div class="compAppStatus_out">
 			<div class="compAppStatus_btn">
 				<input type="button" value="진행중()" onclick="location.href='ComAppStatus?id=0'">
-				<inpu type="button" value="마감()" onclick="location.href='ComAppStatus?id=1'">
+				<input type="button" value="마감()" onclick="location.href='ComAppStatus?id=1'">
 			</div>
 			<div class="compAppStatus_in">
 				<c:forEach var="appAnnMember" items="${appAnnMember }">

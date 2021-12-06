@@ -43,6 +43,8 @@ public interface GmAnnoDao {
 
 	Resume selResume(Resume resume);
 
+	void likedelete(Scrap scrap);
+
 
 	
 	
