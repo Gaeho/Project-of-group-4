@@ -111,4 +111,5 @@ Servers
 \mvnw.cmd
 .mylyn
 /.metadata/
-
+.MF
+web.xml
