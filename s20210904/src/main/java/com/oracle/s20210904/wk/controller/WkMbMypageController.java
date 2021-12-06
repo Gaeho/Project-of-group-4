@@ -169,9 +169,17 @@ public class WkMbMypageController {
 			model.addAttribute("univ_date2", univ_date2);
 			
 			if(resumeDetailList!=null) {
+				Date[] emp_date1 = new Date[2], 
+						emp_date2=new Date[2];
+				String[] emp_date_array=new String[2];
 				for(int i=0; i<resumeDetailList.size(); i++) {
+					emp_date_array=resumeDetailList.get(i).getEmp_date().split("~");
+					emp_date1[i]=new Date(sdf.parse(emp_date_array[0]).getTime());
+					emp_date2[i]=new Date(sdf.parse(emp_date_array[1]).getTime());
 					
 				}
+				model.addAttribute("emp_date1", emp_date1);
+				model.addAttribute("emp_date2", emp_date2);
 			}
 			
 			model.addAttribute("resumedetail", resume);

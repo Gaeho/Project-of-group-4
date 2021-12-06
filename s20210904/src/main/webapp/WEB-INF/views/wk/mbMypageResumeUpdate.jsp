@@ -15,7 +15,7 @@
 	var addResAppend="";
 	$(document).ready( function() {
     	$(document).on("click", "#addResumeDetail", function() {
-    		alert(car_code_num);
+    		//alert(car_code_num);
       		addResAppend="<div id='resDetail"+car_code_num+"'>"
       					+"회사명 <input type='text' name='com_name_ar[]' placeholder ='회사명을 입력해주세요'><br>"
 						+"근무기간  <input type='date' name='emp_date1_ar[]'> - <input type='date' name='emp_date2_ar[]'><br>"
@@ -82,10 +82,11 @@
 		test: ${fn:length(resumeDetailList) }
 		<p>
 		경력사항 	
-		<c:forEach var="resumeDetailList" items="${resumeDetailList}">
+		<c:forEach var="resumeDetailList" items="${resumeDetailList}" varStatus="status">
 			<div id="resDetail${resumeDetailList.car_code }">
+				
 				회사명 <input type='text' name='com_name_ar[]' value="${resumeDetailList.com_name }"><br>
-				근무기간  <input type='date' name='emp_date1_ar[]'> - <input type='date' name='emp_date2_ar[]'><br>
+				근무기간  <input type='date' name='emp_date1_ar[]' value="emp_date1(0)"> - <input type='date' name='emp_date2_ar[]' value="emp_date2(0)"><br>
 				근무부서 <input type='text' name='emp_dept_ar[]' value="${resumeDetailList.emp_dept }"><br>
 				담당업무 <input type='text' name='task_ar[]' value="${resumeDetailList.task }">&nbsp;&nbsp;&nbsp;
 				<input type='button' value='경력사항 삭제' id='deleteResDetail' onclick="deleteResumeDetail(${resumeDetailList.car_code })"><p>
