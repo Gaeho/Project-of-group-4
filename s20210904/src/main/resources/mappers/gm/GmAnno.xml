@@ -96,7 +96,8 @@
 	
 	<delete id="GmLikeDelete" parameterType="Scrap">
 		delete from scrap
-		where anno_code = #{anno_code} and user_id = #{user_id}
+		where anno_code = #{anno_code} 
+		and user_id = #{user_id}
 	</delete>
 	
 	<select id="GmLikeGetInfo" parameterType="Scrap" resultType="int">

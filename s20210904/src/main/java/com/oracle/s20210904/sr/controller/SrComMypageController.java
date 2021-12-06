@@ -159,8 +159,10 @@ public class SrComMypageController {
 	
 	// 북마크회원
 		@GetMapping(value = "ComMarkMember")
-		public String ComMarkMember(Member member, Model model, String currentPage, CommCompany CommCompany , Bookmark bookmark, MemBmark memBmark) {
-			
+		public String ComMarkMember(String user_id, Model model, String currentPage, CommCompany CommCompany , Bookmark bookmark) {
+			// 북마크 유무
+			String com_id ="tlstprp5184";
+			//String user_id = "dmdtla054";
 			//------------------------------------------------------------------------
 			
 			System.out.println("SrComMypageController ComMarkMember가 시작되었다귱~~");
@@ -208,15 +210,13 @@ public class SrComMypageController {
 
 			// ---------------------------------------------------------------------------
 			
-			// 북마크 유무
-			String com_id ="tlstprp5184";
-			//String user_id = "dmdtla054";
 			
 			//Bookmark bookmark = new Bookmark();
 			bookmark.setCom_id(com_id);
-			//bookmark.setUser_id(user_id);
+			bookmark.setUser_id(user_id);
 			
 			int itbookmark = scms.bookmarkgetinfo(bookmark);
+			System.out.println("Controller itbookmark->"+itbookmark);
 			model.addAttribute("itbookmark", itbookmark);
 
 

@@ -118,16 +118,17 @@
 					      <input type="hidden" id="likecheck" value="${itbookmark}">
 					    </c:when>
 					  </c:choose>
-				  </td>
+				  
 				
 					  com_id	  : <input type="text" id="com_id"      value="tlstprp5184"><p>
 				      user_id 	  : <input type="text" id="user_id"     value="dmdtla054"  ><p>
-				      it_bookmark : <input type="text" id="it_bookmark" value="1" ><p>
+				      it_bookmark 	  : <input type="text" id="it_bookmark"     value="${itbookmark }"><p>
 				     
 				 
 				  <td><img class="memberImg" src="${user_img}"/></td>
 				  <td><a href="detail2?user_id=${bookmark.user_id}" >${bookmark.user_id}</a></td>
 				  <td>${bookmark.mrk_date}</td>
+				</td>  
 			    </tr>
 			    
 				<div class="divTableCol">
