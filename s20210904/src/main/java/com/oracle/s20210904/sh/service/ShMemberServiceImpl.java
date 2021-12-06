@@ -13,7 +13,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 	@Autowired
 	private ShMemberDao md;
 
-	//°³ÀÎ È¸¿ø°¡ÀÔ 
+	//ê°œì¸ íšŒì›ê°€ì… 
 	@Override
 	public int joinmember(Member member) {
 		System.out.println("ShMemberrServiceImpl joinmember Start...");
@@ -25,7 +25,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 		return joinmember;
 	}
 	
-	//±â¾÷ È¸¿ø°¡ÀÔ
+	//ê¸°ì—… íšŒì›ê°€ì…
 	@Override
 	public int joincom(Company company) {
 		System.out.println("ShMemberServiceImpl joincom Start...");
@@ -34,7 +34,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 		return joincom;
 	}
 
-	//°³ÀÎ ·Î±×ÀÎ
+	//ê°œì¸ ë¡œê·¸ì¸
 	@Override
 	public int login(Member mem) {
 		System.out.println("ShMemberServiceImpl mem Start... ");
@@ -45,7 +45,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 		return loginCnt;
 	}
 
-	//±â¾÷ ·Î±×ÀÎ
+	//ê¸°ì—… ë¡œê·¸ì¸
 	@Override
 	public int Comlogin(Company com) {
 		System.out.println("ShMemberServiceImpl com Start...");
@@ -54,7 +54,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 		
 		return ComloginCnt;
 	}
-	//°³ÀÎ È¸¿ø ¾ÆÀÌµğ Ã£±â 
+	//ê°œì¸ íšŒì› ì•„ì´ë”” ì°¾ê¸° 
 	@Override
 	public String findID(Member member) {
 		System.out.println("ShMemberServiceImpl findIdForm Start..");
@@ -63,7 +63,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 		String user_id = md.findID(member);
 		return user_id;
 	}
-	//±â¾÷ È¸¿ø ¾ÆÀÌµğ Ã£±â
+	//ê¸°ì—… íšŒì› ì•„ì´ë”” ì°¾ê¸°
 	@Override
 	public String findID(Company company) {
 		System.out.println("ShMemberServiceImpl findComIdForm Start....");
@@ -75,7 +75,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 		
 		return com_id;
 	}
-	//°³ÀÎ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
+	//ê°œì¸ íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° 
 
 	@Override
 	public int tempSavePw(Member member) {
@@ -87,7 +87,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 		return result;
 	}
 
-	//±â¾÷ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â
+	//ê¸°ì—… íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	@Override
 	public int tempComSavePw(Company company) {
 		int result = 0; 
@@ -143,8 +143,8 @@ public class ShMemberServiceImpl implements ShMemberService {
 	
 	
 	
-	// ½ÇÆĞÀÛµé
-	//°³ÀÎ ¾ÆÀÌµğÃ£±â
+	// ì‹¤íŒ¨ì‘ë“¤
+	//ê°œì¸ ì•„ì´ë””ì°¾ê¸°
 //	@Override
 //	public Member findId(Member mem) {
 //		System.out.println("ShMemberServiceImpl mem Start...");
@@ -159,7 +159,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 	
 
 
-	//°³ÀÎ ·Î±×ÀÎ 
+	//ê°œì¸ ë¡œê·¸ì¸ 
 //		@Override
 //		public Member login(String user_id, String user_pw) {
 //			System.out.println("ShMemberServiceImpl login Start...");
@@ -171,7 +171,7 @@ public class ShMemberServiceImpl implements ShMemberService {
 
 	
 	/*
-	//·Î±×ÀÎ
+	//ë¡œê·¸ì¸
 	@Override
 	public int login(Member member, Company company) {
 		System.out.println("SHMemberServiceImpl login ");

@@ -127,6 +127,7 @@
 		select count(*)
 		from bookmark 
 		where com_id = #{com_id}
+		and user_id = #{user_id}
 	</select>
 	
 	<insert id="SrBminsert" parameterType="Bookmark">
