@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Member;
@@ -30,12 +31,12 @@ public class ShMemberController {
 	
 	
 	//메인화면 
-	@GetMapping(value="main")
-	public String main() {
-		System.out.println("ShMemberController main Start...");
+	//@GetMapping(value="main")
+	//public String main() {
+		//System.out.println("ShMemberController main Start...");
 		
-		return "sh/main";
-	}
+		//return "sh/main";
+	//}
 	
 	
 	//개인회원가입 
@@ -268,7 +269,36 @@ public class ShMemberController {
 			return "sh/findComPwForm";
 		}
 		
-		
+		//Mail Ajax(개인회원가입 이메일인증)
+		@RequestMapping(value = "verifyEmail" , produces = "application/text;charset=UTF-8")
+		@ResponseBody
+		public String  verifyEmail(String  user_email , Model model) {
+			System.out.println("mailSending...");  //보내는 중
+			String tomail = "user_email";
+			System.out.println("verifyEmail tomail->"+tomail);
+			String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
+			String title = "인증 번호입니다"; //제목
+			String tempVerifyStatus = "0";     
+				
+			try {
+				MimeMessage message = mailsender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
+				messageHelper.setFrom(setfrom); 
+				messageHelper.setTo(tomail); 
+				messageHelper.setSubject(title); 
+				String tempPassword = (int) (Math.random() * 999999) + 1 + "";
+				messageHelper.setText("인증 번호입니다:" + tempPassword); //
+				System.out.println("인증번호입니다" + tempPassword); 
+				mailsender.send(message);
+				tempVerifyStatus = "1";
+			} catch (Exception e) {
+				System.out.println("message Error->"+e.getMessage());
+				tempVerifyStatus = "0";
+			}
+			System.out.println("ShMemberController verifyEmail tempVerifyStatus->" + tempVerifyStatus); 
+			
+			return "tempVerifyStatus";
+		}
 	
 	
 	
