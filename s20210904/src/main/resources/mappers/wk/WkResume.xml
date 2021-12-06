@@ -21,10 +21,10 @@
 	<insert id="WkResumeWrite" parameterType="WkResume">
 		Insert into S20210904.RESUME (user_id,res_code,res_sts,res_title,rep_res,res_email,
 			res_img,hs_name,hs_mjr,univ_name,univ_date,univ_mjr,cov_let,res_date,
-			res_tag1,res_tag2,res_tag3,res_etc_link,res_etc_file) 
+			res_tag1,res_tag2,res_tag3,res_etc_link) 
 		values (#{user_id},#{res_code},#{res_sts},#{res_title},#{rep_res},#{res_email},
 			#{res_img},#{hs_name},#{hs_mjr},#{univ_name},#{univ_date},#{univ_mjr},#{cov_let},sysdate,
-			#{res_tag1},#{res_tag2},#{res_tag3},#{res_etc_link},#{res_etc_file})
+			#{res_tag1},#{res_tag2},#{res_tag3},#{res_etc_link})
 	</insert>
 	
 	<delete id="WkResumeDelete" parameterType="Resume">
@@ -32,5 +32,19 @@
 		where user_id=#{user_id}
 		and res_code=#{res_code}
 	</delete>
+	
+	<update id="WkResumeUpdate" parameterType="Resume">
+		update S20210904.RESUME
+		set res_sts=#{res_sts},				res_title=#{res_title},
+			rep_res=#{rep_res},				res_email=#{res_email},
+			res_img=#{res_img},				hs_name=#{hs_name},
+			hs_mjr=#{hs_mjr},				univ_name=#{univ_name},
+			univ_date=#{univ_date},			univ_mjr=#{univ_mjr},
+			cov_let=#{cov_let},				res_date=sysdate,
+			res_tag1=#{res_tag1},			res_tag2=#{res_tag2},
+			res_tag3=#{res_tag3},			res_etc_link=#{res_etc_link}
+		where user_id=#{user_id}
+		and res_code=#{res_code}
+	</update>
 	
 </mapper>

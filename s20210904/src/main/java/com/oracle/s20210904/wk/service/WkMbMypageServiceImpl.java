@@ -116,17 +116,19 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 	public int resumeWrite(WkResume wkResume, WkResumeDetail wkResumeDetail) {
 		wkResume.setRes_sts("001");
 		wkResume.setRep_res("0");
+		wkResume.setUniv_date(wkResume.getUniv_date1()+"~"+wkResume.getUniv_date2());
+		
 		int resume_result=wkResumeDao.resumeWrite(wkResume);
 		
 		wkResumeDetail.setRes_code(resume_result);
 		if(wkResumeDetail.getCar_code_ar() != null) {
 			List<ResumeDetail> rdlist=new ArrayList<ResumeDetail>();
 			ResumeDetail rd=null;
-			for(int a:wkResumeDetail.getCar_code_ar()) {
+			for(int a=0; a<wkResumeDetail.getCar_code_ar().length; a++ ) {
 				rd=new ResumeDetail();
-				rd.setCar_code(wkResumeDetail.getCar_code_ar()[a]);
+				rd.setCar_code(a);
 				rd.setCom_name(wkResumeDetail.getCom_name_ar()[a]);
-//				rd.setEmp_date(wkResumeDetail.getEmp_date_ar()[a]);
+				rd.setEmp_date(wkResumeDetail.getEmp_date1_ar()[a]+"~"+wkResumeDetail.getEmp_date2_ar()[a]);
 				rd.setEmp_dept(wkResumeDetail.getEmp_dept_ar()[a]);
 				rd.setTask(wkResumeDetail.getTask_ar()[a]);
 				
@@ -158,7 +160,47 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 
 	@Override
 	public Resume resumeSelect(Resume resume) {
-		return wkResumeDao.resumeselect(resume);
+		return wkResumeDao.resumeSelect(resume);
+	}
+
+
+
+	@Override
+	public List<ResumeDetail> resumeDetailSelect(Resume resume) {
+		return wkResumeDetailDao.resumeDetailSelect(resume);
+	}
+
+
+	@Transactional(rollbackFor = {RuntimeException.class ,Exception.class})
+	@Override
+	public int resumeUpdate(Resume resume, WkResumeDetail wkResumeDetail) {
+		resume.setRes_sts("001");
+//		wkResume.setRep_res("0");
+		int resume_result=wkResumeDao.resumeUpdate(resume);
+		wkResumeDetailDao.resumeDetailDelete(resume);
+		
+		wkResumeDetail.setRes_code(resume.getRes_code());
+		if(wkResumeDetail.getCar_code_ar() != null) {
+			List<ResumeDetail> rdlist=new ArrayList<ResumeDetail>();
+			ResumeDetail rd=null;
+			for(int a=0; a<wkResumeDetail.getCar_code_ar().length; a++ ) {
+				rd=new ResumeDetail();
+				rd.setCar_code(a);
+				rd.setCom_name(wkResumeDetail.getCom_name_ar()[a]);
+				rd.setEmp_date(wkResumeDetail.getEmp_date1_ar()[a]+"~"+wkResumeDetail.getEmp_date2_ar()[a]);
+				rd.setEmp_dept(wkResumeDetail.getEmp_dept_ar()[a]);
+				rd.setTask(wkResumeDetail.getTask_ar()[a]);
+				
+				rdlist.add(a, rd);
+			}
+			wkResumeDetail.setResumeDetailList(rdlist);
+			
+			System.out.println("WkMbMypageServiceImpl resumeWrite() com_name : "+wkResumeDetail.getResumeDetailList().get(0).getCom_name());
+			
+			int resume_detail_result=wkResumeDetailDao.resumeDetailWrite(wkResumeDetail);
+		}
+		
+		return resume_result;
 	}
 
 	

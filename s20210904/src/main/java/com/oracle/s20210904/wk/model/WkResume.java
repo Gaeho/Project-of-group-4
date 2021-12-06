@@ -57,6 +57,9 @@ public class WkResume{
 	@Transient
 	private String sub_cat;
 	
-//	WkResumeDetail
-	
+//	date처리
+	@Transient
+	private Date univ_date1;
+	@Transient
+	private Date univ_date2;
 }
