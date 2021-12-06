@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.ComBookmarkDetail {
+	margin-top: 5%;
+	/* background: #FFD700; */
+	
+}
+
+.user {
+	align-items: center;
+	text-align: center;
+	/* border: solid black; */
+}
+
+table.user_info{
+	margin-left: 17%;
+	margin-top: 2%;
+	align-items: center;
+	text-align: center;
+	border: solid black;
+	height: 300px;
+	width: 1025px;
+	/* background: green; */
+	font-size: 18px;
+}
+
+h2{
+	font-size: 30px;
+	font-style: bold;
+}
+
+th{
+	text-align: center;
+	border: solid;
+	height: 60px;
+	width: 200px;
+}
+
+td{
+	text-align: center;
+	border: solid;
+	height: 60px;
+}
+
+table.user_info2{
+	margin-left: 17%;
+	margin-top: 2%;
+	align-items: center;
+	text-align: center;
+	border: solid black;
+	height: 100px;
+	width: 1025px;
+	/* background: green; */
+	font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+

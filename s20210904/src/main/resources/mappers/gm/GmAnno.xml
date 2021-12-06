@@ -91,11 +91,16 @@
 	
 	<insert id="GmLikeInsert" parameterType="Scrap">
 		insert into scrap 
-		values (#{anno_code}, #{user_id}, #{it_like}, sysdate)
+		values (#{anno_code}, #{user_id}, 1 , sysdate)
 	</insert>
 	
+	<delete id="GmLikeDelete" parameterType="Scrap">
+		delete from scrap
+		where anno_code = #{anno_code} and user_id = #{user_id}
+	</delete>
+	
 	<select id="GmLikeGetInfo" parameterType="Scrap" resultType="int">
-		select it_like 
+		select count(*)
 		from scrap 
 		where anno_code = #{anno_code} 
 		and user_id = #{user_id}
