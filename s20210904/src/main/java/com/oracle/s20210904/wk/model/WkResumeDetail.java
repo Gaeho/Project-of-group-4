@@ -1,5 +1,6 @@
 package com.oracle.s20210904.wk.model;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Transient;
@@ -26,7 +27,9 @@ public class WkResumeDetail {
 	@Transient
 	private String[] com_name_ar;
 	@Transient
-	private String[] emp_date_ar;
+	private Date[] emp_date1_ar;
+	@Transient
+	private Date[] emp_date2_ar;
 	@Transient
 	private String[] emp_dept_ar;
 	@Transient
