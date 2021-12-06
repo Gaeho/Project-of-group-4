@@ -118,7 +118,15 @@ public class WkMbMypageController {
 		
 		String main_cat="062";
 		List<WkCommDto> commlist=ms.commList(main_cat);
-		model.addAttribute("commlist", commlist);
+		model.addAttribute("hs_mjr_commlist", commlist);
+		
+		main_cat="001";
+		commlist=ms.commList(main_cat);
+		model.addAttribute("tag1_commlist", commlist);
+		
+		main_cat="002";
+		commlist=ms.commList(main_cat);
+		model.addAttribute("tag2_commlist", commlist);
 		
 		Member memberdetail=ms.memberDetail(mbid);
 		model.addAttribute("memberdetail", memberdetail);
@@ -169,17 +177,33 @@ public class WkMbMypageController {
 			model.addAttribute("univ_date2", univ_date2);
 			
 			if(resumeDetailList!=null) {
+				Date[] emp_date1 = new Date[2], 
+						emp_date2=new Date[2];
+				String[] emp_date_array=new String[2];
 				for(int i=0; i<resumeDetailList.size(); i++) {
+					emp_date_array=resumeDetailList.get(i).getEmp_date().split("~");
+					emp_date1[i]=new Date(sdf.parse(emp_date_array[0]).getTime());
+					emp_date2[i]=new Date(sdf.parse(emp_date_array[1]).getTime());
 					
 				}
+				model.addAttribute("emp_date1", emp_date1);
+				model.addAttribute("emp_date2", emp_date2);
 			}
 			
 			model.addAttribute("resumedetail", resume);
 			model.addAttribute("resumeDetailList", resumeDetailList);
-			String main_cat="062";
 			
+			String main_cat="062";
 			List<WkCommDto> commlist=ms.commList(main_cat);
 			model.addAttribute("commlist", commlist);
+			
+			main_cat="001";
+			commlist=ms.commList(main_cat);
+			model.addAttribute("tag1_commlist", commlist);
+			
+			main_cat="002";
+			commlist=ms.commList(main_cat);
+			model.addAttribute("tag2_commlist", commlist);
 			
 			Member memberdetail=ms.memberDetail(mbid);
 			model.addAttribute("memberdetail", memberdetail);
