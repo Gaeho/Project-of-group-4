@@ -6,22 +6,22 @@ import com.oracle.s20210904.comm.model.Member;
 
 public interface ShMemberDao {
 
-	int joinmember(Member member);  //°³ÀÎ È¸¿ø°¡ÀÔ
-	int joincom(Company company); //±â¾÷ È¸¿ø°¡ÀÔ 
-	int login(Member mem); //°³ÀÎ ·Î±×ÀÎ 
-	int Comlogin(Company com); //±â¾÷ ·Î±×ÀÎ 
-	String findID(Member member); //°³ÀÎ È¸¿ø ¾ÆÀÌµğ Ã£±â 
-	String findID(Company company); //±â¾÷È¸¿ø ¾ÆÀÌµğ Ã£±â
-	int tempSavePw(Member member); //°³ÀÎ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
-	int tempComSavePw(Company company); //±â¾÷ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
+	int joinmember(Member member);  //ê°œì¸ íšŒì›ê°€ì…
+	int joincom(Company company); //ê¸°ì—… íšŒì›ê°€ì… 
+	int login(Member mem); //ê°œì¸ ë¡œê·¸ì¸ 
+	int Comlogin(Company com); //ê¸°ì—… ë¡œê·¸ì¸ 
+	String findID(Member member); //ê°œì¸ íšŒì› ì•„ì´ë”” ì°¾ê¸° 
+	String findID(Company company); //ê¸°ì—…íšŒì› ì•„ì´ë”” ì°¾ê¸°
+	int tempSavePw(Member member); //ê°œì¸ íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° 
+	int tempComSavePw(Company company); //ê¸°ì—… íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° 
 	
 	
 
 	
 	
-	//½ÇÆĞÀÛµé
+	//ì‹¤íŒ¨ì‘ë“¤
 	//Member login(String user_id, String user_pw);
-	//Member findId(Member mem);//°³ÀÎ ¾ÆÀÌµğÃ£±â 
+	//Member findId(Member mem);//ê°œì¸ ì•„ì´ë””ì°¾ê¸° 
 	//Member findId(Map<String, Object> memberMap); 
 
 }
