@@ -14,13 +14,13 @@ public class ShMemberDaoImpl implements ShMemberDao {
 	@Autowired
 	private SqlSession session;
 	
-	//°³ÀÎ È¸¿ø°¡ÀÔ 
+	//ê°œì¸ íšŒì›ê°€ì… 
 	@Override
 	public int joinmember(Member member) {
 		int joinmember= 0;
 		System.out.println("ShMemberDaoImpl joinmember Start...");
 		try {
-			 member.setUser_img(""); //ÀÌ¹ÌÁö´Â null°ª
+			 member.setUser_img(""); //ì´ë¯¸ì§€ëŠ” nullê°’
 			System.out.println("ShMemberDaoImpl joinmember.getUser_id()->"+member.getUser_id());
 			System.out.println("ShMemberDaoImpl joinmember.getUser_pw()->"+member.getUser_pw());
 			joinmember = session.insert("ShJoinMember", member);
@@ -30,16 +30,16 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		return joinmember;
 	}
 
-	//±â¾÷ È¸¿ø°¡ÀÔ
+	//ê¸°ì—… íšŒì›ê°€ì…
 	@Override
 	public int joincom(Company company) {
 		int joincom = 0;
 		System.out.println("ShMemberDaoImpl joincom Start...");
 		try {
-			company.setCom_bus(""); //»ç¾÷  null°ª
-			company.setCom_tel(""); //±â¾÷ÀüÈ­¹øÈ£ null°ª 
-			company.setCom_web(""); //±â¾÷ È¨ÆäÀÌÁö  null°ª
-			company.setCom_img("");//±â¾÷ ÀÌ¹ÌÁö  null°ª
+			company.setCom_bus(""); //ì‚¬ì—…  nullê°’
+			company.setCom_tel(""); //ê¸°ì—…ì „í™”ë²ˆí˜¸ nullê°’ 
+			company.setCom_web(""); //ê¸°ì—… í™ˆí˜ì´ì§€  nullê°’
+			company.setCom_img("");//ê¸°ì—… ì´ë¯¸ì§€  nullê°’
 			System.out.println("ShMemberDaoImpl company.getCom_id()->"+company.getCom_id());
 			System.out.println("ShMemberDaoImpl company.getCom_pw()->"+company.getCom_pw());
 			joincom=session.insert("ShJoinCompany" , company);
@@ -49,7 +49,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		return joincom;
 	}
 
-	//°³ÀÎ ·Î±×ÀÎ 
+	//ê°œì¸ ë¡œê·¸ì¸ 
 	@Override
 	public int login(Member mem) {
 		int loginCnt = 0;
@@ -65,7 +65,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		return loginCnt;
 	}
 
-	//±â¾÷ ·Î±×ÀÎ 
+	//ê¸°ì—… ë¡œê·¸ì¸ 
 	@Override
 	public int Comlogin(Company com) {
 		int ComloginCnt = 0; 
@@ -79,7 +79,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		return ComloginCnt;
 	}
 
-	//°³ÀÎ È¸¿ø ¾ÆÀÌµğ Ã£±â 
+	//ê°œì¸ íšŒì› ì•„ì´ë”” ì°¾ê¸° 
 	@Override
 	public String findID(Member member) {
 		System.out.println("ShMemberDaoImpl findId Start..");
@@ -88,14 +88,14 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		String user_id = "";
 		try {
 			user_id = session.selectOne("ShFindId",member);
-			if (user_id ==null) user_id = "Á¸ÀçÇÏ´Â ¾ÆÀÌµğ°¡ ¾ø³×¿ä ¤Ğ¤Ğ È¸¿ø°¡ÀÔ ¸ÕÀú ÇÏ½Ç·¡¿ä?";
+			if (user_id ==null) user_id = "ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ê°€ ì—†ë„¤ìš” ã… ã…  íšŒì›ê°€ì… ë¨¼ì € í•˜ì‹¤ë˜ìš”?";
 			System.out.println("ShMemberDaoImpl findId user_id->"+user_id);
 		} catch (Exception e) {
 		System.out.println("ShMemberDaoImpl findId Exception->" + e.getMessage());
 		}
 	return user_id;
 	}
-	//±â¾÷ È¸¿ø ¾ÆÀÌµğ Ã£±â 
+	//ê¸°ì—… íšŒì› ì•„ì´ë”” ì°¾ê¸° 
 	@Override
 	public String findID(Company company) {
 		System.out.println("ShMemberDaoImpl findComId Start..");
@@ -106,7 +106,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		
 		try {
 			com_id = session.selectOne("ShFindComId", company);
-			if(com_id == null) com_id = "Á¸ÀçÇÏ´Â ¾ÆÀÌµğ°¡ ¾ø³×¿ä ¤Ğ¤Ğ È¸¿ø°¡ÀÔ ¸ÕÀú ÇÏ½Ç·¡¿ä?";
+			if(com_id == null) com_id = "ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ê°€ ì—†ë„¤ìš” ã… ã…  íšŒì›ê°€ì… ë¨¼ì € í•˜ì‹¤ë˜ìš”?";
 					System.out.println("ShMemberDaoImpl findComId com_id->"+com_id);
 		} catch (Exception e) {
 			System.out.println("ShMemberDaoImpl findComId Exception->" + e.getMessage());
@@ -114,7 +114,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 	 return com_id;
 	}
 
-	//°³ÀÎ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
+	//ê°œì¸ íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° 
 	@Override
 	public int tempSavePw(Member member) {
 		int result = 0;
@@ -124,7 +124,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		// int  result = md.tempSavePw(member);
 		try {
 			result = session.update("ShFindPw",member);
-			if (result>0)		System.out.println("ShMemberDaoImpl ShFindPw ¼öÁ¤ ¼º°ø");
+			if (result>0)		System.out.println("ShMemberDaoImpl ShFindPw ìˆ˜ì • ì„±ê³µ");
 		} catch (Exception e) {
 			System.out.println("ShMemberDaoImpl ShFindPw Exception->" + e.getMessage());
 		}
@@ -132,7 +132,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		return result;
 	}
 
-	//±â¾÷ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
+	//ê¸°ì—… íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° 
 	@Override
 	public int tempComSavePw(Company company) {
 		int result = 0; 
@@ -141,7 +141,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		System.out.println("ShMemberDaomImpl tempComSavePw company.getCom_user()->" + company.getCom_user());
 		try {
 			result = session.update("ShFindComPw" , company);
-			if (result > 0) System.out.println("ShMemberDaoImpl ShFindComPw ¼öÁ¤ ¼º°ø ");
+			if (result > 0) System.out.println("ShMemberDaoImpl ShFindComPw ìˆ˜ì • ì„±ê³µ ");
 		} catch (Exception e) {
 			System.out.println("ShMemberDaoImpl ShFindComPw Exception - > "+ e.getMessage());
 		}
@@ -167,8 +167,8 @@ public class ShMemberDaoImpl implements ShMemberDao {
 	
 	
 	
-	//½ÇÆĞÀÛµé
-//	//°³ÀÎ ¾ÆÀÌµğ Ã£±â
+	//ì‹¤íŒ¨ì‘ë“¤
+//	//ê°œì¸ ì•„ì´ë”” ì°¾ê¸°
 //	@Override
 //	public Member findId(Member mem) {
 //		Member findmemId = new Member();
@@ -186,8 +186,8 @@ public class ShMemberDaoImpl implements ShMemberDao {
 
 	
 	
-	//HashMap ½áº»°Å 
-	//°³ÀÎ·Î±×ÀÎ
+	//HashMap ì¨ë³¸ê±° 
+	//ê°œì¸ë¡œê·¸ì¸
 //		@Override
 //		public Member login(String user_id,String user_pw) {
 //			Map<String ,String> mem = null;
@@ -201,7 +201,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 //			return (Member) mem;
 //		}
 //	
-	//°³ÀÎ ¾ÆÀÌµğÃ£±â
+	//ê°œì¸ ì•„ì´ë””ì°¾ê¸°
 //		@Override
 //		public Member findId(Map<String, Object> memberMap) {
 //		
