@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DjSearchDao">
+
+	<select id="DjMainSearch" parameterType="java.lang.String" resultType="DjSearch">
+		
+				select c.com_id, c.com_name, c.com_tel, c.com_addr, c.com_bus, c.com_mgr_tel, 
+				c.com_web, c.com_img, a.rec_vol, a.emp_type, a.rec_edu, a.anno_title, 
+				d.comm_ctx as 직군 , e.comm_ctx as 경력, f.comm_ctx as 고용형태
+				
+				from Company c 
+				
+				left outer join Announce a
+				on c.com_id=a.com_id
+				
+				left outer join (select sub_cat,comm_ctx
+				            from comm 
+				            where main_cat = 001) d
+				on a.job_tag=d.sub_cat
+				
+				left outer join (select sub_cat,comm_ctx
+				            from comm 
+				            where main_cat = 070) e
+				on a.career=e.sub_cat  
+				
+				left outer join (select sub_cat,comm_ctx
+				                 from comm 
+				                 where main_cat = 071) f
+				on a.emp_type=f.sub_cat
+				
+				where c.com_name  like '%{searchcontents}%'
+				or a.anno_title like '%{searchcontents}%'            
+	
+	</select>
+
+
+
+</mapper>
