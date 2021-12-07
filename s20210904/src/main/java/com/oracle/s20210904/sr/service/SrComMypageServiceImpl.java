@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
-import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
@@ -83,7 +82,6 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		return commMemResumeList;
 	}
 	
-	/*
 	//북마크회원
 		@Override
 		public List<Bookmark> listBmark1(Bookmark bookmark) {
@@ -93,18 +91,6 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 			System.out.println("SrComMypageServiceImpl memBmarkList.size()=>" + listBmark2.size());
 			return listBmark2;
 		}
-	*/
-	
-		// 북마크 List
-		@Override
-			public List<MemBmark> listBmark(MemBmark memBmark) {
-				List<MemBmark> listBmark = null;
-				System.out.println("SrComMypageServiceImpl listBmark Start...");
-				listBmark = scmd.listBmark(memBmark);
-				System.out.println("SrComMypageServiceImpl listBmark.size()->"+listBmark.size());
-				
-				return listBmark;
-			}	
 		
 		// 북마크 개인 상세
 		@Override
@@ -129,9 +115,9 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 
 		// 북마크 유무
 		@Override
-		public int bookmarkgetinfo(MemBmark memBmark) {
+		public int bookmarkgetinfo(Bookmark bookmark) {
 			System.out.println("SrComMypageServiceImpl bookmarkgetinfo Start...");
-			int getinfo = scmd.getinfo(memBmark);
+			int getinfo = scmd.getinfo(bookmark);
 			System.out.println("Service getinfo->"+getinfo);
 			
 			return getinfo;
@@ -139,31 +125,19 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 
 		// 북마크 추가
 		@Override
-		public void bookmarkplus(Bookmark bookmark) {
-			System.out.println("SrComMypageServiceImpl bookmarkplus Start...");
-			scmd.bookmarkplus(bookmark);
+		public void bookmarkinsert(Bookmark bookmark) {
+			System.out.println("SrComMypageServiceImpl bookmarkinsert Start...");
+			scmd.bookmarkinsert(bookmark);
 			
 		}
 
 		// 북마크 삭제
 		@Override
-		public void bookmarkcancle(Bookmark bookmark) {
-			System.out.println("SrComMypageServiceImpl bookmarkcancle Start...");
-			scmd.bookmarkcancle(bookmark);
+		public void bookmarkdelete(Bookmark bookmark) {
+			System.out.println("SrComMypageServiceImpl bookmarkdelete Start...");
+			scmd.bookmarkdelete(bookmark);
 			
-		}
-
-		// 북마크 상세 이력서
-		@Override
-		public CommMemResume memresume(String user_id) {
-			System.out.println("SrComMypageServiceImpl memresume Start...");
-			CommMemResume memresume = scmd.memresume(user_id);
-			System.out.println("SrComMypageServiceImpl "+memresume.getUniv_name());
-			
-			return memresume;
-		}
-
-		
+		}	
 		
 		//열람 기록 있는지 Check
 		@Override

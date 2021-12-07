@@ -6,7 +6,6 @@ import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
-import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
@@ -30,23 +29,17 @@ public interface SrComMypageService {
 
 	List<CommMemResume> commMemResumeList(CommMemResume commMemResume);
 
-	//List<Bookmark> listBmark1(Bookmark bookmark);
+	List<Bookmark> listBmark1(Bookmark bookmark);
 	
 	Member userdetail(String user_id);
 
 	Comm jobtag(Member mem);
 
-	int bookmarkgetinfo(MemBmark memBmark);
+	int bookmarkgetinfo(Bookmark bookmark);
 
-	void bookmarkplus(Bookmark bookmark);
+	void bookmarkinsert(Bookmark bookmark);
 
-	void bookmarkcancle(Bookmark bookmark);
-
-	List<MemBmark> listBmark(MemBmark memBmark);
-
-	CommMemResume memresume(String user_id);
-
-	
+	void bookmarkdelete(Bookmark bookmark);
 
 	int insertResumeContect(ResumeContect resumeContect);
 

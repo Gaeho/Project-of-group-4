@@ -54,7 +54,7 @@
 			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> <a
 				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
-			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
+			<a class="menuBox" href="ComMarkMember"><span>북마크회원</span></a><br>
 			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
 		</div>
 		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
@@ -63,18 +63,11 @@
 		
 	 <div class="ComBookmarkDetail">
 	   <div class="user">
-	     <table class="resume">
-	     	<h2>이력서</h2>
-	     	<tr><th>이름</th><td>${memresume.user_name}</td></tr>
-	      	<tr><th>이메일</th><td>${memresume.res_email}</td></tr>
-	      	<tr><th>제목</th><td>${memresume.res_title}</td></tr>
-	      	<tr><th>고등학교</th><td>${memresume.hs_name}</td></tr>
-	      	<tr><th>이력서 내용</th><td>${memresume.cov_let}</td></tr>
-	      	
-	     	 
-	     	
-	     
-	     </table>
+	     <!--  <div class="user_document">
+	     	<tr>
+	     	  <th>서류</th><th>날짜</th>
+	     	</tr>
+	      </div> -->
 	      
 	      <table class="user_info">
 	      	<h2>기본 정보</h2>

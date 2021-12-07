@@ -1,4 +1,4 @@
-package com.oracle.s20210904.dj.dao;
+package com.oracle.s20210904.dj.domain;
 
 import java.util.List;
 

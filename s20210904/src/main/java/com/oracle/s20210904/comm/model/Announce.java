@@ -14,7 +14,7 @@ public class Announce {
 	private String rec_job;
 	private int    rec_vol;
 	private String rec_dtl;
-	private String emp_type;
+	private int    emp_type;
 	private String career;
 	private String rec_edu;
 	private int pay_info;

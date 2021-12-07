@@ -32,7 +32,6 @@ public class CommMemResume {
 	private int res_code;
 	private String res_sts;
 	private String rep_res;
-	private String res_title;
 	private String res_email;
 	private String res_img;
 	private String hs_name;

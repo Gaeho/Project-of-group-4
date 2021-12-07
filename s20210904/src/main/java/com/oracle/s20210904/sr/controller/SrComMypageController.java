@@ -175,6 +175,7 @@ public class SrComMypageController {
 			// list
 			bookmark.setStart(pg.getStart()); // 1
 			bookmark.setEnd(pg.getEnd()); // 5
+
 			
 			//--------------------------------------------------------------------------
 			
@@ -199,7 +200,9 @@ public class SrComMypageController {
 			 * MemBmark memBmark1=null; memBmark1=scms.memBmark2(memBmark);
 			 */
 			
+
 			
+			//--------------------------------------------------------------------------
 			//---------------------------------------------------------------------------
 
 			model.addAttribute("total", total);
