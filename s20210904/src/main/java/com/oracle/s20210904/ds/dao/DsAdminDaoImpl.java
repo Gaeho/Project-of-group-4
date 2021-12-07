@@ -154,4 +154,10 @@ public class DsAdminDaoImpl implements DsAdminDao {
 		int result = session.selectOne("maxSubCate",mainCate);
 		return result;
 	}
+	
+	@Override
+	public int tagInsert(Comm comm) {
+		int result = session.insert("DsInsertTag",comm);
+		return result;
+	}
 }

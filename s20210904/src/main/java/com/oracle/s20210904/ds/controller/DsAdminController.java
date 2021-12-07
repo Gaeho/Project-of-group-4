@@ -142,5 +142,11 @@ public class DsAdminController {
 		return "ds/tagMenu";
 	}
 	
+	@GetMapping(value="tagInsert")
+	public String tagInsert(Comm comm) {
+		int result = dsAdminService.tagInsert(comm);
+		System.out.println("잘됐지?"+result);
+		return "redirect:/tagMenu";
+	}
 
 }
