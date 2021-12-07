@@ -9,7 +9,7 @@
 	
 	<select id="SrComInfo" resultType="CommCompany">
 		select company.com_id, company.com_name, company.com_addr, company.com_web, company.com_regnum, company.com_email, 
-		company.com_mgr_tel, company.com_tel, company.com_bus, company.com_logo, comm.*
+		company.com_mgr_tel, company.com_tel, company.com_bus, company.com_img, comm.*
 		from company, comm
 		where company.com_sec=comm.sub_cat
 		and company.com_id='znvkd323'
@@ -131,7 +131,7 @@
 	
 	<insert id="SrBmplus" parameterType="Bookmark">
 		insert into bookmark 
-		values (#{com_id},#{user_id},1,sysdate);
+		values (#{com_id},#{user_id},1,sysdate)
 	</insert>
 	
 	<update id="SrBmcancle" parameterType="Bookmark">

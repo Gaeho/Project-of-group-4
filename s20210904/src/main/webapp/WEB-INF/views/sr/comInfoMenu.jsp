@@ -86,10 +86,10 @@
 				사이트 : 
 				<div id="com_web">${commCompany1.com_web}</div>
 			</div>
-			<%-- <div class="divTableRow">
+			<div class="divTableRow">
 				사내 이미지 : 
-				<div id="com_img">${commCompany1.com_logo}</div>
-			</div> --%>
+				<div id="com_img">${commCompany1.com_img}</div>
+			</div>
 		</div>
 	</div>
 	<div>

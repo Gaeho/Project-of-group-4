@@ -69,7 +69,7 @@
 						<div class="divTableRow">${num}</div>
 					</div>
 					 <a href="#" class="appAnnMem"> 
-				<%-- 	<table>
+					<table>
 					<tr>
 				      <th>회원프사</th>
 				      <th>회원 아이디</th>
@@ -77,13 +77,14 @@
 				    <tr>
 				      <td><img class="MemImg" src="${appAnnMember.user_img}" /></td>
 				      <td><a href="detail3?user_id=${appAnnMember.user_id}" >${appAnnMember.user_id }</a></td>
-				    </tr> --%>
+				    </tr>
 						 회원프사 : <img class="MemImg" src="${appAnnMember.user_img}" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						회원 아이디 :${appAnnMember.user_id }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<!-- <input type="button" value="합격" onclick="location.href='ComAppStatus?id=0'"> -->
 						 지원날짜 : ${appAnnMember.app_regdate }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					 </table>
 					 </a>
-					<!-- </table> -->
+					
 					<c:set var="num" value="${num - 1 }"></c:set>
 				</c:forEach>
 			</div>
