@@ -9,7 +9,7 @@
 	
 	<select id="SrComInfo" resultType="CommCompany">
 		select company.com_id, company.com_name, company.com_addr, company.com_web, company.com_regnum, company.com_email, 
-		company.com_mgr_tel, company.com_tel, company.com_bus, company.com_img, comm.*
+		company.com_mgr_tel, company.com_tel, company.com_bus, company.com_logo, comm.*
 		from company, comm
 		where company.com_sec=comm.sub_cat
 		and company.com_id='znvkd323'
@@ -95,16 +95,15 @@
 	and comm.sub_cat=mem.user_edu
 	</select>
 	
-	<select id="SrMemBmarkList" parameterType="Bookmark" resultType="Bookmark">
+	<select id="SrBmarkList" parameterType="MemBmark" resultType="MemBmark">
 		select *
 		from 
-    		(
-    		 select rownum rn, a.*
-    		 from (select b.com_id, m.user_id, m.user_img, b.mrk_date
-                   from member m, bookmark b
-                   where m.user_id = b.user_id
-                   and b.com_id = 'tlstprp5184') a
-    		 )
+    		( select rownum rn, a.*
+    		  from (select b.com_id, m.user_img, b.user_id, b.mrk_date
+                    from member m, bookmark b
+                    where m.user_id = b.user_id
+                    and b.com_id = 'tlstprp5184') a
+    		        )
 		where rn between #{start} and #{end} 
 	</select>
 	
@@ -123,23 +122,39 @@
 		and m.user_job_tag = #{user_job_tag}
 	</select>
 	
-	<select id="SrGetInfo" parameterType="Bookmark" resultType="int">
+	<select id="SrGetInfo" parameterType="MemBmark" resultType="int">
 		select count(*)
 		from bookmark 
 		where com_id = #{com_id}
 		and user_id = #{user_id}
 	</select>
 	
-	<insert id="SrBminsert" parameterType="Bookmark">
+	<insert id="SrBmplus" parameterType="Bookmark">
 		insert into bookmark 
-		values (#{com_id},#{user_id},1,sysdate)
+		values (#{com_id},#{user_id},1,sysdate);
 	</insert>
 	
-	<delete id="SrBmdelete" parameterType="Bookmark">
-		delete from bookmark 
+	<update id="SrBmcancle" parameterType="Bookmark">
+		update bookmark set <include refid="cal"></include>
 		where com_id = #{com_id} 
 		and user_id = #{user_id}
-	</delete>
+	</update>
+	
+	<sql id="cal">
+		<if test="count == 1">
+			it_bookmark = 0
+		</if>
+	
+		<if test="count == 0">
+			it_bookmark = it_bookmark + 1
+		</if>
+	</sql>
+	
+	<select id="SrBmarkResume" parameterType="String" resultType="CommMemResume">
+		select * from resume
+		where user_id = #{user_id}
+		and rep_res = '1'
+	</select>
 	
 	
 	

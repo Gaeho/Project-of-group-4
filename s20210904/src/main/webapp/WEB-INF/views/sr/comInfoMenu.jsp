@@ -46,7 +46,7 @@
 			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> <a
 				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
-			<a class="menuBox" href="ComMarkMember"><span>북마크회원</span></a><br>
+			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
 			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
 		</div>
 		<div class='comIfoMenu'>
@@ -86,10 +86,10 @@
 				사이트 : 
 				<div id="com_web">${commCompany1.com_web}</div>
 			</div>
-			<div class="divTableRow">
+			<%-- <div class="divTableRow">
 				사내 이미지 : 
-				<div id="com_img">${commCompany1.com_img}</div>
-			</div>
+				<div id="com_img">${commCompany1.com_logo}</div>
+			</div> --%>
 		</div>
 	</div>
 	<div>

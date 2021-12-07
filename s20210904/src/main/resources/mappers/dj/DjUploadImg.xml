@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DjAnnoDao">
+	
+	<update id="DjInsertComImg" parameterType="Company">
+		update Company 
+		set com_img = #{com_img}
+		where com_id = #{com_id}		
+	</update>
+	
+	<update id="DjDeleteComImg" parameterType="java.lang.String">
+		update Company 
+		set com_img = null
+		where com_img = #{imgpath11}	
+	</update>
+	
+	<select id="DjComImgConfirm" parameterType="java.lang.String" resultType="java.lang.String">
+		select com_img
+		from Company
+		where com_id = #{comId1}
+	</select>
+
+</mapper>
