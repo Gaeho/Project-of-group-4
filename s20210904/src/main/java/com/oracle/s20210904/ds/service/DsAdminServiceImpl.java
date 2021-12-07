@@ -151,4 +151,10 @@ public class DsAdminServiceImpl implements DsAdminService {
 		int result = dsAdminDao.maxSubCate(mainCate);
 		return result;
 	}
+	
+	@Override
+	public int tagInsert(Comm comm) {
+		int result = dsAdminDao.tagInsert(comm);
+		return result;
+	}
 }

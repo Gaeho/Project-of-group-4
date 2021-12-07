@@ -41,7 +41,24 @@
                       </ul>
                     </li>
               </ul>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+              id = ${id }
+              <c:choose>
+              	<c:when test="${id == null || id =='' }"> 					<!-- 로그인 NO -->
+              		<a class="btn btn-primary" href="login">Login</a>
+              	</c:when>
+              	<c:when test="${id == 'rhksflwk0000'}">						<!-- 관리자 한명만있음ㅋ -->
+              		<ul class="nav">
+              			<li><a class="btn btn-primary" href="logout">Logout</a></li>
+              			<li><a class="btn btn-primary btn-mypage" href="AdminMain">Admin</a><li>
+              		</ul>
+              	</c:when>
+              	<c:otherwise>						<!-- 로그인 OK -->
+              		<ul class="nav">
+              			<li><a class="btn btn-primary" href="logout">Logout</a></li>
+              			<li><a class="btn btn-primary btn-mypage" href="MyPage">MyPage</a><li>
+              		</ul>
+              	</c:otherwise>
+              </c:choose>
             </div>
         </nav>
 </body>

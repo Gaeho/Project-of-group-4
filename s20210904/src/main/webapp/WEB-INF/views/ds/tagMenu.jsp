@@ -94,16 +94,15 @@
 
 			<form action="tagInsert">
 				<div class="modal">
-
 					<span>대번호 					
-						<select onchange="maxSubCate(this.value)">
+						<select onchange="maxSubCate(this.value)" name="main_cat">
 							<c:forEach var="mainCate" items="${mainCate }">
 								<option value="${mainCate.main_cat}">${mainCate.comm_ctx}</option>
 							</c:forEach>
 						</select>
 					</span>
-					<span>중번호 <input type="text" class="subCate" name="subCate" required="required"></span>
-					<span>태그명 <input type="text" class="tagName" name="tagName" required="required"></span>
+					<span>중번호 <input type="text" class="subCate" name="sub_cat" required="required" readonly="readonly"></span>
+					<span>태그명 <input type="text" class="tagName" name="comm_ctx" required="required"></span>
 					<div class="modalBtn"><input type="submit" value="추가하기"><input type="button" value="취소" onclick="modalOff()"></div>
 				</div>
 			</form>
