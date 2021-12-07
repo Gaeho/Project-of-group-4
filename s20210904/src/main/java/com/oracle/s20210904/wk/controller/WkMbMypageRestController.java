@@ -50,25 +50,24 @@ public class WkMbMypageRestController {
 		return Integer.toString(result); 
 	}
 	
-	@GetMapping(value="DjComImguploadForm", produces = "application/text; charset=UTF-8")
+	@GetMapping(value="mbMypageImguploadForm", produces = "application/text; charset=UTF-8")
 	public String mbMypageImguploadForm(HttpServletRequest request,Model model, MultipartFile file1) {
-		System.out.println("WkMbMypageRestController mbMypageResumeDelete()");
+		System.out.println("WkMbMypageRestController mbMypageImguploadForm()");
 		String mbid=checkId(request);
 		
 		String uploadinDB = null;
 		
-		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/dj/");
+		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/wk/");
 		System.out.println("생성 시 uploadPath->"+uploadPath);
 		//업로드 경로를 만든다. 메타데이터 아래에 경로를 둔다. 가장 아래에 upload라는 폴더를 만들고 거기에 파일을 둔다.
 
 		System.out.println("uploadForm 시작되었습니다.");
-		System.out.println("comId1->"+comId1);
 		
-		logger.info("originalName: "+file1.getOriginalFilename());//사진의 원래 이름을 보여준다
+		System.out.println("originalName: "+file1.getOriginalFilename());//사진의 원래 이름을 보여준다
 		
-		logger.info("size: " + file1.getSize());//사진의 용량
-		logger.info("contentType: " + file1.getContentType());//사진의 타입
-		logger.info("uploadPath: " + file1); //업로드 경로
+		System.out.println("size: " + file1.getSize());//사진의 용량
+		System.out.println("contentType: " + file1.getContentType());//사진의 타입
+		System.out.println("uploadPath: " + file1); //업로드 경로
 		
 		//검증. 만약에 이미 db에 올려져 있는 자료가 있다 -> 가져온 값이 Null->아래 과정 정상 진행하기
 		//								 -> 가져온 값이 있다 -> 삭제 진행 후 진행하기	왜냐면 그게 이미 물리 폴더에 있을테니까 삭제하고 새로 넣는 식으로 구현함
@@ -112,7 +111,7 @@ public class WkMbMypageRestController {
 			}
 		}
 		
-		return uploadinDB;
+		return null;
 	}
 	
 }
