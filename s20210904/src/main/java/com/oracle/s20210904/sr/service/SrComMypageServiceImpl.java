@@ -10,6 +10,8 @@ import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Member;
+import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.dao.SrComMypageDao;
 import com.oracle.s20210904.sr.model.CommCompany;
@@ -137,6 +139,28 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 			
 		}	
 		
+		//열람 기록 있는지 Check
+		@Override
+		public ResumeContect findRC(ResumeContect resumeContect) {
+			System.out.println("SrComMypageServiceImpl findRC Start...");
+			ResumeContect rc = scmd.findRC(resumeContect);
+			return rc;
+		}
+		
+		// 이력서열람 INSERT
+		@Override
+		public int insertResumeContect(ResumeContect resumeContect) {
+			System.out.println("SrComMypageServiceImpl insertResumeContect Start...");
+			int result =scmd.insertResumeContect(resumeContect);
+			return result;
+		}
+		
+		// 알림추가~
+		@Override
+		public void insertNotice(Notice notice) {
+			System.out.println("SrComMypageServiceImpl insertNotice Start...");
+			scmd.insertNotice(notice);
+		}
 		
 
 	

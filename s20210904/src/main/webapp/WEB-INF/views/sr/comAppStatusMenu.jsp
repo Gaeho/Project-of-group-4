@@ -68,7 +68,7 @@
 					<div class="divTableCol">
 						<div class="divTableRow">${num}</div>
 					</div>
-					<a href="#" class="appAnnMem"> 
+					<a href="resumeDetail?user_id=${appAnnMember.user_id}&com_id=tlstprp5184&res_code=${appAnnMember.res_code}" class="appAnnMem"> 
 						회원프사 : <img class="MemImg" src="${appAnnMember.user_img}" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						회원 아이디 : ${appAnnMember.user_id }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<!-- <input type="button" value="합격" onclick="location.href='ComAppStatus?id=0'"> -->

@@ -7,6 +7,8 @@ import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Member;
+import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
@@ -38,6 +40,12 @@ public interface SrComMypageService {
 	void bookmarkinsert(Bookmark bookmark);
 
 	void bookmarkdelete(Bookmark bookmark);
+
+	int insertResumeContect(ResumeContect resumeContect);
+
+	ResumeContect findRC(ResumeContect resumeContect);
+
+	void insertNotice(Notice notice);
 
 
 }

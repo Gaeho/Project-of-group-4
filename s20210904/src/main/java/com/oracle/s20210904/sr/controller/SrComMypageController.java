@@ -16,6 +16,8 @@ import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.comm.model.Member;
+import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.service.Paging;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
@@ -275,5 +277,34 @@ public class SrComMypageController {
 			return imgSrc;
 
 		 }
+		
+		@GetMapping(value="resumeDetail")
+		public String resumeDetail(ResumeContect resumeContect,Model model) {
+			insertResumeContect(resumeContect);
+			resumeContect = scms.findRC(resumeContect);
+			
+			model.addAttribute("resumeContect",resumeContect);
+			
+			return "sr/resumeDetail";
+		}
+		
+		// 이력서 조회시 이력서열람 INSERT
+		public int insertResumeContect(ResumeContect resumeContect) {
+			
+			int result = 0;
+			ResumeContect rc = scms.findRC(resumeContect);
 
+			if(rc==null) {
+				result = scms.insertResumeContect(resumeContect);
+				if(result==1) {
+					rc = scms.findRC(resumeContect);
+					Notice notice = new Notice();
+					notice.setUser_id(rc.getUser_id());
+					notice.setNtc_cat("003");
+					notice.setNtc_code(rc.getNtc_code());
+					scms.insertNotice(notice);
+				}
+			}
+			return result;
+		}
 }

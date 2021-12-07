@@ -57,7 +57,7 @@
 		    (
 		     select rownum rn, z.*
 		     from ( 
-		     		select m.user_id, m.user_img, a.app_regdate, an.anno_c_regdate, an.anno_regdate, an.anno_code
+		     		select m.user_id, m.user_img, a.app_regdate, an.anno_c_regdate, an.anno_regdate, an.anno_code, a.res_code
 		            from member m, apply a, announce an
 		            where m.user_id = a.user_id
 		            and a.anno_code = an.anno_code 
@@ -76,7 +76,7 @@
 		    (
 		     select rownum rn, z.*
 		     from (
-		            select m.user_id, m.user_img, a.app_regdate, an.anno_c_regdate, an.anno_regdate, an.anno_code
+		            select m.user_id, m.user_img, a.app_regdate, an.anno_c_regdate, an.anno_regdate, an.anno_code, a.res_code
 		            from member m, apply a, announce an
 		            where m.user_id = a.user_id
 		            and a.anno_code = an.anno_code 
@@ -141,9 +141,23 @@
 		and user_id = #{user_id}
 	</delete>
 	
+	<!-- 열람이력 확인~ -->
+	<select id="SrFindRC" parameterType="ResumeContect" resultType="ResumeContect">
+		select * from resume_contect
+		where user_id=#{user_id} and res_code=#{res_code} and com_id=#{com_id}
+	</select>
 	
+	<!-- 이력서열람 추가요-->
+	<insert id="SrResumeContectInsert" parameterType="ResumeContect">
+		insert into Resume_Contect 
+		values(#{com_id},#{user_id},#{res_code},sysdate,not_seq.nextval)
+	</insert>
 	
-	
+	<!-- 알림추가요~ -->
+	<insert id="SrInsertNotice" parameterType="Notice">
+		insert into notice
+		values(#{ntc_code},#{user_id},#{anno_code},#{ntc_cat})
+	</insert>
 	
 	
 	

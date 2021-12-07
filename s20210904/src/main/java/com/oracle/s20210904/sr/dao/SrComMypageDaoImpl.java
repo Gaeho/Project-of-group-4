@@ -10,6 +10,8 @@ import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Member;
+import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
@@ -192,8 +194,43 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			}
 			
 		}
+
+		//열람 기록 있는지 Check 
+		@Override
+		public ResumeContect findRC(ResumeContect resumeContect) {
+			System.out.println("SrComMypageDaoImpl findRC Start...");
+			ResumeContect rc = null;
+			try {
+				rc = session.selectOne("SrFindRC",resumeContect);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl findRC error"+e.getMessage());
+			}
+			return rc;
+		}
 		
-	
+		// 이력서 열람 INSERT
+		@Override
+		public int insertResumeContect(ResumeContect resumeContect) {
+			System.out.println("SrComMypageDaoImpl insertResumeContect Start...");
+			int result = 0;
+			try {
+				result = session.delete("SrResumeContectInsert", resumeContect);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl SrComMypageDaoImpl error"+e.getMessage());
+			}
+			return result;
+		}
+		
+		//알림 추가~
+		@Override
+		public void insertNotice(Notice notice) {
+			System.out.println("SrComMypageDaoImpl insertNotice Start...");
+			try {
+				session.delete("SrInsertNotice", notice);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl insertNotice error"+e.getMessage());
+			}
+		}
 	
 	
 	
