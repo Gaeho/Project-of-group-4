@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +41,9 @@ public class GmAnnoListController {
 	*/
 	
 	@RequestMapping(value = "GmAnnoList")
-	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model) {
+	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model, HttpServletRequest request) {
+		String id = (String)request.getSession().getAttribute("id");
+		
 		System.out.println("GmAnnoListController Start List...");
 		int total = as.total();
 		System.out.println("GmAnnoList total->"+total);
@@ -64,6 +69,7 @@ public class GmAnnoListController {
 			
 		}
 		
+		model.addAttribute("id",id);
 		model.addAttribute("total", total);
 		model.addAttribute("listAnno", listAnno);
 		model.addAttribute("pg", pg);
