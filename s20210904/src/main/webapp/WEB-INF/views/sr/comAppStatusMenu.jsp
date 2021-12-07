@@ -54,7 +54,7 @@
 			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> 
 			<a class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br> 
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br> 
-			<a class="menuBox" href="ComMarkMember"><span>북마크회원</span></a><br>
+			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
 			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
 		</div>
 		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
@@ -64,16 +64,32 @@
 				<input type="button" value="마감()" onclick="location.href='ComAppStatus?id=1'">
 			</div>
 			<div class="compAppStatus_in">
-				<c:forEach var="appAnnMember" items="${appAnnMember }">
+				<c:forEach var="appAnnMember" items="${appAnnMember }"> 
 					<div class="divTableCol">
 						<div class="divTableRow">${num}</div>
 					</div>
-					<a href="resumeDetail?user_id=${appAnnMember.user_id}&com_id=tlstprp5184&res_code=${appAnnMember.res_code}" class="appAnnMem"> 
+
+					<%-- <a href="resumeDetail?user_id=${appAnnMember.user_id}&com_id=tlstprp5184&res_code=${appAnnMember.res_code}" class="appAnnMem"> 
 						회원프사 : <img class="MemImg" src="${appAnnMember.user_img}" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						회원 아이디 : ${appAnnMember.user_id }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						회원 아이디 : ${appAnnMember.user_id }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+
+					 <a href="#" class="appAnnMem"> 
+				<%-- 	<table>
+					<tr>
+				      <th>회원프사</th>
+				      <th>회원 아이디</th>
+				    </tr>
+				    <tr>
+				      <td><img class="MemImg" src="${appAnnMember.user_img}" /></td>
+				      <td><a href="detail3?user_id=${appAnnMember.user_id}" >${appAnnMember.user_id }</a></td>
+				    </tr> --%>
+						 회원프사 : <img class="MemImg" src="${appAnnMember.user_img}" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						회원 아이디 :${appAnnMember.user_id }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 						<!-- <input type="button" value="합격" onclick="location.href='ComAppStatus?id=0'"> -->
-						지원날짜 : ${appAnnMember.app_regdate }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</a>
+						 지원날짜 : ${appAnnMember.app_regdate }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					 </a>
+					<!-- </table> -->
 					<c:set var="num" value="${num - 1 }"></c:set>
 				</c:forEach>
 			</div>
