@@ -91,7 +91,7 @@
 			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> <a
 				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
-			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
+			<a class="menuBox" href="ComMarkMember"><span>북마크회원</span></a><br>
 			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
 		</div>
 		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
@@ -104,7 +104,7 @@
 				    <th>북마크 날짜</th>
 				  </tr>
 				
-			<c:forEach var="listBmark" items="${listBmark }">
+			<c:forEach var="bookmark" items="${listBmark }">
 				<tr>
 				 <td>
 				  	<c:choose>
@@ -118,18 +118,18 @@
 					      <input type="hidden" id="likecheck" value="${itbookmark}">
 					    </c:when>
 					  </c:choose>
-				    </td> 
-				
-					  com_id	  	: <input type="text" id="com_id"      value="tlstprp5184"><p>
-				      user_id 	 	: <input type="text" id="user_id"     value="dmdtla054"  ><p>
-				      it_bookmark 	: <input type="text" id="it_bookmark" value="${itbookmark }"><p>
 				  
 				
-				  <td><img class="memberImg" src="${listBmark.user_img}"/></td>
-				  <td><a href="detail2?user_id=${listBmark.user_id}" >${listBmark.user_id}</a></td>
-				  <td>${listBmark.mrk_date}</td>
-				</tr>
-			   
+					  com_id	  : <input type="text" id="com_id"      value="tlstprp5184"><p>
+				      user_id 	  : <input type="text" id="user_id"     value="dmdtla054"  ><p>
+				      it_bookmark 	  : <input type="text" id="it_bookmark"     value="${itbookmark }"><p>
+				     
+				 
+				  <td><img class="memberImg" src="${user_img}"/></td>
+				  <td><a href="detail2?user_id=${bookmark.user_id}" >${bookmark.user_id}</a></td>
+				  <td>${bookmark.mrk_date}</td>
+				</td>  
+			    </tr>
 			    
 				<div class="divTableCol">
 					<div class="divTableRow">${num}</div>
@@ -146,7 +146,6 @@
 				
 				<c:set var="num" value="${num - 1 }"></c:set>
 			</c:forEach>
-			
 			</table>
 		</div>
 	</div>

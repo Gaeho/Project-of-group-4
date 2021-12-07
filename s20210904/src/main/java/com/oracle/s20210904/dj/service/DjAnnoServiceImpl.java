@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
-import com.oracle.s20210904.dj.dao.DjAnnoDao;
+import com.oracle.s20210904.dj.domain.DjAnnoDao;
 
 @Service
 public class DjAnnoServiceImpl implements DjAnnoService {
