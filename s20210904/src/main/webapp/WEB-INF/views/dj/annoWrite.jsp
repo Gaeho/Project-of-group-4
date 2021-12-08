@@ -157,7 +157,7 @@ function deleteFile() {
 <body>
 	<div class="Container">
 	<%@ include file="/WEB-INF/views/header.jsp"%>
-		<div class="MyContainer">
+		<div class="DjContainer">
 			
 			<br>
 			<br>

@@ -10,11 +10,13 @@
 <head>
 <meta charset="UTF-8">
 <title>검색->공고페이지</title>
+
+
 </head>
 <body>
 <div class="Container">
 	
-	<%@ include file="/WEB-INF/views/header.jsp"%>
+
 	
 	<div class="MyContainer">
 			
@@ -62,7 +64,7 @@
 			</div>
 		
 	</div>
-	<%@ include file="/WEB-INF/views/footer.jsp"%>
+
 </div>
 </body>
 </html>

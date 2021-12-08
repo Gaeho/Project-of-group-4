@@ -62,7 +62,7 @@ public class DjSearchController {
 	
 		
 		//return "searchResponse";
-		return "dj/searchcomlist";
+		return "dj/mainsearchtap";
 	}
 	
 	
