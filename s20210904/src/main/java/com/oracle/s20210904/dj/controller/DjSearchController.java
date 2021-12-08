@@ -2,11 +2,13 @@ package com.oracle.s20210904.dj.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
+import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.dj.model.DjSearch;
 import com.oracle.s20210904.dj.service.DjSearchService;
 
@@ -15,7 +17,7 @@ public class DjSearchController {
 
 	private static final Logger logger = LoggerFactory.getLogger(DjSearchController.class);
 	
-	
+	@Autowired
 	private DjSearchService dss;
 	//작성계획
 	//검색창에서 여기로 문자열을 받아온다. 검색어가 입력된 상태로 '검색'버튼을 누르면 해당 문자열과 함께 컨트롤러가 실행된다.
@@ -35,27 +37,32 @@ public class DjSearchController {
 	
 	
 	@RequestMapping(value="/search")
-	public String mainSearch(DjSearch scContent,Model model) {
+	public String mainSearch(DjSearch scContent,Model model,String mainsearch) {
 		System.out.println("DjSearchController의 mainSearch() 실행되었습니다.");
 		
-		System.out.println("scContent의 scContent내용->"+scContent.getMainsearch());
+		System.out.println("처음 컨트롤러에 들어올 때 mainsearch의 내용?->"+mainsearch);
+
+		String mainsearch1 = mainsearch.replaceAll("\\s+","");
 		
-		//띄어쓰기를 모두 제거한 뒤에 다시 저장함
-		scContent.setMainsearch(scContent.getMainsearch().replaceAll("\\s+",""));
+		System.out.println("변환한 mainsearch의 값->"+mainsearch1);
+		//여기까지 검색어 띄어쓰기 처리
 		
-		System.out.println("변환한 뒤의 scContent의 scContent내용->"+scContent.getMainsearch());
 		
-		List<DjSearch> result = dss.searchSome(scContent);
+		//검색어를 이용한 공고 결과	
+		List<DjSearch> annoResult = dss.searchAnno(mainsearch1);
+		model.addAttribute("annoResult", annoResult);
+		model.addAttribute("mainsearch1", mainsearch1);
 		
-		if(result != null) {
-			System.out.println("컨트롤러로 되돌아왔다! 성공한듯하다!!!!");
-		} else if (result == null) {
-			System.out.println("컨트롤러 돌아왔긴했는데..에잉 실패");
-		}
-		
+		//검색어를 이용한 회사 결과
+		List<Company> comResult = dss.searchCom(mainsearch1); 
+		model.addAttribute("comResult", comResult);
+
+		System.out.println("searchSome after..");
+	
+	
 		
 		//return "searchResponse";
-		return "";
+		return "dj/searchcomlist";
 	}
 	
 	
