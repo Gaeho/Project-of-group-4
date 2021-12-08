@@ -1,6 +1,7 @@
 package com.oracle.s20210904.sr.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +110,16 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 	public List<CommMemResume> commMemResumeList(CommMemResume commMemResume) {
 		List<CommMemResume> commMemResumeList=session.selectList("SrCommMemResumeList", commMemResume);
 		return commMemResumeList;
+	}
+	
+	@Override
+	public List<CommMemResume> getForPrintResumeByParam(Map<String, Object> getForPrintResumeByParam) {
+		List<CommMemResume> getForPrintResumeByParam1=session.selectList("SrSearchTEST", getForPrintResumeByParam);
+		for(CommMemResume aa1: getForPrintResumeByParam1) {
+			System.out.println("SrComMypageDaoImpl commMemResume.getUser_id->" +aa1.getUser_id());
+			System.out.println("SrComMypageDaoImpl commMemResume.getComm_ctx()->" +aa1.getComm_ctx());
+		}
+		return getForPrintResumeByParam1;
 	}
 	
 	//북마크회원
@@ -231,6 +242,9 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 				System.out.println("SrComMypageDaoImpl insertNotice error"+e.getMessage());
 			}
 		}
+
+
+		
 	
 	
 	

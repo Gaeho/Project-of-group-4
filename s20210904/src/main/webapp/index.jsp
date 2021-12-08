@@ -12,8 +12,8 @@
 	<%-- <%response.sendRedirect("AdminMain"); %> --%>
 	<%-- <%response.sendRedirect("GmAnnoList"); %>  --%>
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
-	<% response.sendRedirect("main"); %>
-	<%-- <%response.sendRedirect("ComInfo"); %>--%>
+	<%-- <% response.sendRedirect("main"); %> --%>
+	<%response.sendRedirect("ComInfo"); %>
 
 </body>
 </html>

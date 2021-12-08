@@ -158,7 +158,13 @@
 		insert into notice
 		values(#{ntc_code},#{user_id},#{anno_code},#{ntc_cat})
 	</insert>
-	
+	<select id="SrSearchTEST" parameterType="CommMemResume" resultType="CommMemResume">
+		select comm.*, mem.*, res.res_tag1, res.res_tag2, res.res_tag3
+		from member mem, resume res, comm
+		where mem.user_id=res.user_id
+		and res.res_tag1=comm.sub_cat
+		and comm.main_cat='002'
+	</select>
 	
 	
 	

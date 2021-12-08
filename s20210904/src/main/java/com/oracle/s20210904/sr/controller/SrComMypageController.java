@@ -1,12 +1,15 @@
 package com.oracle.s20210904.sr.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.s20210904.comm.model.Announce;
@@ -139,8 +142,15 @@ public class SrComMypageController {
 
 	// 회원검색
 	@GetMapping(value = "ComMemberSearch")
-	public String ComMemberSearch(Model model, String currentPage, CommMemResume commMemResume, CommCompany commCompany) {
-
+	public String ComMemberSearch(Model model, String currentPage, CommMemResume commMemResume, CommCompany commCompany,
+			String searchKeyword, String searchType, @RequestParam(value = "page", defaultValue = "1") int page) {
+		
+		Map<String , Object> getForPrintResumeByParam=new HashMap();
+		getForPrintResumeByParam.put("searchKeyword", searchKeyword);
+		getForPrintResumeByParam.put("searchType", searchType);
+		
+		List<CommMemResume> commMemResumes=scms.getForPrintResumeByParam(getForPrintResumeByParam);
+		
 		System.out.println("SrComMypageController ComMemberSearch START...");
 
 		// paging
@@ -155,6 +165,14 @@ public class SrComMypageController {
 		// ----------------------------------------------------------------------------
 		// commMemResume list
 		List<CommMemResume> commMemResumeList=scms.commMemResumeList(commMemResume);
+		
+		model.addAttribute("commMemResumes", commMemResumes);
+		for(CommMemResume aa1: commMemResumes) {
+			System.out.println("SrComMypageController commMemResume.getUser_id->" +aa1.getUser_id());
+			System.out.println("SrComMypageController commMemResume.getComm_ctx()->" +aa1.getComm_ctx());
+		}
+		model.addAttribute("commCompany1", commCompany1);
+		
 		
 		return "sr/comMemberSearchMenu";
 	}

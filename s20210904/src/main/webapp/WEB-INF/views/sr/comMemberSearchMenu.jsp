@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>ComMypage</title>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+var param=${paramJson};
+</script>
 <style type="text/css">
 .testcss {
 	width: 150px;
@@ -49,7 +54,7 @@
 <body>
 	<div class="CompanyMypageContainer">
 		<a href="#" id="ComMylogo"> <img class="testcss"
-			src="${company1.com_img}" /></a>
+			src="${commCompany1.com_img}" /></a>
 		<div class="CompanyMypageMenu"
 			style="display: flex; flex-direction: column; width: fit-content;">
 			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> <a
@@ -61,17 +66,30 @@
 		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
 		<div>
 			<div class="comMemberSearch">
-				<input class="search-tag" <%-- value="${ }" --%>>
-				<button>search</button>
+				<form action="" name="searchForm">
+					<input type="text" name="rev_code" value="${param.rev_code }" >
+				<input type="text" name="page" value="1" >
+				<select name="searchType">
+					<option selected="selected" value="occupation">직종</option>
+					<option  selected="selected" value="technology_stack">기술스택</option>
+					<option selected="selected" value="com_sec">업종</option>
+				</select>
+				<script>
+					/* $('form[name="searchForm"] selected[name="searchType"]').val(param.searchType); */
+					$('form[name="searchForm"]').val(param.earchType).prop("selected", true);
+				</script>
+				<input type="text" name="searchKeyword" placeholder="태그 검색" value="${param.searchKeyword }" >
+				<input type="submit" value="검색">
+				</form>
 			</div>
 			<div class="comMemberSearch_list">
-				<c:forEach var="search_list" items="commMemResume">
+				<c:forEach var="search_list" items="commMemResumes">
 				<div class="divTableCol">
 						<div class="divTableRow">${num}</div>
 					</div>
 				<a href="#">
-					회원 프사 : ${comMemberResume.user_img }
-					회원 아이디 : ${commMemberResume.user_id }
+					회원 프사 : ${commMemResume.user_img }
+					회원 아이디 : ${commMemResume.user_id }
 				</a>
 				<c:set var="num" value="${num - 1 }"></c:set>
 				</c:forEach>

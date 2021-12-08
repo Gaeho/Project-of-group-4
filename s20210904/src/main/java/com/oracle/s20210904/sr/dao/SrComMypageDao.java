@@ -1,6 +1,7 @@
 package com.oracle.s20210904.sr.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
@@ -45,5 +46,7 @@ public interface SrComMypageDao {
 	ResumeContect findRC(ResumeContect resumeContect);
 
 	void insertNotice(Notice notice);
+
+	List<CommMemResume> getForPrintResumeByParam(Map<String, Object> getForPrintResumeByParam);
 	
 }

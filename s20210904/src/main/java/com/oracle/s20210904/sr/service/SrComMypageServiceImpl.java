@@ -1,7 +1,7 @@
 package com.oracle.s20210904.sr.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,6 +80,13 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	public List<CommMemResume> commMemResumeList(CommMemResume commMemResume) {
 		List<CommMemResume> commMemResumeList=scmd.commMemResumeList(commMemResume);
 		return commMemResumeList;
+	}
+	
+	@Override
+	public List<CommMemResume> getForPrintResumeByParam(Map<String, Object> getForPrintResumeByParam) {
+		System.out.println("SrComMypageServiceImpl SEARCH TEST....");
+		List<CommMemResume> getForPrintResumeByParam1=scmd.getForPrintResumeByParam(getForPrintResumeByParam);
+		return getForPrintResumeByParam1;
 	}
 	
 	//북마크회원
@@ -161,6 +168,10 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 			System.out.println("SrComMypageServiceImpl insertNotice Start...");
 			scmd.insertNotice(notice);
 		}
+
+		
+
+		
 		
 
 	
