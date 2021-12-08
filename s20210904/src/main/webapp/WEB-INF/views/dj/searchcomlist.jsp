@@ -10,6 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>검색->회사페이지</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <div class="Container">
@@ -22,6 +24,7 @@
 				<div class="search_com_title">
 				  <h2> 검색된 회사 </h2>
 				   <h4>검색어: ${mainsearch1}</h4><p>
+		
 					<table>
 						<tr>
 							<th>이미지</th>
