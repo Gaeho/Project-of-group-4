@@ -10,7 +10,8 @@
 	
 	<select id="DsCommList" resultType="DsComm" parameterType="DsComm">
 		select c.*, b.comm_ctx as comm_ctx2
-		from (select rownum rn, c.* from comm c )c,(select * from comm where sub_cat='999') b
+		from (select rownum rn, c.* from (select * from comm where sub_cat!='999' order by main_cat,sub_cat) c) c,
+			 (select * from comm where sub_cat='999') b
 		where c.main_cat = b.main_cat and rn between #{start} and #{end}
 	</select>
 	
@@ -23,5 +24,9 @@
 		select max(sub_cat) from comm
 		where sub_cat != 999 and main_cat=#{mainCate}
 	</select>
+	
+	<insert id="DsInsertTag" parameterType="Comm">
+		insert into comm values(#{main_cat},#{sub_cat},#{comm_ctx})
+	</insert>
 	
 </mapper>

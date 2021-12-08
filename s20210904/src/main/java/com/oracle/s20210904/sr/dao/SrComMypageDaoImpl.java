@@ -9,8 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
-import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
+import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
@@ -109,7 +110,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		List<CommMemResume> commMemResumeList=session.selectList("SrCommMemResumeList", commMemResume);
 		return commMemResumeList;
 	}
-	/*
+	
 	//북마크회원
 		@Override
 		public List<Bookmark> listBmark3(Bookmark bookmark) {
@@ -124,27 +125,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			}
 			return listBmark4;
 		}
-		*/
-	
-		// 북마크 List
-		@Override
-		public List<MemBmark> listBmark(MemBmark memBmark) {
-			System.out.println("SrComMypageDaoImpl listBmark Start...");
-			List<MemBmark> listBmark = null;
-			try {
-				listBmark = session.selectList("SrBmarkList", memBmark);
-				System.out.println("SrComMypageDaoImpl listBmark.size()->"+listBmark.size());
-			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl listBmark 오류"+e.getMessage());
-			}
-			return listBmark;
-		}
 		
-
-	
-	
-	
-	
 		// 북마크 개인 상세
 		@Override
 		public Member userdetail(String user_id) {
@@ -177,11 +158,11 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 
 		// 북마크 유무
 		@Override
-		public int getinfo(MemBmark memBmark) {
+		public int getinfo(Bookmark bookmark) {
 			System.out.println("SrComMypageDaoImpl getinfo Start...");
 			int getinfo = 0;
 			try {
-				getinfo = session.selectOne("SrGetInfo", memBmark);
+				getinfo = session.selectOne("SrGetInfo", bookmark);
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl getinfo error"+e.getMessage());
 			}
@@ -191,12 +172,12 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		
 		// 북마크 추가
 		@Override
-		public void bookmarkplus(Bookmark bookmark) {
-			System.out.println("SrComMypageDaoImpl bookmarkplus Start...");
+		public void bookmarkinsert(Bookmark bookmark) {
+			System.out.println("SrComMypageDaoImpl bookmarkinsert Start...");
 			try {
-				session.insert("SrBmplus", bookmark);
+				session.insert("SrBminsert", bookmark);
 			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl bookmarkplus error"+e.getMessage());
+				System.out.println("SrComMypageDaoImpl bookmarkinsert error"+e.getMessage());
 			}
 			
 			
@@ -204,32 +185,52 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 
 		// 북마크 삭제
 		@Override
-		public void bookmarkcancle(Bookmark bookmark) {
-			System.out.println("SrComMypageDaoImpl bookmarkcancle Start...");
+		public void bookmarkdelete(Bookmark bookmark) {
+			System.out.println("SrComMypageDaoImpl bookmarkdelete Start...");
 			try {
-				session.update("SrBmcancle", bookmark);
+				session.delete("SrBmdelete", bookmark);
 			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl bookmarkcancle error"+e.getMessage());
+				System.out.println("SrComMypageDaoImpl bookmarkdelete error"+e.getMessage());
 			}
 			
 		}
 
-		// 북마크 상세 이력서
+		//열람 기록 있는지 Check 
 		@Override
-		public CommMemResume memresume(String user_id) {
-			CommMemResume memresume = null;
-			System.out.println("SrComMypageDaoImpl memresume Start...");
+		public ResumeContect findRC(ResumeContect resumeContect) {
+			System.out.println("SrComMypageDaoImpl findRC Start...");
+			ResumeContect rc = null;
 			try {
-				memresume = session.selectOne("SrBmarkResume", user_id);
-				System.out.println("SrComMypageDaoImpl memresume .getUser_tel()->"+memresume.getUser_tel());
+				rc = session.selectOne("SrFindRC",resumeContect);
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println("SrComMypageDaoImpl findRC error"+e.getMessage());
 			}
-			return memresume;
+			return rc;
 		}
-
-
 		
+		// 이력서 열람 INSERT
+		@Override
+		public int insertResumeContect(ResumeContect resumeContect) {
+			System.out.println("SrComMypageDaoImpl insertResumeContect Start...");
+			int result = 0;
+			try {
+				result = session.delete("SrResumeContectInsert", resumeContect);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl SrComMypageDaoImpl error"+e.getMessage());
+			}
+			return result;
+		}
+		
+		//알림 추가~
+		@Override
+		public void insertNotice(Notice notice) {
+			System.out.println("SrComMypageDaoImpl insertNotice Start...");
+			try {
+				session.delete("SrInsertNotice", notice);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl insertNotice error"+e.getMessage());
+			}
+		}
 	
 	
 	

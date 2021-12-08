@@ -36,5 +36,6 @@ public interface DsAdminService {
 	int companyDel(String comId);
 	List<Comm> getMainCate();
 	int maxSubCate(String mainCate);
+	int tagInsert(Comm comm);
 
 }

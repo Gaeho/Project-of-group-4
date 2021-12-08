@@ -39,7 +39,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 			company.setCom_bus(""); //사업  null값
 			company.setCom_tel(""); //기업전화번호 null값 
 			company.setCom_web(""); //기업 홈페이지  null값
-			company.setCom_logo("");//기업 이미지  null값
+			company.setCom_img("");//기업 이미지  null값
 			System.out.println("ShMemberDaoImpl company.getCom_id()->"+company.getCom_id());
 			System.out.println("ShMemberDaoImpl company.getCom_pw()->"+company.getCom_pw());
 			joincom=session.insert("ShJoinCompany" , company);
