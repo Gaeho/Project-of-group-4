@@ -6,7 +6,7 @@
 		
 				select c.com_id, c.com_name, c.com_tel, c.com_addr, c.com_bus, c.com_mgr_tel, 
 				c.com_web, c.com_img, a.rec_vol, a.emp_type, a.rec_edu, a.anno_title, 
-				d.comm_ctx as 직군 , e.comm_ctx as 경력, f.comm_ctx as 고용형태
+				d.comm_ctx as jobgroup , e.comm_ctx as workex, f.comm_ctx as employform
 				
 				from Company c 
 				
@@ -30,6 +30,7 @@
 				
 				where c.com_name  like '%{searchcontents}%'
 				or a.anno_title like '%{searchcontents}%'            
+				or a.rec_dtl like '%{searchcontents}%'            
 	
 	</select>
 

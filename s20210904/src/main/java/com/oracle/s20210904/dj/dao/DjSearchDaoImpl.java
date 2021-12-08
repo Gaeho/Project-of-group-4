@@ -1,6 +1,5 @@
 package com.oracle.s20210904.dj.dao;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,6 +21,7 @@ public class DjSearchDaoImpl implements DjSearchDao {
 		List<DjSearch> result = null;
 		
 		String searchcontents = scContent.getMainsearch();
+		System.out.println("db에 넣을 파라미터 searchcontents의 내용 확인->"+searchcontents);
 		
 		try {
 			result = session.selectList("DjMainSearch", searchcontents);

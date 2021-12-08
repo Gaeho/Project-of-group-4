@@ -56,5 +56,8 @@ public class DjSearch {
 	
 	//검색
 	private String mainsearch;
+	private String jobgroup;
+	private String workex;	
+	private String employform;
 	
 }
