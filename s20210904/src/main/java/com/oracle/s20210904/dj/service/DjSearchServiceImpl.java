@@ -5,21 +5,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.dj.dao.DjSearchDao;
 import com.oracle.s20210904.dj.model.DjSearch;
 
 @Service
 public class DjSearchServiceImpl implements DjSearchService {
-
-	@Autowired
-	private DjSearchDao dsd;
+	
+	@Autowired private DjSearchDao dsd;
+	  
+	@Override 
+	public List<DjSearch> searchAnno(String mainsearch) {
+	  System.out.println("DjSearchServiceImpl의 searchAnno 시작되었습니다.");
+	
+	  return  dsd.searchAnno(mainsearch);  
+	}
 
 	@Override
-	public List<DjSearch> searchSome(DjSearch scContent) {
-		System.out.println("DjSearchServiceImpl의 searchSome 시작되었습니다.");	
+	public List<Company> searchCom(String mainsearch) {
+		System.out.println("DjSearchServiceImpl의 searchCom 시작되었습니다.");
 		
-		return dsd.searchSome(scContent);
+		return dsd.searchCom(mainsearch);
 	}
-	
-	
+	  
 }

@@ -2,11 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DjSearchDao">
 
-	<select id="DjMainSearch" parameterType="java.lang.String" resultType="DjSearch">
+	<select id="DjMainAnnoSearch" parameterType="java.lang.String" resultType="DjSearch">
 		
-				select c.com_id, c.com_name, c.com_tel, c.com_addr, c.com_bus, c.com_mgr_tel, 
-				c.com_web, c.com_img, a.rec_vol, a.emp_type, a.rec_edu, a.anno_title, 
-				d.comm_ctx as 직군 , e.comm_ctx as 경력, f.comm_ctx as 고용형태
+				select a.anno_title anno_title, c.com_name com_name,  c.com_img com_img, a.rec_vol rec_vol, a.emp_type emp_type, a.rec_edu rec_edu, a.anno_code anno_code, 
+				d.comm_ctx jobgroup , e.comm_ctx workex, f.comm_ctx  employform
 				
 				from Company c 
 				
@@ -28,8 +27,21 @@
 				                 where main_cat = 071) f
 				on a.emp_type=f.sub_cat
 				
-				where c.com_name  like '%{searchcontents}%'
-				or a.anno_title like '%{searchcontents}%'            
+				where c.com_name  like '%'||#{mainsearch}||'%'
+				or a.anno_title like '%'||#{mainsearch}||'%'           
+				or a.rec_dtl like '%'||#{mainsearch}||'%'            
+				or a.work_cdt like '%'||#{mainsearch}||'%'            
+				or a.etc_cdt like '%'||#{mainsearch}||'%'            
+	
+	</select>
+	
+	<select id="DjMainComSearch" parameterType="java.lang.String" resultType="Company">
+	
+		select com_name, com_addr, com_bus, com_img , com_id
+		from company
+		where com_name Like '%'||#{mainsearch}||'%'
+		or com_addr Like '%'||#{mainsearch}||'%'
+		or com_bus Like '%'||#{mainsearch}||'%'
 	
 	</select>
 
