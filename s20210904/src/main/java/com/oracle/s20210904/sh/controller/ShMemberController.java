@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -81,7 +82,7 @@ public class ShMemberController {
 		
 		return "sh/memberlogin";
 	}
-	@GetMapping(value="loginForm")
+	@PostMapping(value="loginForm")
 	public String loginForm( HttpServletRequest request, String user_id , String user_pw , Model model) {
 		System.out.println("ShMemberController loginForm Start...");
 		
@@ -98,7 +99,7 @@ public class ShMemberController {
 	
 		if(result == 1) {
 			System.out.println("ShMemberController loginForm 성공....");
-			rtnStr = "sh/main"; //성공
+			rtnStr = "redirect:/main"; //성공
 			// session에 user_id 저장 
 			session.setAttribute("mbid", user_id);
 			// session 가져올때
@@ -119,7 +120,7 @@ public class ShMemberController {
 		return "sh/companylogin";
 	}
 	
-	@GetMapping(value="ComloginForm")
+	@PostMapping(value="ComloginForm")
 	public String ComloginForm( HttpServletRequest request , String com_id, String com_pw, Model model) {
 		System.out.println("ShMemberController ComloginForm Start...");
 		
@@ -133,7 +134,7 @@ public class ShMemberController {
 		int result = ms.Comlogin(com);
 		
 		if(result == 1) {
-			rtnStr = "sh/main"; //성공 
+			rtnStr = "redirect:/main"; //성공 
 			// session에 user_id 저장 
 				session.setAttribute("cmid", com_id);
 			// session 가져올때
@@ -143,6 +144,12 @@ public class ShMemberController {
 		}
 		
 		return  rtnStr;
+	}
+	///로그아웃
+	@GetMapping(value="logout")
+	public String logout(HttpServletRequest request) {
+		request.getSession().invalidate();;
+		return "redirect:/main";
 	}
 	
 	//개인 회원 아이디 찾기 

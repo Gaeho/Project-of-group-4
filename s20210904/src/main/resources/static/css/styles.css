@@ -2557,6 +2557,10 @@ textarea.form-control-lg {
   margin-right: 1rem;
 }
 
+.btn-mypage{
+	margin-left: 10px;
+}
+
 .btn-check {
   position: absolute;
   clip: rect(0, 0, 0, 0);

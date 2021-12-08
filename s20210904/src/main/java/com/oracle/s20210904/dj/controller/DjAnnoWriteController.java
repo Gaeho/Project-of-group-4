@@ -162,8 +162,7 @@ public class DjAnnoWriteController {
 		das.annoWriting(anno);
 		
 		
-//		return "redirect:GmAnnoLIst";
-		return "dj/testpage112";
+	return "redirect:GmAnnoList";
 	}
 	
 	

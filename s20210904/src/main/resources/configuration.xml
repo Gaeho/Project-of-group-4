@@ -30,6 +30,8 @@
 		<typeAlias alias="AppAnnMem" type="com.oracle.s20210904.sr.model.AppAnnMem"/>
 		<typeAlias alias="CommCompany" type="com.oracle.s20210904.sr.model.CommCompany"/>
 		<typeAlias alias="CommMemResume" type="com.oracle.s20210904.sr.model.CommMemResume"/>
+		<typeAlias alias="DjSearch" type="com.oracle.s20210904.dj.model.DjSearch"/>
+		
 		
 	</typeAliases>
 </configuration>
