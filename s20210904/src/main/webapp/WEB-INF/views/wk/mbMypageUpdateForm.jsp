@@ -11,15 +11,20 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+	var img_path="";
+	var uploadsts="off";
 	function uploadFile() {
 	    alert('uploadFile Start...');
 	    var form = new FormData();
-	    var user_id = document.getElementById('user_id').value;
-	    alert('user_id>>'+user_id);
+	    /* var user_id = document.getElementById('user_id').value; */
+	    img_path=document.getElementById('user_img').value;
+	    alert('img_path>>'+img_path);
+	    alert('uploadsts>>'+uploadsts);
 	    
 	    form.append( "file1", $("#file1")[0].files[0] );
-		form.append( "user_id", $("#user_id")[0].value);
-	    
+		form.append( "img_path", img_path);
+		form.append( "uploadsts", uploadsts);
+		
 		$.ajax({
 		    url: "/mbMypageImguploadForm",
 		    type: "POST",
@@ -29,49 +34,45 @@
 		    contentType: false,
 		    datatype:'text',
 		    success: function (data) {
-		    	alert("성공");
 		     /*  $('input[name=com_img11]').attr('src',data); */
-		     	alert("도대체 뭔가 들어있긴 하니?->"+data)
+		     	alert("성공 data->"+data);
 		    	document.getElementById('imagesquare1').src=data;
-		    	document.getElementById('imagesquare1').value=data;
-		    	
+		    	document.getElementById('user_img').value=data;
+		    	uploadsts="on";
+		    	document.getElementById('uploadsts_id').value=uploadsts;
 		    },
 		    error: function () {
 		    	alert("실패");
 		      // Handle upload error
-		      // ...
 		    }
 		});
 	}
 	
-	function deleteFile() {
-	    alert('deleteFile Start...');
-	    var form1 = new FormData();
-	   alert('삭제할 내용'+document.getElementById('imagesquare1').value);
+	function uploadDelete() {
+		alert('uploadDelete Start...');
+		img_path=document.getElementById('user_img').value
+		alert('삭제할 내용'+img_path);
 
 	   //form1.append( "comImg123", $("#imagesquare1")[0].value);
-	   
-	  var comImg123 ={"comImg123": document.getElementById('imagesquare1').value.toString()}
-
-	  /*    comImg123.value = null; */
-
-	/* 	 this.clearImage()  */
-	 
-	/* 	form1.append( "imgpath11", document.getElementById('imagesquare1').value);
-	 */    
-		$.ajax({
-		    url: "DjComImguploadForm",
-		    data: comImg123,
-		    dataType:'text',
-		    success: function (data) {
-		    	alert("삭제성공!!"+data);
-		    	document.getElementById('imagesquare1').src='src=/img/dj/no_Image.gif';
-		    	
-		    },
+	   var form ={"img_path": img_path}
+	   /*    comImg123.value = null; */
+	   /* 	 this.clearImage()  */
+	   /* 	form1.append( "imgpath11", document.getElementById('imagesquare1').value); */    
+	   $.ajax({
+		   url: "mbMypageUploadDelete",
+		   type: "POST",
+		   data: form,
+		   dataType:'text',
+		   success: function () {
+			   alert("삭제성공!!");
+			   document.getElementById('imagesquare1').src='src=/img/dj/no_Image.gif';
+			   document.getElementById('user_img').value=null;
+			   uploadsts="off";
+			   document.getElementById('uploadsts_id').value=uploadsts;
+			},
 		    error: function () {
 		    	alert("삭제실패ㅜㅜ");
 		      // Handle upload error
-		      // ...
 		    }
 		});
 	}
@@ -79,17 +80,15 @@
 </head>
 <body>
 <h1>마이페이지수정페이지</h1>
-<form id="fileForm" name="frm" method="post">
-	<input class="imagesquare1" name="com_img11" type="image" src="${member.user_img}" 
-		alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" 
-		value="${member.user_img}"><p>						  
-		<input  type="file"  id="file1" name="file1" />
-		<input type="hidden" id="user_id" name="user_id" value ="${member.user_id}" ><p> 
-		<input type="button" value="업로드" onclick="uploadFile()">
-	<input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
-</form>
-
 <form action="mbMypageUpdatePro" method="post">
+	<input type="text" id="uploadsts_id" value="" name="uploadsts_id"><p>
+	<input type="hidden" id="user_img" name="user_img" value="${member.user_img}">
+	<input type="image" class="imagesquare1" src="${member.user_img}" 
+		alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" ><p>						  
+		<input  type="file"  id="file1" name="file1" /><p> 
+		<input type="button" value="업로드" onclick="uploadFile()">
+	<input type="button" value="삭제" id="delImg12" onclick="uploadDelete()"> 
+	
 	아이디 <input type="hidden" value="${member.user_id }" name="user_id">${member.user_id }<br>
 	비밀번호 <input type="password" value="${member.user_pw}" name="user_pw"><br>
 	이름 <input type="text" value="${member.user_name }" name="user_name"><br>
@@ -114,3 +113,5 @@
 
 </body>
 </html>
+
+		

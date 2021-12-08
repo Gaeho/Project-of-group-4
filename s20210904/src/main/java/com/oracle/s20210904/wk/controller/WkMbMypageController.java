@@ -290,15 +290,15 @@ public class WkMbMypageController {
 	
 	// 마이페이지 수정 db작동
 	@PostMapping(value = "mbMypageUpdatePro")
-	public String mbMypageUpdatePro(Member member, HttpServletRequest request, Model model) {
+	public String mbMypageUpdatePro(Member member, HttpServletRequest request, Model model, String user_img) {
 		System.out.println("WkMbMypageController mbMypageUpdatePro()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		System.out.println("WkMbMypageController mbMypageUpdatePro() user_img : "+user_img);
+//		Member member2=member;
+		System.out.println("WkMbMypageController mbMypageUpdatePro() member : "+member.getUser_img());
 		
-		Member member2=member;
-		System.out.println("WkMbMypageController mbMypageUpdatePro() member : "+member2.getUser_img());
-		
-		int mypage_update_result=ms.memberUpdate(member2);
+		int mypage_update_result=ms.memberUpdate(member);
 		String mypage_update_msg=null;
 		System.out.println("WkMbMypageController mbMypageUpdatePro() mypage_update_result : "+mypage_update_result);
 		if(mypage_update_result>=1) {

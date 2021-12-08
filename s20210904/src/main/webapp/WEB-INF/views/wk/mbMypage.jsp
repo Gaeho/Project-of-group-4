@@ -9,8 +9,8 @@
 </head>
 <body>
 <h1>mbMypage</h1>
-<c:if test="${not empty mypageupdatemsg }">
-	${mypageupdatemsg} <p>
+<c:if test="${not empty mypage_update_msg }">
+	${mypage_update_msg} <p>
 	<script type="text/javascript">
 		alert("1");
 	</script>
