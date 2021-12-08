@@ -32,6 +32,8 @@
 		$("#resDetail"+car_code_num).remove();
 	}
 	
+	
+	
 </script>
 
 </head>
