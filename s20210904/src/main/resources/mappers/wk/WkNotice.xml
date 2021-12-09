@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeDao">
+
+	
+	<select id="WkResConSelect" resultType="WkNotice" parameterType="String">
+		select rc.* ,com.com_name,com.com_addr,com.com_sec, comm.comm_ctx ,res.res_title
+		from resume_contect rc
+		inner join company com
+		on rc.com_id=com.com_id
+		inner join resume res
+		on rc.user_id=res.user_id
+		and rc.res_code=res.res_code
+		inner join comm
+		on com.com_sec=comm.sub_cat
+		where rc.user_id=#{mbid}
+		and comm.main_cat='050'
+		order by rc.res_date desc
+	</select>
+	
+	
+</mapper>

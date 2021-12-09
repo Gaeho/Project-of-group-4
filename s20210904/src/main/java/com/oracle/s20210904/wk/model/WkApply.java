@@ -30,4 +30,8 @@ public class WkApply {
 //	company table
 	@Transient
 	private String com_name;
+	
+//	announce table
+	@Transient
+	private String anno_title;
 }
