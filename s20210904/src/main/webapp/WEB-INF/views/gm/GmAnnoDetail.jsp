@@ -50,9 +50,12 @@
 </head>
 <body>
 
-<%@ include file="header.jsp" %>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 
 	<!-------------------------------------------------------------------------------------->
+	<div class="BigContainer">
+	
+	<div class="GmContainer">
 	<div class="detail">
 	  <div class="detail_title">
 		<h2>공고 상세</h2>
@@ -61,7 +64,7 @@
 			<td>
 			  <c:choose>
 			    <c:when test="${itlike == 0}">
-			      <input type="button" class = "btn btn_light" id="likebtn" value="스크랩  ☆ " onclick="setScrap()">
+			      <input type="button" class = "btn btn_light" id="likebtn" value="스크랩 ☆" onclick="setScrap()">
 				  <input type="hidden" id="likecheck" value="${itlike}">
 			    </c:when>
 			    
@@ -132,6 +135,47 @@
 	</div>
 	<!-------------------------------------------------------------------------------------->
 	<br><br><br>
-	<%@ include file="footer.jsp" %>
+	</div>
+	<div class="MenuContainer">
+	
+		<div> 
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		메뉴 공간 입니다
+		
+		
+		
+		
+		</div>
+	
+	</div>
+	
+	</div>
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

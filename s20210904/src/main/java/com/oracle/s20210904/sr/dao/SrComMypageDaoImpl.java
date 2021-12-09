@@ -9,12 +9,14 @@ import org.springframework.stereotype.Repository;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Repository
 public class SrComMypageDaoImpl implements SrComMypageDao {
@@ -104,33 +106,40 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		return appAnnMemCReg;
 	}
 
-	// 태그검색 조인
-	@Override
-	public List<CommMemResume> commMemResumeList(CommMemResume commMemResume) {
-		List<CommMemResume> commMemResumeList=session.selectList("SrCommMemResumeList", commMemResume);
-		return commMemResumeList;
-	}
+	/*
+	 * //북마크회원
+	 * 
+	 * @Override public List<Bookmark> listBmark3(Bookmark bookmark) {
+	 * 
+	 * System.out.println("SrComMypageDaoImpl listBmark 시작!!"); List<Bookmark>
+	 * listBmark4=null; try { listBmark4 = session.selectList("SrMemBmarkList",
+	 * bookmark);
+	 * System.out.println("SrComMypageDaoImpl listBmark listBmark.size"+listBmark4.
+	 * size()); } catch (Exception e) {
+	 * System.out.println("SrComMypageDaoImpl listBmark 오류"+e.getMessage()); }
+	 * return listBmark4; }
+	 */
 	
-	//북마크회원
+		// 북마크 List
+
 		@Override
-		public List<Bookmark> listBmark3(Bookmark bookmark) {
-			
-			System.out.println("SrComMypageDaoImpl listBmark 시작!!");
-			List<Bookmark> listBmark4=null;
+		public List<MemBmark> bookmarkList(MemBmark memBmark) {
+			List<MemBmark> bookmarkList = null;
+			System.out.println("SrComMypageDaoImpl bookmarkList Start...");
 			try {
-				listBmark4 = session.selectList("SrMemBmarkList", bookmark);
-				System.out.println("SrComMypageDaoImpl listBmark listBmark.size"+listBmark4.size());
+				bookmarkList = session.selectList("SrBmarkList", memBmark);
 			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl listBmark 오류"+e.getMessage());
+				System.out.println("SrComMypageDaoImpl bookmarkList error"+e.getMessage());
 			}
-			return listBmark4;
+			return bookmarkList;
 		}
+	
 		
 		// 북마크 개인 상세
 		@Override
-		public Member userdetail(String user_id) {
+		public CommMemResume userdetail(String user_id) {
 			System.out.println("SrComMypageDaoImpl userdetail Start...");
-			Member mem = null;
+			CommMemResume mem = null;
 			try {
 				mem = session.selectOne("SrUserDetail", user_id);
 				System.out.println("Dao mem.getUser_name()->"+mem.getUser_name());
@@ -144,7 +153,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 
 		// 공통 테이블에서 원하는 직종 가져오기
 		@Override
-		public Comm jobtag(Member mem) {
+		public Comm jobtag(CommMemResume mem) {
 			System.out.println("SrComMypageDaoImpl jobtag Start...");
 			Comm jobtag = null;
 			try {
@@ -194,6 +203,64 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			}
 			
 		}
+		
+		// 고등학교 계열
+		@Override
+		public Comm hsmjr(CommMemResume mem) {
+			System.out.println("SrComMypageDaoImpl hsmjr Start...");
+			Comm hsmjr = null;
+			try {
+				hsmjr = session.selectOne("SrHsmjr", mem);
+				System.out.println("SrComMypageDaoImpl hsmjr.getComm_ctx()->"+hsmjr.getComm_ctx());
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl hsmjr error"+e.getMessage());
+			}
+			return hsmjr;
+		}
+
+		// 이력서 tag1
+		@Override
+		public Comm restag1(CommMemResume mem) {
+			System.out.println("SrComMypageDaoImpl restag1 Start...");
+			Comm restag1 = null;
+			try {
+				restag1 = session.selectOne("SrRestag1", mem);
+				System.out.println("SrComMypageDaoImpl restag1.getComm_ctx()->"+restag1.getComm_ctx());
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl restag1 error"+e.getMessage());
+			}
+			return restag1;
+		}
+		
+		// 이력서 tag2
+		@Override
+		public Comm restag2(CommMemResume mem) {
+			System.out.println("SrComMypageDaoImpl restag2 Start...");
+			Comm restag2 = null;
+			try {
+				restag2 = session.selectOne("SrRestag2", mem);
+				System.out.println("SrComMypageDaoImpl restag2.getComm_ctx()->"+restag2.getComm_ctx());
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl restag2 error"+e.getMessage());
+			}
+			return restag2;
+		}
+		
+		// 이력서 tag3
+		@Override
+		public Comm restag3(CommMemResume mem) {
+			System.out.println("SrComMypageDaoImpl restag3 Start...");
+			Comm restag3 = null;
+			try {
+				restag3 = session.selectOne("SrRestag3", mem);
+				System.out.println("SrComMypageDaoImpl restag3.getComm_ctx()->"+restag3.getComm_ctx());
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl restag3 error"+e.getMessage());
+			}
+			return restag3;
+		}
+
+			
 
 		//열람 기록 있는지 Check 
 		@Override
@@ -214,7 +281,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			System.out.println("SrComMypageDaoImpl insertResumeContect Start...");
 			int result = 0;
 			try {
-				result = session.delete("SrResumeContectInsert", resumeContect);
+				result = session.insert("SrResumeContectInsert", resumeContect);
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl SrComMypageDaoImpl error"+e.getMessage());
 			}
@@ -226,12 +293,28 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		public void insertNotice(Notice notice) {
 			System.out.println("SrComMypageDaoImpl insertNotice Start...");
 			try {
-				session.delete("SrInsertNotice", notice);
+				session.insert("SrInsertNotice", notice);
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl insertNotice error"+e.getMessage());
 			}
 		}
+
+
+
+		@Override
+		public List<MemResumeBmark> memResumeBmarkList(String keyword1) {
+			List<MemResumeBmark> memResumeBmarkList=null;
+			try {
+				memResumeBmarkList=session.selectList("SrMemResumeBmarkList", keyword1);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl memResumeBmarkList error=>"+e.getMessage());
+			}
+			return memResumeBmarkList;
+		}
+
+
 	
+
 	
 	
 	

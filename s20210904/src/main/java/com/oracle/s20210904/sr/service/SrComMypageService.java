@@ -5,13 +5,17 @@ import java.util.List;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
+
 import com.oracle.s20210904.comm.model.Company;
+import com.oracle.s20210904.comm.model.MemBmark;
+
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 public interface SrComMypageService {
 
@@ -27,13 +31,20 @@ public interface SrComMypageService {
 
 	List<AppAnnMem> appAnnMemCReg(AppAnnMem appAnnMem);
 
-	List<CommMemResume> commMemResumeList(CommMemResume commMemResume);
-
-	List<Bookmark> listBmark1(Bookmark bookmark);
 	
-	Member userdetail(String user_id);
+	List<MemBmark> bookmarkList(MemBmark memBmark);
 
-	Comm jobtag(Member mem);
+	CommMemResume userdetail(String user_id);
+
+	Comm jobtag(CommMemResume mem);
+	
+	Comm hsmjr(CommMemResume mem);
+
+	Comm restag1(CommMemResume mem);
+
+	Comm restag2(CommMemResume mem);
+
+	Comm restag3(CommMemResume mem);
 
 	int bookmarkgetinfo(Bookmark bookmark);
 
@@ -47,5 +58,7 @@ public interface SrComMypageService {
 
 	void insertNotice(Notice notice);
 
+
+	List<MemResumeBmark> memResumeBmarkList(String keyword1);
 
 }

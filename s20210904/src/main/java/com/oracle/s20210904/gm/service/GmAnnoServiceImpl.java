@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.Resume;
+import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.model.Scrap;
 import com.oracle.s20210904.gm.dao.GmAnnoDao;
 
@@ -224,6 +227,32 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				System.out.println("GmAnnoServiceImpl res.getRes_code()-> "+res.getRes_code());
 				
 				return res;
+			}
+			
+			// 이력서 지원 기록 있는지 check
+			@Override
+			public Apply checkRC(Apply apply) {
+				System.out.println("GmAnnoServiceImpl checkRC Start...");
+				Apply ap = ad.checkRC(apply);
+				
+				return ap;
+			}
+
+			// 이력서 추가
+			@Override
+			public int insertapplyDetail(Apply apply) {
+				System.out.println("GmAnnoServiceImpl insertapplyDetail Start...");
+				int result = ad.insertapplyDetail(apply);
+				
+				return result;
+			}
+
+			// 알림 추가
+			@Override
+			public void Noticeinesert(Notice notice) {
+				System.out.println("GmAnnoServiceImpl Noticeinesert Start...");
+				ad.Noticeinesert(notice);
+				
 			}
 	 
 	
