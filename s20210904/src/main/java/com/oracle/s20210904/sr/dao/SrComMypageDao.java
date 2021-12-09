@@ -6,12 +6,12 @@ import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.MemBmark;
-import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 public interface SrComMypageDao {
 
@@ -27,11 +27,12 @@ public interface SrComMypageDao {
 
 	List<AppAnnMem> appAnnMemCReg(AppAnnMem appAnnMem);
 
-	List<CommMemResume> commMemResumeList(CommMemResume commMemResume);
 
 	//List<Bookmark> listBmark3(Bookmark bookmark);
 	
 	List<MemBmark> bookmarkList(MemBmark memBmark);
+
+
 
 	CommMemResume userdetail(String user_id);
 
@@ -49,6 +50,9 @@ public interface SrComMypageDao {
 
 	void insertNotice(Notice notice);
 
+
+	List<MemResumeBmark> memResumeBmarkList(String keyword1);
+
 	Comm hsmjr(CommMemResume mem);
 
 	Comm restag1(CommMemResume mem);
@@ -56,6 +60,7 @@ public interface SrComMypageDao {
 	Comm restag2(CommMemResume mem);
 
 	Comm restag3(CommMemResume mem);
+
 
 	
 }

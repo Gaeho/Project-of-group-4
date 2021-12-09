@@ -17,6 +17,7 @@ import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.dao.SrComMypageDao;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Service
 public class SrComMypageServiceImpl implements SrComMypageService {
@@ -75,13 +76,6 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		List<AppAnnMem> appAnnMemCReg=scmd.appAnnMemCReg(appAnnMem);
 		return appAnnMemCReg;
 	}
-
-	//태그검색 조인
-	@Override
-	public List<CommMemResume> commMemResumeList(CommMemResume commMemResume) {
-		List<CommMemResume> commMemResumeList=scmd.commMemResumeList(commMemResume);
-		return commMemResumeList;
-	}
 	
 	// 북마크 List
 	@Override
@@ -135,7 +129,6 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	public void bookmarkinsert(Bookmark bookmark) {
 		System.out.println("SrComMypageServiceImpl bookmarkinsert Start...");
 		scmd.bookmarkinsert(bookmark);
-		
 	}
 
 	// 북마크 삭제
@@ -143,9 +136,15 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	public void bookmarkdelete(Bookmark bookmark) {
 		System.out.println("SrComMypageServiceImpl bookmarkdelete Start...");
 		scmd.bookmarkdelete(bookmark);
-		
 	}	
+
 	
+	@Override
+		public List<MemResumeBmark> memResumeBmarkList(String keyword1) {
+			List<MemResumeBmark> memResumeBmarkList=scmd.memResumeBmarkList(keyword1);
+			return memResumeBmarkList;
+		}
+
 	// 고등학교 계열
 	@Override
 	public Comm hsmjr(CommMemResume mem) {

@@ -13,8 +13,14 @@
 	<%--  <%response.sendRedirect("GmAnnoList"); %>  --%>
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
 	<%-- <% response.sendRedirect("main"); %> --%>
-	  <%response.sendRedirect("ComInfo"); %> 
+
+	<%-- <%response.sendRedirect("ComInfo"); %>--%>
+	<%response.sendRedirect("ComMemSearch");%>
+
+
+
 	<%--  <%response.sendRedirect("applyDetail"); %>  --%>
 	<%-- <%response.sendRedirect("resumeDetail"); %> --%>
+
 </body>
 </html>

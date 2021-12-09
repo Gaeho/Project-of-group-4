@@ -55,28 +55,28 @@
 			
 		<div class="CompanyMypageMenu"
 			style="display: flex; flex-direction: column; width: fit-content;">
-			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> 
-			<a
-				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
-<a
-				class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
-				
-
-			<div class="comMemberSearch">
+			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> <a
+				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br> <a
+				class="menuBox" href="ComAnn"><span>채용공고</span></a><br> <a
+				class="menuBox" href="ComMarkMember"><span>북마크회원</span></a><br>
+			<a class="menuBox" href="ComMemSearch"><span>검색</span></a>
+		</div>  
+		
+			<!-- <div class="comMemberSearch">
 				<form class="search_form" action="SrSearch">
 				 	<input class="search_keyword" name="keyword" type="text" placeholder="검색어를 입력하세요"/>
                		<button class="search_bnt" type="submit">search</button>
 				</form>
-			</div>
+			</div> -->
 		
 		
 		
-	<%-- 	<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
+		<%-- <c:set var="num" value="${pg.total-pg.start+1 }"></c:set> --%>
 		<div>
 			
 		
 			<div class="comMemberSearch_list">
-				<c:forEach var="memResumeBmarkList" items="memResumeBmarkList">
+				<c:forEach var="memResumeBmarkList" items="${memResumeBmarkList}">
 				<div class="divTableCol">
 						<div class="divTableRow">${num}</div>
 					</div>
@@ -85,14 +85,14 @@
 					회원 아이디 : ${memResumeBmarkList.user_id }
 			 이력서 작성 날짜 : ${memResumeBmarkList.res_date} 
 				</a>
-				<c:set var="num" value="${num - 1 }"></c:set>
+			<%-- 	<c:set var="num" value="${num - 1 }"></c:set> --%>
 				</c:forEach>
 			</div> 
-		</div>	 --%> 
+		</div>	 
 	</div>
 	
-<%-- 	
-	<div class="paging">
+	
+	<%-- <div class="paging">
 		<c:if test="${pg.startPage > pg.pageBlock }">
 			<a href="ComAppStatus?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
 		</c:if>
@@ -102,7 +102,7 @@
 		<c:if test="${pg.endPage < pg.totalPage }">
 			<a href="CComAppStatus?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
 		</c:if>
-	</div>
-	 --%>
+	</div> --%>
+	
 </body>
 </html>

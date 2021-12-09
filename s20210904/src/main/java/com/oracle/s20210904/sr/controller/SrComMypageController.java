@@ -13,7 +13,6 @@ import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
-import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.comm.model.Member;
@@ -22,6 +21,7 @@ import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.service.Paging;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 import com.oracle.s20210904.sr.service.SrComMypageService;
 
 @Controller
@@ -139,26 +139,55 @@ public class SrComMypageController {
 	}
 
 	// 회원검색
-	@GetMapping(value = "ComMemberSearch")
-	public String ComMemberSearch(Model model, String currentPage, CommMemResume commMemResume,
-			CommCompany commCompany) {
+
+	
+	@RequestMapping(value = "ComMemSearch")
+	public String ComMemberSearch1() {
+		
+		return "sr/comMemberSearchMenu";
+	}
+	
+	
+	
+	@GetMapping(value = "SrSearch")
+	public String ComMemberSearch(Model model, String currentPage, MemResumeBmark memResumeBmark, CommCompany commCompany,
+			String keyword) {
+
 
 		System.out.println("SrComMypageController ComMemberSearch START...");
+	
+		System.out.println("DjSearchController의 mainSearch() 실행되었습니다.");
+	
+		System.out.println("처음 컨트롤러에 들어올 때 mainsearch의 내용?->"+keyword);
+		
+		String keyword1 = keyword.replaceAll("\\s+","");
 
-		// paging
-		int total = scms.total();
-		Paging pg = new Paging(total, currentPage);
-		commMemResume.setStart(pg.getStart()); // 1
-		commMemResume.setEnd(pg.getEnd()); // 5
-		// ----------------------------------------------------------------------------
+		System.out.println("변환한 mainsearch의 값->"+keyword1);
+		
+		//여기까지 검색어 띄어쓰기 처리
+		
 		// company
 		CommCompany commCompany1 = null;
 		commCompany1 = scms.comInfo(commCompany);
 		// ----------------------------------------------------------------------------
-		// commMemResume list
-		List<CommMemResume> commMemResumeList = scms.commMemResumeList(commMemResume);
 
-		return "sr/comMemberSearchMenu";
+		
+		//keyword를 이용한 검색 내용
+		
+		System.out.println("memResumeBmarkList 시작..");
+		List<MemResumeBmark>  memResumeBmarkList= scms.memResumeBmarkList(keyword1);
+		System.out.println("List<MemResumeBmark>의 size?->"+memResumeBmarkList.size());
+
+		
+		model.addAttribute("memResumeBmarkList", memResumeBmarkList); //검색한 내용 
+		model.addAttribute("keyword1", keyword1);//검색 키워드
+		
+		//기업로고
+		model.addAttribute("commCompany1", commCompany1);
+
+		
+		return "sr/comMemberSearchMenuDetail";
+
 	}
 	/*
 	 * // 북마크회원
@@ -381,9 +410,10 @@ public class SrComMypageController {
 				rc = scms.findRC(resumeContect);
 				Notice notice = new Notice();
 				notice.setUser_id(rc.getUser_id());
-				notice.setNtc_cat("003");
+				notice.setNtc_ctg("003");
 				notice.setNtc_code(rc.getNtc_code());
 				scms.insertNotice(notice);
+
 			}
 		}
 		return result;
