@@ -13,6 +13,7 @@ import com.oracle.s20210904.comm.model.ResumeDetail;
 import com.oracle.s20210904.wk.dao.WkApplyDao;
 import com.oracle.s20210904.wk.dao.WkCommRepository;
 import com.oracle.s20210904.wk.dao.WkMemberDao;
+import com.oracle.s20210904.wk.dao.WkNoticeDao;
 import com.oracle.s20210904.wk.dao.WkResumeDao;
 import com.oracle.s20210904.wk.dao.WkResumeDetailDao;
 import com.oracle.s20210904.wk.dao.WkResumeRepository;
@@ -20,6 +21,7 @@ import com.oracle.s20210904.wk.dao.WkScrapDao;
 import com.oracle.s20210904.wk.model.WkApply;
 import com.oracle.s20210904.wk.model.WkApplyCount;
 import com.oracle.s20210904.wk.model.WkCommDto;
+import com.oracle.s20210904.wk.model.WkNotice;
 import com.oracle.s20210904.wk.model.WkResume;
 import com.oracle.s20210904.wk.model.WkResumeDetail;
 import com.oracle.s20210904.wk.model.WkScrap;
@@ -38,6 +40,8 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 	private WkScrapDao wkScrapDao;
 	@Autowired
 	private WkResumeDetailDao wkResumeDetailDao;
+	@Autowired
+	private WkNoticeDao wkNoticeDao;
 	
 	private final WkResumeRepository wkResumeRepository;
 	
@@ -201,6 +205,13 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 		}
 		
 		return resume_result;
+	}
+
+
+
+	@Override
+	public List<WkNotice> resConList(String mbid) {
+		return wkNoticeDao.resConList(mbid);
 	}
 
 	
