@@ -24,6 +24,7 @@
 		<typeAlias alias="WkApply" type="com.oracle.s20210904.wk.model.WkApply"/>
 		<typeAlias alias="WkScrap" type="com.oracle.s20210904.wk.model.WkScrap"/>
 		<typeAlias alias="WkResumeDetail" type="com.oracle.s20210904.wk.model.WkResumeDetail"/>
+		<typeAlias alias="WkNotice" type="com.oracle.s20210904.wk.model.WkNotice"/>
 		<typeAlias alias="AnnounceCnt" type="com.oracle.s20210904.ds.model.AnnounceCnt"/>
 		<typeAlias alias="DsComm" type="com.oracle.s20210904.ds.model.DsComm"/>
 		<typeAlias alias="AnnounceCnt" type="com.oracle.s20210904.ds.model.AnnounceCnt"/>

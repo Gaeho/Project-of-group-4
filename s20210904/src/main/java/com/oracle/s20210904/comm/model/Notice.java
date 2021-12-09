@@ -9,5 +9,5 @@ public class Notice {
 	private String ntc_code;
 	private String user_id;
 	private String anno_code;
-	private String ntc_cat;
+	private String ntc_ctg;
 }

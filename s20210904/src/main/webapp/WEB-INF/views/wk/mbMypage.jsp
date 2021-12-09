@@ -33,6 +33,7 @@ ${mbid }의 이력서<br>
 <a href="mbMypageResume">이력서관리</a><br>
 <a href="mbMypageResumeWrite">이력서작성</a><br>
 <a href="mbMypageScrap">스크랩</a><br>
+<a href="mbMypageNotice">알림</a><br>
 <a href="mbMypageUpdate">마이페이지수정</a><br>
 </body>
 </html>

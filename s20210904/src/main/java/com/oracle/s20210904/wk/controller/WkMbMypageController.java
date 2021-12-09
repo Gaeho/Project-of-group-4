@@ -327,8 +327,19 @@ public class WkMbMypageController {
 		}
 		model.addAttribute("mypage_update_msg", mypage_update_msg);
 		return "forward:mbMypage";
-		
 	}
+	
+	// 마이페이지 알림
+	@PostMapping(value = "mbMypageNotice")
+	public String mbMypageNotice(HttpServletRequest request, Model model) {
+		System.out.println("WkMbMypageController mbMypageNotice()");
+		String mbid=checkId(request);
+		model.addAttribute("mbid", mbid);
+		
+		
+		return "mbMypageNotice";
+	}
+	
 	
 	private String mbMypageCopyfile(HttpServletRequest request, String user_img) {
 		System.out.println("WkMbMypageController mbMypageCopyfile()");
