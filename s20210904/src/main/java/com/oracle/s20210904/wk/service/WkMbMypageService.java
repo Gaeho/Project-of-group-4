@@ -8,6 +8,7 @@ import com.oracle.s20210904.comm.model.ResumeDetail;
 import com.oracle.s20210904.wk.model.WkApply;
 import com.oracle.s20210904.wk.model.WkApplyCount;
 import com.oracle.s20210904.wk.model.WkCommDto;
+import com.oracle.s20210904.wk.model.WkNotice;
 import com.oracle.s20210904.wk.model.WkResume;
 import com.oracle.s20210904.wk.model.WkResumeDetail;
 import com.oracle.s20210904.wk.model.WkScrap;
@@ -39,5 +40,7 @@ public interface WkMbMypageService {
 	List<ResumeDetail> resumeDetailSelect(Resume resume);
 
 	int resumeUpdate(Resume resume, WkResumeDetail wkResumeDetail);
+
+	List<WkNotice> resConList(String mbid);
 
 }

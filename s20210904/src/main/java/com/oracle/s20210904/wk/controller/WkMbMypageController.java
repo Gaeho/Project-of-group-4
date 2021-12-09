@@ -27,6 +27,7 @@ import com.oracle.s20210904.comm.model.ResumeDetail;
 import com.oracle.s20210904.wk.model.WkApply;
 import com.oracle.s20210904.wk.model.WkApplyCount;
 import com.oracle.s20210904.wk.model.WkCommDto;
+import com.oracle.s20210904.wk.model.WkNotice;
 import com.oracle.s20210904.wk.model.WkResume;
 import com.oracle.s20210904.wk.model.WkResumeDetail;
 import com.oracle.s20210904.wk.model.WkScrap;
@@ -97,6 +98,9 @@ public class WkMbMypageController {
 		
 		List<WkApply> applyList=ms.applyList(mbid);
 		model.addAttribute("applyList", applyList);
+		
+		List<WkNotice> resConList=ms.resConList(mbid);
+		model.addAttribute("resConList", resConList);
 		
 		return "/wk/mbMypageApply";
 	}
@@ -329,18 +333,7 @@ public class WkMbMypageController {
 		return "forward:mbMypage";
 	}
 	
-	// 마이페이지 알림
-	@PostMapping(value = "mbMypageNotice")
-	public String mbMypageNotice(HttpServletRequest request, Model model) {
-		System.out.println("WkMbMypageController mbMypageNotice()");
-		String mbid=checkId(request);
-		model.addAttribute("mbid", mbid);
-		
-		
-		return "mbMypageNotice";
-	}
-	
-	
+
 	private String mbMypageCopyfile(HttpServletRequest request, String user_img) {
 		System.out.println("WkMbMypageController mbMypageCopyfile()");
 		UUID uid = UUID.randomUUID();

@@ -12,7 +12,7 @@
 	</select>
 	
 		<select id="WkApplyList" resultType="WkApply" parameterType="String">
-		select sub.app_regdate, sub.com_app_sts, re.res_title, com.com_name, co.comm_ctx
+		select sub.app_regdate, sub.com_app_sts, re.res_title, com.com_name, co.comm_ctx, an.anno_title, sub.user_ntc_code
 		from (select co2.comm_ctx as com_app_sts, ap2.*
         		from apply ap2
         		inner join comm co2

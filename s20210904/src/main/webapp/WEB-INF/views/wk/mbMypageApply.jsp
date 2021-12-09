@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <link href="css/wk/tapstyle.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function(){ 
+		if($("#tab01").is(":checked")){
+	        alert("test");
+		}
+        
+	});
+
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
@@ -24,12 +33,13 @@
 		
 		<table>
 			<tr>
-				<th>지원회사</th><th>지원포지션</th><th>이력서제목</th><th>작성시간</th><th>상태</th>
+				<th>알림</th><th>지원회사</th><th>공고 제목</th><th>지원포지션</th><th>이력서제목</th><th>작성시간</th><th>상태</th>
 				<c:forEach var="applyList" items="${applyList }">
 					<tr>
-						<td>${applyList.com_name}</td><td>${applyList.comm_ctx}</td>
-						<td>${applyList.res_title}</td><td>${applyList.app_regdate}</td>
-						<td>${applyList.com_app_sts}</td>
+						<td><c:if test="${not empty applyList.user_ntc_code }">O</c:if></td>
+						<td>${applyList.com_name}</td><td>${applyList.anno_title}</td>
+						<td>${applyList.comm_ctx}</td><td>${applyList.res_title}</td>
+						<td>${applyList.app_regdate}</td><td>${applyList.com_app_sts}</td>
 					</tr>
 				</c:forEach>
 			</tr>
@@ -37,6 +47,19 @@
 	</div>
 	<div class="conbox con2">
 		이력서 열람기업
+		<table>
+			<tr>
+				<th>알림</th><th>이력서</th><th>회사명</th><th>주소</th><th>업종</th><th>열람일</th>
+				<c:forEach var="resConList" items="${resConList }">
+					<tr>
+						<td><c:if test="${not empty resConList.ntc_code }">O</c:if></td>
+						<td>${resConList.res_title}</td><td>${resConList.com_name}</td>
+						<td>${resConList.com_addr}</td><td>${resConList.comm_ctx}</td>
+						<td>${resConList.res_date}</td>
+					</tr>
+				</c:forEach>
+			</tr>
+		</table>
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
