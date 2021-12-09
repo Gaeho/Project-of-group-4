@@ -61,4 +61,10 @@
               </c:choose>
             </div>
         </nav>
+        
+        <input type="radio" name="tabmenu" id="tab01" checked="checked">
+				<img src="img/dss/alram-on" onclick="alramOn()">
+			
+				<div class="alram-list">
+				</div> 
 </body>
