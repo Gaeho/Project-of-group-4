@@ -116,7 +116,7 @@ public class ShMemberController {
 	public String comlogin() {
 		System.out.println("ShMemberController Comlogin Start...");
 		
-		return "sh/companylogin";
+		return "sh/memberlogin";
 	}
 	
 	@GetMapping(value="ComloginForm")
@@ -140,7 +140,7 @@ public class ShMemberController {
 			
 			    System.out.println("session.getAttribute cmid : " + session.getAttribute("cmid"));
 		}else {
-			rtnStr = "sh/companylogin"; //실패 
+			rtnStr = "sh/memberlogin"; //실패 
 		}
 		
 		return  rtnStr;
@@ -194,7 +194,7 @@ public class ShMemberController {
 		
 		return "sh/findpw";
 	}
-	
+	// OK
 	@GetMapping(value="findPwForm")
 	public String findPwForm(Member member , Model model) {
 		System.out.println("mailSending...");  
@@ -269,13 +269,12 @@ public class ShMemberController {
 			
 			return "sh/findComPwForm";
 		}
-		
-		//Mail Ajax(개인 회원가입 이메일 인증)
+		//Mail Ajax(개인 회원가입 이메일 인증) 
 		@RequestMapping(value = "verifyEmail" , produces = "application/text;charset=UTF-8")
 		@ResponseBody
 		public String  verifyEmail(String  user_email , Model model) {
 			System.out.println("mailSending...");  
-			String tomail = "user_email";
+			String tomail = user_email;
 			System.out.println("verifyEmail tomail->"+tomail);
 			String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
 			String title = "이메일 인증입니다."; //제목
@@ -288,8 +287,8 @@ public class ShMemberController {
 				messageHelper.setTo(tomail); 
 				messageHelper.setSubject(title); 
 				String tempPassword = (int) (Math.random() * 999999) + 1 + "";
-				messageHelper.setText("���� ��ȣ�Դϴ�:" + tempPassword); //
-				System.out.println("������ȣ�Դϴ�" + tempPassword); 
+				messageHelper.setText("이메일인증입니다:" + tempPassword); //
+				System.out.println("이메일인증입니다" + tempPassword); 
 				mailsender.send(message);
 				tempVerifyStatus = "1";
 			} catch (Exception e) {
@@ -298,15 +297,15 @@ public class ShMemberController {
 			}
 			System.out.println("ShMemberController verifyEmail tempVerifyStatus->" + tempVerifyStatus); 
 			
-			return "tempVerifyStatus";
+			return tempVerifyStatus;
 		}
-	
+		
 		//Mail Ajax2(기업 회원가입 이메일 인증)
 		@RequestMapping(value = "verifyEmail2" , produces = "application/text;charset=UTF-8")
 		@ResponseBody
 		public String verifyEmail2(String com_email , Model model) {
 			System.out.println("mailSending...");
-			String tomail = "com_email";
+			String tomail = com_email;
 			System.out.println("verifyEmail2 tomail->" + tomail);
 			String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
 			String title = "이메일 인증입니다."; //제목
@@ -328,7 +327,7 @@ public class ShMemberController {
 			}
 			System.out.println("ShMemberController verifyEmail tempVerifyStatus->" + tempVerifyStatus); 
 			
-			return "tempVerifyStatus";
+			return tempVerifyStatus;
 		}
 	
 	

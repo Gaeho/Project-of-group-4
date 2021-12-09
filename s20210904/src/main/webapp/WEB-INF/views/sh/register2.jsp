@@ -26,13 +26,13 @@
 				data:{com_email : com_email},
 				dataType:'text',
 				success:function(data){
-					 if(data ==1) {
+					 if(data == '1') {
 						 // tag를 풀어줌 
-						 alert("success ajax Data"+data);
+						 alert("성공적으로 인증되었습니다"+data);
 					 
 					 } else{
 						 // Dim Tag유지
-						 alert("Fail  ajax Data"+data);
+						 alert("인증에 실패했습니다. 이메일을 확인해주세요 "+data);
 					 }
  			   }
 		})
@@ -143,7 +143,7 @@
 			<div class="registerFormRow">
 				<div class="registerFormLabel">전화번호</div>
 				<div class="registerFormInputBox">
-	   				  <input type="text" name="com_mgr_tel" placeholder="tel입력하시오"><p>
+	   				  <input type="text" name="com_mgr_tel" placeholder="tel을입력하시오"><p>
 					</div>
 					</div>
 		
@@ -151,7 +151,7 @@
 			<div class="registerFormRow">
 				<div class="registerFormLabel">이메일</div>
 				<div class="registerFormInputBox">
-	                  <input type="text" name="com_email"  id = "com_email"  placeholder="emial입력하시오"><p>
+	                  <input type="text" name="com_email"  id = "com_email"  placeholder="email을입력하시오"><p>
 						   <input type="button" value="이메일 인증"  onclick="memberVerify()"><p>				
 					
 					</div>

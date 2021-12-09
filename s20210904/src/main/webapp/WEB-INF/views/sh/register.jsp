@@ -24,19 +24,21 @@
 	function memberVerify(){
 	/*alert("Vdeptno->"+Vdeptno); */
 			var user_email = $('#user_email').val();
+		//	var  submitId = document.getElementById('submitId');
 			alert("user_email->"+user_email); 
 			$.ajax({
 				url:"<%=context%>/verifyEmail",
 				data:{user_email : user_email},
 				dataType:'text',
 				success:function(data){
-					 if(data ==1) {
+					 if(data =='1') {
 						 // tag를 풀어줌 
-						 alert("success ajax Data"+data);
-					 
+						 alert("성공적으로 인증되었습니다");
+						// submitId.disabled = true;
+						 $('input[type="submit"]').prop('disabled', false);
 					 } else{
 						 // Dim Tag유지
-						 alert("Fail  ajax Data"+data);
+						 alert("인증이 실패되었습니다.이메일을 확인해주세요");
 					 }
  			   }
 		})
@@ -179,13 +181,14 @@
 		<input type="text" name="user_tel" placeholder="번호를입력하시오">	<p>
 		</div>
 					</div>
+					
 						<div class="registerFormRow">
 						<div class="registerFormLabel">이메일</div>
 						 <div class="registerFormInputBox">	
 		<input type="text" name="user_email"   id="user_email"    placeholder="email입력하시오">
 	    <input type="button" value="이메일 인증"  onclick="memberVerify()"><p>
 			 	</div>
-					</div>	
-		 <input type="submit" value="회원가입"   disabled="disabled">
-			
+				</div>
+		 <input type="submit"  id="submitId"   value="회원가입"  disabled="disabled" >
+				
 		</form>
