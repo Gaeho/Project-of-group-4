@@ -297,7 +297,7 @@ public class GmAnnoListController {
 					ap = as.checkRC(apply);
 					Notice notice = new Notice();
 					notice.setAnno_code(ap.getAnno_code());
-					notice.setNtc_cat("001");
+					notice.setNtc_ctg("001");
 					notice.setNtc_code(ap.getCom_ntc_code());
 					as.Noticeinesert(notice);
 				}

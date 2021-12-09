@@ -87,16 +87,8 @@
 		where rn between #{start} and #{end} 
 		]]>
 	</select>
-	
-	<select id="SrCommMemResumeList" parameterType="CommMemResume" resultType="CommMemResume">
-		select comm.*, mem.*, res.res_tag1, res.res_tag2, res.res_tag3
-	from member mem, resume res, comm
-	where mem.user_id=res.user_id
-	and comm.sub_cat=mem.user_edu
-	</select>
-	
 	<select id="SrBmarkList" parameterType="MemBmark" resultType="MemBmark">
-	select *
+		select *
 		from 
     		(
     		 select rownum rn, a.*
@@ -196,10 +188,20 @@
 	<!-- 알림추가요~ -->
 	<insert id="SrInsertNotice" parameterType="Notice">
 		insert into notice
-		values(#{ntc_code},#{user_id},#{anno_code},#{ntc_cat})
+		values(#{ntc_code},#{user_id},#{anno_code},#{ntc_ctg})
 	</insert>
 	
-	
+	<select id="SrMemResumeBmarkList" parameterType="MemResumeBmark" resultType="MemResumeBmark">
+		select mem.user_id, mem.user_img, res.RES_DATE,res.res_code,bmark.com_id, bmark.MRK_DATE, 
+		bmark.IT_BOOKMARK, res.RES_TITLE
+		from member mem
+		left JOIN RESUME res
+		on mem.user_id=res.user_id
+		left join bookmark bmark
+		on mem.user_id=bmark.user_id
+		where res.res_title like '%'||#{keyword1}||'%'
+    	and bmark.com_id='tkstjd234'
+	</select>
 	
 	
 	
