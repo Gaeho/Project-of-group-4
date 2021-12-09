@@ -135,11 +135,18 @@ public class WkMbMypageController {
 	
 	// 마이페이지 이력서작성 db동작
 	@RequestMapping(value = "mbMypageResumeWritePro", method = RequestMethod.POST)
-	public String mbMypageResumeWritePro(WkResumeDetail wkResumeDetail, WkResume wkResume, HttpServletRequest request, Model model) {
+	public String mbMypageResumeWritePro(WkResumeDetail wkResumeDetail, WkResume wkResume, HttpServletRequest request, Model model,
+										String uploadstate) {
 		System.out.println("WkMbMypageController mbMypageResumeWritePro()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
 		
+		// 이력서프로필에 사진을 그대로 이력서사진에 넣을때 이력서 사진파일을 이력서폴더에 복사
+		System.out.println("WkMbMypageController mbMypageResumeWritePro() uploadstate : "+uploadstate);
+		if(uploadstate.equals("non") && wkResume.getRes_img()!=null) {
+			System.out.println("사진파일 복사 시작..");
+//			https://codevang.tistory.com/159?category=827592
+		}
 
 		
 		int resume_write_result=ms.resumeWrite(wkResume, wkResumeDetail);

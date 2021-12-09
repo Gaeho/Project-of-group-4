@@ -61,16 +61,23 @@ public class WkMbMypageRestController {
 	
 	
 	
-//	이력서 마이페이지 이미지 업로드(db에 이미지만 저장하고 파일경로 출력함)
+//	마이페이지 수정 이미지 업로드(db에 이미지만 저장하고 파일경로 출력함)
 	@PostMapping(value="mbMypageImguploadForm", produces = "application/text; charset=UTF-8")
 	public String mbMypageImguploadForm(HttpServletRequest request,Model model, MultipartFile file1,
 									@RequestParam(value="img_path") String img_path,
-									@RequestParam(value="uploadsts") String uploadsts) {
+									@RequestParam(value="uploadsts") String uploadsts,
+									@RequestParam(value="page_location") String page_location) {
 		System.out.println("WkMbMypageRestController mbMypageImguploadForm()");
 		String mbid=checkId(request);
 		
 		String uploadinDB = null;
-		String uploadPath_mid ="/upload/wk/mypage/";
+		String uploadPath_mid=null;
+		if(page_location.equals("mypage")) {
+			uploadPath_mid="/upload/wk/mypage/";
+		}else if(page_location.equals("resume")) {
+			uploadPath_mid="/upload/wk/resume/";
+		}
+		 
 		String uploadPath = request.getSession().getServletContext().getRealPath(uploadPath_mid);
 		System.out.println("생성 시 uploadPath->"+uploadPath);
 		//업로드 경로를 만든다. 메타데이터 아래에 경로를 둔다. 가장 아래에 upload라는 폴더를 만들고 거기에 파일을 둔다.
@@ -110,23 +117,25 @@ public class WkMbMypageRestController {
 		return uploadinDB;
 	}
 	
+	// 마이페이지 수정 이미지 삭제(db에 이미지만 삭제하고 파일경로 출력함)
 	@PostMapping(value="mbMypageUploadDelete", produces = "application/text; charset=UTF-8")//, method= RequestMethod.GET)
 	public String mbMypageUploadDelete(HttpServletRequest request,Model model,
-			@RequestParam(value="img_path") String img_path)  throws Exception{
+										String img_path, String uploadsts)  throws Exception{
 		
 		System.out.println("WkMbMypageRestController mbMypageUploadDelete()");
-		
-		
+		System.out.println("img_path uploadsts : "+img_path+" -- "+uploadsts);
+		String img_realpath=null;
 //		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
+		if(uploadsts.equals("on") || uploadsts.equals("submit")) {
+			img_realpath = request.getSession().getServletContext().getRealPath(img_path);
+			System.out.println("WkMbMypageRestController mbMypageUploadDelete() img_realpath : "+img_realpath);
+			uploadFileDelete(img_realpath);
+		}
 		
-		String img_realpath = request.getSession().getServletContext().getRealPath(img_path);
-		System.out.println("WkMbMypageRestController mbMypageUploadDelete() img_realpath : "+img_realpath);
-		uploadFileDelete(img_realpath);
 
 //		String returnsomething = Integer.toString(delResult);
 		return img_realpath;
 	}
-	
 	
 	
 	//uploadForm에서 호출하는 메소드이다.원래이름,용량,경로를 받아 처리한다.
