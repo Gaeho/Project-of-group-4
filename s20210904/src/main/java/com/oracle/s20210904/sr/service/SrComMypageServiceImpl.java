@@ -16,6 +16,7 @@ import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.dao.SrComMypageDao;
 import com.oracle.s20210904.sr.model.CommCompany;
+import com.oracle.s20210904.sr.model.CommMemResume;
 import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Service
@@ -136,13 +137,6 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		System.out.println("SrComMypageServiceImpl bookmarkdelete Start...");
 		scmd.bookmarkdelete(bookmark);
 	}	
-
-		// 알림추가~
-		@Override
-		public void insertNotice(Notice notice) {
-			System.out.println("SrComMypageServiceImpl insertNotice Start...");
-			scmd.insertNotice(notice);
-		}
 
 	
 	@Override

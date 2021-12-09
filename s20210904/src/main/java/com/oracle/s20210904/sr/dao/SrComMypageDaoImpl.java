@@ -15,6 +15,7 @@ import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
+import com.oracle.s20210904.sr.model.CommMemResume;
 import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Repository
@@ -310,6 +311,8 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			}
 			return memResumeBmarkList;
 		}
+
+
 	
 
 	

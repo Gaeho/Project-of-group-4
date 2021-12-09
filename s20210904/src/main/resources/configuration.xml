@@ -32,7 +32,7 @@
 		<typeAlias alias="CommCompany" type="com.oracle.s20210904.sr.model.CommCompany"/>
 		<typeAlias alias="MemResumeBmark" type="com.oracle.s20210904.sr.model.MemResumeBmark"/>
 		<typeAlias alias="DjSearch" type="com.oracle.s20210904.dj.model.DjSearch"/>
-		
+		<typeAlias alias="CommMemResume" type="com.oracle.s20210904.sr.model.CommMemResume"/>
 		
 	</typeAliases>
 </configuration>

@@ -55,9 +55,12 @@
 			
 		<div class="CompanyMypageMenu"
 			style="display: flex; flex-direction: column; width: fit-content;">
-			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> <a
-				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br> <a
-				class="menuBox" href="ComAnn"><span>채용공고</span></a><br> <a
+			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> 
+			<a
+				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
+<a
+				class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
+				
 
 			<div class="comMemberSearch">
 				<form class="search_form" action="SrSearch">
