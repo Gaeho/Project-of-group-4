@@ -3,10 +3,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%
+	String context = request.getContextPath();
+    System.out.println("context->"+context);
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>기업회원가입</title>
 <link rel="stylesheet" href="css/header.css" type="text/css">
 <link rel="stylesheet" href="css/sh/register.css" type="text/css">
+<script type="text/javascript" src="js/jquery.js"></script>
+
+<script type="text/javascript">
+    var contextPath='${pageContext.request.contextPath}';
+	
+	/* ShMemberController */
+	function memberVerify(){
+	/*alert("Vdeptno->"+Vdeptno); */
+			var user_email = $('#com_email').val();
+			alert("com_email->"+com_email); 
+			$.ajax({
+				url:"<%=context%>/verifyEmail",
+				data:{com_email : com_email},
+				dataType:'text',
+				success:function(data){
+					 if(data ==1) {
+						 // tag를 풀어줌 
+						 alert("success ajax Data"+data);
+					 
+					 } else{
+						 // Dim Tag유지
+						 alert("Fail  ajax Data"+data);
+					 }
+ 			   }
+		})
+	}
+</script>	
 </head>
 <!-- 헤더부분 -->
 <header>
@@ -120,11 +151,13 @@
 			<div class="registerFormRow">
 				<div class="registerFormLabel">이메일</div>
 				<div class="registerFormInputBox">
-	                  <input type="text" name="com_email" placeholder="emial입력하시오"><p>
+	                  <input type="text" name="com_email"  id = "com_email"  placeholder="emial입력하시오"><p>
+						   <input type="button" value="이메일 인증"  onclick="memberVerify()"><p>				
+					
 					</div>
 					</div>
 	
-			<input type="submit" value="가입하기">
+			<input type="submit" value="회원가입" disabled="disabled">
 			
 		</form>
 	

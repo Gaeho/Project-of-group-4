@@ -47,10 +47,14 @@
 
 	<div class="container">
 	<div class="login">
+	<div class="tab_content">
 		<form action="loginForm">
 		<h2>로그인 </h2>
-			<input type="button" value="회원" >
-			<input type="button" value="기업"  onclick="location.href='Comlogin'"><p>
+			<input type="radio" name="tabmenu"  id="tab01"  checked="checked" onclick="location.href='login'"> 
+			<label for = "tab01">회원</label>
+			<input type="radio"  name="tabmenu"  id="tab02"  checked="checked " onclick="location.href='Comlogin'">
+			<label for="tab02">기업</label><p>
+			
 			아이디 : <input type="text" id="id" name="user_id" placeholder="아이디를 입력하세요"><p>
 			비밀번호 : <input type="password" name="user_pw" placeholder="비밀번호를 입력하세요" ><p>
 			<input type="submit" value="로그인">
@@ -64,6 +68,7 @@
 				
 			
 		</form>
+		</div>
 	</div>
 	</div>
 </body>

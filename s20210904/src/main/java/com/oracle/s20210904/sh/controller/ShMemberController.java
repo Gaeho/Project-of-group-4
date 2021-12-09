@@ -30,7 +30,7 @@ public class ShMemberController {
 	private JavaMailSender mailsender;
 	
 	
-	//¸ŞÀÎÈ­¸é 
+	//ë©”ì¸
 	//@GetMapping(value="main")
 	//public String main() {
 		//System.out.println("ShMemberController main Start...");
@@ -39,7 +39,7 @@ public class ShMemberController {
 	//}
 	
 	
-	//°³ÀÎÈ¸¿ø°¡ÀÔ 
+	//ê°œì¸ íšŒì›ê°€ì… 
 	@RequestMapping(value = "join")
 	public String join (Member memebr) {
 		System.out.println("ShMemberController join Start...");
@@ -59,7 +59,7 @@ public class ShMemberController {
 	}
 	
 
-	//±â¾÷ È¸¿ø°¡ÀÔ 
+	//ê¸°ì—… íšŒì›ê°€ì…
 	@RequestMapping(value="Comjoin")
 	public String Comjoin(Company company) {
 		System.out.println("ShMemberController Comjoin Start...");
@@ -74,7 +74,7 @@ public class ShMemberController {
 		return "redirect:/";
 		
 	}
-	//°³ÀÎ·Î±×ÀÎ 
+	//ê°œì¸íšŒì› ë¡œê·¸ì¸
 	@GetMapping(value="login")
 	public String login() {
 		System.out.println("ShMemberController login Start...");
@@ -90,28 +90,28 @@ public class ShMemberController {
 		mem.setUser_id(user_id);
 		mem.setUser_pw(user_pw);
 	
-		//¼¼¼Ç
+		//ì„¸ì…˜
 		HttpSession session =	request.getSession();
 		int result = ms.login(mem);
 		System.out.println("ShMemberController loginForm  result->" + result);
 
 	
 		if(result == 1) {
-			System.out.println("ShMemberController loginForm ¼º°ø....");
-			rtnStr = "sh/main"; //¼º°ø
-			// session¿¡ user_id ÀúÀå 
+			System.out.println("ShMemberController loginForm ï¿½ï¿½ï¿½ï¿½....");
+			rtnStr = "sh/main"; //ì„±ê³µ
+			// sessionì— user_id ì €ì¥
 			session.setAttribute("mbid", user_id);
-			// session °¡Á®¿Ã¶§
+			
 			 System.out.println("session.getAttribute mbid : " + session.getAttribute("mbid"));
 		}else {
-			System.out.println("ShMemberController loginForm ½ÇÆĞ......");
-			rtnStr = "sh/memberlogin"; //½ÇÆĞ 
+			System.out.println("ShMemberController loginForm ï¿½ï¿½ï¿½ï¿½......");
+			rtnStr = "sh/memberlogin"; //ì‹¤íŒ¨
 		}
 		
 		return rtnStr;
 	}
 	
-	//±â¾÷ ·Î±×ÀÎ 
+	//ê¸°ì—… ë¡œê·¸ì¸
 	@GetMapping(value="Comlogin")
 	public String comlogin() {
 		System.out.println("ShMemberController Comlogin Start...");
@@ -128,24 +128,25 @@ public class ShMemberController {
 		com.setCom_id(com_id);
 		com.setCom_pw(com_pw);
 		
-		//¼¼¼Ç 
+		//ì„¸ì…˜
 		HttpSession session = request.getSession();
 		int result = ms.Comlogin(com);
 		
 		if(result == 1) {
-			rtnStr = "sh/main"; //¼º°ø 
-			// session¿¡ user_id ÀúÀå 
+			rtnStr = "sh/main"; //ì„±ê³µ
+			
+			// session ì— ì €ì¥
 				session.setAttribute("cmid", com_id);
-			// session °¡Á®¿Ã¶§
+			
 			    System.out.println("session.getAttribute cmid : " + session.getAttribute("cmid"));
 		}else {
-			rtnStr = "sh/companylogin"; //½ÇÆĞ 
+			rtnStr = "sh/companylogin"; //ì‹¤íŒ¨ 
 		}
 		
 		return  rtnStr;
 	}
 	
-	//°³ÀÎ È¸¿ø ¾ÆÀÌµğ Ã£±â 
+	//ê°œì¸íšŒì› ì•„ì´ë”” ì°¾ê¸° 
 	@GetMapping(value="findId" ) 
 	public String findId() {
 		System.out.println("ShMemberController findId Start..");
@@ -165,7 +166,7 @@ public class ShMemberController {
 		return "sh/findId";
 	}
 	
-	//±â¾÷ È¸¿ø ¾ÆÀÌµğ Ã£±â 
+	//ê¸°ì—…íšŒì› ì•„ì´ë”” ì°¾ê¸° 
 	@GetMapping(value="findComId")
 	public String findComId() {
 		System.out.println("ShMemberController  findComId Start...");
@@ -186,7 +187,7 @@ public class ShMemberController {
 		model.addAttribute("com_id", com_id);
 		return "sh/findComId";
 	}
-	//°³ÀÎÈ¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
+	//ê°œì¸íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	@GetMapping(value="findPw")
 	public String findPw() {
 		System.out.println("ShMemberController findpw Start...");
@@ -196,38 +197,38 @@ public class ShMemberController {
 	
 	@GetMapping(value="findPwForm")
 	public String findPwForm(Member member , Model model) {
-		System.out.println("mailSending...");  //¹Ş´Â »ç¶÷ÀÌ¸ŞÀÏ 
+		System.out.println("mailSending...");  
 		String tomail = "gimsanghyun1221@gmail.com";
 		System.out.println(tomail);
-		String setfrom = "mingyeongmin285@gmail.com"; //º¸³»´Â »ç¶÷ 
-		String title = "ÀÓ½Ã ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù"; //Á¦¸ñ
-		int tempSavePwStatus = 0;     //ÀúÀå»óÈ²
+		String setfrom = "mingyeongmin285@gmail.com"; //ë³´ë‚´ëŠ” ì‚¬ëŒ
+		String title = "ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤"; //ë©”ì¼ ì œëª©
+		int tempSavePwStatus = 0;     
 		System.out.println("member.getUser_id()->" + member.getUser_id()); 
 		
 		try {
 			MimeMessage message = mailsender.createMimeMessage();
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); //true´Â ¸ÖÆ¼ÆÄÆ® ¸Ş¼¼Áö »ç¿ë
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
 			messageHelper.setFrom(setfrom); 
-			messageHelper.setTo(tomail); //¹Ş´Â»ç¶÷ ÀÌ¸ŞÀÏ 
+			messageHelper.setTo(tomail); 
 			messageHelper.setSubject(title); 
 			String tempPassword = (int) (Math.random() * 999999) + 1 + "";
-			messageHelper.setText("ÀÓ½Ã ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù:" + tempPassword); //¸ŞÀÏ³»¿ë 
-			System.out.println("ÀÓ½Ã ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù:" + tempPassword); 
+			messageHelper.setText("ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤:" + tempPassword);  
+			System.out.println("ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤:" + tempPassword); 
 			mailsender.send(message);
 			member.setUser_pw(tempPassword);
-     		tempSavePwStatus = ms.tempSavePw(member); //db¿¡ ºñ¹Ğ¹øÈ£¸¦ ÀÓ½Ãºñ¹Ğ¹øÈ£·Î ¾÷µ¥ÀÌÆ®
+     		tempSavePwStatus = ms.tempSavePw(member); //dbì— ê°’ì„ ì €ì¥ 
 			System.out.println("ShMemberController findPwForm tempSavePwStatus->" + tempSavePwStatus); 
-		    model.addAttribute("check",1);//Á¤»ó Àü´Ş 
+		    model.addAttribute("check",1);//ë©”ì¼ ì„±ê³µ
 	
 		} catch (Exception e) {
 			System.out.println("message Error->"+e.getMessage());
-			model.addAttribute("check",2);//¸ŞÀÏ Àü´Ş ½ÇÆĞ
+			model.addAttribute("check",2);//ë©”ì¼ ì‹¤íŒ¨
 		}
 		
 		return "sh/findPwForm";
 	}
 	
-	//±â¾÷ È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â 
+	//ê¸°ì—… ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 		@GetMapping(value="findComPw")
 		public String findComPw() {
 			System.out.println("ShMemberController findComPw Start...");
@@ -238,46 +239,46 @@ public class ShMemberController {
 		
 		@GetMapping(value="findComPwForm")
 		public String findComPwForm(Company company , Model model) {
-			System.out.println("mailSending...");  //¹Ş´Â »ç¶÷ÀÌ¸ŞÀÏ 
+			System.out.println("mailSending...");  
 			String tomail = "gimsanghyun1221@gmail.com";
 			System.out.println(tomail);
-			String setfrom = "mingyeongmin285@gmail.com"; //º¸³»´Â »ç¶÷ 
-			String title = "ÀÓ½Ã ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù"; //Á¦¸ñ
-			int tempSavePwStatus = 0;     //ÀúÀå»óÈ²
+			String setfrom = "mingyeongmin285@gmail.com"; //ë³´ë‚´ëŠ” ì‚¬ëŒ
+			String title = "ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ì…ë‹ˆë‹¤"; //ì œëª©
+			int tempSavePwStatus = 0;     
 			System.out.println("company.getCom_id()->" + company.getCom_id()); 
 			
 			try {
 				MimeMessage message = mailsender.createMimeMessage();
-				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); //true´Â ¸ÖÆ¼ÆÄÆ® ¸Ş¼¼Áö »ç¿ë
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
 				messageHelper.setFrom(setfrom); 
-				messageHelper.setTo(tomail); //¹Ş´Â»ç¶÷ ÀÌ¸ŞÀÏ 
+				messageHelper.setTo(tomail); //
 				messageHelper.setSubject(title); 
 				String tempPassword = (int) (Math.random() * 999999) + 1 + "";
-				messageHelper.setText("ÀÓ½Ã ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù:" + tempPassword); //¸ŞÀÏ³»¿ë 
-				System.out.println("ÀÓ½Ã ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù:" + tempPassword); 
+				messageHelper.setText("ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤:" + tempPassword); //
+				System.out.println("ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤:" + tempPassword); 
 				mailsender.send(message);
 				company.setCom_pw(tempPassword);
-	     		tempSavePwStatus = ms.tempComSavePw(company); //db¿¡ ºñ¹Ğ¹øÈ£¸¦ ÀÓ½Ãºñ¹Ğ¹øÈ£·Î ¾÷µ¥ÀÌÆ®
+	     		tempSavePwStatus = ms.tempComSavePw(company); //dbì— ì—…ë°ì´íŠ¸
 				System.out.println("ShMemberController findPwForm tempSavePwStatus->" + tempSavePwStatus); 
-			    model.addAttribute("check",1);//Á¤»ó Àü´Ş 
+			    model.addAttribute("check",1);//ë©”ì¼ ì„±ê³µ
 		
 			} catch (Exception e) {
 				System.out.println("message Error->"+e.getMessage());
-				model.addAttribute("check",2);//¸ŞÀÏ Àü´Ş ½ÇÆĞ
+				model.addAttribute("check",2);//ë©”ì¼ ì‹¤íŒ¨
 			}
 			
 			return "sh/findComPwForm";
 		}
 		
-		//Mail Ajax(°³ÀÎÈ¸¿ø°¡ÀÔ ÀÌ¸ŞÀÏÀÎÁõ)
+		//Mail Ajax(ê°œì¸ íšŒì›ê°€ì… ì´ë©”ì¼ ì¸ì¦)
 		@RequestMapping(value = "verifyEmail" , produces = "application/text;charset=UTF-8")
 		@ResponseBody
 		public String  verifyEmail(String  user_email , Model model) {
-			System.out.println("mailSending...");  //º¸³»´Â Áß
+			System.out.println("mailSending...");  
 			String tomail = "user_email";
 			System.out.println("verifyEmail tomail->"+tomail);
-			String setfrom = "mingyeongmin285@gmail.com"; //º¸³»´Â »ç¶÷ 
-			String title = "ÀÎÁõ ¹øÈ£ÀÔ´Ï´Ù"; //Á¦¸ñ
+			String setfrom = "mingyeongmin285@gmail.com"; //ë³´ë‚´ëŠ” ì‚¬ëŒ 
+			String title = "ì´ë©”ì¼ ì¸ì¦ì…ë‹ˆë‹¤."; //ì œëª©
 			String tempVerifyStatus = "0";     
 				
 			try {
@@ -287,10 +288,40 @@ public class ShMemberController {
 				messageHelper.setTo(tomail); 
 				messageHelper.setSubject(title); 
 				String tempPassword = (int) (Math.random() * 999999) + 1 + "";
-				messageHelper.setText("ÀÎÁõ ¹øÈ£ÀÔ´Ï´Ù:" + tempPassword); //
-				System.out.println("ÀÎÁõ¹øÈ£ÀÔ´Ï´Ù" + tempPassword); 
+				messageHelper.setText("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Ô´Ï´ï¿½:" + tempPassword); //
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½Ô´Ï´ï¿½" + tempPassword); 
 				mailsender.send(message);
 				tempVerifyStatus = "1";
+			} catch (Exception e) {
+				System.out.println("message Error->"+e.getMessage());
+				tempVerifyStatus = "0";
+			}
+			System.out.println("ShMemberController verifyEmail tempVerifyStatus->" + tempVerifyStatus); 
+			
+			return "tempVerifyStatus";
+		}
+	
+		//Mail Ajax2(ê¸°ì—… íšŒì›ê°€ì… ì´ë©”ì¼ ì¸ì¦)
+		@RequestMapping(value = "verifyEmail2" , produces = "application/text;charset=UTF-8")
+		@ResponseBody
+		public String verifyEmail2(String com_email , Model model) {
+			System.out.println("mailSending...");
+			String tomail = "com_email";
+			System.out.println("verifyEmail2 tomail->" + tomail);
+			String setfrom = "mingyeongmin285@gmail.com"; //ë³´ë‚´ëŠ” ì‚¬ëŒ 
+			String title = "ì´ë©”ì¼ ì¸ì¦ì…ë‹ˆë‹¤."; //ì œëª©
+			String tempVerifyStatus = "0";     
+			
+			try {
+				MimeMessage message = mailsender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
+				messageHelper.setFrom(setfrom); 
+				messageHelper.setTo(tomail); 
+				messageHelper.setSubject(title); 
+				String tempPassword = (int) (Math.random() * 999999) + 1 + "";
+				messageHelper.setText("ì´ë©”ì¼ ì¸ì¦ì…ë‹ˆë‹¤:" + tempPassword); //
+				System.out.println("ì´ë©”ì¼ ì¸ì¦ì…ë‹ˆë‹¤" + tempPassword); 
+				mailsender.send(message);
 			} catch (Exception e) {
 				System.out.println("message Error->"+e.getMessage());
 				tempVerifyStatus = "0";
@@ -348,12 +379,11 @@ public class ShMemberController {
 	
 	
 	
-	
-	//-----½ÇÆĞÀÛµé(½ÃµµÇØº»°Í È¤½Ã ¸ô¶ó ¾ÈÁö¿ò)------
+	//-----ì‹¤íŒ¨ì‘ë“¤(ì‹œë„í•´ë³¸ê²ƒë“¤)------
 		
 	
 	
-	//·Î±×ÀÎ HashMap ½áº»°Å 
+	//ï¿½Î±ï¿½ï¿½ï¿½ HashMap ï¿½áº»ï¿½ï¿½ 
 
 	//	@GetMapping(value="loginForm")
 //	public String loginForm(String user_id , String user_pw, Model model) {
@@ -378,7 +408,7 @@ public class ShMemberController {
 //		return "sh/result";
 //		}
 		
-	//±â¾÷ ·Î±×ÀÎ 
+	//ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ 
 //		@GetMapping(value="comlogin")
 //		public String comlogin() {
 //			System.out.println("ShMemberController login Start...");
@@ -391,7 +421,7 @@ public class ShMemberController {
 //			return "sh/result";
 //		}
 	
-	//°³ÀÎ ¾ÆÀÌµğ Ã£±â 
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ 
 //	@GetMapping(value="findId")
 //	public String findId() {
 //		System.out.println("ShMemberController findId Start...");
@@ -414,7 +444,7 @@ public class ShMemberController {
 //		return "sh/findId";
 //	}
 	
-	//°³ÀÎÈ¸¿ø ¾ÆÀÌµğ Ã£±â
+	//ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
 //	@GetMapping(value="findId")
 //		public String findId() {
 //      		System.out.println("ShMemberController findId Start...");

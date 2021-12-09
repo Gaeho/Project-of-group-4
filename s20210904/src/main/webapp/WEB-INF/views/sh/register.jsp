@@ -1,7 +1,5 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,7 +10,6 @@
     System.out.println("context->"+context);
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <title>개인회원가입</title>
 <link rel="stylesheet" href="css/header.css" type="text/css">
 <link rel="stylesheet" href="css/sh/register.css" type="text/css">
@@ -122,11 +119,8 @@
 	
 	<div class="register">
 		<form action="joinSave">
-		<h2>개인회원가입</h2>
-			아이디 : <input type="text" id="id" name="user_id" placeholder="아이디입력"><p>
-			비밀번호 : <input type="password" name="user_pw" placeholder="비밀번호입력"><p>
-			이름: <input type="text" name="user_name" placeholder="이름을 입력하시오"><p>
-			성별 : <input type="radio" id="male" name="user_sex" value="m">
+		
+			
 		<h2>회원가입</h2>
 		<input type="button" value="회원" >
 		<input type="button" value="기업"  onclick="location.href='Comjoin'"><p>
@@ -159,15 +153,7 @@
 				 <input type="radio" id="female" name="user_sex" value="f">
 		 <input type="radio" id="female" name="user_sex" value="f">
 				 <label for="female">여성</label><p>
-			생년월일 : <input type="text"  name="user_brh" placeholder="생년월일을 입력"><p>
-			학력 : <input type="text" name="user_edu" placeholder="학력을 입력"><p>
-			주소 : <input type="text" name="user_addr" placeholder="주소를 입력하시오"><p>
-			번호 : <input type="text" name="user_tel" placeholder="tel입력">	<p>
-			이메일 : <input type="text" name="user_email" placeholder="email입력">
-				   <input type="submit" value="이메일 인증"><p>
-			 		
-		 <input type="submit" value="회원가입">
-				 </div>
+					 </div>
 					</div>
 				 <div class="registerFormRow">
 						<div class="registerFormLabel">생년월일</div>	
