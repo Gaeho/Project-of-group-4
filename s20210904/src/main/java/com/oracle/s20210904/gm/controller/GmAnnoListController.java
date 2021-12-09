@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.Resume;
+import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.model.Scrap;
 import com.oracle.s20210904.comm.service.Paging;
 import com.oracle.s20210904.gm.service.GmAnnoService;
@@ -41,9 +41,7 @@ public class GmAnnoListController {
 	*/
 	
 	@RequestMapping(value = "GmAnnoList")
-	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model, HttpServletRequest request) {
-		String id = (String)request.getSession().getAttribute("id");
-		
+	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model) {
 		System.out.println("GmAnnoListController Start List...");
 		int total = as.total();
 		System.out.println("GmAnnoList total->"+total);
@@ -69,7 +67,6 @@ public class GmAnnoListController {
 			
 		}
 		
-		model.addAttribute("id",id);
 		model.addAttribute("total", total);
 		model.addAttribute("listAnno", listAnno);
 		model.addAttribute("pg", pg);
@@ -211,27 +208,6 @@ public class GmAnnoListController {
 		
 	
 		
-		
-	
-		
-		@PostMapping (value = "likeupdate")
-		@ResponseBody
-		public Map<String, String> likeupdate (Scrap scrap){
-			logger.info("likeupdate");
-			
-			Map<String, String> map = new HashMap<String, String>();
-			
-			try {
-				as.likeupdate(scrap);
-				map.put("result", "success");
-			} catch (Exception e) {
-				System.out.println("GmAnnoListController likeupdate Exception "+e.getMessage());
-				map.put("result", "fail");
-			}
-			
-			return map;
-			
-		}
 	
 		@RequestMapping(value = "GmApplyList")
 		public String apply(Resume resume, String currentPage, Model model) {
@@ -291,9 +267,61 @@ public class GmAnnoListController {
 			return "1";
 
 		 }
+
+		@GetMapping(value = "applyDetail")
+		public String applyDetail(Apply apply, Model model) {
+			System.out.println("GmAnnoListController applyDetail Start...");
+			insertapplyDetail(apply);
+			apply = as.checkRC(apply);
+			
+			model.addAttribute("apply", apply);
+			
+			return "gm/applyDetail";
+			
+		}
+		
+		// 지원 이력서 확인
+		public int insertapplyDetail(Apply apply) {
+			
+			String id ="siasia54";
+			
+			int result = 0;
+			// 지원 이력서 존재하는지 ~ 없으면 null~
+			System.out.println("GmAnnoListController checkRC Start...");
+			Apply ap = as.checkRC(apply);
+			// 없으면 insert~
+			if(ap == null) {
+				result = as.insertapplyDetail(apply);
+				// insert 확인  성공시 1, 성공했으면 알림 추가~
+				if(result == 1) {
+					ap = as.checkRC(apply);
+					Notice notice = new Notice();
+					notice.setAnno_code(ap.getAnno_code());
+					notice.setNtc_cat("001");
+					notice.setNtc_code(ap.getCom_ntc_code());
+					as.Noticeinesert(notice);
+				}
+			}
+			return result;
+			
+		}
 	
 	
 	
 	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 }

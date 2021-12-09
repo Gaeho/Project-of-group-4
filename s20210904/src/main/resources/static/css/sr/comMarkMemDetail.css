@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .ComBookmarkDetail {
-	margin-top: 5%;
+
 	/* background: #FFD700; */
 	
 }
@@ -11,6 +11,12 @@
 	text-align: center;
 	/* border: solid black; */
 }
+
+.bookmark{
+	align-items: center;
+	text-align: center;
+}
+
 
 table.user_info{
 	margin-left: 17%;
@@ -25,6 +31,7 @@ table.user_info{
 }
 
 h2{
+	margin-top: 2%;
 	font-size: 30px;
 	font-style: bold;
 }
@@ -43,6 +50,18 @@ td{
 }
 
 table.user_info2{
+	margin-left: 17%;
+	margin-top: 2%;
+	align-items: center;
+	text-align: center;
+	border: solid black;
+	height: 100px;
+	width: 1025px;
+	/* background: green; */
+	font-size: 18px;
+}
+
+table.resume{
 	margin-left: 17%;
 	margin-top: 2%;
 	align-items: center;

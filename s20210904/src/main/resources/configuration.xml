@@ -9,6 +9,7 @@
 		<typeAlias alias="Announce" type="com.oracle.s20210904.comm.model.Announce"/>
 		<typeAlias alias="Apply" type="com.oracle.s20210904.comm.model.Apply"/>
 		<typeAlias alias="Bookmark" type="com.oracle.s20210904.comm.model.Bookmark"/>
+		<typeAlias alias="MemBmark" type="com.oracle.s20210904.comm.model.MemBmark"/>
 		<typeAlias alias="Comm" type="com.oracle.s20210904.comm.model.Comm"/>
 		<typeAlias alias="Company" type="com.oracle.s20210904.comm.model.Company"/>
 		<typeAlias alias="Notice" type="com.oracle.s20210904.comm.model.Notice"/>

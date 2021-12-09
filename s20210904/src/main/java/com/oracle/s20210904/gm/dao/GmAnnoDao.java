@@ -2,9 +2,12 @@ package com.oracle.s20210904.gm.dao;
 
 import java.util.List;
 
+import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.Resume;
+import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.model.Scrap;
 
 public interface GmAnnoDao {
@@ -44,6 +47,12 @@ public interface GmAnnoDao {
 	Resume selResume(Resume resume);
 
 	void likedelete(Scrap scrap);
+
+	Apply checkRC(Apply apply);
+
+	int insertapplyDetail(Apply apply);
+
+	void Noticeinesert(Notice notice);
 
 
 	

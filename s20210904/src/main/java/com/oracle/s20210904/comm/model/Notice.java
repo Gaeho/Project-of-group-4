@@ -10,4 +10,5 @@ public class Notice {
 	private String user_id;
 	private String anno_code;
 	private String ntc_cat;
+	
 }
