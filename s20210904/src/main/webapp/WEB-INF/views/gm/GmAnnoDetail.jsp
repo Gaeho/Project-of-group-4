@@ -61,7 +61,7 @@
 			<td>
 			  <c:choose>
 			    <c:when test="${itlike == 0}">
-			      <input type="button" class = "btn btn_light" id="likebtn" value="스크랩  ☆ " onclick="setScrap()">
+			      <input type="button" class = "btn btn_light" id="likebtn" value="스크랩 ☆" onclick="setScrap()">
 				  <input type="hidden" id="likecheck" value="${itlike}">
 			    </c:when>
 			    

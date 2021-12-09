@@ -25,6 +25,8 @@ public class MemBmark {
 	//bookmark
 	private String com_id;
 	private Date mrk_date;
+	private int it_bookmark;
+	
 	
 	//조회용
 	private int start;

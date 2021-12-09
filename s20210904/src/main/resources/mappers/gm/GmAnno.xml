@@ -96,8 +96,7 @@
 	
 	<delete id="GmLikeDelete" parameterType="Scrap">
 		delete from scrap
-		where anno_code = #{anno_code} 
-		and user_id = #{user_id}
+		where anno_code = #{anno_code} and user_id = #{user_id}
 	</delete>
 	
 	<select id="GmLikeGetInfo" parameterType="Scrap" resultType="int">
@@ -132,6 +131,24 @@
 		and res_code = #{res_code}
 	</select>
 	
+	<!-- 지원 이력 확인 -->
+	<select id="GmCheckRC" parameterType="Apply" resultType="Apply">
+		select *from apply
+		where anno_code = #{anno_code} 
+		and user_id = #{user_id}
+	</select>
+	
+	<!-- 지원자 추가  -->
+	<insert id="GminsertapplyDetail" parameterType="Apply">
+		insert into apply
+		values(#{user_id},#{res_code},#{anno_code},#{app_sts},sysdate,not_seq.nextval,null)
+	</insert>
+	
+	<!-- 알림 추가 -->
+	<insert id="GmNoticeinesert" parameterType="Notice">
+		insert into notice
+		values (#{ntc_code}, #{user_id}, #{anno_code}, #{ntc_cat})
+	</insert>
 	
 
 

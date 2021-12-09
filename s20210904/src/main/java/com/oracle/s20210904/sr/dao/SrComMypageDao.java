@@ -5,6 +5,7 @@ import java.util.List;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
@@ -28,11 +29,13 @@ public interface SrComMypageDao {
 
 	List<CommMemResume> commMemResumeList(CommMemResume commMemResume);
 
-	List<Bookmark> listBmark3(Bookmark bookmark);
+	//List<Bookmark> listBmark3(Bookmark bookmark);
+	
+	List<MemBmark> bookmarkList(MemBmark memBmark);
 
-	Member userdetail(String user_id);
+	CommMemResume userdetail(String user_id);
 
-	Comm jobtag(Member mem);
+	Comm jobtag(CommMemResume mem);
 
 	int getinfo(Bookmark bookmark);
 
@@ -45,5 +48,14 @@ public interface SrComMypageDao {
 	ResumeContect findRC(ResumeContect resumeContect);
 
 	void insertNotice(Notice notice);
+
+	Comm hsmjr(CommMemResume mem);
+
+	Comm restag1(CommMemResume mem);
+
+	Comm restag2(CommMemResume mem);
+
+	Comm restag3(CommMemResume mem);
+
 	
 }
