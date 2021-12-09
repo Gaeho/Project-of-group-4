@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -43,6 +44,20 @@ public class MainController {
 		System.out.println("grade :" +grade);
 		System.out.println("메인 시작");
 		return "Main";
+	}
+	
+	@GetMapping(value="myPage")
+	public String myPage(String grade) {
+		
+		String result = null;
+		
+		if(grade.equals("member")) {
+			result="redirect:mbMypage";
+		}else if(grade.equals("company")) {
+			result="redirect:ComInfo";
+		}
+		
+		return result;
 	}
 	
 	

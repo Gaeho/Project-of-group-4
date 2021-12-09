@@ -55,12 +55,7 @@
               	<c:otherwise>						<!-- 로그인 OK -->
               		<ul class="nav">
               			<li><a class="btn btn-primary" href="logout">Logout</a></li>
-              			<c:if test="${grade == 'member' }">
-              				<li><a class="btn btn-primary btn-mypage" href="mbMypage">MyPage</a><li>
-              			</c:if>
-              			<c:if test="${grade == 'company' }">
-              				<li><a class="btn btn-primary btn-mypage" href="ComInfo">MyPage</a><li>
-              			</c:if>
+              			<li><a class="btn btn-primary btn-mypage" href="myPage?grade=${grade}">MyPage</a><li>
               		</ul>
               	</c:otherwise>
               </c:choose>
