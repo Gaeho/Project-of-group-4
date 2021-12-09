@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,7 +40,7 @@ public class WkMbMypageRestController {
 	
 	
 	
-	
+	// 이력서 삭제
 	@RequestMapping(value = "mbMypageResumeDelete", produces = "application/text;charset=UTF-8")
 	public String mbMypageResumeDelete(HttpServletRequest request, int res_code) {
 		System.out.println("WkMbMypageRestController mbMypageResumeDelete()");
@@ -64,6 +65,39 @@ public class WkMbMypageRestController {
 			}
 		}
 		return Integer.toString(result); 
+	}
+	
+	// 대표이력서 해제
+	@RequestMapping(value = "mbMypageRepResumeDelete", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
+	public String mbMypageRepResumeDelete(HttpServletRequest request, int res_code) {
+		System.out.println("WkMbMypageRestController mbMypageRepResumeDelete()");
+		String mbid=checkId(request);
+//		model.addAttribute("mbid", mbid);
+		System.out.println("res_code : "+res_code);
+		
+		Resume resume=new Resume();
+		resume.setUser_id(mbid);
+		resume.setRes_code(res_code);
+		resume.setRep_res("0");
+		
+		int delete_result=ms.repResumeUpdate(resume);
+		return Integer.toString(delete_result); 
+	}
+	
+	// 대표이력서 설정
+	@RequestMapping(value = "mbMypageRepResume", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
+	public String mbMypageRepResume(HttpServletRequest request, int res_code, int rep_res_code) {
+		System.out.println("WkMbMypageRestController mbMypageRepResume()");
+		String mbid=checkId(request);
+//		model.addAttribute("mbid", mbid);
+		
+		
+		Resume resume=new Resume();
+		resume.setUser_id(mbid);
+		resume.setRes_code(res_code);
+//		
+		int rep_result=ms.repResume(resume);
+		return Integer.toString(rep_result); 
 	}
 	
 	
@@ -197,6 +231,5 @@ public class WkMbMypageRestController {
 		}
 		return result;
 	}
-	
 	
 }

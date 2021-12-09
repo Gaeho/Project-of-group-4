@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Resume;
 import com.oracle.s20210904.comm.model.ResumeDetail;
+import com.oracle.s20210904.wk.controller.WkMbMypageController;
 import com.oracle.s20210904.wk.dao.WkApplyDao;
 import com.oracle.s20210904.wk.dao.WkCommRepository;
 import com.oracle.s20210904.wk.dao.WkMemberDao;
@@ -212,6 +213,20 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 	@Override
 	public List<WkNotice> resConList(String mbid) {
 		return wkNoticeDao.resConList(mbid);
+	}
+
+
+
+	@Override
+	public int repResume(Resume resume) {
+		return 0;
+	}
+
+
+
+	@Override
+	public int repResumeUpdate(Resume resume) {
+		return wkResumeDao.repResumeUpdate(resume);
 	}
 
 	
