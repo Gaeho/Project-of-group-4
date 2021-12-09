@@ -15,7 +15,7 @@ import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.dao.SrComMypageDao;
 import com.oracle.s20210904.sr.model.CommCompany;
-import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Service
 public class SrComMypageServiceImpl implements SrComMypageService {
@@ -77,16 +77,9 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 
 	//태그검색 조인
 	@Override
-	public List<CommMemResume> commMemResumeList(CommMemResume commMemResume) {
-		List<CommMemResume> commMemResumeList=scmd.commMemResumeList(commMemResume);
+	public List<MemResumeBmark> commMemResumeList(MemResumeBmark commMemResume) {
+		List<MemResumeBmark> commMemResumeList=scmd.commMemResumeList(commMemResume);
 		return commMemResumeList;
-	}
-	
-	@Override
-	public List<CommMemResume> getForPrintResumeByParam(Map<String, Object> getForPrintResumeByParam) {
-		System.out.println("SrComMypageServiceImpl SEARCH TEST....");
-		List<CommMemResume> getForPrintResumeByParam1=scmd.getForPrintResumeByParam(getForPrintResumeByParam);
-		return getForPrintResumeByParam1;
 	}
 	
 	//북마크회원

@@ -23,7 +23,7 @@ import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.service.Paging;
 import com.oracle.s20210904.sr.model.CommCompany;
-import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 import com.oracle.s20210904.sr.service.SrComMypageService;
 
 @Controller
@@ -140,42 +140,58 @@ public class SrComMypageController {
 		return "sr/comAppStatusMenu";
 	}
 
-//	// 회원검색
-//	@GetMapping(value = "ComMemberSearch")
-//	public String ComMemberSearch(Model model, String currentPage, CommMemResume commMemResume, CommCompany commCompany,
-//			String searchKeyword, String searchType, @RequestParam(value = "page", defaultValue = "1") int page) {
+	// 회원검색
+	@GetMapping(value = "ComMemberSearch")
+	public String ComMemberSearch(Model model, String currentPage, CommCompany commCompany, MemResumeBmark memResumeBmark
+			) {
+		
+		System.out.println("SrComMypageController ComMemberSearch START...");
+
+
+		// ----------------------------------------------------------------------------
+		// company
+		CommCompany commCompany1 = null;
+		commCompany1 = scms.comInfo(commCompany);
+		// ----------------------------------------------------------------------------
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// commMemResume list
+//		List<MemResumeBmark> commMemResumeList=scms.commMemResumeList(commMemResume);
 //		
-//		Map<String , Object> getForPrintResumeByParam=new HashMap();
-//		getForPrintResumeByParam.put("searchKeyword", searchKeyword);
-//		getForPrintResumeByParam.put("searchType", searchType);
-//		
-//		List<CommMemResume> commMemResumes=scms.getForPrintResumeByParam(getForPrintResumeByParam);
-//		
-//		System.out.println("SrComMypageController ComMemberSearch START...");
-//
-//		// paging
-//		int total = scms.total();
-//		Paging pg = new Paging(total, currentPage);
-//		commMemResume.setStart(pg.getStart()); // 1
-//		commMemResume.setEnd(pg.getEnd()); // 5
-//		// ----------------------------------------------------------------------------
-//		// company
-//		CommCompany commCompany1 = null;
-//		commCompany1 = scms.comInfo(commCompany);
-//		// ----------------------------------------------------------------------------
-//		// commMemResume list
-//		List<CommMemResume> commMemResumeList=scms.commMemResumeList(commMemResume);
-//		
-//		model.addAttribute("commMemResumes", commMemResumes);
-//		for(CommMemResume aa1: commMemResumes) {
+//		model.addAttribute("commMemResumeList", commMemResumeList);
+//		for(MemResumeBmark aa1: commMemResumeList) {
 //			System.out.println("SrComMypageController commMemResume.getUser_id->" +aa1.getUser_id());
 //			System.out.println("SrComMypageController commMemResume.getComm_ctx()->" +aa1.getComm_ctx());
 //		}
 //		model.addAttribute("commCompany1", commCompany1);
-//		
-//		
-//		return "sr/comMemberSearchMenu";
-//	}
+		// paging
+//		int total = scms.total();
+//		Paging pg = new Paging(total, currentPage);
+//		memResumeBmark.setStart(pg.getStart()); // 1
+//		memResumeBmark.setEnd(pg.getEnd()); // 5
+		
+		return "sr/comMemberSearchMenu";
+	}
 	
 	// 북마크회원
 		@GetMapping(value = "ComMarkMember")
