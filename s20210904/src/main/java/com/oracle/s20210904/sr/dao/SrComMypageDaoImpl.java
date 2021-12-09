@@ -14,7 +14,7 @@ import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
-import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Repository
 public class SrComMypageDaoImpl implements SrComMypageDao {
@@ -104,13 +104,6 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		return appAnnMemCReg;
 	}
 
-	// 태그검색 조인
-	@Override
-	public List<CommMemResume> commMemResumeList(CommMemResume commMemResume) {
-		List<CommMemResume> commMemResumeList=session.selectList("SrCommMemResumeList", commMemResume);
-		return commMemResumeList;
-	}
-	
 	//북마크회원
 		@Override
 		public List<Bookmark> listBmark3(Bookmark bookmark) {
@@ -230,6 +223,18 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl insertNotice error"+e.getMessage());
 			}
+		}
+
+
+		@Override
+		public List<MemResumeBmark> memResumeBmarkList(String keyword1) {
+			List<MemResumeBmark> memResumeBmarkList=null;
+			try {
+				memResumeBmarkList=session.selectList("SrMemResumeBmarkList", keyword1);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl memResumeBmarkList error=>"+e.getMessage());
+			}
+			return memResumeBmarkList;
 		}
 	
 	

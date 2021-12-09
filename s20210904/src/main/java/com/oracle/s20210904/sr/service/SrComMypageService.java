@@ -5,13 +5,12 @@ import java.util.List;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.Comm;
-import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
-import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 public interface SrComMypageService {
 
@@ -26,8 +25,6 @@ public interface SrComMypageService {
 	List<AppAnnMem> appAnnMemReg(AppAnnMem appAnnMem);
 
 	List<AppAnnMem> appAnnMemCReg(AppAnnMem appAnnMem);
-
-	List<CommMemResume> commMemResumeList(CommMemResume commMemResume);
 
 	List<Bookmark> listBmark1(Bookmark bookmark);
 	
@@ -46,6 +43,8 @@ public interface SrComMypageService {
 	ResumeContect findRC(ResumeContect resumeContect);
 
 	void insertNotice(Notice notice);
+
+	List<MemResumeBmark> memResumeBmarkList(String keyword1);
 
 
 }

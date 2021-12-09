@@ -7,14 +7,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommMemResume {
+public class MemResumeBmark {
 	
 	private String user_id;
 	
-	//comm
-	private String main_cat;
-	private String sub_cat;
-	private String comm_ctx;
+//	//comm
+//	private String main_cat;
+//	private String sub_cat;
+//	private String comm_ctx;
+	
+	//bookmark
+	private String com_id;
+	private int it_bookmark;
+	private Date mrk_date;
 	
 	//member
 	private String user_pw;

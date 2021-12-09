@@ -15,7 +15,7 @@ import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.dao.SrComMypageDao;
 import com.oracle.s20210904.sr.model.CommCompany;
-import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Service
 public class SrComMypageServiceImpl implements SrComMypageService {
@@ -73,13 +73,6 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	public List<AppAnnMem> appAnnMemCReg(AppAnnMem appAnnMem) {
 		List<AppAnnMem> appAnnMemCReg=scmd.appAnnMemCReg(appAnnMem);
 		return appAnnMemCReg;
-	}
-
-	//태그검색 조인
-	@Override
-	public List<CommMemResume> commMemResumeList(CommMemResume commMemResume) {
-		List<CommMemResume> commMemResumeList=scmd.commMemResumeList(commMemResume);
-		return commMemResumeList;
 	}
 	
 	//북마크회원
@@ -160,6 +153,12 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		public void insertNotice(Notice notice) {
 			System.out.println("SrComMypageServiceImpl insertNotice Start...");
 			scmd.insertNotice(notice);
+		}
+
+		@Override
+		public List<MemResumeBmark> memResumeBmarkList(String keyword1) {
+			List<MemResumeBmark> memResumeBmarkList=scmd.memResumeBmarkList(keyword1);
+			return memResumeBmarkList;
 		}
 		
 
