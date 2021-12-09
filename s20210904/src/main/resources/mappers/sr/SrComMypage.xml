@@ -87,27 +87,29 @@
 		where rn between #{start} and #{end} 
 		]]>
 	</select>
-	
-	<select id="SrMemBmarkList" parameterType="Bookmark" resultType="Bookmark">
+	<select id="SrBmarkList" parameterType="MemBmark" resultType="MemBmark">
 		select *
 		from 
     		(
     		 select rownum rn, a.*
-    		 from (select b.com_id, m.user_id, m.user_img, b.mrk_date
-                   from member m, bookmark b
-                   where m.user_id = b.user_id
-                   and b.com_id = 'tlstprp5184') a
-    		 )
-		where rn between #{start} and #{end} 
+    		 from (select b.com_id, m.user_img, b.user_id, b.mrk_date
+                    from member m, bookmark b
+                    where m.user_id = b.user_id
+                    and b.com_id = 'tlstprp5184') a
+    		        )
+		where rn between #{start} and #{end}
 	</select>
 	
-	<select id="SrUserDetail" parameterType="String" resultType="Member">
-		select *
-		from member 
-		where user_id = #{user_id}
+	<select id="SrUserDetail" parameterType="String" resultType="CommMemResume">
+		
+		select r.* , m.*
+		from resume r, member m
+		where r.user_id = m.user_id
+		and r.user_id = #{user_id}
+		and r.rep_res = '1'
 	</select>
 	
-	<select id="SrJobTag" parameterType="Member" resultType="Comm">
+	<select id="SrJobTag" parameterType="CommMemResume" resultType="Comm">
 		select distinct c.comm_ctx
 		from member m
 		inner join comm c
@@ -133,6 +135,43 @@
 		where com_id = #{com_id} 
 		and user_id = #{user_id}
 	</delete>
+	
+	<select id="SrHsmjr" parameterType="CommMemResume" resultType="Comm">
+		select distinct c.comm_ctx
+		from resume r
+		inner join comm c
+		on r.hs_mjr = c.sub_cat
+		where main_cat = '062'
+		and r.hs_mjr = #{hs_mjr}
+	</select>
+	
+	<select id="SrRestag1" parameterType="CommMemResume" resultType="Comm">
+		select distinct c.comm_ctx
+		from resume r
+		inner join comm c
+		on r.res_tag1 = c.sub_cat
+		where main_cat = '002'
+		and r.res_tag1 = #{res_tag1}
+	</select>
+	
+	<select id="SrRestag2" parameterType="CommMemResume" resultType="Comm">
+		select distinct c.comm_ctx
+		from resume r
+		inner join comm c
+		on r.res_tag2 = c.sub_cat
+		where main_cat = '002'
+		and r.res_tag2 = #{res_tag2}
+	</select>
+	
+	<select id="SrRestag3" parameterType="CommMemResume" resultType="Comm">
+		select distinct c.comm_ctx
+		from resume r
+		inner join comm c
+		on r.res_tag3 = c.sub_cat
+		where main_cat = '002'
+		and r.res_tag3 = #{res_tag3}
+	</select>
+	
 	
 	<!-- 열람이력 확인~ -->
 	<select id="SrFindRC" parameterType="ResumeContect" resultType="ResumeContect">

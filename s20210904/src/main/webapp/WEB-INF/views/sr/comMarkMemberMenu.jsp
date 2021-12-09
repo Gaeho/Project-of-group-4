@@ -4,47 +4,10 @@
 <%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
-<%
-	String context = request.getContextPath();
-%>
 <head>
 <meta charset="UTF-8">
+<link href="css/sr/BookmarkList.css" rel="stylesheet" type="text/css">
 <title>ComMypage</title>
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-
-	/* EmpController */
-	function setBookmark(){
-		alert("setBookmark Start..");  
-		var com_id = $('#com_id').val()
-		var user_id = $('#user_id').val()
-		var it_bookmark = $('#it_bookmark').val()
-		alert("setBookmark com_id->"+ com_id);  
-		alert("setBookmark user_id->"+user_id);  
-		alert("setBookmark it_bookmark->"+it_bookmark);  
-	
-	 	$.ajax({
-			url:"<%=context%>/bookmark",
-			data:{com_id 	  : com_id,
-			      user_id     : user_id,
-			      it_bookmark : it_bookmark
-			    },	/*  */
-			dataType:'text',			/* 서버에서 내려온 data 형식 */
-			success:function(data){		/* 요청이 성공됬을때 실행되는 callback 함수 */
-					alert("success data"+data);  
-					alert("성공");
-					/* $('#likebtn').val(data); */
-					location.reload(); // 페이지 리로드
-			},
-			error:function(){
-				alert("에러 발생");
-			}
-			
-		}); 
-		
-	}
-
-</script>
 <style type="text/css">
 .testcss {
 	width: 150px;
@@ -66,7 +29,7 @@
 	color: black;
 	background-color: white;
 }
-
+/*
 .divTableRow {
 	text-decoration: none;
 	text-align: center;
@@ -76,7 +39,7 @@
 	border: 1px solid white;
 	transition: background-color 0.3s, color 0.3s;
 }
-
+*/
 .memberImg {
 	width: 100px;
 	height: 100px;
@@ -91,60 +54,37 @@
 			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> <a
 				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
-			<a class="menuBox" href="ComMarkMember"><span>북마크회원</span></a><br>
+			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
 			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
 		</div>
-		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
+		<%-- <c:set var="num" value="${pg.total-pg.start+1 }"></c:set> --%>
 		<div class="comMarkMemberMenu">
-			    <table>
+			    <table class="bookmarkList">
 				  <tr>
-				    <th>북마크</th>
 				    <th>회원 프로필</th>
 				    <th>회원 아이디</th>
 				    <th>북마크 날짜</th>
 				  </tr>
 				
-			<c:forEach var="bookmark" items="${listBmark }">
+			<c:forEach var="bookmarkList" items="${bookmarkList }">
 				<tr>
-				 <td>
-				  	<c:choose>
-					    <c:when test="${itbookmark == 0}">
-					      <input type="button" class = "btn btn_light" id="likebtn" value="북마크 ☆ " onclick="setBookmark()">
-						  <input type="hidden" id="likecheck" value="${itbookmark}">
-					    </c:when>
-					    
-				        <c:when test="${itbookmark == 1}">
-					      <input type="button" class = "btn btn_danger" id="likebtn" value="북마크 ★" onclick="setBookmark()">
-					      <input type="hidden" id="likecheck" value="${itbookmark}">
-					    </c:when>
-					  </c:choose>
-				  
-				
-					  com_id	  : <input type="text" id="com_id"      value="tlstprp5184"><p>
-				      user_id 	  : <input type="text" id="user_id"     value="dmdtla054"  ><p>
-				      it_bookmark 	  : <input type="text" id="it_bookmark"     value="${itbookmark }"><p>
-				     
-				 
-				  <td><img class="memberImg" src="${user_img}"/></td>
-				  <td><a href="detail2?user_id=${bookmark.user_id}" >${bookmark.user_id}</a></td>
-				  <td>${bookmark.mrk_date}</td>
-				</td>  
-			    </tr>
+				  <td><img class="memberImg" src="${bookmarkList.user_img}"/></td>
+				  <td><a href="detail2?user_id=${bookmarkList.user_id }">${bookmarkList.user_id}</a></td>
+				  <td>${bookmarkList.mrk_date}</td>
+				</tr>
+			   
+
 			    
-				<div class="divTableCol">
+				<%-- <div class="divTableCol">
 					<div class="divTableRow">${num}</div>
-				</div> 
+				</div> --%> 
 				
 				<%-- <a href="#" class="bMarkMem">
 					회원프사 : <img class="memberImg" src="${member.user_img}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					회원아이디 : ${bookmark.userㅏ
 				</a> --%>
 				
-				
-				  
-				
-				
-				<c:set var="num" value="${num - 1 }"></c:set>
+				<%-- <c:set var="num" value="${num - 1 }"></c:set> --%>
 			</c:forEach>
 			</table>
 		</div>

@@ -31,11 +31,13 @@ public class MemResumeBmark {
 	private String user_tel;
 	private String user_email;
 	private String user_img;
+	private String user_job_tag;
 	
 	
 	//resume
 	private int res_code;
 	private String res_sts;
+	private String res_title;
 	private String rep_res;
 	private String res_email;
 	private String res_img;
@@ -52,6 +54,7 @@ public class MemResumeBmark {
 	private String res_etc_link;
 	private String res_etc_file;
 	
+
 	//조회
 	private int start;
 	private int end;

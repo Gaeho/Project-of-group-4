@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+.comMarkMemberMenu {
+	margin-top: 5%;
+	/* background: #FFD700; */
+	
+}
+
+
+table.bookmarkList{
+	margin-left: 17%;
+	margin-top: 2%;
+	align-items: center;
+	text-align: center;
+	border: solid black;
+	height: 300px;
+	width: 1025px;
+	/* background: green; */
+	font-size: 18px;
+}
+
+
+th{
+	text-align: center;
+	border: solid;
+	height: 60px;
+	width: 200px;
+}
+
+td{
+	text-align: center;
+	border: solid;
+	height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
