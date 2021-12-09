@@ -41,7 +41,7 @@
                       </ul>
                     </li>
               </ul>
-              id = ${id}
+              id = ${id} grade = ${grade}
               <c:choose>
               	<c:when test="${id == null || id =='' }"> 					<!-- 로그인 NO -->
               		<a class="btn btn-primary" href="login">Login</a>
@@ -55,7 +55,12 @@
               	<c:otherwise>						<!-- 로그인 OK -->
               		<ul class="nav">
               			<li><a class="btn btn-primary" href="logout">Logout</a></li>
-              			<li><a class="btn btn-primary btn-mypage" href="MyPage">MyPage</a><li>
+              			<c:if test="${grade == 'member' }">
+              				<li><a class="btn btn-primary btn-mypage" href="mbMypage">MyPage</a><li>
+              			</c:if>
+              			<c:if test="${grade == 'company' }">
+              				<li><a class="btn btn-primary btn-mypage" href="ComInfo">MyPage</a><li>
+              			</c:if>
               		</ul>
               	</c:otherwise>
               </c:choose>

@@ -19,7 +19,7 @@
 
 
 
-	<%--  <%response.sendRedirect("applyDetail"); %>  --%>
+	<%-- <%response.sendRedirect("applyDetail"); %>  --%>
 	<%-- <%response.sendRedirect("resumeDetail"); %> --%>
 
 </body>

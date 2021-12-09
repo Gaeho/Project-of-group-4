@@ -19,6 +19,7 @@ public class MainController {
 	public String mainStart(Model model, HttpServletRequest request) {
 		
 		String id = null;
+		String grade = null;
 		
 		HttpSession session = request.getSession();
 		String mbid = (String)session.getAttribute("mbid");
@@ -28,17 +29,18 @@ public class MainController {
 			if( cmid==null || cmid.equals("")) {
 				id =null;
 			}else {
-				id = cmid;
-				session.setAttribute("grade","company");
+				id = cmid; grade = "company";
+				session.setAttribute("grade",grade);
 			}
 		}else {
-			id = mbid;
-			session.setAttribute("grade","member");
+			id = mbid; grade = "member";
+			session.setAttribute("grade",grade);
 		}
 		 
 		model.addAttribute("id",id);
+		model.addAttribute("grade",grade);
 		session.setAttribute("id", id);
-		
+		System.out.println("grade :" +grade);
 		System.out.println("메인 시작");
 		return "Main";
 	}
