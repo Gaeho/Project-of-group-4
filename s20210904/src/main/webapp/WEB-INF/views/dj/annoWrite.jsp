@@ -157,7 +157,7 @@ function deleteFile() {
 <body>
 	<div class="Container">
 	<%@ include file="/WEB-INF/views/header.jsp"%>
-		<div class="MyContainer">
+		<div class="DjContainer">
 			
 			<br>
 			<br>
@@ -275,10 +275,9 @@ function deleteFile() {
 						<p>
 						<div>
 							<div class="middleTitle_anno">고용 형태</div>
-							<input type="radio" id="one" name="emp_type" value="1"
-								checked="checked"> 정규직 <input type="radio" id="two"
-								name="emp_type" value="2"> 계약직 <input type="radio"
-								id="three" name="emp_type" value="3"> 파견직
+							<input type="radio" id="one" name="emp_type" value="001" checked="checked"> 정규직 
+							<input type="radio" id="two" name="emp_type" value="002"> 계약직 
+							<input type="radio" id="three" name="emp_type" value="003"> 파견직
 							<p>
 						</div>
 
@@ -385,9 +384,6 @@ function deleteFile() {
 
 			</form>
 
-			<br>
-			<br>
-			
 			<br>
 			<br>
 		</div>
