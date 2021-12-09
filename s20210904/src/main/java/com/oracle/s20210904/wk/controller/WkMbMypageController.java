@@ -1,10 +1,15 @@
 package com.oracle.s20210904.wk.controller;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -143,13 +148,20 @@ public class WkMbMypageController {
 		
 		// 이력서프로필에 사진을 그대로 이력서사진에 넣을때 이력서 사진파일을 이력서폴더에 복사
 		System.out.println("WkMbMypageController mbMypageResumeWritePro() uploadstate : "+uploadstate);
+		String copy_result="notcopy";
+		int resume_write_result=0;
 		if(uploadstate.equals("non") && wkResume.getRes_img()!=null) {
 			System.out.println("사진파일 복사 시작..");
+			
+			copy_result=mbMypageCopyfile(request, wkResume.getRes_img());
+			if(!copy_result.equals("fail")) {
+				wkResume.setRes_img(copy_result);
+			}
 //			https://codevang.tistory.com/159?category=827592
 		}
-
 		
-		int resume_write_result=ms.resumeWrite(wkResume, wkResumeDetail);
+		
+		resume_write_result=ms.resumeWrite(wkResume, wkResumeDetail);
 		System.out.println("WkMbMypageController mbMypageResumeWritePro() result : "+resume_write_result);
 		
 		
@@ -318,5 +330,38 @@ public class WkMbMypageController {
 		
 	}
 	
-	
+	private String mbMypageCopyfile(HttpServletRequest request, String user_img) {
+		System.out.println("WkMbMypageController mbMypageCopyfile()");
+		UUID uid = UUID.randomUUID();
+		
+		String mypage_img_realpath=request.getSession().getServletContext().getRealPath(user_img);	//프로필사진의 실제경로
+		String[] array=mypage_img_realpath.split("_");
+		String mypage_img_name=array[1];															//프로필사진의 실제이름
+		String res_uploadPath=request.getSession().getServletContext().getRealPath("/upload/wk/resume/");	//이력서사진의 실제저장되는 경로
+		String res_img="/upload/wk/resume/"+uid.toString() + "_" + mypage_img_name;					//이력서사진이 db에 저장되는 경로
+		String res_img_realpath=request.getSession().getServletContext().getRealPath(res_img);	//이력서사진의 실제경로
+		
+		System.out.println("mypage_img_realpath : "+mypage_img_realpath);		//프로필사진의 실제경로
+		System.out.println("mypage_img_name : "+mypage_img_name);			//프로필사진의 실제이름
+		System.out.println("res_uploadPath : "+res_uploadPath);				//이력서사진의 실제저장되는 경로
+		System.out.println("res_img : "+res_img);							//이력서사진이 db에 저장되는 경로
+		System.out.println("res_img_realpath : "+res_img_realpath);			//이력서사진의 실제경로
+		
+		
+		File fileDirectory = new File(res_uploadPath);
+		if (!fileDirectory.exists()) { // 만약 파일디렉토리가 존재하지 않는다면,
+			fileDirectory.mkdirs(); // mkdirs=make directory 폴더를 만들어라
+			System.out.println("업로드용 폴더 생성 : " + res_uploadPath);
+		}
+		
+		Path file1=Paths.get(mypage_img_realpath);
+		Path file2=Paths.get(res_img_realpath);
+		try {
+			Files.copy(file1, file2, StandardCopyOption.REPLACE_EXISTING);	// 없으면 복사해서 만들고, 이미 있으면 내용을 덮어씀
+		} catch (Exception e) {
+			System.out.println("mbMypageCopyfile() 파일복사실패 : "+e.getMessage());
+			res_img="fail";
+		}
+		return res_img;
+	}
 }

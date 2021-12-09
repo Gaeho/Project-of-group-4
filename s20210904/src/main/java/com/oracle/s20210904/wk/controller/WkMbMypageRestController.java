@@ -9,15 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Resume;
 import com.oracle.s20210904.wk.service.WkMbMypageService;
 
@@ -130,6 +127,8 @@ public class WkMbMypageRestController {
 			img_realpath = request.getSession().getServletContext().getRealPath(img_path);
 			System.out.println("WkMbMypageRestController mbMypageUploadDelete() img_realpath : "+img_realpath);
 			uploadFileDelete(img_realpath);
+		}else {
+			img_realpath="삭제안함";
 		}
 		
 
