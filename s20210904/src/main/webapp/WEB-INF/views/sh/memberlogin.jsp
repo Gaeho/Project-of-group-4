@@ -13,10 +13,13 @@
 
 	<div class="Container">	   
 				<div class="tab_content">
+				
+
 						<input type="radio" name="tabmenu" id="tab01" checked="checked">
 						<label for="tab01">개인</label>
 						<input type="radio"  name="tabmenu" id="tab02">
 						<label for="tab02">기업 </label>
+
 			
 								<div class="conbox con1">
 										 아이디 :     <input type="text" id="id" name="user_id" placeholder="아이디를 입력하세요"><p>
@@ -31,7 +34,7 @@
 				     </div> 
 					
 			   
-			    <div class="conbox con2">
+			                                                                                          <div class="conbox con2">
 			    		 				 아이디 :    <input type="text" id="id" name="com_id" placeholder="아이디를 입력하세요"><P>
 										 비밀번호 : <input type="password" name="com_pw" placeholder="비밀번호를 입력하세요" ><p>
 										                  <input type="submit" value="로그인">
@@ -44,6 +47,47 @@
 				    </div>
 				</div>	
 	</div>
+	
+
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp"%>

@@ -281,7 +281,7 @@ public class ShMemberController {
 		@ResponseBody
 		public String  verifyEmail(String  user_email , Model model) {
 			System.out.println("mailSending...");  //받는사람이메일
-			String tomail = "user_email";
+			String tomail = user_email;
 			System.out.println("verifyEmail tomail->"+tomail);
 			String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
 			String title = "인증 번호입니다"; //제목
@@ -298,25 +298,26 @@ public class ShMemberController {
 				System.out.println("인증번호입니다" + tempPassword); 
 				mailsender.send(message);
 				tempVerifyStatus = "1";
+			
 			} catch (Exception e) {
 				System.out.println("message Error->"+e.getMessage());
 				tempVerifyStatus = "0";
 			}
 			System.out.println("ShMemberController verifyEmail tempVerifyStatus->" + tempVerifyStatus); 
 			
-			return "tempVerifyStatus";
+			return tempVerifyStatus;
 		}
-	
-		//Mail Ajax2(개인회원가입 이메일인증)
+
+		//Mail Ajax2(기업회원가입 이메일인증)
 				@RequestMapping(value = "verifyEmail2" , produces = "application/text;charset=UTF-8")
 				@ResponseBody
-				public String  verifyEmail2(String com_email , Model model) {
-					System.out.println("mailSending...");  //받는사람이메일
-					String tomail = com_email;
-					System.out.println("verifyEmail tomail->"+tomail);
-					String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
-					String title = "인증 번호입니다"; //제목
-					String tempVerifyStatus = "0";     
+				public String  verifyEmail2(String  com_email , Model model) {
+		     	                     System.out.println("mailSending...");  //받는사람이메일
+				String tomail = com_email;
+				System.out.println("verifyEmail tomail->"+tomail);
+				String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
+				String title = "인증 번호입니다"; //제목
+				String tempVerifyStatus = "0";     
 						
 					try {
 						MimeMessage message = mailsender.createMimeMessage();
@@ -329,6 +330,7 @@ public class ShMemberController {
 						System.out.println("인증번호입니다" + tempPassword); 
 						mailsender.send(message);
 						tempVerifyStatus = "1";
+
 					} catch (Exception e) {
 						System.out.println("message Error->"+e.getMessage());
 						tempVerifyStatus = "0";
@@ -380,103 +382,6 @@ public class ShMemberController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	//-----실패작들(시도해본것 혹시 몰라 안지움)------
-		
-	
-	
-	//로그인 HashMap 써본거 
-
-	//	@GetMapping(value="loginForm")
-//	public String loginForm(String user_id , String user_pw, Model model) {
-//		System.out.println("ShMemberController loginForm Start...");
-//		 HashMap<String, String> map = new HashMap<String, String>();
-//		 
-//		 map.put("user_id", user_id);
-//		 map.put("user_pw", user_pw);
-//		String rtnStr = "";
-//		member.setUser_id(rtnStr);
-//		member.setUser_pw(rtnStr);
-//		Member mem = ms.login(user_id,user_pw);
-//		
-//		System.out.println("ShMemberController mem.getUser_id()-> "+mem.getUser_id());
-//		model.addAttribute("mem", mem);
-//		int result = 
-//		if(mem == member) {
-//			rtnStr="sh/main";
-//		}else
-//			rtnStr="sh/login";
-//		
-//		return "sh/result";
-//		}
-		
-	//기업 로그인 
-//		@GetMapping(value="comlogin")
-//		public String comlogin() {
-//			System.out.println("ShMemberController login Start...");
-//			
-//			return "sh/companylogin";
-//		}
-//		@GetMapping(value="comloginForm")
-//		public String comloginForm(Company company) {
-//			
-//			return "sh/result";
-//		}
-	
-	//개인 아이디 찾기 
-//	@GetMapping(value="findId")
-//	public String findId() {
-//		System.out.println("ShMemberController findId Start...");
-//		
-//		return "sh/findId";
-//	}
-//	@GetMapping(value="findIdForm")
-//	public String findIdForm(Member member , Model model) {
-//		System.out.println("ShMemberController findIdForm Start...");
-//		
-//		Member mem = ms.findId(member);
-//		if(member == null) {
-//			model.addAttribute("check" , 1);
-//		}else {
-//			model.addAttribute("check", 0);
-//			model.addAttribute("id", mem.getUser_id());
-//		}
-//		
-//		
-//		return "sh/findId";
-//	}
-	
-	//개인회원 아이디 찾기
-//	@GetMapping(value="findId")
-//		public String findId() {
-//      		System.out.println("ShMemberController findId Start...");
-//		
-//      		return "sh/findId";
-//	}	
-//		
-//	@GetMapping(value="findIdForm")
-//		public String findIdForm(@RequestParam Map<String, Object> memberMap) {
-//			System.out.println("ShMemberController findIdForm Start...");
-//			Member member = ms.findId(memberMap);
-//			String result = "";
-//
-//			if(member != null) {
-//				String res = member.getUser_id();
-//			
-//				if (res.equals(null)) {
-//					return "null";
-//				} else {
-//					result = member.getUser_id();
-//				}
-//			}
-//			return result;
-//		
-//	}
 	
 	
 	
