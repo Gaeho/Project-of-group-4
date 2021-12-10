@@ -307,6 +307,36 @@ public class ShMemberController {
 			return "tempVerifyStatus";
 		}
 	
+		//Mail Ajax2(개인회원가입 이메일인증)
+				@RequestMapping(value = "verifyEmail2" , produces = "application/text;charset=UTF-8")
+				@ResponseBody
+				public String  verifyEmail2(String com_email , Model model) {
+					System.out.println("mailSending...");  //받는사람이메일
+					String tomail = com_email;
+					System.out.println("verifyEmail tomail->"+tomail);
+					String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
+					String title = "인증 번호입니다"; //제목
+					String tempVerifyStatus = "0";     
+						
+					try {
+						MimeMessage message = mailsender.createMimeMessage();
+						MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
+						messageHelper.setFrom(setfrom); 
+						messageHelper.setTo(tomail); 
+						messageHelper.setSubject(title); 
+						String tempPassword = (int) (Math.random() * 999999) + 1 + "";
+						messageHelper.setText("인증 번호입니다:" + tempPassword); //
+						System.out.println("인증번호입니다" + tempPassword); 
+						mailsender.send(message);
+						tempVerifyStatus = "1";
+					} catch (Exception e) {
+						System.out.println("message Error->"+e.getMessage());
+						tempVerifyStatus = "0";
+					}
+					System.out.println("ShMemberController verifyEmail tempVerifyStatus->" + tempVerifyStatus); 
+					
+					return tempVerifyStatus;
+				}
 	
 	
 	
