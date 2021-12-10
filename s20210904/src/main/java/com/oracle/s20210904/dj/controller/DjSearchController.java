@@ -27,12 +27,12 @@ public class DjSearchController {
 	
 	//임시 페이지 
 	
-	@RequestMapping(value="/searchStart")
-	public String searchStart() {
+	@RequestMapping(value="/mapStart")
+	public String mapStart() {
 		
 		
 		
-		return "dj/djSearch";
+		return "dj/djMaps";
 	}
 	
 	

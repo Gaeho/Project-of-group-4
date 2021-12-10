@@ -12,6 +12,20 @@
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <link href="css/gm/GmAnnoDetail.css" rel="stylesheet" type="text/css">
 <title>코딩몬</title>
+<!-- 네이버 지도 -->
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=15c6c141182b8c49258227c4a6d365b1"></script>
+				<script>
+					var container = document.getElementById('map');
+					var options = {
+						center: new kakao.maps.LatLng(33.450701, 126.570667),
+						level: 3
+					};
+			
+					var map = new kakao.maps.Map(container, options);
+				</script>
+
+
+
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 
@@ -138,40 +152,7 @@
 	</div>
 	<div class="MenuContainer">
 	
-		<div> 
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		메뉴 공간 입니다
-		
-		
-		
-		
-		</div>
+		<%@ include file="/WEB-INF/views/dj/djMaps.jsp"%>
 	
 	</div>
 	
