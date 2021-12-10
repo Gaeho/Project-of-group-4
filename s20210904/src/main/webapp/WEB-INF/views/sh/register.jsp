@@ -23,23 +23,25 @@
 <script type="text/javascript">
     var contextPath='${pageContext.request.contextPath}';
 	
-	/* ShMemberController */
+    /* ShMemberController */
 	function memberVerify(){
 	/*alert("Vdeptno->"+Vdeptno); */
 			var user_email = $('#user_email').val();
+		//	var  submitId = document.getElementById('submitId');
 			alert("user_email->"+user_email); 
 			$.ajax({
 				url:"<%=context%>/verifyEmail",
 				data:{user_email : user_email},
 				dataType:'text',
 				success:function(data){
-					 if(data ==1) {
+					 if(data == '1') {
 						 // tag를 풀어줌 
-						 alert("success ajax Data"+data);
-					 
+						 alert("성공적으로 인증되었습니다");
+						// submitId.disabled = true;
+						 $('input[type="submit"]').prop('disabled', false);
 					 } else{
 						 // Dim Tag유지
-						 alert("Fail  ajax Data"+data);
+						 alert("인증이 실패되었습니다.이메일을 확인해주세요");
 					 }
  			   }
 		})
@@ -122,14 +124,10 @@
 	
 	<div class="register">
 		<form action="joinSave">
-		<h2>개인회원가입</h2>
-			아이디 : <input type="text" id="id" name="user_id" placeholder="아이디입력"><p>
-			비밀번호 : <input type="password" name="user_pw" placeholder="비밀번호입력"><p>
-			이름: <input type="text" name="user_name" placeholder="이름을 입력하시오"><p>
-			성별 : <input type="radio" id="male" name="user_sex" value="m">
 		<h2>회원가입</h2>
 		<input type="button" value="회원" >
 		<input type="button" value="기업"  onclick="location.href='Comjoin'"><p>
+		
 		<div class="registerFormWrapper">	
 			<div class="registerFormRow">
 				<div class="registerFormLabel">아이디</div>
@@ -157,15 +155,8 @@
 		 <input type="radio" id="male" name="user_sex" value="m">
 				 <label for="male">남성</label>
 				 <input type="radio" id="female" name="user_sex" value="f">
-		 <input type="radio" id="female" name="user_sex" value="f">
 				 <label for="female">여성</label><p>
-			생년월일 : <input type="text"  name="user_brh" placeholder="생년월일을 입력"><p>
-			학력 : <input type="text" name="user_edu" placeholder="학력을 입력"><p>
-			주소 : <input type="text" name="user_addr" placeholder="주소를 입력하시오"><p>
-			번호 : <input type="text" name="user_tel" placeholder="tel입력">	<p>
-			이메일 : <input type="text" name="user_email" placeholder="email입력">
-				   <input type="submit" value="이메일 인증"><p>
-			 		
+				 		
 		 <input type="submit" value="회원가입">
 				 </div>
 					</div>
