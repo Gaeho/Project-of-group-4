@@ -254,6 +254,14 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				ad.Noticeinesert(notice);
 				
 			}
+
+			@Override
+			public int applyResume(Apply apply) {
+				System.out.println("GmAnnoServiceImpl applyResume Start...");
+				int app = ad.applyResume(apply);
+				
+				return app;
+			}
 	 
 	
 

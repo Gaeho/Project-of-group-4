@@ -73,6 +73,7 @@
 			  
 			     <!-- <input type="button" class = "btn btn_danger" id="likebtn" value="스크랩 " onclick="setScrap()"> -->
 				 <input type="button" value="지원하기" onclick="location.href='GmApplyList'">
+				 
 				    anno_code : <input type="text" id="anno_code"    value="1"          ><p>
 				    user_id :   <input type="text" id="user_id"      value="dmdtla054"  ><p>
 				    it_like :   <input type="text" id="it_like"      value="${itlike }"         ><p>

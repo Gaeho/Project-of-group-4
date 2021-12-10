@@ -12,6 +12,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 
+<%-- 
 	/* EmpController */
 	function apply_chk(){
 		alert(" apply_chk Start..");  
@@ -40,6 +41,21 @@
 		}); 
 		
 	}
+ --%>
+ 
+ 	function getCheckbox(vRes_code){
+ 		
+/*     var msg = '선택된 이력서를 제출합니다~';
+       console.log('checkbox 값 : '+$(":input:checkbox[name=resume]:checked").val());
+ 		
+ 		$(":input:checkbox[name=resume]:checked").each(function() {
+ 			console.log ('checkbox 값 : '+$(this).val() );
+ 
+ 		});
+ 		*/ 		
+ 		alert('vRes_code->'+vRes_code);
+ 	}
+ 
 
 </script>
 </head>
@@ -53,24 +69,31 @@
 	<div class="resume">
 		<div class="resume_title">
 		  <h2> 이력서 목록 </h2>
+		  <form action="applyResume">
 			<table>
 				<tr>
 				 	<th>선택</th>
 					<th>제목</th>
 					<th>작성일</th>
 				</tr>
-				 <c:forEach var="listres" items="${listres}">
+				 <c:forEach var="resume" items="${listres}"  varStatus="status">
 					<tr>
-						<th><input type="checkbox" name="check" onclick="apply_chk()">
-					    <td><a href="detail?user_id=${listres.user_id}">${listres.res_title}</a></td></th>
-						<td>${listres.res_date}</td>
+						<%-- <td><input type="checkbox" id="resume" name="resume" value="${resume.res_code }"  onclick="getCheckbox(${resume.res_code })"> --%>
+								<td><input type="radio" name="res_code" checked="checked" value="${resume.res_code }" ></td>
+			
+					    <td><%-- <a href="detail?anno_code=${listres.anno_code}"> --%>${resume.res_title}</td> 
+						<td>${resume.res_date}</td> 
+				        <td><input type="hidden" name="user_id" value="${resume.user_id}"></td> 
+				      <%--   <td><input type="hidden" name="anno_code" value="${resume.anno_code}"></td>  --%>
+				        
 					</tr>
 				</c:forEach>
-					<td><input type="button" value="제출하기" onclick="applychk"></td>
-					user_id : <input type="text" id="user_id"    value="siasia54" > 
-					res_code : <input type="text" id="res_code"    value="1" > 
+				<td><input type="submit" value="제출하기" ></td>
+					<!-- user_id : <input type="text" id="user_id"    value="siasia54" > 
+					res_code : <input type="text" id="res_code"    value="1" >  -->
 			
 			</table>
+			</form>
 		</div>
 		
 		<div class="page">

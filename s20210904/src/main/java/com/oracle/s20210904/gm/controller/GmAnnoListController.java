@@ -206,9 +206,7 @@ public class GmAnnoListController {
 
 		 }
 		
-	
-		
-	
+		// 제출하기 전 이력서 List
 		@RequestMapping(value = "GmApplyList")
 		public String apply(Resume resume, String currentPage, Model model) {
 			System.out.println("GmAnnoListController apply Start List...");
@@ -232,6 +230,8 @@ public class GmAnnoListController {
 				System.out.println("res.getUser_id()->"+res.getUser_id());
 				System.out.println("res.getRes_title()-> "+res.getRes_title());
 				System.out.println("res.getRes_date()->"+res.getRes_date());
+				System.out.println("res.getRes_code()->"+res.getRes_code());
+
 				System.out.println("----------applyList End------------------");
 				
 			}
@@ -241,6 +241,24 @@ public class GmAnnoListController {
 			model.addAttribute("pg", pg);
 			
 			return "gm/GmApplyList";
+			
+		}
+		
+		@GetMapping(value = "applyResume")
+		public String applyResume (Apply apply, Model model) {
+			System.out.println("GmAnnoListController applyResume Start...");
+			System.out.println("GmAnnoListController applyResume apply.getRes_code()->"+apply.getRes_code());
+			System.out.println("GmAnnoListController applyResume apply.getAnno_code()"+apply.getAnno_code());
+			System.out.println("GmAnnoListController applyResume apply.getUser_id()"+apply.getUser_id());
+			// 1. 이력서 조회   anno_code, app_sts, app_regdate, com_ntc_code, user_ntc_code
+			int app = as.applyResume(apply);
+			//2. 이력서 경력 상세 입력
+			
+			
+			model.addAttribute("apply", apply);
+
+			
+			return "gm/result";
 			
 		}
 		
@@ -268,6 +286,7 @@ public class GmAnnoListController {
 
 		 }
 
+		// 이력서 알림....?
 		@GetMapping(value = "applyDetail")
 		public String applyDetail(Apply apply, Model model) {
 			System.out.println("GmAnnoListController applyDetail Start...");
