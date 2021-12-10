@@ -88,7 +88,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		String user_id = "";
 		try {
 			user_id = session.selectOne("ShFindId",member);
-			if (user_id ==null) user_id = "�����ϴ� ���̵� ���׿� �Ф� ȸ������ ���� �ϽǷ���?";
+			if (user_id ==null) user_id = "찾으시는 아이디가 없어요 ㅠㅠ 회원가입 먼저 하실래요?";
 			System.out.println("ShMemberDaoImpl findId user_id->"+user_id);
 		} catch (Exception e) {
 		System.out.println("ShMemberDaoImpl findId Exception->" + e.getMessage());
@@ -106,7 +106,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		
 		try {
 			com_id = session.selectOne("ShFindComId", company);
-			if(com_id == null) com_id = "�����ϴ� ���̵� ���׿� �Ф� ȸ������ ���� �ϽǷ���?";
+			if(com_id == null) com_id = "찾으시는 아이디가 없어요 ㅠㅠ 회원가입 먼저 하실래요?";
 					System.out.println("ShMemberDaoImpl findComId com_id->"+com_id);
 		} catch (Exception e) {
 			System.out.println("ShMemberDaoImpl findComId Exception->" + e.getMessage());
@@ -124,7 +124,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		// int  result = md.tempSavePw(member);
 		try {
 			result = session.update("ShFindPw",member);
-			if (result>0)		System.out.println("ShMemberDaoImpl ShFindPw ���� ����");
+			if (result>0)		System.out.println("ShMemberDaoImpl ShFindPw ");
 		} catch (Exception e) {
 			System.out.println("ShMemberDaoImpl ShFindPw Exception->" + e.getMessage());
 		}
@@ -141,7 +141,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		System.out.println("ShMemberDaomImpl tempComSavePw company.getCom_user()->" + company.getCom_user());
 		try {
 			result = session.update("ShFindComPw" , company);
-			if (result > 0) System.out.println("ShMemberDaoImpl ShFindComPw ���� ���� ");
+			if (result > 0) System.out.println("ShMemberDaoImpl ShFindComPw  ");
 		} catch (Exception e) {
 			System.out.println("ShMemberDaoImpl ShFindComPw Exception - > "+ e.getMessage());
 		}
