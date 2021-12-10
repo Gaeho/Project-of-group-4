@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +46,18 @@
 									</tr>
 								</c:forEach>
 							</table>
+							
+							<div class="page11">
+								<c:if test="${pg.startPage > pg.pageBlock }">
+									<a href="search?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
+								</c:if>
+								<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+									<a href="search?currentPage=${i}">[${i}]</a>
+								</c:forEach>
+								<c:if test="${pg.endPage < pg.totalPage}">
+									<a href="search?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
+								</c:if>
+							</div>
 				     </div> 
 					
 			   
@@ -67,7 +80,20 @@
 										<td>${comResult.com_bus}</td>
 									</tr>
 								</c:forEach>
-							</table>	    
+							</table>
+							
+							<div class="page22">
+								<c:if test="${pg2.startPage > pg2.pageBlock }">
+									<a href="search?currentPage=${pg2.startPage-pg2.pageBlock}">[이전]</a>
+								</c:if>
+								<c:forEach var="j" begin="${pg2.startPage}" end="${pg2.endPage}">
+									<a href="search?currentPage=${j}">[${j}]</a>
+								</c:forEach>
+								<c:if test="${pg2.endPage < pg2.totalPage}">
+									<a href="search?currentPage=${pg2.startPage + pg2.pageBlock}">[다음]</a>
+								</c:if>
+							</div>
+								    
 				    </div>
 				</div>	
 	</div>

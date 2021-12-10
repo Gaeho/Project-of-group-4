@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DjSearchDao">
 
-	<select id="DjMainAnnoSearch" parameterType="java.lang.String" resultType="DjSearch">
+	<select id="DjMainAnnoSearch" parameterType="DjSearch" resultType="DjSearch">
 		
+			select *
+			from(
+			select rownum rn, z.*
+				from (	
+
 				select a.anno_title anno_title, c.com_name com_name,  c.com_img com_img, a.rec_vol rec_vol, a.emp_type emp_type, a.rec_edu rec_edu, a.anno_code anno_code, 
 				d.comm_ctx jobgroup , e.comm_ctx workex, f.comm_ctx  employform
 				
@@ -31,17 +36,31 @@
 				or a.anno_title like '%'||#{mainsearch}||'%'           
 				or a.rec_dtl like '%'||#{mainsearch}||'%'            
 				or a.work_cdt like '%'||#{mainsearch}||'%'            
-				or a.etc_cdt like '%'||#{mainsearch}||'%'            
+				or a.etc_cdt like '%'||#{mainsearch}||'%'    
+				) z
+	 
+			)
+			where rn between #{start} and #{end}          
 	
 	</select>
 	
-	<select id="DjMainComSearch" parameterType="java.lang.String" resultType="Company">
+	<select id="DjMainComSearch" parameterType="Company" resultType="Company">
 	
-		select com_name, com_addr, com_bus, com_img , com_id
-		from company
-		where com_name Like '%'||#{mainsearch}||'%'
-		or com_addr Like '%'||#{mainsearch}||'%'
-		or com_bus Like '%'||#{mainsearch}||'%'
+		
+			select *
+			from(
+			select rownum rn, z.*
+			from (	
+			
+			select com_name, com_addr, com_bus, com_img , com_id
+					from company
+					where com_name Like '%'||#{mainsearch}||'%'
+					or com_addr Like '%'||#{mainsearch}||'%'
+					or com_bus Like '%'||#{mainsearch}||'%'
+			
+					) z
+				 )
+			where rn between #{start} and #{end}
 	
 	</select>
 

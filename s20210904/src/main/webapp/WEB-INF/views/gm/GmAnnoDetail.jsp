@@ -172,8 +172,10 @@
 			<div class="MenuContainer">
 				<div class="mapContainer">
 					<div><h3>위치</h3></div>
+					<input type="hidden" id="comAddr3" value="${comanno.com_addr}" >
+					<input type="hidden" id="comName3" value="${comanno.com_name}" >
 					<%@ include file="/WEB-INF/views/dj/djMaps.jsp"%>
-					<div style="color:silver">${comanno.com_addr}</div>
+					<div  style="color:silver">${comanno.com_addr}</div>
 				</div>
 			</div>
 				
