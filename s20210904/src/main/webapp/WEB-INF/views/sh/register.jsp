@@ -34,7 +34,9 @@
 				data:{user_email : user_email},
 				dataType:'text',
 				success:function(data){
+
 					 if(data == '1') {
+
 						 // tag를 풀어줌 
 						 alert("성공적으로 인증되었습니다");
 						// submitId.disabled = true;
@@ -124,7 +126,10 @@
 	
 	<div class="register">
 		<form action="joinSave">
-		<h2>회원가입</h2>
+
+		<h2>개인회원가입</h2>
+
+
 		<input type="button" value="회원" >
 		<input type="button" value="기업"  onclick="location.href='Comjoin'"><p>
 		
@@ -155,8 +160,8 @@
 		 <input type="radio" id="male" name="user_sex" value="m">
 				 <label for="male">남성</label>
 				 <input type="radio" id="female" name="user_sex" value="f">
-				 <label for="female">여성</label><p>
-				 		
+			 <label for="female">여성</label><p>
+
 		 <input type="submit" value="회원가입">
 				 </div>
 					</div>
