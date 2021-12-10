@@ -1,26 +1,101 @@
 @charset "UTF-8";
 
 
-
-.BigContainer {
+.BigBigContainer12 {
+	
 	display: flex;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	
+}
+
+.BigContainer12 {
+	
+	margin: 0 auto;	
 
 }
 
+.TopContainer {
+	
+		display: flex;	
+		padding-bottom: 10px;
+		border-bottom: 3px solid silver;
+		max-width: 1200px;
+}
+
+.TopContainer > div {
+	
+	margin: 0 auto;
+	display: flex;
+	width: 100%;
+}
+
+
+
+.MiddleContainer{
+	display: flex;
+}
 
 .GmContainer {
 		display: inline-block;	
-		max-width: 60%;		
-		border: 1px solid black;	
+		max-width: 800px;		
+		border-right: 3px solid silver;	
 }
 
 .MenuContainer {
 		display: inline-block;
-		max-width: 30%;
-		border: 1px solid black;
+		max-width: 500px;
 		height: 500px;
 	
 }
+
+.mapContainer {
+	
+	margin-top: 10px;
+	margin-left: 10px;
+	
+}
+
+.scrap_infos {
+	display: none;
+	
+}
+
+
+
+.anno_applys {
+	display: flex;
+}
+
+.anno_applys_inner {
+	margin: 0 auto;
+}
+
+.anno_apply_btn1 {
+	
+	width: 500px; 
+	height:100px;
+	background-color: #F1C40F;
+	border-radius: 5px;
+	color: white;
+	font-size: 50px;
+	
+}
+
+
+.GmContainer > div {
+	
+	max-width: 80%;
+	margin: 0 auto;
+	padding: 10px;
+	
+}
+
+.Top1s {
+	
+	width: 70%;
+}
+
 
 
 /* 
