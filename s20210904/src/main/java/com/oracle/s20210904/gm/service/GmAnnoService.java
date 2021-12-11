@@ -56,6 +56,8 @@ public interface GmAnnoService {
 
 	void Noticeinesert(Notice notice);
 
+	int applyResume(Apply apply);
+
 	
 	
 	

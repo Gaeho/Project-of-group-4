@@ -54,6 +54,8 @@ public interface GmAnnoDao {
 
 	void Noticeinesert(Notice notice);
 
+	int applyResume(Apply apply);
+
 
 	
 	

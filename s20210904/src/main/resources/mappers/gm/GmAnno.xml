@@ -150,6 +150,13 @@
 		values (#{ntc_code}, #{user_id}, #{anno_code}, #{ntc_cat})
 	</insert>
 	
+	
+	<!-- 지원자 추가 -->
+	<insert id="GmApply" parameterType="Apply">
+		insert into apply (user_id, res_code, anno_code, app_sts, app_regdate, com_ntc_code, user_ntc_code)
+		values(#{user_id}, #{res_code}, #{anno_code},'001',sysdate,not_seq.nextval,null)
+	</insert>
+	
 
 
 </mapper>
