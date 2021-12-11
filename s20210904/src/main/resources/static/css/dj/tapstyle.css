@@ -7,3 +7,16 @@
 	.conbox {width:100%; height:600px; background:#FFFFFF;margin:0 auto;display:none;}
 	input[id="tab01"]:checked ~ .con1 {display:block;}
 	input[id="tab02"]:checked ~ .con2 {display:block;}
+	
+	.tab_content{
+	min-height:800px;
+	max-height: 1500px;
+	}
+	
+	.page11 {
+
+	}
+	
+	.page22 {
+
+	}

@@ -15,17 +15,17 @@ public class DjSearchServiceImpl implements DjSearchService {
 	@Autowired private DjSearchDao dsd;
 	  
 	@Override 
-	public List<DjSearch> searchAnno(String mainsearch) {
+	public List<DjSearch> searchAnno(DjSearch djsearch) {
 	  System.out.println("DjSearchServiceImpl의 searchAnno 시작되었습니다.");
 	
-	  return  dsd.searchAnno(mainsearch);  
+	  return  dsd.searchAnno(djsearch);  
 	}
 
 	@Override
-	public List<Company> searchCom(String mainsearch) {
+	public List<Company> searchCom(Company company) {
 		System.out.println("DjSearchServiceImpl의 searchCom 시작되었습니다.");
 		
-		return dsd.searchCom(mainsearch);
+		return dsd.searchCom(company);
 	}
 	  
 }

@@ -7,9 +7,9 @@ import com.oracle.s20210904.dj.model.DjSearch;
 
 public interface DjSearchService {
 
-    List<DjSearch> searchAnno(String mainsearch);
+    List<DjSearch> searchAnno(DjSearch djsearch);
 
-	List<Company> searchCom(String mainsearch1);
+	List<Company> searchCom(Company company);
 	
 
 }
