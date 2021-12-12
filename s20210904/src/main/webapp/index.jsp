@@ -15,7 +15,7 @@
 	<% response.sendRedirect("main"); %>
 
 	<%-- <%response.sendRedirect("ComInfo"); %>--%>
-	<%response.sendRedirect("login");%>
+	<%-- <%response.sendRedirect("login");%> --%>
 
 
 	<%-- <%response.sendRedirect("applyDetail"); %>  --%>
