@@ -10,6 +10,7 @@ import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Post;
 import com.oracle.s20210904.comm.model.Member;
+import com.oracle.s20210904.comm.model.NoticeApplyAnno;
 import com.oracle.s20210904.ds.dao.DsAdminDao;
 import com.oracle.s20210904.ds.model.AnnounceCnt;
 import com.oracle.s20210904.ds.model.DsComm;
@@ -156,5 +157,17 @@ public class DsAdminServiceImpl implements DsAdminService {
 	public int tagInsert(Comm comm) {
 		int result = dsAdminDao.tagInsert(comm);
 		return result;
+	}
+	
+	@Override
+	public int alramCnt(String id) {
+		int result = dsAdminDao.alramCnt(id);
+		return result;
+	}
+	
+	@Override
+	public List<NoticeApplyAnno> alramList(String id) {
+		List<NoticeApplyAnno> alramList = dsAdminDao.alramList(id);
+		return alramList;
 	}
 }

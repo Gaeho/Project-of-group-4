@@ -7,6 +7,7 @@ import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Post;
 import com.oracle.s20210904.comm.model.Member;
+import com.oracle.s20210904.comm.model.NoticeApplyAnno;
 import com.oracle.s20210904.ds.model.AnnounceCnt;
 import com.oracle.s20210904.ds.model.DsComm;
 
@@ -37,5 +38,8 @@ public interface DsAdminService {
 	List<Comm> getMainCate();
 	int maxSubCate(String mainCate);
 	int tagInsert(Comm comm);
+	//알람 갯수
+	int alramCnt(String id);
+	List<NoticeApplyAnno> alramList(String id);
 
 }

@@ -18,6 +18,52 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<!-- 알람입니당 -->
+<script type="text/javascript">
+window.onload=function alramList(){
+	str = "";
+	$.ajax({
+		url:"alramList",
+		data:{id : '${id}'},
+		dataType:'json',
+		success:function(data){
+			alert(data.length);
+
+			if(data.length >0){
+				alert("알람ON"+data);	
+				$("#alramImg").attr("src","img/ds/alram-on.png");
+				
+				$(data).each(
+						function(){
+							if(this.ntc_ctg == '001'){
+								str +="<li><a class='dropdown-item' href='#scrollspyHeading3'>["+this.anno_title+"]공고에 "+this.apply_id+"]님이 지원했습니다</a></li>"
+									 +"<li><hr class='dropdown-divider'></li>";
+							}else if(this.ntc_ctg =='002'){
+								str += "<li><a class='dropdown-item' href='#scrollspyHeading3'>지원하신 ["+this.anno_title+"] 공고에 "+this.app_sts+"하셨습니다</a></li>"
+									  +"<li><hr class='dropdown-divider'></li>";
+							}else if(this.ntc_ctg =='003'){
+								str += "<li><a class='dropdown-item' href=''#scrollspyHeading3'>["+this.com_id+"]님이 ["+this.read_res+"]를 조회했습니다</a></li>"
+									  +"<li><hr class='dropdown-divider'></li>";	
+							}
+						}
+				)	
+			}else{
+				alert("알람OFF"+data);
+				$("#alramImg").attr("src","img/ds/alram-off.png");
+				str = "<li><hr class='dropdown-divider'></li>"
+				+"<li><a class='dropdown-item' href='#scrollspyHeading3'>알림이 없어요~</a></li>"
+				+"<li><hr class='dropdown-divider'></li>";
+			}
+			alert(str);
+			$('.dropdown-menu').append(str);
+			
+			
+		}
+	});
+}
+</script>
 </head>
 <body>
   <!-- Navigation-->
@@ -26,22 +72,13 @@
                 <a class="navbar-brand" href="main">Codingmon</a>
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                      <a class="nav-link" href="#">공고</a>
+                      <a class="nav-link" href="GmAnnoList">공고</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">게시판</a>
                     </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
-                        <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
-                      </ul>
-                    </li>
               </ul>
-              id = ${id }
+              id = ${id } cnt = ${cnt }
               <c:choose>
               	<c:when test="${id == null || id =='' }"> 					<!-- 로그인 NO -->
               		<a class="btn btn-primary" href="login">Login</a>
@@ -50,26 +87,21 @@
               		<ul class="nav">
               			<li><a class="btn btn-primary" href="logout">Logout</a></li>
               			<li><a class="btn btn-primary btn-mypage" href="AdminMain">Admin</a><li>
+              			
               		</ul>
               	</c:when>
               	<c:otherwise>						<!-- 로그인 OK -->
               		<ul class="nav">
-              			<li><a class="btn btn-primary" href="logout">Logout</a></li>
-              			<c:if test="${grade == 'member' }">
-              				<li><a class="btn btn-primary btn-mypage" href="mbMypage">MyPage</a><li>
-              			</c:if>
-              			<c:if test="${grade == 'company' }">
-              				<li><a class="btn btn-primary btn-mypage" href="ComInfo">MyPage</a><li>
-              			</c:if>
+						<li class="nav-item dropdown">
+							<a	class="nav-link" data-bs-toggle="dropdown"	href="#" role="button" aria-expanded="false"><img src="img/ds/alram-on.png" width="30px" height="30px" id="alramImg"></a>
+							<ul class="dropdown-menu">
+							</ul>
+						</li>
+						<li><a class="btn btn-primary" href="logout">Logout</a></li>
+              			<li><a class="btn btn-primary btn-mypage" href="myPage?grade=${grade}">MyPage</a><li>
               		</ul>
               	</c:otherwise>
               </c:choose>
             </div>
         </nav>
-        
-        <input type="radio" name="tabmenu" id="tab01" checked="checked">
-				<img src="img/dss/alram-on" onclick="alramOn()">
-			
-				<div class="alram-list">
-				</div> 
 </body>

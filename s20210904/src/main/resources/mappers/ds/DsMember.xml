@@ -17,4 +17,17 @@
 	<update id="DsMemberDel" parameterType="String">
 			Update member set user_status=-1 where user_id=#{user_id}
 	</update>	
+	
+	<!-- 알람 갯수 -->
+	<select id="alramCnt" parameterType="String" resultType="int">
+    	select count(*) from notice
+    	where user_id=#{id}
+    </select>
+    
+    <select id="DsAlramList" parameterType="String" resultType="NoticeApplyAnno">
+		select n.*,an.com_id, a.app_sts,b.user_id as apply_id, b.res_code, an.anno_title, rc.res_code as read_res from notice n,announce an,apply a,apply b,resume_contect rc
+		where n.anno_code = an.anno_code(+) and n.ntc_code = a.user_ntc_code(+) and n.ntc_code = b.com_ntc_code(+) and n.ntc_code = rc.ntc_code(+)
+		and n.user_id=#{id}
+		order by n.ntc_time
+    </select>
 </mapper>
