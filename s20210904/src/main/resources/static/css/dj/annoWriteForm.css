@@ -1,12 +1,32 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
-
-
-.MyContainer {
-	
- 	padding: 20px; 
-	
+.big_container_anno_wri{
+	display: flex;
 }
+
+.big_container_anno_wri > div {
+	margin: 0 auto;
+	padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+.anno_wri_mid{
+	display: flex;
+}
+
+.DjContainer{
+	display: inline-block;
+    max-width: 800px;
+    border-right: 3px solid silver;
+}
+
+.anno_wri_side{
+	display: inline-block;
+    max-width: 500px;
+    height: 500px;
+}
+
 
 
 .annoWrite_title{
