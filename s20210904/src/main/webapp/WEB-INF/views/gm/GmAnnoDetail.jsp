@@ -98,7 +98,10 @@
 									</c:choose>
 									  
 									<!-- <input type="button" class = "btn btn_danger" id="likebtn" value="스크랩 " onclick="setScrap()"> -->
-								    <input type="button" value="지원하기" onclick="location.href='GmApplyList'">
+								    <input type="hidden" name="anno_code" value="${comanno.anno_code}">
+								    <td>anno_code->${comanno.anno_code }</td>
+								    <input type="button" value="지원하기" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}'"> 
+								   
 								    	<div class="scrap_infos">
 										     anno_code : <input type="text" id="anno_code"    value="1"          ><p>
 											 user_id :   <input type="text" id="user_id"      value="dmdtla054"  ><p>
