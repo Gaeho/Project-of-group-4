@@ -34,19 +34,13 @@ public interface GmAnnoService {
 	
 	//Scrap scrap(String anno_code, String user_id);
 
-	int likecnt(Scrap scrap);
-
 	void likeinsert(Scrap scrap);
 
 	int likegetinfo(Scrap scrap);
 
-	void likeupdate(Scrap scrap);
-
 	int applytotal();
 
 	List<Resume> listres(Resume resume);
-
-	Resume selResume(Resume resume);
 
 	void likedelete(Scrap scrap);
 

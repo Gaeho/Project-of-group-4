@@ -53,6 +53,7 @@
 <div id="container">
 	<div class="resume">
 		<div class="resume_title">
+		  <form action="applyResume"> 
 		  <h2> 이력서 목록 </h2>
 			<table>
 				<tr>
@@ -60,23 +61,27 @@
 					<th>제목</th>
 					<th>작성일</th>
 				</tr>
-				 <c:forEach var="resume" items="${listres}"  varStatus="status">
+				 <c:forEach var="resume" items="${listres}" varStatus="status">
 					<tr>
 						<%-- <td><input type="checkbox" id="resume" name="resume" value="${resume.res_code }"  onclick="getCheckbox(${resume.res_code })"> --%>
 								<td><input type="radio" name="res_code" checked="checked" value="${resume.res_code }" ></td>
 			
 					    <td><%-- <a href="detail?anno_code=${listres.anno_code}"> --%>${resume.res_title}</td> 
 						<td>${resume.res_date}</td> 
-				        <td><input type="hidden" name="user_id" value="${resume.user_id}"></td> 
+				        <td><input type="hidden" name="user_id" value="${resume.user_id}"></td>
+				        <td><input type="hidden" name="anno_code" value="${comanno.anno_code}"></td> 
 				      <%--   <td><input type="hidden" name="anno_code" value="${resume.anno_code}"></td>  --%>
 				        
 					</tr>
 				</c:forEach>
+				
+				<td>anno_code->${anno_code}</td>
 				<td><input type="submit" value="제출하기" ></td>
 					<!-- user_id : <input type="text" id="user_id"    value="siasia54" > 
 					res_code : <input type="text" id="res_code"    value="1" >  -->
 			
 			</table>
+		 </form>
 		</div>
 		
 		<div class="page">
