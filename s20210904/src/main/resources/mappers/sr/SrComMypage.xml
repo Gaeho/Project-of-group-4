@@ -8,12 +8,12 @@
 	</select>
 	
 	<select id="SrComInfo" resultType="CommCompany">
-		select company.com_id, company.com_name, company.com_addr, company.com_web, company.com_regnum, company.com_email, 
-		company.com_mgr_tel, company.com_tel, company.com_bus, company.com_img, comm.*
-		from company, comm
-		where company.com_sec=comm.sub_cat
+		select company.*, comm.*
+		from COMPANY
+		left join comm
+		on company.com_sec=comm.SUB_CAT
+		where comm.MAIN_CAT='050'
 		and company.com_id='znvkd323'
-		and comm.main_cat='050'
 	</select>
 	
 	<select id="SrComAnnReg" parameterType="Announce" resultType="Announce">
@@ -202,7 +202,6 @@
 		where res.res_title like '%'||#{keyword1}||'%'
     	and bmark.com_id='tkstjd234'
 	</select>
-	
 	
 	
 	

@@ -313,6 +313,13 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		}
 
 
+		@Override
+		public Member member4(Member member) {
+			Member member5=session.selectOne("SrComPWForComINfo", member);
+			return member5;
+		}
+
+
 	
 
 	

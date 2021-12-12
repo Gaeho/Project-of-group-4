@@ -61,4 +61,6 @@ public interface SrComMypageService {
 
 	List<MemResumeBmark> memResumeBmarkList(String keyword1);
 
+	Member member2(Member member);
+
 }

@@ -211,6 +211,12 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		scmd.insertNotice(notice);
 	}
 
+	@Override
+	public Member member2(Member member) {
+		Member member3=scmd.member4(member);
+		return member3;
+	}
+
 	
 
 	

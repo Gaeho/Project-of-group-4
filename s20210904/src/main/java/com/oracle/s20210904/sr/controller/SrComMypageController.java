@@ -418,4 +418,15 @@ public class SrComMypageController {
 		}
 		return result;
 	}
+	
+	// com_pw for ComInfoUpdate
+	@GetMapping(value = "ComInfoUpdate")
+	public String ComInfoUpdate(CommCompany commCompany, Model model) {
+		
+		CommCompany commCompany1 = scms.comInfo(commCompany);
+		
+		model.addAttribute("commCompany1", commCompany1);
+		
+		return "sr/comInfoUpdate";
+	}
 }

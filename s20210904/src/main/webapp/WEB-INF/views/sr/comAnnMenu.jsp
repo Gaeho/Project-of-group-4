@@ -54,7 +54,7 @@
 				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
 			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
-			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
+			<a class="menuBox" href="ComMemSearch"><span>검색</span></a>
 		</div>
 		<input type="button" class="btn" value="진행중()" onclick="location.href='ComAnn?id=0'"> <!-- ajax -->
 		<input type="button" class="btn" value="마감()" onclick="location.href='ComAnn?id=1'">  <!-- ajax -->
