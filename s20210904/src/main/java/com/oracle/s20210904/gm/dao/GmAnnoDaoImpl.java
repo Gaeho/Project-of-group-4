@@ -173,19 +173,6 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				}
 				return comm;
 			}
-			// 스크랩
-			@Override
-			public int likecnt(Scrap scrap) {
-				int check = 0;
-				System.out.println("GmAnnoDaoImpl likecnt Start...");
-				try {
-					check = session.selectOne("GmLikeCount", scrap);
-				} catch (Exception e) {
-					System.out.println("GmAnnoDaoImpl likecnt Exception "+e.getMessage());
-				}
-				System.out.println("Dao check->"+check);
-				return check;
-			}
 
 			// 스크랩 추가
 			@Override
@@ -224,17 +211,6 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				return like;
 			}
 
-			@Override
-			public void likeupdate(Scrap scrap) {
-				System.out.println("GmAnnoDaoImpl likeupdate Start...");
-				try {
-					session.update("GmLikeUpdate", scrap);
-				} catch (Exception e) {
-					System.out.println("GmAnnoDaoImpl likeupdate Exception "+e.getMessage());
-				}
-				
-			}
-
 			// 이력서 total
 			@Override
 			public int applytotal() {
@@ -259,19 +235,6 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 					System.out.println("GmAnnoDaoImpl resume Exception "+e.getMessage());
 				}
 				return resList;
-			}
-
-			// 이력서 제출
-			@Override
-			public Resume selResume(Resume resume) {
-				Resume res = null;
-				try {
-					res = session.selectOne("GmSelResume", resume);
-				} catch (Exception e) {
-					System.out.println("GmAnnoDaoImpl selResume Exception "+e.getMessage());
-				}
-			
-				return res;
 			}
 
 			// 지원 이력서 있는지 check
@@ -312,6 +275,23 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 					System.out.println("GmAnnoDaoImpl Noticeinesert Exception " + e.getMessage());
 				}
 			}
+			
+			// 이력서 제출
+			@Override
+			public int applyResume(Apply apply) {
+				System.out.println("GmAnnoDaoImpl applyResume Start...");
+				int app = 0;
+				try {
+					app = session.insert("GmApply", apply);
+				
+				} catch (Exception e) {
+					System.out.println("GmAnnoDaoImpl applyResume Exception "+e.getMessage());
+				}
+				return app;
+			}
+			
+			
+			
 
 		}
 

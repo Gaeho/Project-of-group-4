@@ -1,15 +1,147 @@
 @charset "UTF-8";
 
+
+.BigBigContainer12 {
+	
+	display: flex;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	
+}
+
+.BigContainer12 {
+	
+	margin: 0 auto;	
+
+}
+
+.TopContainer {
+	
+		display: flex;	
+		padding-bottom: 10px;
+		border-bottom: 3px solid silver;
+		max-width: 1200px;
+}
+
+.TopContainer > div {
+	
+/* 	margin: 0 auto; */
+	display: flex;
+	width: 100%;
+}
+
+
+.MiddleContainer{
+	display: flex;
+}
+
+.GmContainer {
+		display: inline-block;	
+		max-width: 800px;		
+		border-right: 3px solid silver;	
+}
+
+
+.Topupper {
+	
+	display: flex;
+}
+
+.Topupper > div {
+	
+	width: 50%;
+	
+}
+
+/* .anno_content{
+	
+	border: 1px solid silver;
+}
+
+.anno_condition{
+	
+	border-top: 1px solid silver;
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
+} */
+
+
+
+
+
+
+
+.MenuContainer {
+		display: inline-block;
+		max-width: 500px;
+		height: 500px;
+	
+}
+
+.mapContainer {
+	
+	margin-top: 10px;
+	margin-left: 10px;
+	
+}
+
+.scrap_infos {
+	display: none;
+	
+}
+
+
+
+.anno_applys {
+	display: flex;
+} 
+
+
+
+.anno_applys > div {
+	margin: 0 auto;
+}
+
+
+
+.anno_apply_btn1 {
+	
+	width: 500px; 
+	height:100px;
+	background-color: #F1C40F;
+	border-radius: 5px;
+	color: white;
+	font-size: 50px;
+	
+}
+
+
+.GmContainer > div {
+	
+	max-width: 80%;
+/* 	margin: 0 auto; */
+	padding: 10px;
+	
+}
+
+.Top1s {
+	
+	width: 70%;
+}
+
+
+
+/* 
 .detail {
 	margin-top: 5%;
-	/* background: #FFD700; */
+	background: #FFD700;
 	
 }
 
 .detail_title {
 	align-items: center;
 	text-align: center;
-	/* border: solid black; */
+	border: solid black;
 }
 
 h2{
@@ -42,7 +174,7 @@ table.anno_content{
 	border: solid black;
 	height: 300px;
 	width: 1025px;
-	/* background: green; */
+	background: green;
 	font-size: 18px;
 }
 
@@ -75,7 +207,7 @@ table.anno_condition{
 	border: solid black;
 	height: 200px;
 	width: 1025px;
-	/* background: green; */
+	background: green;
 	font-size: 18px;
 }
 
@@ -87,7 +219,7 @@ table.com_info{
 	border: solid black;
 	height: 200px;
 	width: 1025px;
-	/* background: green; */
+	background: green;
 	font-size: 18px;
 }
 
@@ -97,15 +229,9 @@ table.anno_date{
 	border: solid black;
 	height: 100px;
 	width: 1025px;
-	/* background: green; */
+	background: green;
 	font-size: 18px;
 }
 
 
-
-
-
-
-
-
-
+ */

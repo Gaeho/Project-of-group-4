@@ -1,18 +1,51 @@
 @charset "UTF-8";
 
-.anno {
+
+.annolistContainer {
+	
+	display: flex;
+}
+
+
+.annolistContainer > div {
+	
+	margin: 0 auto;
+	min-height: 500px;
+	min-width: 1000px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .anno {
 	margin-top: 5%;
-	/*
+	
 	background: #FFD700;
-	*/
+	
 }
 
 .anno_title {
 	align-items: center;
 	text-align: center;
-	/*
+	
 	border: solid black;
-	*/
+	
 }
 
 h2{
@@ -52,5 +85,5 @@ td{
 
 
 
-
+ */
 

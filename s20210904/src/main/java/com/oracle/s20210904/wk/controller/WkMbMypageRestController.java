@@ -49,9 +49,20 @@ public class WkMbMypageRestController {
 		resume.setUser_id(mbid);
 		resume.setRes_code(res_code);
 		
+		resume=ms.resumeSelect(resume);
+		String resume_img=resume.getRes_img();
+		String resume_img_realpath=request.getSession().getServletContext().getRealPath(resume_img);
+		System.out.println("resume_img_realpath : "+resume_img_realpath);
+		
 		System.out.println("test mbid, res_code : "+mbid+" : "+res_code);
 		int result=ms.resumeDelete(resume);
-		
+		if(result>0 && resume_img_realpath!=null) {
+			try {
+				uploadFileDelete(resume_img_realpath);
+			} catch (Exception e) {
+				System.out.println("WkMbMypageRestController mbMypageResumeDelete() img삭제오류 : "+e.getMessage());
+			}
+		}
 		return Integer.toString(result); 
 	}
 	

@@ -82,9 +82,9 @@
                             <!-- to get an API token!-->
                             
                             <!-- 임시로 검색이랑 연결해 둠  -->
-                            <form class="searchinput1233" id="contactForm"  action="search">
+                            <form class="searchinput1233" id="contactForm"  action="search" method="post">
                                 
-                                        <input class="searchinput1233" name="mainsearch" id="mainsearch" type="text" placeholder="검색어를 입력하세요" data-sb-validations="required,email" />
+                                        <input class="searchinput1233" name="mainsearch" id="mainsearch" type="text" placeholder="검색어를 입력하세요"/>
                                                        
                                     		<button class="submitbtn1233" id="submitButton" type="submit">검색</button>
                                     

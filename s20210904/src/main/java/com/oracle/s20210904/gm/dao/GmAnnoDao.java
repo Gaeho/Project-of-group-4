@@ -32,19 +32,13 @@ public interface GmAnnoDao {
 
 	Comm comsec(ComAnnounce comanno);
 
-	int likecnt(Scrap scrap);
-
 	void likeinsert(Scrap scrap);
 
 	int likegetinfo(Scrap scrap);
 
-	void likeupdate(Scrap scrap);
-
 	int applytotal();
 
 	List<Resume> listres(Resume resume);
-
-	Resume selResume(Resume resume);
 
 	void likedelete(Scrap scrap);
 
@@ -53,6 +47,8 @@ public interface GmAnnoDao {
 	int insertapplyDetail(Apply apply);
 
 	void Noticeinesert(Notice notice);
+
+	int applyResume(Apply apply);
 
 
 	

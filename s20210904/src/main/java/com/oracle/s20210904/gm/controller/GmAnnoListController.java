@@ -206,11 +206,9 @@ public class GmAnnoListController {
 
 		 }
 		
-	
-		
-	
+		// 이력서 List
 		@RequestMapping(value = "GmApplyList")
-		public String apply(Resume resume, String currentPage, Model model) {
+		public String apply(Resume resume, String anno_code, String currentPage, Model model) {
 			System.out.println("GmAnnoListController apply Start List...");
 			int tot = as.applytotal();
 			System.out.println("applyList tot->"+tot);
@@ -221,12 +219,15 @@ public class GmAnnoListController {
 			resume.setStart(pg.getStart()); // 1 
 			resume.setEnd(pg.getEnd()); // 5
 			
+			ComAnnounce comanno = new ComAnnounce();
+			comanno.setAnno_code(anno_code);
+			
 			System.out.println("GmAnnoListController applyList Start...");
+			System.out.println("GmAnnoListController applyList anno_code->"+comanno.getAnno_code());
 			String user_id = "";
 			List<Resume> listres = as.listres(resume); 
 			
 			System.out.println("GmAnnoListController applyList listres.size->"+listres.size());
-			System.out.println("---------------------------------------------------------------");
 			for(Resume res : listres) {
 				System.out.println("---------applyList Start -------------");
 				System.out.println("res.getUser_id()->"+res.getUser_id());
@@ -244,30 +245,27 @@ public class GmAnnoListController {
 			
 		}
 		
+		// 이력서 제출
+		@GetMapping(value = "applyResume")
+		public String applyResume (Apply apply, String anno_code, Model model) {
+			System.out.println("GmAnnoListController applyResume Start...");
+			System.out.println("GmAnnoListController applyResume apply.getRes_code()->"+apply.getRes_code());
+			System.out.println("GmAnnoListController applyResume apply.getAnno_code()->"+apply.getAnno_code());
+			System.out.println("GmAnnoListController applyResume anno_code->"+anno_code);
+			System.out.println("GmAnnoListController applyResume apply.getUser_id()"+apply.getUser_id());
+			// 1. 이력서 조회   anno_code, app_sts, app_regdate, com_ntc_code, user_ntc_code
+			int app = as.applyResume(apply);
+			//2. 이력서 경력 상세 입력
+			
+			
+			model.addAttribute("apply", apply);
+
+			
+			return "gm/result";
+			
+		}
 		
-		// 지원하기
-		@RequestMapping(value = "applychk", produces = "application/text;charset=UTF-8")
-		@ResponseBody
-		public String applychk (String user_id, int res_code) {
-			System.out.println("GmAnnoListController applychk Start...");
-			
-			System.out.println("GmAnnoListController applychk user_id->"+user_id);
-			System.out.println("GmAnnoListController applychk res_code->"+res_code);
-			
-			Resume resume = new Resume();
-			resume.setUser_id(user_id);
-			resume.setRes_code(res_code);
-			
-			resume = as.selResume(resume);
-			System.out.println("Controller resume.getUser_id()->"+resume.getUser_id());
-			System.out.println("Controller resume.getRes_code()->"+resume.getRes_code());
-			
-			
-			
-			return "1";
-
-		 }
-
+		// 알림
 		@GetMapping(value = "applyDetail")
 		public String applyDetail(Apply apply, Model model) {
 			System.out.println("GmAnnoListController applyDetail Start...");

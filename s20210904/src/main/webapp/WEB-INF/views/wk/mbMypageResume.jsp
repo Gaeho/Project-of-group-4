@@ -35,6 +35,26 @@
 			return ;
 		}
 	}
+	
+	// 대표이력서 해제
+	function rep_resume_del(res_code){
+		$.ajax({
+			url:"<%=context%>/mbMypageResumeDelete",
+			data:{res_code : res_code},
+			dataType:'text',
+			success:function(data){
+				if(data>0){
+					alert("삭제되었습니다");
+					location.replace("mbMypageResume");
+				}else{
+					alert("삭제 실패"+data);
+				}
+			},
+			error:function(){
+				alert("삭제에 실패하였습니다"+data);
+			}
+		});
+	}
 
 /* 	function resume_update(res_code){	
 		alert("11");
@@ -58,8 +78,9 @@
 ${mbid }의 이력서<br>
 <c:if test="${not empty msg}">${msg }<br> </c:if>
 <c:forEach var="resumelist" items="${resumelist}" varStatus="status">
-	${status.count} &nbsp;&nbsp; ${resumelist.res_title} &nbsp;&nbsp; ${resumelist.res_date} &nbsp;&nbsp; ${resumelist.rep_res}
-	&nbsp;&nbsp; ${resumelist.comm_ctx} &nbsp;&nbsp; &nbsp;&nbsp; <input type="button" value="대표이력서">
+	${status.count} &nbsp;&nbsp; ${resumelist.res_title} &nbsp;&nbsp; ${resumelist.res_date} &nbsp;&nbsp; 
+	<c:if test="${resumelist.rep_res eq 1}">대표이력서&nbsp;&nbsp; &nbsp;&nbsp; <input type="button" value="대표이력서 해제" onclick="rep_resume_del(${resumelist.res_code})"></c:if>
+	<c:if test="${resumelist.rep_res eq 0}">&nbsp;&nbsp; &nbsp;&nbsp; <input type="button" value="대표이력서로 설정" onclick="rep_resume(${resumelist.res_code})"></c:if>
 	&nbsp;&nbsp; &nbsp;&nbsp; <input type="submit" onclick="location.href='mbMypageResumeUpdate?res_code=${resumelist.res_code}'" value="수정">
 	&nbsp;&nbsp; &nbsp;&nbsp; <input type="button" onclick="resume_delete(${resumelist.res_code})" value="삭제"><br>
 </c:forEach><p>
