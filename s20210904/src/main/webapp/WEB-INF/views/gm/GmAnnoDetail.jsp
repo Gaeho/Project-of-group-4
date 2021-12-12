@@ -84,8 +84,9 @@
 									<!-- <input type="button" class = "btn btn_danger" id="likebtn" value="스크랩 " onclick="setScrap()"> -->
 
 								    <input type="hidden" name="anno_code" value="${comanno.anno_code}">
-								    <td>anno_code->${comanno.anno_code }</td>
-								    <input type="button" value="지원하기" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}'"> 
+								
+								 <%--    <input type="button" value="지원하기" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}'">  --%>
+								    <input type="button" value="지원하기" class="btn btn-warning" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}'"> 
 								   
 
 								    	<div class="scrap_infos">
