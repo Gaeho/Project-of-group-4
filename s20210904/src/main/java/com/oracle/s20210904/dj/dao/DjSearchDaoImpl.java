@@ -16,16 +16,16 @@ public class DjSearchDaoImpl implements DjSearchDao {
 	private SqlSession session;
 
 	@Override
-	public List<DjSearch> searchAnno(String mainsearch) {
+	public List<DjSearch> searchAnno(DjSearch djsearch) {
 		System.out.println("DjSearchDaoImpl의 searchAnno() 시작되었습니다");
 		
 		List<DjSearch> result = null;
 		
 		//String searchcontents = scContent.getMainsearch();
-		System.out.println("db에 넣을 파라미터 searchcontents의 내용 확인->"+mainsearch);
+		System.out.println("db에 넣을 파라미터 searchcontents의 내용 확인(검색어)->"+djsearch.getMainsearch());
 		
 		try {
-			result = session.selectList("DjMainAnnoSearch", mainsearch);
+			result = session.selectList("DjMainAnnoSearch", djsearch);
 			
 			if(result != null) {
 				System.out.println("(DjSearchDaoImpl)결과값에 뭔가 들어있나? 길이->"+result.size());
@@ -42,15 +42,15 @@ public class DjSearchDaoImpl implements DjSearchDao {
 	}
 
 	@Override
-	public List<Company> searchCom(String mainsearch) {
+	public List<Company> searchCom(Company company) {
 		System.out.println("DjSearchDaoImpl의 searchCom() 시작되었습니다");
 		
 		List<Company> result1 = null;
 		
-		System.out.println("db에 넣을 파라미터 searchcontents의 내용 확인->"+mainsearch);
+		System.out.println("db에 넣을 파라미터 company객체의 start 내용 확인->"+company.getStart());
 		
 		try {
-			result1 = session.selectList("DjMainComSearch", mainsearch);
+			result1 = session.selectList("DjMainComSearch", company);
 			
 			if(result1 != null) {
 				System.out.println("(DjSearchDaoImpl)결과값에 뭔가 들어있나? 길이->"+result1.size());
