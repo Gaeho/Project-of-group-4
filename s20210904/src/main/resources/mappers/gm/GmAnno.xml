@@ -7,6 +7,7 @@
 		select count(*) from announce
 	</select>
 
+	<!-- 공고 List -->
 	<select id="GmAnnoListAll" parameterType="ComAnnounce" resultType="ComAnnounce">
 		select *
 		from
@@ -20,6 +21,7 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<!-- 공고 상세 -->
 	<select id="GmAnnoSelOne" parameterType="java.lang.String" resultType="ComAnnounce">
 		select * 
 		from announce a, company c
@@ -27,6 +29,7 @@
 		and a.anno_code = #{a.anno_code}
 	</select>
 	
+	<!-- 공고  -->
 	<select id="GmCommRecjob" parameterType="ComAnnounce" resultType="Comm">
 		select distinct c.comm_ctx
 		from announce a
@@ -36,6 +39,7 @@
 		and a.job_tag = #{job_tag}
 	</select>
 	
+	<!-- 고용형태 -->
 	<select id="GmCommEmptype" parameterType="ComAnnounce" resultType="Comm">
 		select distinct c.comm_ctx
 		from announce a
@@ -45,6 +49,7 @@
 		and a.emp_type = #{emp_type}
 	</select>
 	
+	<!-- 기술스택1 -->
 	<select id="GmCommTechtag1" parameterType="ComAnnounce" resultType="Comm">
 		select distinct c.comm_ctx
 		from announce a
@@ -54,6 +59,7 @@
 		and a.tech_tag1 = #{tech_tag1}
 	</select>
 	
+	<!-- 기술스택2 -->
 	<select id="GmCommTechtag2" parameterType="ComAnnounce" resultType="Comm">
 		select distinct c.comm_ctx
 		from announce a
@@ -63,6 +69,7 @@
 		and a.tech_tag2 = #{tech_tag2}
 	</select>
 	
+	<!--경력 -->
 	<select id="GmCommCareer" parameterType="ComAnnounce" resultType="Comm">
 		select distinct c.comm_ctx
 		from announce a
@@ -72,6 +79,7 @@
 		and a.career = #{career}
 	</select>
 	
+	<!--  -->
 	<select id="GmCommComsec" parameterType="ComAnnounce" resultType="Comm">
 		select distinct c.comm_ctx
 		from company b
@@ -81,24 +89,19 @@
 		and b.com_sec = #{com_sec}
 	</select>
 	
-	<select id="GmLikeCount" parameterType="Scrap" resultType="int" >
-		select count(*) 
-		from scrap 
-		<!-- where anno_code = #{anno_code} 
-		and user_id = #{user_id}
-		and scr_date = #{scr_date} -->
-	</select>
-	
+	<!-- 스크랩 추가 -->
 	<insert id="GmLikeInsert" parameterType="Scrap">
 		insert into scrap 
 		values (#{anno_code}, #{user_id}, 1 , sysdate)
 	</insert>
 	
+	<!-- 스크랩 취소 -->
 	<delete id="GmLikeDelete" parameterType="Scrap">
 		delete from scrap
 		where anno_code = #{anno_code} and user_id = #{user_id}
 	</delete>
 	
+	<!-- 스크랩 유무 -->
 	<select id="GmLikeGetInfo" parameterType="Scrap" resultType="int">
 		select count(*)
 		from scrap 
@@ -106,29 +109,20 @@
 		and user_id = #{user_id}
 	</select>
 	
-	<update id="GmLikeUpdate" parameterType="Scrap">
-		
-	</update>
-	
+	<!-- 이력서 total -->
 	<select id="GmResumeTotal" resultType="int">
 		select count(*) from resume
 	</select>
 	
+	<!-- 이력서 List -->
 	<select id="GmResumeList" parameterType="Resume" resultType="Resume">
 		select *
 		from
 		(
 		  select rownum rn, a.*
-		  from (select user_id, res_title, res_date from resume where user_id = 'siasia54') a
+		  from (select res_code, user_id, res_title, res_date from resume where user_id = 'siasia54') a
 		)
 		where rn between #{start} and #{end}
-	</select>
-	
-	<select id="GmSelResume" parameterType="Resume" resultType="Resume">
-		select * 
-		from resume 
-		where user_id = #{user_id} 
-		and res_code = #{res_code}
 	</select>
 	
 	<!-- 지원 이력 확인 -->
@@ -151,10 +145,10 @@
 	</insert>
 	
 	
-	<!-- 지원자 추가 -->
+	<!-- 이력서 제출  -->
 	<insert id="GmApply" parameterType="Apply">
-		insert into apply (user_id, res_code, anno_code, app_sts, app_regdate, com_ntc_code, user_ntc_code)
-		values(#{user_id}, #{res_code}, #{anno_code},'001',sysdate,not_seq.nextval,null)
+		insert into apply
+		values(#{user_id}, #{res_code}, #{anno_code},'001', sysdate, not_seq.nextval, null)
 	</insert>
 	
 

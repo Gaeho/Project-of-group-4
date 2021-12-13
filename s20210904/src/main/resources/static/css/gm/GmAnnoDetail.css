@@ -25,11 +25,10 @@
 
 .TopContainer > div {
 	
-	margin: 0 auto;
+/* 	margin: 0 auto; */
 	display: flex;
 	width: 100%;
 }
-
 
 
 .MiddleContainer{
@@ -41,6 +40,36 @@
 		max-width: 800px;		
 		border-right: 3px solid silver;	
 }
+
+
+.Topupper {
+	
+	display: flex;
+}
+
+.Topupper > div {
+	
+	width: 50%;
+	
+}
+
+/* .anno_content{
+	
+	border: 1px solid silver;
+}
+
+.anno_condition{
+	
+	border-top: 1px solid silver;
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
+} */
+
+
+
+
+
+
 
 .MenuContainer {
 		display: inline-block;
@@ -65,11 +94,15 @@
 
 .anno_applys {
 	display: flex;
-}
+} 
 
-.anno_applys_inner {
+
+
+.anno_applys > div {
 	margin: 0 auto;
 }
+
+
 
 .anno_apply_btn1 {
 	
@@ -86,7 +119,7 @@
 .GmContainer > div {
 	
 	max-width: 80%;
-	margin: 0 auto;
+/* 	margin: 0 auto; */
 	padding: 10px;
 	
 }
