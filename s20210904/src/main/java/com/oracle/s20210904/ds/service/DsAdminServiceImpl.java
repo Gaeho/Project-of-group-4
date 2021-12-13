@@ -170,4 +170,16 @@ public class DsAdminServiceImpl implements DsAdminService {
 		List<NoticeApplyAnno> alramList = dsAdminDao.alramList(id);
 		return alramList;
 	}
+	
+	@Override
+	public List<Member> searchUserList(Member member) {
+		List<Member> userList = dsAdminDao.searchUserList(member);
+		return userList;
+	}
+	
+	@Override
+	public int searchTotCnt(String searchTxt) {
+		int mtotCnt = dsAdminDao.searchTotCnt(searchTxt);
+		return mtotCnt;
+	}
 }

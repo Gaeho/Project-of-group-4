@@ -41,5 +41,7 @@ public interface DsAdminService {
 	//알람 갯수
 	int alramCnt(String id);
 	List<NoticeApplyAnno> alramList(String id);
+	List<Member> searchUserList(Member member);
+	int searchTotCnt(String searchTxt);
 
 }

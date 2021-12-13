@@ -50,8 +50,8 @@
 		</div>
 		<div id="memberListbox" class="memberListbox" >
 				<span class="subject">회원관리</span>
-				<form action="memberSearch">
-					<span class="search"><input type="text" class="searchTxt"><input type="submit" value="검색" class="searchBtn"></span>
+				<form action="memberMenu">
+					<span class="search"><input type="text" name ="searchTxt" class="searchTxt"><input type="submit" value="검색" class="searchBtn"></span>
 				</form>
 				<table class="memberList">
 					<tr class="title">

@@ -39,5 +39,7 @@ public interface DsAdminDao {
 	int tagInsert(Comm comm);
 	int alramCnt(String id);
 	List<NoticeApplyAnno> alramList(String id);
+	List<Member> searchUserList(Member member);
+	int searchTotCnt(String searchTxt);
 
 }

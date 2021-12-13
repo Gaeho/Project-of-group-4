@@ -3,13 +3,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DsMember">
 	
-	<!-- QnA 게시글 목록 -->
+	<!-- 멤바 카운타 -->
 	<select id="DsTotCnt" resultType="int">
 		select count(*) from member where user_status=0
 	</select>
 	
+	<!-- 멤버 리스트 -->
 	<select id="DsMemberList" resultType="Member" parameterType="Member">
 		select a.* from (select rownum rn, m.* from member m where user_status=0 order by rn ) a
+		where rn between #{start} and #{end}
+	</select>
+	
+	<!-- 검색 멤바 카운타 -->
+	<select id="DsSearchTotCnt" resultType="int">
+		select count(*) from member where user_status=0 and user_id=#{searchTxt}
+	</select>
+	
+	DsSearchTotCnt
+	<!-- 검색 멤버 리스트 -->
+	<select id="DsSearchUser" resultType="Member" parameterType="Member">
+		select a.* from (select rownum rn, m.* from member m where user_status=0 and user_id=#{user_id} order by rn ) a
 		where rn between #{start} and #{end}
 	</select>
 	
@@ -23,7 +36,7 @@
     	select count(*) from notice
     	where user_id=#{id}
     </select>
-    
+    <!-- 알람 Message List -->
     <select id="DsAlramList" parameterType="String" resultType="NoticeApplyAnno">
 		select n.*,cp.com_name, c.comm_ctx as app_sts ,b.user_id as apply_id, b.res_code, an.anno_title, r.res_title as read_res 
 		from notice n,announce an,apply a,apply b,resume_contect rc, (select * from comm where main_cat='065') c, (select* from resume where user_id=#{id}) r, company cp

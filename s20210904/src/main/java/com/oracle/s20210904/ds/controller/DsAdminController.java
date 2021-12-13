@@ -50,16 +50,27 @@ public class DsAdminController {
 	
 	@GetMapping(value="memberMenu")
 	public String memberMenu(Member member, Model model, String currentPage, String searchTxt) {
+		List<Member> userList = null;
+		int mtotCnt = 0;
+		//검색이니?
+		if(searchTxt == null || searchTxt.equals("")) {
+			mtotCnt = dsAdminService.totCnt();
+		}else {
+			mtotCnt = dsAdminService.searchTotCnt(searchTxt);
+		}
 		
-		int mtotCnt = dsAdminService.totCnt();
-		System.out.println("mtotCnt->"+mtotCnt);
-		
+		//페이징해주자
 		Paging pg = new Paging(mtotCnt,currentPage);
-		
 		member.setStart(pg.getStart());   // 1
 		member.setEnd(pg.getEnd());       // 10
 		
-		List<Member> userList = dsAdminService.getUserList(member);
+		//검색이니?
+		if(searchTxt == null || searchTxt.equals("")) {
+			userList = dsAdminService.getUserList(member);
+		}else {
+			member.setUser_id(searchTxt);
+			userList = dsAdminService.searchUserList(member);
+		}
 		
 		System.out.println("userList.size()->"+userList.size());
 

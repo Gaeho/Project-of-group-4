@@ -174,4 +174,16 @@ public class DsAdminDaoImpl implements DsAdminDao {
 		 List<NoticeApplyAnno> alramList = session.selectList("DsAlramList",id);
 		return alramList;
 	}
+	
+	@Override
+	public List<Member> searchUserList(Member member) {
+		List<Member> userList = session.selectList("DsSearchUser",member);
+		return userList;
+	}
+	
+	@Override
+	public int searchTotCnt(String searchTxt) {
+		int mtotCnt = session.selectOne("DsSearchTotCnt",searchTxt);
+		return mtotCnt;
+	}
 }
