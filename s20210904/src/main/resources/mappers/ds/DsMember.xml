@@ -25,8 +25,9 @@
     </select>
     
     <select id="DsAlramList" parameterType="String" resultType="NoticeApplyAnno">
-		select n.*,an.com_id, a.app_sts,b.user_id as apply_id, b.res_code, an.anno_title, rc.res_code as read_res from notice n,announce an,apply a,apply b,resume_contect rc
-		where n.anno_code = an.anno_code(+) and n.ntc_code = a.user_ntc_code(+) and n.ntc_code = b.com_ntc_code(+) and n.ntc_code = rc.ntc_code(+)
+		select n.*,cp.com_name, c.comm_ctx as app_sts ,b.user_id as apply_id, b.res_code, an.anno_title, r.res_title as read_res 
+		from notice n,announce an,apply a,apply b,resume_contect rc, (select * from comm where main_cat='065') c, (select* from resume where user_id=#{id}) r, company cp
+		where n.anno_code = an.anno_code(+) and n.ntc_code = a.user_ntc_code(+) and n.ntc_code = b.com_ntc_code(+) and n.ntc_code = rc.ntc_code(+) and a.app_sts = c.sub_cat(+) and rc.res_code= r.res_code(+) and an.com_id = cp.com_id(+)
 		and n.user_id=#{id}
 		order by n.ntc_time
     </select>

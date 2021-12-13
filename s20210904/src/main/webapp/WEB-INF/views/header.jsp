@@ -29,8 +29,6 @@ window.onload=function alramList(){
 		data:{id : '${id}'},
 		dataType:'json',
 		success:function(data){
-			alert(data.length);
-
 			if(data.length >0){
 				alert("알람ON"+data);	
 				$("#alramImg").attr("src","img/ds/alram-on.png");
@@ -44,7 +42,7 @@ window.onload=function alramList(){
 								str += "<li><a class='dropdown-item' href='#scrollspyHeading3'>지원하신 ["+this.anno_title+"] 공고에 "+this.app_sts+"하셨습니다</a></li>"
 									  +"<li><hr class='dropdown-divider'></li>";
 							}else if(this.ntc_ctg =='003'){
-								str += "<li><a class='dropdown-item' href=''#scrollspyHeading3'>["+this.com_id+"]님이 ["+this.read_res+"]를 조회했습니다</a></li>"
+								str += "<li><a class='dropdown-item' href=''#scrollspyHeading3'>["+this.com_name+"]님이 ["+this.read_res+"]를 조회했습니다</a></li>"
 									  +"<li><hr class='dropdown-divider'></li>";	
 							}
 						}
@@ -56,7 +54,6 @@ window.onload=function alramList(){
 				+"<li><a class='dropdown-item' href='#scrollspyHeading3'>알림이 없어요~</a></li>"
 				+"<li><hr class='dropdown-divider'></li>";
 			}
-			alert(str);
 			$('.dropdown-menu').append(str);
 			
 			

@@ -10,7 +10,7 @@
 
 	<%-- <%response.sendRedirect("CompanyMypage"); %> --%>
 	<%--  <%response.sendRedirect("AdminMain"); %>  --%>
-	  <%response.sendRedirect("GmAnnoList"); %>   
+	<%--  <%response.sendRedirect("GmAnnoList"); %>   --%> 
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
 	<% response.sendRedirect("main"); %>
 

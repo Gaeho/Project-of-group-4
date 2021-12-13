@@ -23,4 +23,5 @@ public class NoticeApplyAnno {
 	//announce
 	private String anno_title;
 	private String com_id;
+	private String com_name;
 }
