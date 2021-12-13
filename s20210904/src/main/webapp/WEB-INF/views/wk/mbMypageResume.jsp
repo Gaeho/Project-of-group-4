@@ -59,12 +59,18 @@
 	
 	// 대표이력서 설정
 	function rep_resume(res_code){
-		var rep_res_code=document.getElementById('rep_res').value;
-		alert("rep_res_code : "+res_code);
-		/* $.ajax({
+		var rep_res_code=0;
+		rep_res_code=document.getElementById('rep_res').value;
+		alert("rep_res_code : "+rep_res_code);
+		
+		if(rep_res_code != "0"){
+			alert("test1");
+			rep_resume_del(rep_res_code);
+		}
+		$.ajax({
 			url:"/mbMypageRepResume",
 			type: "POST",
-			data:{"res_code" : res_code, "rep_res_code" : rep_res_code},
+			data:{"res_code" : res_code},	/* , "rep_res_code" : rep_res_code */
 			dataType:'text',
 			success:function(data){
 				if(data>0){
@@ -77,7 +83,7 @@
 			error:function(){
 				alert("대표이력서 설정에 실패하였습니다"+data);
 			}
-		});  */
+		});
 	}
 
 /* 	function resume_update(res_code){	
@@ -101,8 +107,10 @@
 
 ${mbid }의 이력서<br>
 <c:if test="${not empty msg}">${msg }<br> </c:if>
+
 <c:forEach var="resumelist" items="${resumelist}" varStatus="status">
 	${status.count} &nbsp;&nbsp; ${resumelist.res_title} &nbsp;&nbsp; ${resumelist.res_date} &nbsp;&nbsp; 
+	
 	<c:if test="${resumelist.rep_res eq 1}">
 		대표이력서&nbsp;&nbsp; &nbsp;&nbsp; 
 		<input type="button" value="대표이력서 해제" onclick="rep_resume_del(${resumelist.res_code})">
@@ -115,7 +123,7 @@ ${mbid }의 이력서<br>
 	&nbsp;&nbsp; &nbsp;&nbsp; <input type="submit" onclick="location.href='mbMypageResumeUpdate?res_code=${resumelist.res_code}'" value="수정">
 	&nbsp;&nbsp; &nbsp;&nbsp; <input type="button" onclick="resume_delete(${resumelist.res_code})" value="삭제"><br>
 </c:forEach><p>
-
+<input type="hidden" id="rep_res" value="0">
 
 </body>
 </html>

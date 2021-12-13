@@ -86,7 +86,7 @@ public class WkMbMypageRestController {
 	
 	// 대표이력서 설정
 	@RequestMapping(value = "mbMypageRepResume", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
-	public String mbMypageRepResume(HttpServletRequest request, int res_code, int rep_res_code) {
+	public String mbMypageRepResume(HttpServletRequest request, int res_code) {
 		System.out.println("WkMbMypageRestController mbMypageRepResume()");
 		String mbid=checkId(request);
 //		model.addAttribute("mbid", mbid);
@@ -95,8 +95,9 @@ public class WkMbMypageRestController {
 		Resume resume=new Resume();
 		resume.setUser_id(mbid);
 		resume.setRes_code(res_code);
+		resume.setRep_res("1");
 //		
-		int rep_result=ms.repResume(resume);
+		int rep_result=ms.repResumeUpdate(resume);
 		return Integer.toString(rep_result); 
 	}
 	

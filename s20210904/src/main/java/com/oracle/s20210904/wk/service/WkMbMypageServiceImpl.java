@@ -218,13 +218,6 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 
 
 	@Override
-	public int repResume(Resume resume) {
-		return 0;
-	}
-
-
-
-	@Override
 	public int repResumeUpdate(Resume resume) {
 		return wkResumeDao.repResumeUpdate(resume);
 	}
