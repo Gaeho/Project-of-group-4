@@ -9,6 +9,7 @@
 <body>
 
 	<%-- <%response.sendRedirect("CompanyMypage"); %> --%>
+
 	<%-- <%response.sendRedirect("AdminMain"); %> --%>
 	 <%--<%response.sendRedirect("GmAnnoList"); --%>  
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
@@ -16,6 +17,9 @@
 
 	<%-- <%response.sendRedirect("ComInfo"); %>--%>
 	<%response.sendRedirect("Comjoin");%>
+
+
+
 
 
 

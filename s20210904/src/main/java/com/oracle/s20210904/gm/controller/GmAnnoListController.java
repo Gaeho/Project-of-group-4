@@ -161,7 +161,7 @@ public class GmAnnoListController {
 		System.out.println("------------------------------------");
 		
 		return "gm/GmAnnoDetail";
-		
+			
 	}
 	
 	/*
@@ -229,6 +229,10 @@ public class GmAnnoListController {
 			
 			System.out.println("GmAnnoListController applyList listres.size->"+listres.size());
 			for(Resume res : listres) {
+				if (user_id.isEmpty()) { // user_id 값이 없을 때 
+					user_id = res.getUser_id();
+					System.out.println("GmAnnoListController user_id->"+user_id);
+				}
 				System.out.println("---------applyList Start -------------");
 				System.out.println("res.getUser_id()->"+res.getUser_id());
 				System.out.println("res.getRes_title()-> "+res.getRes_title());
@@ -240,6 +244,8 @@ public class GmAnnoListController {
 			model.addAttribute("tot", tot);
 			model.addAttribute("listres", listres);
 			model.addAttribute("pg", pg);
+			model.addAttribute("anno_code", anno_code); // 따로 가져온 값들을 저장해서 넘겨야함
+			model.addAttribute("user_id", user_id); // 따로 가져온 값들을 저장해서 넘겨야함
 			
 			return "gm/GmApplyList";
 			
@@ -247,13 +253,12 @@ public class GmAnnoListController {
 		
 		// 이력서 제출
 		@GetMapping(value = "applyResume")
-		public String applyResume (Apply apply, String anno_code, Model model) {
+		public String applyResume (Apply apply,  Model model) {
 			System.out.println("GmAnnoListController applyResume Start...");
 			System.out.println("GmAnnoListController applyResume apply.getRes_code()->"+apply.getRes_code());
 			System.out.println("GmAnnoListController applyResume apply.getAnno_code()->"+apply.getAnno_code());
-			System.out.println("GmAnnoListController applyResume anno_code->"+anno_code);
 			System.out.println("GmAnnoListController applyResume apply.getUser_id()"+apply.getUser_id());
-			// 1. 이력서 조회   anno_code, app_sts, app_regdate, com_ntc_code, user_ntc_code
+			// 1. 지원자 user_id, res_code, anno_code, app_sts(065-001), app_regdate(sysdate), com_ntc_code(sequence), user_ntc_code(회원알림 null)
 			int app = as.applyResume(apply);
 			//2. 이력서 경력 상세 입력
 			
