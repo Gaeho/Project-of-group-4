@@ -1,78 +1,117 @@
 @charset "UTF-8";
 
-body {
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin: 0px;
-	padding: 0px;
-}
-       
-.registerFormWrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	border: 2px solid black;
-	border-radius: 8px;
-	padding: 20px;
-	margin-bottom: 20px;
-	margin-top: 35px;
+* {
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
 }
 
-.registerFormDiv {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.container {
 	width: 100%;
+	height: 100%;
 }
 
-.registerFormRow {
-	display: flex;
-	width: 100%;
-	margin: 5px 0px;
-	padding: 5px 10px;
+.login {
+	position: absolute;
+/* 	width: 550px; */
+/* 	height: 525px; */
+	width: 450px;
+	height: 425px;
+	background-color: #fbf520;
+	margin-top: 225px;
+	text-align: center;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 15px;
 }
 
-.registerFormRow input {
-	padding: 5px 10px;
-}
+input[type="radio"]{display:none;}
+	input[type="radio"] + label {display:inline-block;padding:20px;background:#FFFFFF;color:#999;font-size:14px;cursor:pointer;}
+	input[type="radio"]:checked + label {background:#EEEEEE;color:#000;}
+	
+	.conbox {width:100%; height:600px; background:#FFFFFF;margin:0 auto;display:none;}
+	input[id="tab01"]:checked ~ .con1 {display:block;}
+	input[id="tab02"]:checked ~ .con2 {display:block;}
 
-.registerFormLabel {
-	width: 130px;
-	text-align: right;
-	margin-right: 15px;
-	font-weight: bold;
-}
-
-.registerFormInputBox {
-	display: flex;
-	justify-content: flex-start;
-}
-
-.registerFormInputSub {
-	margin-left: 10px;
-	border: none;
-	border-radius: 2px;
-	background-color: #ffff00;
+h2 {
+/* 	font-size: 48px; */
+	font-size: 44px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: bolder;
 	color: #fff;
+	margin-top: 20px;
 }
 
-.ck {
-	padding-bottom: 50px;
+.login>.id-section, .login-section>.pw-section {
+/* 	width: 500px; */
+/* 	height: 50px; */
+	width: 400px;
+	height: 40px;
+	border-style: none;
+	border-radius: 6px;
+	font-size: 18px;
+	padding-left: 10px;
 }
 
-.ck>input {
-	border: 1px solid #cecece;
-	border-radius: 1px;
-	background-color: white;
-	color: black;
-	padding: 5px;
-	height: 30px;
+.login>.id-section {
+/* 	margin: 50px 0 5px 0; */
+	margin: 40px 0 5px 0;
 }
 
-.ck>input:hover {
+.login>.pw-section {
+	margin-bottom: 40px;
+}
+
+.login>.chk {
+	font-size: 26px;
+	font-weight: bolder;
+	font-family: 'Raleway', sans-serif;
+/* 	width: 510px; */
+/* 	height: 65px; */
+	width: 410px;
+	height: 55px;
+	background: #f3cf63;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.login>.chk:hover {
 	background: #5E5E5E;
 	color: white;
+}
+
+.login>.btn {
+	margin-top: 30px;
+}
+
+.login>.btn>.btn1 {
+	font-size: 14px;
+	font-family: 'Noto Sans KR', sans-serif;
+	width: 100px;
+	height: 20px;
+	color: #fff;
+	border: none;
+	border-right: 1px solid white;
+	background: #373737;
+}
+
+.login>.btn>.btn2 {
+	font-size: 14px;
+	font-family: 'Noto Sans KR', sans-serif;
+	width: 120px;
+	height: 20px;
+	color: #fff;
+	border: none;
+	border-right: 1px solid white;
+	background: #373737;
+}
+
+.login>.btn>.btn3 {
+	font-size: 14px;
+	font-family: 'Noto Sans KR', sans-serif;
+	width: 80px;
+	height: 40px;
+	color: #fff;
+	border: none;
+	background: #373737;
 }

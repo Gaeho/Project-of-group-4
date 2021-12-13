@@ -80,7 +80,7 @@ public class ShMemberController {
 	public String login() {
 		System.out.println("ShMemberController login Start...");
 		
-		return "sh/memberlogin";
+		return "sh/login";
 	}
 	@PostMapping(value="loginForm")
 	public String loginForm( HttpServletRequest request, String user_id , String user_pw , Model model) {
@@ -106,7 +106,7 @@ public class ShMemberController {
 			 System.out.println("session.getAttribute mbid : " + session.getAttribute("mbid"));
 		}else {
 			System.out.println("ShMemberController loginForm 실패......");
-			rtnStr = "sh/memberlogin"; //실패 
+			rtnStr = "sh/login"; //실패 
 		}
 		
 		return rtnStr;
