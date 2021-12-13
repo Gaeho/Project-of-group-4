@@ -83,12 +83,37 @@
                             
                             <!-- 임시로 검색이랑 연결해 둠  -->
                             <form class="searchinput1233" id="contactForm"  action="search" method="post">
-                                
-                                        <input class="searchinput1233" name="mainsearch" id="mainsearch" type="text" placeholder="검색어를 입력하세요"/>
-                                                       
-                                    		<button class="submitbtn1233" id="submitButton" type="submit">검색</button>
-                                    
+                            	 <div class="row">
+                                		<div class="col">  
+                                			<div class="input-group has-validation">                        
+                                        		<input class="form-control form-control-lg" name="mainsearch" id="mainsearch" type="text" placeholder="검색어를 입력하세요" required="required" />
+                                        		<div class="invalid-feedback">
+												     검색어를 입력해주세요.
+												</div>
+                                        	</div> 
+                                        </div>
+                                        <div class="col-auto">               
+                                    		<button class="btn btn-primary btn-lg" onsubmit="member_submit()" type="submit">검색</button>
+                                    	</div>
+                                  </div>  	
                             </form>
+                            <script>
+		                          //submit 눌렀을때 member_submit 함수 실행
+		                            function member_submit(){
+		                        	  alert('암튼 실행됨 이거');
+		                              //값 비어있으면
+		                              if($("#mainsearch").val() == ""){
+		                                  // is-invalid 클래스를 붙여줘서 빨간 경고문구 붙여준다
+		                                  $("#mainsearch").addClass("is-invalid");
+		                                  // 입력해야되는 창에 어그로
+		                                  $("#mainsearch").focus();
+		                                  return;
+		                              }
+		                              
+		                              //submit 처리
+		                            }
+                            
+                            </script>
                             
                             
                             

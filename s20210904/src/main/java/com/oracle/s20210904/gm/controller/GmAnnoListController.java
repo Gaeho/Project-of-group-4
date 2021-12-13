@@ -161,7 +161,7 @@ public class GmAnnoListController {
 		System.out.println("------------------------------------");
 		
 		return "gm/GmAnnoDetail";
-		
+			
 	}
 	
 	/*
