@@ -142,7 +142,7 @@
 						<tr><th>연락처</th><td>${comanno.com_tel}</td></tr>
 						<tr><th>담당자</th><td>${comanno.com_user}(${comanno.com_mgr_tel})</td></tr>
 						<tr><th>기업 주소</th><td>${comanno.com_addr}</td></tr>
-						<tr><th>업종</th><td>${comanno.com_sec}</td></tr> 
+						<tr><th>업종</th><td>${comsec.comm_ctx}</td></tr> 
 						<tr><th>사업<p>내용</th><td>${comanno.com_bus}</td></tr>
 						<tr><th>홈페<p>이지</th><td>${comanno.com_web}</td></tr>
 					</table>	

@@ -21,7 +21,7 @@
 				</div>
 				
 				<div class="annolist1">
-					<table class="table table-hover">
+					<table class="table">
 							<thead class="table-light">					
 								<tr>
 									<th scope="col">기업명</th>
