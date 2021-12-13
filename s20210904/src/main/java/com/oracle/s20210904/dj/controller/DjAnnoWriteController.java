@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,11 +37,36 @@ public class DjAnnoWriteController {
 	@Autowired
 	private DjAnnoService das;
 	
+	//세션 확인 - 기업인지 여부 확인 / 어떤 기업인지 세션에서 id회득 후 과정을 진행
+	
+	//@RequestMapping("AnnoWrite_check")
+	private String check_anno(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String cid = (String) session.getAttribute("cbid");
+		//com_id의 항목이 넘어오기 때문에 회원(user_id)이 이 페이지를 로드하려고 하면 메인으로 튕길 것
+			
+		if(cid==null || cid.equals("")){              
+			return "/Main"; //여기 다시 조정할 것
+		}
+		
+		
+		return cid;
+	}
+	
+	
+
 	@RequestMapping("DjAnnoWriteForm")
-	public String annoWriteForm(String com_id,Announce anno, Model model) {
+	public String annoWriteForm(HttpServletRequest request ,String com_id,Announce anno, Model model) {
 		System.out.println("DjAnnoWriteController의 annoWrite 시작되었습니다.");
 		
-		com_id = "thsl90"; //공고 리스트와 잇기 전에 임시로 객체에 정보 넣기
+		//세션 처리 (로그인 문제 해결되면 연결할 것)
+		String cmid=check_anno(request);
+		System.out.println("세션 확인 아이디를 갖고오는지->"+cmid);
+
+		com_id = "thsl90"; //공고 리스트와 잇기 전에 임시로 객체에 정보 넣기// 세션처리 시 삭제
+		
+		
+		
 		//회사 테이블에서 회사정보 가져오기 이것은 메뉴를 뿌려 줄 때 사용한다.
 		Company compInfo = das.comInfoList(com_id);
 		System.out.println("여기는 컨트롤러 회사정보 가져왔니? 회사명은?->"+compInfo.getCom_id());

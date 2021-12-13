@@ -157,16 +157,6 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 			}
 			*/
 			
-			// 스크랩
-			@Override
-			public int likecnt(Scrap scrap) {
-				System.out.println("GmAnnoServiceImpl likecnt Start...");
-				int check = ad.likecnt(scrap);
-				System.out.println("Service check ->"+check);
-				
-				return check;
-			}
-			
 			// 스크랩 추가
 			@Override
 			public void likeinsert(Scrap scrap) {
@@ -190,12 +180,6 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				
 				return like;
 			}
-
-			@Override
-			public void likeupdate(Scrap scrap) {
-				System.out.println("GmAnnoServiceImpl likeupdate Start...");
-				ad.likeupdate(scrap);
-			}
 			
 			// 이력서 total
 			@Override
@@ -218,17 +202,6 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				return resList;
 			}
 
-			// 이력서 제출
-			@Override
-			public Resume selResume(Resume resume) {
-				System.out.println("GmAnnoServiceImpl selResume Start...");
-				Resume res = ad.selResume(resume);
-				System.out.println("GmAnnoServiceImpl res.getUser_id()-> "+res.getUser_id());
-				System.out.println("GmAnnoServiceImpl res.getRes_code()-> "+res.getRes_code());
-				
-				return res;
-			}
-			
 			// 이력서 지원 기록 있는지 check
 			@Override
 			public Apply checkRC(Apply apply) {
@@ -255,6 +228,7 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				
 			}
 	 
+			// 이력서 제출
 			@Override
 			public int applyResume(Apply apply) {
 				System.out.println("GmAnnoServiceImpl applyResume Start...");
