@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -260,10 +261,9 @@ public class GmAnnoListController {
 			System.out.println("GmAnnoListController applyResume apply.getUser_id()"+apply.getUser_id());
 			// 1. 지원자 user_id, res_code, anno_code, app_sts(065-001), app_regdate(sysdate), com_ntc_code(sequence), user_ntc_code(회원알림 null)
 			int app = as.applyResume(apply);
-			//2. 이력서 경력 상세 입력
-			
 			
 			model.addAttribute("apply", apply);
+			
 
 			
 			return "gm/result";
@@ -272,21 +272,25 @@ public class GmAnnoListController {
 		
 		// 알림
 		@GetMapping(value = "applyDetail")
-		public String applyDetail(Apply apply, Model model) {
+		public String applyDetail(Apply apply,Model model) {
 			System.out.println("GmAnnoListController applyDetail Start...");
 			insertapplyDetail(apply);
 			apply = as.checkRC(apply);
+			System.out.println("GmAnnoListController applyDetail apply.getAnno_code()->"+apply.getAnno_code());
 			
 			model.addAttribute("apply", apply);
+			System.out.println("여기까지 왔어?");
 			
-			return "gm/applyDetail";
+			return "gm/GmApplyDetail";
 			
 		}
 		
 		// 지원 이력서 확인
 		public int insertapplyDetail(Apply apply) {
 			
-			String id ="siasia54";
+			String user_id ="siasia54";
+			System.out.println("insertapplyDetail apply.getUser_id()->"+apply.getUser_id());
+			System.out.println("insertapplyDetail apply.getAnno_code()->"+apply.getAnno_code());
 			
 			int result = 0;
 			// 지원 이력서 존재하는지 ~ 없으면 null~
@@ -299,6 +303,7 @@ public class GmAnnoListController {
 				if(result == 1) {
 					ap = as.checkRC(apply);
 					Notice notice = new Notice();
+					notice.setUser_id(ap.getUser_id());
 					notice.setAnno_code(ap.getAnno_code());
 					notice.setNtc_ctg("001");
 					notice.setNtc_code(ap.getCom_ntc_code());

@@ -16,7 +16,8 @@
 		  from (select a.anno_title, a.anno_code, a.anno_regdate, a.anno_c_regdate, a.rec_edu,
                 c.com_name
           from announce a, company c
-         where a.com_id = c.com_id) a
+         where a.com_id = c.com_id
+         and a.anno_c_regdate >= sysdate) a
 		)
 		where rn between #{start} and #{end}
 	</select>
@@ -125,11 +126,18 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<!-- 이력서 제출  -->
+	<insert id="GmApply" parameterType="Apply">
+		insert into apply
+		values(#{user_id}, #{res_code}, #{anno_code},'001', sysdate, not_seq.nextval, null)
+	</insert>
+	
 	<!-- 지원 이력 확인 -->
 	<select id="GmCheckRC" parameterType="Apply" resultType="Apply">
 		select *from apply
 		where anno_code = #{anno_code} 
 		and user_id = #{user_id}
+		and res_code = #{res_code}
 	</select>
 	
 	<!-- 지원자 추가  -->
@@ -141,15 +149,11 @@
 	<!-- 알림 추가 -->
 	<insert id="GmNoticeinesert" parameterType="Notice">
 		insert into notice
-		values (#{ntc_code}, #{user_id}, #{anno_code}, #{ntc_cat})
+		values (#{ntc_code}, #{user_id}, #{anno_code}, #{ntc_ctg}, sysdate)
 	</insert>
 	
 	
-	<!-- 이력서 제출  -->
-	<insert id="GmApply" parameterType="Apply">
-		insert into apply
-		values(#{user_id}, #{res_code}, #{anno_code},'001', sysdate, not_seq.nextval, null)
-	</insert>
+	
 	
 
 

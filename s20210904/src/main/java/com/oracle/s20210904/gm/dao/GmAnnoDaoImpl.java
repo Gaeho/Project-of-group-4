@@ -237,6 +237,21 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				return resList;
 			}
 
+			// 이력서 제출
+			@Override
+			public int applyResume(Apply apply) {
+				System.out.println("GmAnnoDaoImpl applyResume Start...");
+				int app = 0;
+				try {
+					app = session.insert("GmApply", apply);
+				
+				} catch (Exception e) {
+					System.out.println("GmAnnoDaoImpl applyResume Exception "+e.getMessage());
+				}
+				return app;
+			}
+			
+			
 			// 지원 이력서 있는지 check
 			@Override
 			public Apply checkRC(Apply apply) {
@@ -276,23 +291,8 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				}
 			}
 			
-			// 이력서 제출
-			@Override
-			public int applyResume(Apply apply) {
-				System.out.println("GmAnnoDaoImpl applyResume Start...");
-				int app = 0;
-				try {
-					app = session.insert("GmApply", apply);
-				
-				} catch (Exception e) {
-					System.out.println("GmAnnoDaoImpl applyResume Exception "+e.getMessage());
-				}
-				return app;
-			}
 			
 			
-			
-
 		}
 
 
