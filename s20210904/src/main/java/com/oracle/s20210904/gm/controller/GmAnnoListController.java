@@ -40,11 +40,32 @@ public class GmAnnoListController {
 	}
 	*/
 	
+	//공고리스트
 	@RequestMapping(value = "GmAnnoList")
-	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model) {
+	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model,String annosearch) {
 		System.out.println("GmAnnoListController Start List...");
-		int total = as.total();
+		//원본토탈
+		//int total = as.total();
+		
+		int total = 0;
+		//띄어쓰기 제거
+		if(annosearch!=null) {
+			System.out.println("annosearch->"+annosearch);
+			String annosearch1 = annosearch.replaceAll("\\s+","");
+			total = as.searchtotal(annosearch1);
+			System.out.println("변환된 annosearch1 내용->"+annosearch1);
+			System.out.println("검색어 있을 때의 total->"+total);	
+			comAnnounce.setAnnosearch(annosearch1);
+			model.addAttribute("annosearch1", annosearch1);
+		} else if (annosearch==null) {
+			total = as.total();
+			System.out.println("검색어 없을 때의 total->"+total);	
+		}
+		
+		
 		System.out.println("GmAnnoList total->"+total);
+		System.out.println("GmAnnoList currentPage->"+currentPage);
+		System.out.println("GmAnnoList getAnnosearch->"+comAnnounce.getAnnosearch());
 		System.out.println("----------------------------------");
 		
 		// Paging
@@ -75,52 +96,9 @@ public class GmAnnoListController {
 		return "gm/GmAnnoList";
 		
 	}
-	//공고리스트 검색
-	@PostMapping(value = "/annolistsearch")
-	public String annolistsearch(Model model,String annosearch,String currentPage,ComAnnounce comAnnounce) {
-		System.out.println("들어온 검색어->"+annosearch);
-		
-		model.addAttribute("total", null);
-		model.addAttribute("listAnno", null);
-		model.addAttribute("pg", null);
-		
-		//띄어쓰기 제거
-		String annosearch1 = annosearch.replaceAll("\\s+","");
-//		경민님 코드
-		
-		int total = as.searchtotal(annosearch);
-		System.out.println("GmAnnoList searchtotal->"+total);
-		System.out.println("----------------------------------");
-		
-		// Paging
-		Paging pg1 = new Paging(total, currentPage);
-		comAnnounce.setStart(pg1.getStart()); // 1 
-		comAnnounce.setEnd(pg1.getEnd()); // 5
-		comAnnounce.setAnnosearch(annosearch1);
-		
-		System.out.println("GmAnnoListController GmAnnoList Start...");
-		List<ComAnnounce> listAnno = as.listsearchAnno(comAnnounce); // (Paging이 포함된) Announcr 파라미터 가지고 service 단으로 이동
-		
-		System.out.println("GmAnnoListController GmAnnoList listAnno.size->"+listAnno.size());
-		System.out.println("---------------------------------------------------------------");
-		for(ComAnnounce comanno : listAnno) {
-			System.out.println("---------GmAnnoList Start -------------");
-			System.out.println("comanno.getCom_name()-> "+comanno.getCom_name());
-			System.out.println("comanno.getCom_id()->"+comanno.getCom_id());
-			System.out.println("comanno.getAnno_code()->"+comanno.getAnno_code());
-			System.out.println("comanno.getAnno_title()-> "+comanno.getAnno_title());
-			System.out.println("----------GmAnnoList End------------------");
-			
-		}
-		
-		model.addAttribute("total", total);
-		model.addAttribute("listAnno", listAnno);
-		model.addAttribute("pg", pg1);
-		System.out.println("저장됨");
-		
-//		
-		return "gm/GmAnnoList";
-	}
+	
+	
+	
 	
 	
 	
