@@ -44,18 +44,32 @@
 							</tbody>	
 						</table>
 				</div>
+				<div>
+					<div class="anno_search1">
+						
+							<form action="annolistsearch" method="post">
+							
+							  <input type="text" class="form-control" name="annosearch" placeholder="검색어를 입력하세요">
+							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 				
-				<div class="annolistpage">
-						<c:if test="${pg.startPage > pg.pageBlock }">
-							<a href="GmAnnoList?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
-						</c:if>
-						<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-							<a href="GmAnnoList?currentPage=${i}">[${i}]</a>
-						</c:forEach>
-						<c:if test="${pg.endPage < pg.totalPage}">
-							<a href="GmAnnoList?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
-						</c:if>
+							</form>
+						
+					</div>
 				</div>
+				<div class="anno_paging_container">
+					<div class="annolistpage">
+							<c:if test="${pg.startPage > pg.pageBlock }">
+								<a href="GmAnnoList?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
+							</c:if>
+							<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+								<a href="GmAnnoList?currentPage=${i}">[${i}]</a>
+							</c:forEach>
+							<c:if test="${pg.endPage < pg.totalPage}">
+								<a href="GmAnnoList?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
+							</c:if>
+					</div>
+				</div>
+				
 			</div>	
 		</div>	
 	</div>

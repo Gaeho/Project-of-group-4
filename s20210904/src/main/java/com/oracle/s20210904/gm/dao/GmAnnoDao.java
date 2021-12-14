@@ -50,6 +50,10 @@ public interface GmAnnoDao {
 
 	int applyResume(Apply apply);
 
+	List<ComAnnounce> listsearchAnno(ComAnnounce comAnnounce);
+
+	int searchtotal(String annosearch);
+
 
 	
 	

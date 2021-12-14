@@ -7,6 +7,14 @@ body {
 	margin: 0px;
 	padding: 0px;
 }
+h2 {
+/* 	font-size: 48px; */
+	font-size: 44px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: bolder;
+	color: #000000;
+	margin-top: 20px;
+}
        
 .registerFormWrapper {
 	display: flex;
@@ -76,3 +84,23 @@ body {
 	background: #5E5E5E;
 	color: white;
 }
+.addrFormRow {
+	display: flex;
+	width: 80%;
+	margin: 5px 0px;
+	padding: 5px 10px;
+}
+.addrFormLabel {
+	width: 130px;
+	text-align: left;
+	margin-right: 15px;
+	font-weight: bold;
+}
+.addrFormInputBox {
+	display: flex;
+	justify-content: flex-start;
+}
+.form-group{
+	  margin-bottom: 15px;
+}
+
