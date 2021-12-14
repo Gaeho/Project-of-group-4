@@ -7,6 +7,19 @@
 <meta charset="UTF-8">
 <link href="css/gm/GmAnnoList.css" rel="stylesheet" type="text/css">
 <title>코딩몬</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	/* pageMove */
+	function pageMove(vCurrentPage){
+		// console.log(vCurrentPage);
+    	/* 	alert("vCurrentPage->"+vCurrentPage);  */
+		var  annosearch = $('#annosearch').val();
+		/* alert("annosearch->"+annosearch);  */
+		location.href="GmAnnoList?currentPage="+vCurrentPage+"&annosearch="+annosearch;
+	}
+
+</script>
+
 </head>
 <body>
 
@@ -47,9 +60,10 @@
 				<div>
 					<div class="anno_search1">
 						
-							<form action="annolistsearch" method="post">
-							
-							  <input type="text" class="form-control" name="annosearch" placeholder="검색어를 입력하세요">
+<!-- 							<form action="annolistsearch" method="post">
+ -->						<form action="GmAnnoList" method="post">
+							  <input type="hidden" name="currentPage" value="${pg.currentPage}" >
+							  <input type="text" class="form-control" value="${annosearch1}" name="annosearch" id="annosearch" placeholder="검색어를 입력하세요">
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 				
 							</form>
@@ -60,9 +74,9 @@
 					<div class="annolistpage">
 							<c:if test="${pg.startPage > pg.pageBlock }">
 								<a href="GmAnnoList?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
-							</c:if>
+								</c:if>
 							<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-								<a href="GmAnnoList?currentPage=${i}">[${i}]</a>
+								<a href="#" onclick="pageMove(${i})">[${i}]</a>
 							</c:forEach>
 							<c:if test="${pg.endPage < pg.totalPage}">
 								<a href="GmAnnoList?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>

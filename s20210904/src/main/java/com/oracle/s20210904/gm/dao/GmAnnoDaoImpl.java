@@ -36,7 +36,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 		List<ComAnnounce> annoList = null;
 		System.out.println("GmAnnoDaoImpl listAnno Start...");
 		try {
-			annoList = session.selectList("GmAnnoListAll", comAnnounce);
+			annoList = session.selectList("GmAnnoSearchList", comAnnounce);
 		} catch (Exception e) {
 			System.out.println("GmAnnoDaoImpl listAnno Exception"+e.getMessage());
 		}
