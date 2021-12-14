@@ -94,12 +94,5 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	<div><%-- ?com_id=${commCompany1.com_id --%>} <!-- onclick="location.href='ComInfoUpdate'" -->
-		<input class="comInfoUpdate" type="button" value="수정"  onclick="location.href='ComInfoUpdate?com_pw=${commCompany1.com_pw}'"">
-		
-			
-	</div>
 </body>
 </html>

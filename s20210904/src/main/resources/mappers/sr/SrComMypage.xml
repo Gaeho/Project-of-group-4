@@ -53,7 +53,7 @@
 	<select id="SrAppAnnMemReg" parameterType="AppAnnMem" resultType="AppAnnMem">
 		<![CDATA[
 		select mem.user_id, mem.user_img, app.APP_REGDATE, app.res_code as mrk_res_code, anno.ANNO_CODE
-		, anno.ANNO_C_REGDATE, anno.ANNO_REGDATE, anno.com_id
+		, anno.ANNO_C_REGDATE, anno.ANNO_REGDATE, anno.com_id, anno.ANNO_TITLE
 		from member mem
 		left join apply app
 		on mem.USER_ID=app.USER_ID
@@ -219,7 +219,7 @@
 	</insert>
 	
 	<select id="SrMemResumeBmarkList" parameterType="MemResumeBmark" resultType="MemResumeBmark">
-		select mem.user_id, mem.user_img, res.RES_DATE,res.res_code,bmark.com_id, bmark.MRK_DATE, 
+		<!-- select mem.user_id, mem.user_img, res.RES_DATE,res.res_code,bmark.com_id, bmark.MRK_DATE, 
 		bmark.IT_BOOKMARK, res.RES_TITLE
 		from member mem
 		left JOIN RESUME res
@@ -227,7 +227,14 @@
 		left join bookmark bmark
 		on mem.user_id=bmark.user_id
 		where res.res_title like '%'||#{keyword1}||'%'
-    	and bmark.com_id='tkstjd234'
+    	and bmark.com_id='tkstjd234' -->
+    	select DISTINCT mem.user_id, res.RES_CODE, res.RES_TITLE, bmark.MRK_RES_CODE, mem.USER_IMG, res.RES_DATE
+		from member mem
+		left join resume res
+		on mem.user_id=res.user_id
+		left join bookmark bmark
+		on res.RES_CODE=bmark.MRK_RES_CODE
+		where res.RES_TITLE like '%'||#{keyword1}||'%'
 	</select>
 	
 	<select id="SrUser_idListByResume" parameterType="Resume" resultType="Resume">

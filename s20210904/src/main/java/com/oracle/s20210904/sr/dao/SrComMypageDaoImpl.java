@@ -83,6 +83,12 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		try {
 			appAnnMemReg = session.selectList("SrAppAnnMemReg", appAnnMem);
 			System.out.println("SrComMypageDaoImpl AppAnnMemReg CHECK1=>" + appAnnMemReg.size());
+			for (AppAnnMem appAnnMember1 : appAnnMemReg) {
+				System.out.println("appAnnMember1.getApp_regdate()->" + appAnnMember1.getAnno_title());
+				System.out.println("appAnnMember1.getUser_id()->" + appAnnMember1.getUser_id());
+				System.out.println("appAnnMember1.getUser_img()->" + appAnnMember1.getUser_img());
+				System.out.println("appAnnMember1.getAnno_code->" + appAnnMember1.getAnno_code());
+			}
 		} catch (Exception e) {
 			System.out.println("appAnnMem error=>" + e.getMessage());
 		}
@@ -100,7 +106,12 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		try {
 			appAnnMemCReg = session.selectList("SrAppAnnMemCReg", appAnnMem);
 			System.out.println(appAnnMemCReg);
-//			  System.out.println("SrComMypageDaoImpl AppAnnMemCReg CHECK2=>"+appAnnMemCReg.size());
+			for (AppAnnMem appAnnMember1 : appAnnMemCReg) {
+				System.out.println("appAnnMember1.getApp_regdate()->" + appAnnMember1.getAnno_title());
+				System.out.println("appAnnMember1.getUser_id()->" + appAnnMember1.getUser_id());
+				System.out.println("appAnnMember1.getUser_img()->" + appAnnMember1.getUser_img());
+				System.out.println("appAnnMember1.getAnno_code->" + appAnnMember1.getAnno_code());
+			}
 		} catch (Exception e) {
 			System.out.println("appAnnMem error=>" + e.getMessage());
 		}
@@ -246,6 +257,9 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			List<MemResumeBmark> memResumeBmarkList=null;
 			try {
 				memResumeBmarkList=session.selectList("SrMemResumeBmarkList", keyword1);
+				for(MemResumeBmark aaa:memResumeBmarkList) {
+					System.out.println("다오 aaa.getMrk_res_code()=>"+aaa.getMrk_res_code());
+				}
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl memResumeBmarkList error=>"+e.getMessage());
 			}

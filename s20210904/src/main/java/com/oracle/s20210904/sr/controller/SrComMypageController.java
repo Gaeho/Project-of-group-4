@@ -103,7 +103,6 @@ public class SrComMypageController {
 	public String ComMemberSearch(Model model, String currentPage, MemResumeBmark memResumeBmark, CommCompany commCompany,
 			String keyword) {
 
-
 		System.out.println("SrComMypageController ComMemberSearch START...");
 	
 		System.out.println("DjSearchController의 mainSearch() 실행되었습니다.");
@@ -127,14 +126,20 @@ public class SrComMypageController {
 		System.out.println("memResumeBmarkList 시작..");
 		List<MemResumeBmark>  memResumeBmarkList= scms.memResumeBmarkList(keyword1);
 		System.out.println("List<MemResumeBmark>의 size?->"+memResumeBmarkList.size());
-
+		for(MemResumeBmark memResumeBmarkList1 : memResumeBmarkList) {
+			System.out.println("---------bookmarkList Start -------------");
+			System.out.println("memResumeBmarkList1.getRes_title()-> "+memResumeBmarkList1.getRes_title());
+			System.out.println("memResumeBmarkList1.getMrk_res_code()-> "+memResumeBmarkList1.getMrk_res_code());
+			System.out.println("----------bookmarkList End------------------");
+			
+		}
 		
 		model.addAttribute("memResumeBmarkList", memResumeBmarkList); //검색한 내용 
 		model.addAttribute("keyword1", keyword1);//검색 키워드
-		
-		//기업로고
 		model.addAttribute("commCompany1", commCompany1);
-
+		
+		String com_id="tlstprp5184";
+		model.addAttribute("com_id", com_id);
 		
 		return "sr/comMemberSearchMenuDetail";
 
@@ -179,7 +184,8 @@ public class SrComMypageController {
 	
 	// 지원현황 list
 		@GetMapping(value = "ComAppStatus")
-		public String ComAppStatus(Model model, AppAnnMem appAnnMem, CommCompany commCompany, String id) {
+		public String ComAppStatus(Model model, AppAnnMem appAnnMem, CommCompany commCompany
+				, String id, String key) {
 
 			System.out.println("SrComMypageController ComAppStatus START...");
 
@@ -206,7 +212,7 @@ public class SrComMypageController {
 			System.out.println("SrComMypageController ComAppStatus company1=>" + commCompany1);
 			System.out.println("SrComMypageController ComAppStatus appAnnMember=>" + appAnnMember);
 			for (AppAnnMem appAnnMember1 : appAnnMember) {
-				System.out.println("appAnnMember1.getApp_regdate()->" + appAnnMember1.getApp_regdate());
+				System.out.println("appAnnMember1.getApp_regdate()->" + appAnnMember1.getAnno_title());
 				System.out.println("appAnnMember1.getUser_id()->" + appAnnMember1.getUser_id());
 				System.out.println("appAnnMember1.getUser_img()->" + appAnnMember1.getUser_img());
 				System.out.println("appAnnMember1.getAnno_code->" + appAnnMember1.getAnno_code());
@@ -214,6 +220,7 @@ public class SrComMypageController {
 			// ----------------------------------------------------------------------------
 			model.addAttribute("commCompany1", commCompany1);
 			model.addAttribute("appAnnMember", appAnnMember);
+			model.addAttribute("key", key);
 
 			return "sr/comAppStatusMenu";
 		}
@@ -331,27 +338,4 @@ public class SrComMypageController {
 		return result;
 	}
 	
-	// com_pw for ComInfoUpdate
-	@GetMapping(value = "ComInfoUpdate")
-	public String ComInfoUpdate(CommCompany commCompany, Model model, String com_pw) {
-		
-		System.out.println("뷰에서 넘어온 비번=>"+com_pw);
-		
-		CommCompany commCompany1 = scms.comInfo(commCompany);
-		
-		model.addAttribute("commCompany1", commCompany1);
-		model.addAttribute("com_pw", com_pw);
-		
-		return "sr/comInfoUpdate";
-	}
-	
-	
-	@GetMapping(value = "ComInfoUpdateDetail")
-	public String ComInfoUpdateDetail(Model model, CommCompany commCompany) {
-		
-		System.out.println("ComInfoUpdateDetail controller START...");
-		CommCompany commCompany1 = scms.comInfo(commCompany);
-		model.addAttribute("commCompany1", commCompany1);
-		return "sr/comInfoUpdateDetail";
-	}
 }
