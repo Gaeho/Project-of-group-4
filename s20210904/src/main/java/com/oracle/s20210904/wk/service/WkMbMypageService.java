@@ -43,4 +43,8 @@ public interface WkMbMypageService {
 
 	List<WkNotice> resConList(String mbid);
 
+	int repResumeUpdate(Resume resume);
+
+	void noticeDelete(String mbid);
+
 }

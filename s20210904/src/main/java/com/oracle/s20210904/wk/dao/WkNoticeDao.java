@@ -8,4 +8,8 @@ public interface WkNoticeDao {
 
 	List<WkNotice> resConList(String mbid);
 
+	int applyNoticeDelete(String mbid);
+
+	int resConNoticeDelete(String mbid);
+
 }

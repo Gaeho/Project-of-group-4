@@ -124,6 +124,7 @@
 </script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 <h1>mbMypageResumeUpdate</h1><p>
 <c:if test="${res_select_msg eq false }">
  없는 이력서 입니다
@@ -234,5 +235,6 @@
 		<input type="submit" value="작성완료">
 	</form>
 </c:if>
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

@@ -162,7 +162,7 @@
           from announce a, company c
          where a.com_id = c.com_id
          and a.anno_title LIKE '%'||#{annosearch}||'%'
-         and c.com_name LIKE '%'||#{annosearch}||'%'
+         or c.com_name LIKE '%'||#{annosearch}||'%'
          ) a
 		)
 		where rn between #{start} and #{end}
