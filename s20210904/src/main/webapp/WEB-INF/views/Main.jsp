@@ -226,7 +226,7 @@
                     <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                         <h2>구인구직은 코딩몬에서 </h2>
-                        <p class="lead mb-0"> 창의성 넘치는 인재들이 언제나 토론중인 코딩몬에서 IT인재를 찾아보세요! 이직, 구직을 원하는 프로그래머분들은 다양한 회사들을 여기에서 만날 수 있답니다. 블라블라 아무말1234 마이크테스트123</p>
+                        <p class="lead mb-0"> 창의성 넘치는 인재들이 언제나 토론중인 코딩몬에서 IT인재를 찾아보세요! <br>이직, 구직을 원하는 프로그래머분들은 다양한 회사들을 여기에서 만날 수 있답니다.</p>
                     </div>
                 </div>
                 <div class="row g-0">
@@ -240,7 +240,7 @@
                     <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-3.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                         <h2>Easy to Use & Fun to Use</h2>
-                        <p class="lead mb-0">코딩몬에서는 이력서 작성, 지원등 모든 과정이 직관적으로 디자인되어 있어 이용하기가 쉽답니다. 기업에게도 재능 넘치는 인재를 눈여겨두고 채용할 수 있는 많은 기능들이 있어요!</p>
+                        <p class="lead mb-0">코딩몬에서는 이력서 작성, 지원등 모든 과정이 직관적으로 디자인되어 있어 이용하기가 쉽답니다.<br> 기업에게도 재능 넘치는 인재를 눈여겨두고 채용할 수 있는 많은 기능들이 있어요!</p>
                     </div>
                 </div>
             </div>
@@ -254,21 +254,21 @@
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..." />
                             <h5>김점례</h5>
-                            <p class="font-weight-light mb-0">"코딩몬에 코드 눈팅하러 왔다가<br> 채용까지 되었지 모에용?<br> 코딩몬 짱짱 반박시 니말 맞음"</p>
+                            <p class="font-weight-light mb-0">"코딩몬에 코드 눈팅하러 왔다가<br> 채용까지 되었지 모에용?<br> 코딩몬 정말 최고예요!"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-2.jpg" alt="..." />
                             <h5>강춘식</h5>
-                            <p class="font-weight-light mb-0">"IT 스타트업체에서 <br>인사팀을 맡고 있어요<br> 저랑 게시판에서 싸우던 녀석들이<br>  이제 제 후임이 되었네요ㅎ <br>암튼 속는셈 치고 이용해보세요!"</p>
+                            <p class="font-weight-light mb-0">"IT 스타트업체에서 <br>인사팀을 맡고 있어요<br> 저랑 게시판에서 싸우던 녀석들이<br>이제 제 후임이 되었네요ㅎ <br>일단 한 번 이용해보세요!"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-3.jpg" alt="..." />
                             <h5>윤복희</h5>
-                            <p class="font-weight-light mb-0">"안녕하시죠? 관리자에영 <br>이상한 글 쓰면 바로 삭제하도록 <br>5분 대기중입니다. <br>다들 에티켓을 잘 지키도록하세용"</p>
+                            <p class="font-weight-light mb-0">"안녕하시죠? 관리자입니다 <br>편안하게 이용하시도록, <br>최선을 다하겠습니다 <br>감사합니다."</p>
                         </div>
                     </div>
                 </div>
@@ -276,10 +276,12 @@
         </section>
         <!-- Call to Action-->
         <section class="call-to-action text-white text-center" id="signup">
+        
+        
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
-                        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+                        <h2 class="mb-4">Ready to get started? Let's go!</h2>
                         <!-- Signup form-->
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
@@ -290,14 +292,17 @@
                         <!-- to get an API token!-->
                         <form class="form-subscribe" id="contactFormFooter" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
-                            <div class="row">
+                            
+                           <!-- 검색창  -->
+                       <!--      <div class="row">
                                 <div class="col">
                                     <input class="form-control form-control-lg" id="emailAddressBelow" type="email" placeholder="검색어를 입력하세요" data-sb-validations="required,email" />
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:required">Email Address is required.</div>
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:email">Email Address Email is not valid.</div>
                                 </div>
                                 <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">검색</button></div>
-                            </div>
+                            </div> -->
+                            
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -316,8 +321,9 @@
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                         </form>
                     </div>
-                </div>
+                </div>    
             </div>
+            
         </section>
         <!-- Footer-->
         <footer class="footer bg-light">
