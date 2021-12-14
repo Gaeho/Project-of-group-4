@@ -15,7 +15,7 @@
 	<% response.sendRedirect("main"); %>
 
 	<%-- <%response.sendRedirect("ComInfo"); %>--%>
-	<%response.sendRedirect("Comjoin");%>
+	<%-- <%response.sendRedirect("Comjoin");%> --%>
 
 
 
