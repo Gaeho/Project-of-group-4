@@ -9,8 +9,10 @@
 <body>
 
 	<%-- <%response.sendRedirect("CompanyMypage"); %> --%>
+
 	<%-- <%response.sendRedirect("AdminMain"); %> --%>
 	<%--<%response.sendRedirect("GmAnnoList"); --%>  
+
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
 	<% response.sendRedirect("main"); %>
 
@@ -21,7 +23,7 @@
 
 	<%-- <%response.sendRedirect("applyDetail"); %>  --%>
 	<%-- <%response.sendRedirect("resumeDetail"); %> --%>
-	<%-- <%response.sendRedirect("applyDetail"); %> --%>
+
 
 </body>
 </html>

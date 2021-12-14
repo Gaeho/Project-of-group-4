@@ -320,7 +320,6 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				return result;
 			}
 			
-
 			
 			
 		}

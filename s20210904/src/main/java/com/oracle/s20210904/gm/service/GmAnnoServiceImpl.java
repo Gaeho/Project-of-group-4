@@ -238,7 +238,6 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				
 			}
 	 
-
 			@Override
 			public List<ComAnnounce> listsearchAnno(ComAnnounce comAnnounce) {
 				
@@ -251,7 +250,6 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				return ad.searchtotal(annosearch);
 			}
 	
-
 
 	
 	
