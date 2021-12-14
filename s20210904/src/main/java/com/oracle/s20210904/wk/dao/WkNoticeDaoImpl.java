@@ -30,6 +30,44 @@ public class WkNoticeDaoImpl implements WkNoticeDao{
 		}
 		return list;
 	}
+
+
+	@Override
+	public int applyNoticeDelete(String mbid) {
+		System.out.println("WkNoticeDaoImpl applyNoticeDelete()");
+		int result=0;
+		try {
+			result=session.delete("WkNoticeApplyDelete", mbid);
+			result=session.update("WkApplyNoticeDelete", mbid);
+			if(result>0) {
+				
+			}
+		} catch (Exception e) {
+			System.out.println("WkNoticeDaoImpl applyNoticeDelete() error : "+e.getMessage());
+			throw new RuntimeException();
+		}
+		return result;
+		
+	}
+
+
+	@Override
+	public int resConNoticeDelete(String mbid) {
+		System.out.println("WkNoticeDaoImpl resConNoticeDelete()");
+		int result=0;
+		try {
+			result=session.delete("WkNoticeResConDelete", mbid);
+			result=session.update("WkResConNoticeDelete", mbid);
+			if(result>0) {
+				
+			}
+		} catch (Exception e) {
+			System.out.println("WkNoticeDaoImpl resConNoticeDelete() error : "+e.getMessage());
+			throw new RuntimeException();
+		}
+		return result;
+		
+	}
 	
 	
 }

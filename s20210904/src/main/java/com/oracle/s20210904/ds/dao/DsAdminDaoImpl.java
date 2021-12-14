@@ -11,6 +11,7 @@ import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.Post;
 import com.oracle.s20210904.comm.model.Member;
+import com.oracle.s20210904.comm.model.NoticeApplyAnno;
 import com.oracle.s20210904.ds.model.AnnounceCnt;
 import com.oracle.s20210904.ds.model.DsComm;
 
@@ -159,5 +160,43 @@ public class DsAdminDaoImpl implements DsAdminDao {
 	public int tagInsert(Comm comm) {
 		int result = session.insert("DsInsertTag",comm);
 		return result;
+	}
+	
+	@Override
+	public int alramCnt(String id) {
+		int result = session.selectOne("alramCnt",id);
+		
+		return result;
+	}
+	
+	@Override
+	public List<NoticeApplyAnno> alramList(String id) {
+		 List<NoticeApplyAnno> alramList = session.selectList("DsAlramList",id);
+		return alramList;
+	}
+	
+	@Override
+	public List<Member> searchUserList(Member member) {
+		List<Member> userList = session.selectList("DsSearchUser",member);
+		return userList;
+	}
+	
+	@Override
+	public int searchTotCnt(String searchTxt) {
+		int mtotCnt = session.selectOne("DsSearchTotCnt",searchTxt);
+		return mtotCnt;
+	}
+	
+	@Override
+	public List<DsComm> getMainCateList(DsComm dsComm) {	
+		List<DsComm> commList = session.selectList("DsMainCateList",dsComm);
+		return commList;
+
+	}
+	
+	@Override
+	public int mainCateCnt(String main_cat) {
+		int ttotCnt = session.selectOne("DsMainCateCnt",main_cat);
+		return ttotCnt;
 	}
 }

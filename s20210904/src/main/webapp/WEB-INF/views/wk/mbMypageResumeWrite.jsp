@@ -118,6 +118,7 @@
 
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 <h1>이력서작성</h1>
 <form action="mbMypageResumeWritePro" method="post">
 	<input type="hidden" value="${mbid }" name="user_id">
@@ -190,6 +191,6 @@
 	
 	<input type="submit" value="작성완료">
 </form>
-
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

@@ -42,7 +42,7 @@ public class DjAnnoWriteController {
 	//@RequestMapping("AnnoWrite_check")
 	private String check_anno(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String cid = (String) session.getAttribute("cbid");
+		String cid = (String) session.getAttribute("cmid");
 		//com_id의 항목이 넘어오기 때문에 회원(user_id)이 이 페이지를 로드하려고 하면 메인으로 튕길 것
 			
 		if(cid==null || cid.equals("")){              

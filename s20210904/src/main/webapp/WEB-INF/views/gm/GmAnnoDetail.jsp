@@ -120,9 +120,9 @@
 						<div>
 							<h3><근무조건></h3>
 							<table class="table">
-								<tr><th>급여정보</th><td>${comanno.pay_info}원</td></tr>
-								<tr><th>근무조건</th><td>${comanno.work_cdt}</td></tr>
-								<tr><th>복리후생</th><td>${comanno.etc_cdt}</td></tr>
+								<tr><th>급여정보</th><td class="table align-middle">${comanno.pay_info}원</td></tr>
+								<tr><th>근무조건</th><td class="table align-middle">${comanno.work_cdt}</td></tr>
+								<tr><th>복리후생</th><td class="table align-middle">${comanno.etc_cdt}</td></tr>
 							</table>
 						</div>	
 					</div>
@@ -146,6 +146,7 @@
 						<tr><th>사업<p>내용</th><td>${comanno.com_bus}</td></tr>
 						<tr><th>홈페<p>이지</th><td>${comanno.com_web}</td></tr>
 					</table>	
+
 				</div>		
 				<!----------------------------------------------------------------------------------->
 				

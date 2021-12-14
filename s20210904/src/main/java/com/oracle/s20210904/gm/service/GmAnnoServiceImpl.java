@@ -238,8 +238,18 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				
 			}
 	 
-			
+			@Override
+			public List<ComAnnounce> listsearchAnno(ComAnnounce comAnnounce) {
+				
+				return ad.listsearchAnno(comAnnounce);
+			}
 
+			@Override
+			public int searchtotal(String annosearch) {
+				
+				return ad.searchtotal(annosearch);
+			}
+	
 	
 	
 	

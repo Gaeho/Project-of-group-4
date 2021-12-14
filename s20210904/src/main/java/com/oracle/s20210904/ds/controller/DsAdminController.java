@@ -23,7 +23,7 @@ public class DsAdminController {
 	@Autowired
 	DsAdminService dsAdminService;
 	
-	@GetMapping(value="AdminMain")
+	@GetMapping(value="admin/AdminMain")
 	public String AdminMain(Model model) {
 		// 가입승인 대기중인놈들 가져옵니다
 		List<Company> waitComList = dsAdminService.getWaitCompany(); 
@@ -48,21 +48,30 @@ public class DsAdminController {
 		return "ds/AdminMain";
 	}
 	
-	@GetMapping(value="memberMenu")
+	@GetMapping(value="admin/memberMenu")
 	public String memberMenu(Member member, Model model, String currentPage, String searchTxt) {
+		List<Member> userList = null;
+		int mtotCnt = 0;
+		//검색이니?
+		if(searchTxt == null || searchTxt.equals("")) {
+			mtotCnt = dsAdminService.totCnt();
+		}else {
+			mtotCnt = dsAdminService.searchTotCnt(searchTxt);
+		}
 		
-		int mtotCnt = dsAdminService.totCnt();
-		System.out.println("mtotCnt->"+mtotCnt);
-		
+		//페이징해주자
 		Paging pg = new Paging(mtotCnt,currentPage);
-		
 		member.setStart(pg.getStart());   // 1
 		member.setEnd(pg.getEnd());       // 10
 		
-		List<Member> userList = dsAdminService.getUserList(member);
+		//검색이니?
+		if(searchTxt == null || searchTxt.equals("")) {
+			userList = dsAdminService.getUserList(member);
+		}else {
+			member.setUser_id(searchTxt);
+			userList = dsAdminService.searchUserList(member);
+		}
 		
-		System.out.println("userList.size()->"+userList.size());
-
 		
 		model.addAttribute("mtotCnt",mtotCnt);
 		model.addAttribute("userList",userList);
@@ -70,7 +79,7 @@ public class DsAdminController {
 		return "ds/memberMenu";
 	}
 	
-	@GetMapping(value="companyMenu")
+	@GetMapping(value="admin/companyMenu")
 	public String companyMenu(Company com, Model model, String currentPage, String currentPage2) {
 		int ctotCnt = dsAdminService.ctotCnt();
 		Paging pg = new Paging(ctotCnt,currentPage);
@@ -96,7 +105,7 @@ public class DsAdminController {
 		return "ds/companyMenu";
 	}
 	
-	@GetMapping(value="boardMenu")
+	@GetMapping(value="admin/boardMenu")
 	public String boardMenu(Model model ,String currentPage, String currentPage2) {
 		Post post = new Post();
 		// Qna 리스트 페이징~
@@ -123,18 +132,39 @@ public class DsAdminController {
 		return "ds/boardMenu";
 	}
 	
-	@GetMapping(value="tagMenu")
-	public String tagMenu(DsComm dsComm,Model model, String currentPage) {
-		int ttotCnt = dsAdminService.ttotCnt();
+	@GetMapping(value="admin/tagMenu")
+	public String tagMenu(DsComm dsComm,Model model, String currentPage, String main_cat) {
+		int ttotCnt = 0;
+		System.out.println("main_cat =" + main_cat);
+		
+		if(main_cat==null || main_cat.equals("")) {
+			ttotCnt = dsAdminService.ttotCnt();
+		}else {
+			ttotCnt = dsAdminService.mainCateCnt(main_cat);
+		}
+		
 		Paging pg = new Paging(ttotCnt,currentPage);
 		dsComm.setStart(pg.getStart());
 		dsComm.setEnd(pg.getEnd());
-		List<DsComm> dsCommList = dsAdminService.getDsCommList(dsComm);
 		
+		List<DsComm> dsCommList = null;
+	
+		if(main_cat==null || main_cat.equals("")) {
+			System.out.println("검색아님~");
+			dsCommList = dsAdminService.getDsCommList(dsComm);
+		}else {
+			System.out.println("검색임~");
+			dsComm.setMain_cat(main_cat);
+			dsCommList = dsAdminService.getMainCateList(dsComm);
+		}
+
+		System.out.println("ttotCnt =" +ttotCnt);
+		System.out.println("dsCommList =" +dsCommList.size());
 		// modal 대분류
-		List<Comm> mainCate = dsAdminService.getMainCate();
-		model.addAttribute("mainCate",mainCate);
+		List<Comm> mainCate = dsAdminService.getMainCate();;
 		
+		model.addAttribute("main_cat",main_cat);
+		model.addAttribute("mainCate",mainCate);
 		model.addAttribute("dsCommList",dsCommList);
 		model.addAttribute("ttotCnt",ttotCnt);
 		model.addAttribute("pg",pg);
@@ -146,7 +176,7 @@ public class DsAdminController {
 	public String tagInsert(Comm comm) {
 		int result = dsAdminService.tagInsert(comm);
 		System.out.println("잘됐지?"+result);
-		return "redirect:/tagMenu";
+		return "redirect:/admin/tagMenu";
 	}
 
 }
