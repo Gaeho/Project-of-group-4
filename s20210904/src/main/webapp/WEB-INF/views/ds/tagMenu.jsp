@@ -3,15 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <%
-	String context = request.getContextPath();
+	String context1 = request.getContextPath();
 %>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/ds/admin.css" type="text/css">
-<link rel="stylesheet" href="css/reset.css" type="text/css">
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <script type="text/javascript">
 	function modalOn() {
@@ -23,7 +20,7 @@
 	
 	function maxSubCate(VmainCate){
 		$.ajax({
-			url:"<%=context%>/maxSubCate",
+			url:"<%=context1%>/maxSubCate",
 			data:{mainCate : VmainCate},
 			dataType:'text',
 			success:function(data){
@@ -36,30 +33,17 @@
 </script>
 <body>
 	<div class="body">
-
-		<div class="nav">
-			<div class="alram">
-				<span class="alram_btn"> <img src="#"><a href="boardMenu">미답변</a>&nbsp;&nbsp;
-										 <img src="#"><a href="companyMenu">미승인</a>
-				</span>
-			</div>
-			<div class=navBtn>
-				<a href="#" class="logo"><img src="img/ds/logo.png" width="100%" height="50px"></a>
-				<hr class="line"> 
-				<a href="AdminMain"><span>대시보드</span></a>
-				<hr class="line">
-				<a href="memberMenu"><span>회원관리</span></a>
-				<hr class="line">
-				<a href="companyMenu"><span>기업관리</span></a>
-				<hr class="line">
-			 	<a href="tagMenu"><span>태그관리</span></a>
-			 	<hr class="line">
-			 	<a href="boardMenu"><span>게시판관리</span></a>
-			 </div>
-		</div>
+<%@ include file="/WEB-INF/views/ds/AdminNav.jsp" %>
 		<div id="memberListbox" class="memberListbox" >
 				<span class="subject">태그관리</span>
-				<span class="search"><input type="text" class="searchTxt"><input type="button" value="검색" class="searchBtn"></span>
+				<span class="search">
+						<select onchange="location.href='tagMenu?main_cat='+this.value">
+							<option value="0">전체</option>
+							<c:forEach var="mainCate" items="${mainCate }">
+								<option value="${mainCate.main_cat}">${mainCate.comm_ctx}</option>
+							</c:forEach>
+						</select>
+				</span>
 				<span class="addTag"><input type="button" value="태그추가" onclick="modalOn()"></span>
 				<table class="tagList">
 					<tr class="title">
@@ -78,21 +62,20 @@
 				</table>
 				<ul class="pageBtn">
 					<li><c:if test="${pg.startPage > pg.pageBlock }">
-						<a href="tagMenu?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a></c:if>
+						<a href="tagMenu?currentPage=${pg.startPage-pg.pageBlock}&main_cat=${main_cat}">[이전]</a></c:if>
 					</li>
 					<li><c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-						<a href="tagMenu?currentPage=${i}">[${i}]</a></c:forEach>
+						<a href="tagMenu?currentPage=${i}&main_cat=${main_cat}">[${i}]</a></c:forEach>
 					</li>
 					<li><c:if test="${pg.endPage < pg.totalPage }">
-						<a href="tagMenu?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a></c:if>
+						<a href="tagMenu?currentPage=${pg.startPage+pg.pageBlock}&main_cat=${main_cat}">[다음]</a></c:if>
 					</li>
 				</ul>
 
 		</div>
 	</div>
 	<div class="modalBack">
-
-			<form action="tagInsert">
+			<form action="<%=context%>/tagInsert">
 				<div class="modal">
 					<span>대번호 					
 						<select onchange="maxSubCate(this.value)" name="main_cat">

@@ -9,11 +9,10 @@
 <body>
 
 	<%-- <%response.sendRedirect("CompanyMypage"); %> --%>
-
 	<%-- <%response.sendRedirect("AdminMain"); %> --%>
-	 <%--<%response.sendRedirect("GmAnnoList"); --%>  
+	<%--<%response.sendRedirect("GmAnnoList"); --%>  
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
-	<%-- <% response.sendRedirect("main"); %> --%>
+	<% response.sendRedirect("main"); %>
 
 	<%-- <%response.sendRedirect("ComInfo"); %>--%>
 	<%response.sendRedirect("Comjoin");%>
@@ -22,8 +21,7 @@
 
 
 
-
-	<%--  <%response.sendRedirect("applyDetail"); %>  --%>
+	<%-- <%response.sendRedirect("applyDetail"); %>  --%>
 	<%-- <%response.sendRedirect("resumeDetail"); %> --%>
 
 </body>
