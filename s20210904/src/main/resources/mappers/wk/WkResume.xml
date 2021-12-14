@@ -48,4 +48,12 @@
 		and res_code=#{res_code}
 	</update>
 	
+	<update id="WkRepResumeUpdate" parameterType="Resume">
+		update S20210904.RESUME
+		set rep_res=#{rep_res}
+		where user_id=#{user_id}
+		and res_code=#{res_code}
+	</update>
+	
+	
 </mapper>

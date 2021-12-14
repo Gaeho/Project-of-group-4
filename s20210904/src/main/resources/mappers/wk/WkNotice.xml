@@ -19,5 +19,28 @@
 		order by rc.res_date desc
 	</select>
 	
+	<delete id="WkNoticeApplyDelete" parameterType="String">
+		delete from notice
+		where user_id=#{mbid}
+		and ntc_ctg='002'
+	</delete>
+	
+	<update id="WkApplyNoticeDelete" parameterType="String">
+		update apply
+		set user_ntc_code=null
+		where user_id=#{mbid}
+	</update>
+	
+	<delete id="WkNoticeResConDelete" parameterType="String">
+		delete from notice
+		where user_id=#{mbid}
+		and ntc_ctg='003'
+	</delete>
+	
+	<update id="WkResConNoticeDelete" parameterType="String">
+		update resume_contect
+		set ntc_code=null
+		where user_id=#{mbid}
+	</update>
 	
 </mapper>

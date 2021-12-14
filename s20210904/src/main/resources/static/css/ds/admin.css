@@ -11,6 +11,8 @@
 }
 
 .alram_btn{
+	display: flex;
+    align-items: center;
 	margin: auto;
 }
 
@@ -49,7 +51,8 @@
 	width: 100%;
 }
 .logo{
-	margin: 5% auto !important;
+	margin-top: 7% !important;
+    margin-bottom: 2% !important;
 }
 
 
@@ -283,5 +286,6 @@
 }
 
 .boardTable{
+	text-align: center;
 	margin-top: 70px;
 }
