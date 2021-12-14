@@ -98,6 +98,7 @@
 </script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 <h1>마이페이지수정페이지</h1>
 <form id="mypage_form" action="mbMypageUpdatePro" method="post">
 
@@ -129,7 +130,7 @@
 	<input type="submit" value="확인" id="submit_btn"> <input type="button" value="취소"><br>
 
 </form>
-
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
 

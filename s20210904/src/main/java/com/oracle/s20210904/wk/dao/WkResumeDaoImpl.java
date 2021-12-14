@@ -84,7 +84,6 @@ public class WkResumeDaoImpl implements WkResumeDao{
 		System.out.println("WkResumeDaoImpl resumeUpdate()");
 		int result=0;
 		try {
-
 			result=session.update("WkResumeUpdate", resume);
 		} catch (Exception e) {
 			System.out.println("WkResumeDaoImpl resumeUpdate() error : "+e.getMessage());
@@ -92,6 +91,22 @@ public class WkResumeDaoImpl implements WkResumeDao{
 		}
 		return result;
 	}
+
+
+	@Override
+	public int repResumeUpdate(Resume resume) {
+		System.out.println("WkResumeDaoImpl repResumeUpdate()");
+		int result=0;
+		try {
+			result=session.update("WkRepResumeUpdate", resume);
+		} catch (Exception e) {
+			System.out.println("WkResumeDaoImpl repResumeUpdate() error : "+e.getMessage());
+			throw new RuntimeException();
+		}
+		return result;
+	}
+
+
 	
 	
 	
