@@ -1,53 +1,89 @@
 package com.oracle.s20210904.sy.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Post;
-import com.oracle.s20210904.sy.service.SyPostMapper;
+import com.oracle.s20210904.sy.model.PostSearch;
 
 @Service("SyPostDaoImpl")
 public class SyPostDaoImpl implements SyPostDao {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	
-	//게시글 목록 조회
+
 	@Override
-	public List<Post> selectPost(Post post) throws Exception {
-		SyPostMapper mapper = sqlSession.getMapper(SyPostMapper.class);
-		return mapper.selectPost(post);
+	public List<Post> postSelect(PostSearch postSearch) throws Exception {
+		/* List<Post> postSelect = null; */
+		return sqlSession.selectList("postSelect", postSearch);
+
 	}
 	
-	// 게시글 작성
 	@Override
-	public void insertPost(Post post) throws Exception {
-		SyPostMapper mapper = sqlSession.getMapper(SyPostMapper.class);
-		mapper.insertPost(post);
-	}
-	
-	// 게시글 조회
-	@Override
-	public Post selectPostDetail(Post post) throws Exception {
-		SyPostMapper mapper = sqlSession.getMapper(SyPostMapper.class);
-		return mapper.selectPostDetail(post);
-	}
-	
-	// 게시글 수정
-	@Override
-	public void updatePost(Post post) throws Exception {
-		SyPostMapper mapper = sqlSession.getMapper(SyPostMapper.class);
-		mapper.updatePost(post);
-	}
-	
-	// 게시글 삭제
-	@Override
-	public void deletePost(Post post) throws Exception {
-		SyPostMapper mapper = sqlSession.getMapper(SyPostMapper.class);
-		mapper.deletePost(post);
+	public void postInsert(Post post) throws Exception {
 		
+		sqlSession.insert("postInsert", post);
+	}
+
+/*	@Override
+	public Post postView(int post_code) throws Exception {
+		
+		return sqlSession.selectOne("postView", post_code);
+	} */
+	
+	@Override
+	public List<Post> postView(int post_code) throws Exception {
+		
+		return sqlSession.selectList("postView", post_code);
+	}
+
+	@Override
+	public void postUpdate(Post post) throws Exception {
+		
+		sqlSession.update("postUpdate", post);
+	}
+
+	@Override
+	public void postDelete(String user_id) throws Exception {
+		
+		sqlSession.delete("postDelete", user_id);	
+	}
+	
+/*	@Override
+	public int total(PostSearch postSearch) throws Exception {
+		
+		int total = 0;
+		total = sqlSession.selectOne("postTotal");
+		
+		return total;
+	} */
+	
+	@Override
+	public List<Post> total(PostSearch postSearch) throws Exception {
+		
+		return sqlSession.selectList("postTotal", postSearch);
+		
+	}
+
+	@Override
+	public boolean postReply(Post post) {
+		
+		sqlSession.insert("postReply", post);
+		
+		return true;
+	}
+
+	@Override
+	public List<Post> postGetReply(int post_code) {
+		
+		List<Post> postGetReply = null;
+		postGetReply = sqlSession.selectList("postGetReply", post_code);
+		
+		return postGetReply;
 	}
 }
