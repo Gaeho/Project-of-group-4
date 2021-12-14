@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +19,11 @@
 							Password : <input type="text" name="com_pw">
 					</div>
 					<p>
-					<div id="deletetext2">
-						<button class="pwCheckBtn" type="submit" value="확인">확인</button>
-						<button class="pwCheckBtn" value="취소" onclick="location.href=''">취소</button>
-					</div>
+					<c:if test="">
+					
+					</c:if>
+						<button class="pwCheckBtn" onclick="">취소</button>
+						<button class="pwCheckBtn" onclick="ComInfoUpdateDetail">확인</button>
 				</div>
 			</form>
 		</div>

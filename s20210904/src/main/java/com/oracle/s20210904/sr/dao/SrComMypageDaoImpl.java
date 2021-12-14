@@ -8,14 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
-import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.Resume;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.CommResMemBook;
 import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Repository
@@ -137,32 +138,29 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		
 		// 북마크 개인 상세
 		@Override
-		public CommMemResume userdetail(String user_id) {
+		public CommResMemBook userdetail(CommResMemBook commResMemBook, Integer isResume) {
 			System.out.println("SrComMypageDaoImpl userdetail Start...");
-			CommMemResume mem = null;
+			CommResMemBook mem = null;
+//			System.out.println("컨트롤러에서 넘어온 user_id=>"+mem.user_id);
+//			System.out.println("컨트롤러에서 넘어온 mrk_res_code=>"+mrk_res_code);
 			try {
-				mem = session.selectOne("SrUserDetail", user_id);
-				System.out.println("Dao mem.getUser_name()->"+mem.getUser_name());
-				System.out.println("Dao mem.getUser_addr()->"+mem.getUser_addr());
+				if(isResume != null && isResume == 1) {
+					mem = session.selectOne("SrUserDetail2", commResMemBook);
+				} else {
+					mem = session.selectOne("SrUserDetail", commResMemBook);
+				}
+				System.out.println("SrComMypageDaoImpl mem.getUser_name()=>"+mem.getUser_name());
+				System.out.println("SrComMypageDaoImpl mem.getUser_addr()=>"+mem.getUser_addr());
+				System.out.println("SrComMypageDaoImpl mem.getJobTag()=>" + mem.getJobTag());
+				System.out.println("SrComMypageDaoImpl mem.getHsMjr()=>" + mem.getHsMjr());
+				System.out.println("SrComMypageCDaoImpl mem.getTag1()=>" + mem.getTag1());
+				System.out.println("SrComMypageDaoImpl mem.getTag2()=>" + mem.getTag2());
+				System.out.println("SrComMypageDaoImpl mem.getTag3()=>" + mem.getTag3());
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl userdetail error"+e.getMessage());
 			}
 			
 			return mem;
-		}
-
-		// 공통 테이블에서 원하는 직종 가져오기
-		@Override
-		public Comm jobtag(CommMemResume mem) {
-			System.out.println("SrComMypageDaoImpl jobtag Start...");
-			Comm jobtag = null;
-			try {
-				jobtag = session.selectOne("SrJobTag", mem);
-				System.out.println("Dao jobtag.getComm_ctx()->"+jobtag.getComm_ctx());
-			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl jobtag error"+e.getMessage());
-			}
-			return jobtag;
 		}
 
 		// 북마크 유무
@@ -204,64 +202,6 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			
 		}
 		
-		// 고등학교 계열
-		@Override
-		public Comm hsmjr(CommMemResume mem) {
-			System.out.println("SrComMypageDaoImpl hsmjr Start...");
-			Comm hsmjr = null;
-			try {
-				hsmjr = session.selectOne("SrHsmjr", mem);
-				System.out.println("SrComMypageDaoImpl hsmjr.getComm_ctx()->"+hsmjr.getComm_ctx());
-			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl hsmjr error"+e.getMessage());
-			}
-			return hsmjr;
-		}
-
-		// 이력서 tag1
-		@Override
-		public Comm restag1(CommMemResume mem) {
-			System.out.println("SrComMypageDaoImpl restag1 Start...");
-			Comm restag1 = null;
-			try {
-				restag1 = session.selectOne("SrRestag1", mem);
-				System.out.println("SrComMypageDaoImpl restag1.getComm_ctx()->"+restag1.getComm_ctx());
-			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl restag1 error"+e.getMessage());
-			}
-			return restag1;
-		}
-		
-		// 이력서 tag2
-		@Override
-		public Comm restag2(CommMemResume mem) {
-			System.out.println("SrComMypageDaoImpl restag2 Start...");
-			Comm restag2 = null;
-			try {
-				restag2 = session.selectOne("SrRestag2", mem);
-				System.out.println("SrComMypageDaoImpl restag2.getComm_ctx()->"+restag2.getComm_ctx());
-			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl restag2 error"+e.getMessage());
-			}
-			return restag2;
-		}
-		
-		// 이력서 tag3
-		@Override
-		public Comm restag3(CommMemResume mem) {
-			System.out.println("SrComMypageDaoImpl restag3 Start...");
-			Comm restag3 = null;
-			try {
-				restag3 = session.selectOne("SrRestag3", mem);
-				System.out.println("SrComMypageDaoImpl restag3.getComm_ctx()->"+restag3.getComm_ctx());
-			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl restag3 error"+e.getMessage());
-			}
-			return restag3;
-		}
-
-			
-
 		//열람 기록 있는지 Check 
 		@Override
 		public ResumeContect findRC(ResumeContect resumeContect) {
@@ -317,6 +257,20 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		public Member member4(Member member) {
 			Member member5=session.selectOne("SrComPWForComINfo", member);
 			return member5;
+		}
+
+
+		@Override
+		public List<Resume> userIdListbyResume(Resume resume) {
+			List<Resume> resume2=session.selectList("SrUser_idListByResume", resume);
+			return resume2;
+		}
+
+
+		@Override
+		public CommMemResume comAppStatusListDetail(String user_id) {
+			CommMemResume comAppStatusListDetail=session.selectOne("SrComAppStatusListDetail", user_id);
+			return comAppStatusListDetail;
 		}
 
 

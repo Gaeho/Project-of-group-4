@@ -8,15 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
-import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.Resume;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.dao.SrComMypageDao;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.CommResMemBook;
 import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 @Service
@@ -95,23 +96,13 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		
 	// 북마크 개인 상세
 	@Override
-	public CommMemResume userdetail(String user_id) {
+	public CommResMemBook userdetail(CommResMemBook commResMemBook, Integer isResume) {
 		System.out.println("SrComMypageServiceImpl userdetail Start...");
-		CommMemResume mem = scmd.userdetail(user_id);
-		System.out.println("Service mem.getUser_name()->"+mem.getUser_name());
-		System.out.println("Service mem.getUser_addr()->"+mem.getUser_addr());
+		CommResMemBook mem = scmd.userdetail(commResMemBook, isResume);
+//		System.out.println("Service mem.getUser_name()->"+mem.getUser_name());
+//		System.out.println("Service mem.getUser_addr()->"+mem.getUser_addr());
 	
 		return mem;
-	}
-
-	// 공통 테이블에서 원하는 직종 가져오기
-	@Override
-	public Comm jobtag(CommMemResume mem) {
-		System.out.println("SrComMypageServiceImpl jobtag Start...");
-		Comm jobtag = scmd.jobtag(mem);
-		System.out.println("SrComMypageServiceImpl jobtag.getComm_ctx()->"+jobtag.getComm_ctx());
-		
-		return jobtag;
 	}
 
 	// 북마크 유무
@@ -145,49 +136,6 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 			return memResumeBmarkList;
 		}
 
-	// 고등학교 계열
-	@Override
-	public Comm hsmjr(CommMemResume mem) {
-		System.out.println("SrComMypageServiceImpl hsmjr Start...");
-		Comm hsmjr = scmd.hsmjr(mem);
-		System.out.println("SrComMypageServiceImpl hsmjr.getComm_ctx()->"+hsmjr.getComm_ctx());
-		
-		return hsmjr;
-	}
-
-	// 이력서 tag1
-	@Override
-	public Comm restag1(CommMemResume mem) {
-		System.out.println("SrComMypageServiceImpl restag1 Start...");
-		Comm restag1 = scmd.restag1(mem);
-		System.out.println("SrComMypageServiceImpl restag1.getComm_ctx()->"+restag1.getComm_ctx());
-		
-		return restag1;
-	}
-	
-	// 이력서 tag2
-	@Override
-	public Comm restag2(CommMemResume mem) {
-		System.out.println("SrComMypageServiceImpl restag2 Start...");
-		Comm restag2 = scmd.restag2(mem);
-		System.out.println("SrComMypageServiceImpl restag2.getComm_ctx()->"+restag2.getComm_ctx());
-		
-		return restag2;
-	}
-	
-	// 이력서 tag3
-	@Override
-	public Comm restag3(CommMemResume mem) {
-		System.out.println("SrComMypageServiceImpl restag3 Start...");
-		Comm restag3 = scmd.restag3(mem);
-		System.out.println("SrComMypageServiceImpl restag3.getComm_ctx()->"+restag3.getComm_ctx());
-		
-		return restag3;
-	}
-
-
-
-	
 	//열람 기록 있는지 Check
 	@Override
 	public ResumeContect findRC(ResumeContect resumeContect) {
@@ -216,6 +164,20 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		Member member3=scmd.member4(member);
 		return member3;
 	}
+
+	@Override
+	public List<Resume> userIdListbyResume(Resume resume) {
+		List<Resume> resume2=scmd.userIdListbyResume(resume);
+		return resume2;
+	}
+
+	@Override
+	public CommMemResume comAppStatusListdetail(String user_id) {
+		CommMemResume comAppStatusListdetail=scmd.comAppStatusListDetail(user_id);
+		return comAppStatusListdetail;
+	}
+
+
 
 	
 

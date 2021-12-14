@@ -3,11 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="header.jsp"%>
 <link href="css/sr/comMypage.css" rel="stylesheet" type="text/css">
+<%-- <%
+	String context = request.getContextPath();
+% --%>
+>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ComMypage</title>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <style type="text/css">
 .testcss {
 	width: 150px;
@@ -46,6 +53,21 @@
 	border: 1px solid black;
 }
 </style>
+<!-- <script type="text/javascript">
+	function ComAppStatus(id){
+		alert(id);
+		$.ajax({
+			url:"<$=context%>/ComAppStatus",
+			data:{id1:id},
+			dataType:'text',
+			success:function(data){
+				alert("성공");
+			}
+		})
+	} -->
+	
+</script>
+
 </head>
 <body>
 	<div class="CompanyMypageContainer">
@@ -60,39 +82,50 @@
 		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
 		<div class="compAppStatus_out">
 			<div class="compAppStatus_btn">
-				<input type="button" value="진행중()" onclick="location.href='ComAppStatus?id=0'">
-				<input type="button" value="마감()" onclick="location.href='ComAppStatus?id=1'">
-			</div>
-			<div class="compAppStatus_in">
-
+				<!-- <input type="button" value="진행중()" onclick="location.href='ComAppStatus?id=0'"> -->
+			<!-- 	<select onchange="location.href='ComAppStatus?id=0'"> -->
+			<form action="ComAppStatus">
+			    <input type="hidden" name="id" value="0">
+				<select id="aaaa">
+					<option value="" selected disabled hidden>진행중</option>
+					<option value="one">공고1</option>
+					<option value="two">공고 2</option>
+					<option value="three"<%-- ${ "selected":""} --%>>공고 3</option>
+				</select>
+				
 			
-					<%-- <div class="divTableCol">
-						<div class="divTableRow">${num}</div>
-					</div> --%>
-					 <!-- <a href="#" class="appAnnMem">  -->
-					 <table>
-						<tr>
-					      <th>회원프사</th><th>회원 아이디</th><th>지원날짜</th>
-					    </tr>
-					    
-					 <c:forEach var="appAnnMember" items="${appAnnMember }"> 
-					    <tr>
-					      <td><img class="MemImg" src="${appAnnMember.user_img}" /></td>
-					      <td><a href="detail2?user_id=${appAnnMember.user_id}" >${appAnnMember.user_id }</a></td>
-					      <td>${appAnnMember.app_regdate }</td>
-					    </tr>
-					
-				   
-						<%--  회원프사 : <img class="MemImg" src="${appAnnMember.user_img}" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						회원 아이디 :${appAnnMember.user_id }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<!-- <input type="button" value="합격" onclick="location.href='ComAppStatus?id=0'"> -->
-						 지원날짜 : ${appAnnMember.app_regdate }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-					 </a> --%>
-					
+				<!-- <input type="button" value="마감()" onclick="location.href='ComAppStatus?id=1'"> -->
+				<select onchange="location.href='ComAppStatus?id=1&공고번호=2'">
+					<option value="0" selected disabled hidden>마감</option>
+					<option value="1">공고 1</option>
+					<option value="2">공고 2</option>
+					<option value="3">공고 3</option>
+				</select>
+     </form>
+     <div>
+     	<input type="submit" value="선택" onclick="location.href='ComAppStatus?id=1'">
+     </div>
+			</div>
+			
+			<c:if test="${user_id eq null }">
+				<h3>지원자가 없습니다</h3>
+			</c:if>
+			<div class="compAppStatus_in">
+				<table>
+					<tr>
+						<th>회원프사</th>
+						<th>회원 아이디</th>
+						<th>지원날짜</th>
+					</tr>
 
-				<%-- 	<c:set var="num" value="${num - 1 }"></c:set> --%>
-				</c:forEach>
-				 </table>
+					<c:forEach var="appAnnMember" items="${appAnnMember }">
+						<tr>
+							<td><img class="MemImg" src="${appAnnMember.user_img}" /></td>
+							<td><a href="detail2?user_id=${appAnnMember.user_id }&com_id=${appAnnMember.com_id}&mrk_res_code=${appAnnMember.mrk_res_code}&isResume=1">${appAnnMember.user_id}</a></td>
+							<td>${appAnnMember.app_regdate }</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</div>
 	</div>

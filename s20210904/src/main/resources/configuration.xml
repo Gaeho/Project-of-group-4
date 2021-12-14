@@ -34,6 +34,6 @@
 		<typeAlias alias="MemResumeBmark" type="com.oracle.s20210904.sr.model.MemResumeBmark"/>
 		<typeAlias alias="DjSearch" type="com.oracle.s20210904.dj.model.DjSearch"/>
 		<typeAlias alias="CommMemResume" type="com.oracle.s20210904.sr.model.CommMemResume"/>
-		
+		<typeAlias alias="CommResMemBook" type="com.oracle.s20210904.sr.model.CommResMemBook"/>
 	</typeAliases>
 </configuration>
