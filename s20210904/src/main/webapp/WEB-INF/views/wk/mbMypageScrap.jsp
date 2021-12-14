@@ -8,12 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 <h1>스크랩(${scarpcount })</h1>
 <table>
 	<tr><th>기업명</th><th>공고명</th><th>경력</th><th>학력</th><th>급여</th><th>마감일</th></tr>
 	<c:forEach var="scarplist" items="${scarplist}">
 		<tr><td>${scarplist.com_name }+링크달아야됨</td>
-		    <td>${scarplist.anno_title }+링크달아야됨</td>
+		    <td><a href="detail?anno_code=${scarplist.anno_code }">${scarplist.anno_title }</a></td>
 			<td>${scarplist.comm_ctx }</td>
 			<td>${scarplist.rec_edu }</td>
 			<td>${scarplist.pay_info }</td>
@@ -21,5 +22,6 @@
 		</tr>
 	</c:forEach>
 </table>
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

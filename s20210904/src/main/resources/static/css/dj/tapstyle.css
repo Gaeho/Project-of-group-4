@@ -8,10 +8,41 @@
 	input[id="tab01"]:checked ~ .con1 {display:block;}
 	input[id="tab02"]:checked ~ .con2 {display:block;}
 	
+	.bigContainer_mainsearch{
+	 display: flex;
+	}
+	
+	.DjContainer{
+		margin: 0 auto;
+	}
+
+	
 	.tab_content{
-	min-height:800px;
+	min-height:1000px;
 	max-height: 1500px;
 	}
+	
+	.middle_container_mainsearch{
+		display: flex;
+	}
+	
+	.conbox con1{
+		margin: 0 auto;
+	}
+	
+	.conbox con2{
+		margin: 0 auto;
+	} 
+	
+	
+	.anno_search_result{
+		max-width: 80%;
+	}
+	
+	.com_search_result{
+		max-width: 80%;
+	}
+	
 	
 	.page11 {
 

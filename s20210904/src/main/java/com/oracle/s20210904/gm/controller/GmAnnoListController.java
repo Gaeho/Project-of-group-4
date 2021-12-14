@@ -41,11 +41,32 @@ public class GmAnnoListController {
 	}
 	*/
 	
+	//공고리스트
 	@RequestMapping(value = "GmAnnoList")
-	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model) {
+	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model,String annosearch) {
 		System.out.println("GmAnnoListController Start List...");
-		int total = as.total();
+		//원본토탈
+		//int total = as.total();
+		
+		int total = 0;
+		//띄어쓰기 제거
+		if(annosearch!=null) {
+			System.out.println("annosearch->"+annosearch);
+			String annosearch1 = annosearch.replaceAll("\\s+","");
+			total = as.searchtotal(annosearch1);
+			System.out.println("변환된 annosearch1 내용->"+annosearch1);
+			System.out.println("검색어 있을 때의 total->"+total);	
+			comAnnounce.setAnnosearch(annosearch1);
+			model.addAttribute("annosearch1", annosearch1);
+		} else if (annosearch==null) {
+			total = as.total();
+			System.out.println("검색어 없을 때의 total->"+total);	
+		}
+		
+		
 		System.out.println("GmAnnoList total->"+total);
+		System.out.println("GmAnnoList currentPage->"+currentPage);
+		System.out.println("GmAnnoList getAnnosearch->"+comAnnounce.getAnnosearch());
 		System.out.println("----------------------------------");
 		
 		// Paging
@@ -76,6 +97,11 @@ public class GmAnnoListController {
 		return "gm/GmAnnoList";
 		
 	}
+	
+	
+	
+	
+	
 	
 	@GetMapping(value = "detail")
 	public String detail(String anno_code, ComAnnounce com, Model model) {
@@ -162,7 +188,7 @@ public class GmAnnoListController {
 		System.out.println("------------------------------------");
 		
 		return "gm/GmAnnoDetail";
-		
+			
 	}
 	
 	/*

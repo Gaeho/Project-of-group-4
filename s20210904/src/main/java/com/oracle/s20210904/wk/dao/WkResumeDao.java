@@ -16,4 +16,7 @@ public interface WkResumeDao {
 	Resume resumeSelect(Resume resume);
 
 	int resumeUpdate(Resume resume);
+
+	int repResumeUpdate(Resume resume);
+
 }

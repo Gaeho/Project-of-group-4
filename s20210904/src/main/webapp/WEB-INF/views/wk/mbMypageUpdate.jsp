@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 <h1>마이페이지수정</h1><p>
 <form action="mbMypageUpdateForm" method="post">
 	비밀번호를 입력하세요<br>
@@ -15,6 +16,6 @@
 	<c:if test="${not empty msg }">${msg }<p></c:if>
 	<input type="submit" value="확인"> 
 </form>
-
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

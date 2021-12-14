@@ -36,7 +36,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 		List<ComAnnounce> annoList = null;
 		System.out.println("GmAnnoDaoImpl listAnno Start...");
 		try {
-			annoList = session.selectList("GmAnnoListAll", comAnnounce);
+			annoList = session.selectList("GmAnnoSearchList", comAnnounce);
 		} catch (Exception e) {
 			System.out.println("GmAnnoDaoImpl listAnno Exception"+e.getMessage());
 		}
@@ -291,6 +291,36 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				}
 			}
 			
+			@Override
+			public List<ComAnnounce> listsearchAnno(ComAnnounce comAnnounce) {
+				
+				List<ComAnnounce> result = null;
+				
+				try {
+					result= session.selectList("GmAnnoSearchList", comAnnounce);
+				} catch (Exception e) {
+					System.out.println("listsearchAnno에서 예외 발생!->"+e.getMessage());
+				}
+				
+				return result;
+			}
+
+			@Override//검색결과 페이징 위한 것
+			public int searchtotal(String annosearch) {
+				
+				int result = 0;
+				
+				try {
+					result = session.selectOne("GmAnnoSearch", annosearch);
+				} catch (Exception e) {
+					System.out.println("searchtotal에서 오류 발생"+e.getMessage());
+				}
+				
+				
+				return result;
+			}
+			
+
 			
 			
 		}

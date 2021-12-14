@@ -155,6 +155,33 @@
 	
 	
 	
+		<!-- 공고 List 검색 -->
+	<select id="GmAnnoSearchList" parameterType="ComAnnounce" resultType="ComAnnounce">
+		select *
+		from
+		(
+		  select rownum rn, a.*
+		  from (select a.anno_title, a.anno_code, a.anno_regdate, a.anno_c_regdate, a.rec_edu,
+                c.com_name
+          from announce a, company c
+         where a.com_id = c.com_id
+         and a.anno_title LIKE '%'||#{annosearch}||'%'
+         or c.com_name LIKE '%'||#{annosearch}||'%'
+         ) a
+		)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="GmAnnoSearch" parameterType="java.lang.String" resultType="int">
+		select count(*)
+		from(
+		select a.anno_title, a.anno_code, a.anno_regdate, a.anno_c_regdate, a.rec_edu,
+		                c.com_name
+		          from announce a, company c
+		         where a.com_id = c.com_id
+		         and a.anno_title LIKE '%'||#{annosearch}||'%'
+		         and c.com_name LIKE '%'||#{annosearch}||'%')
+	</select>
 
 
 </mapper>
