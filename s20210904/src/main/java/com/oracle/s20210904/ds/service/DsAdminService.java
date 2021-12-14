@@ -43,5 +43,7 @@ public interface DsAdminService {
 	List<NoticeApplyAnno> alramList(String id);
 	List<Member> searchUserList(Member member);
 	int searchTotCnt(String searchTxt);
+	int mainCateCnt(String main_cat);
+	List<DsComm> getMainCateList(DsComm dsComm);
 
 }

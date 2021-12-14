@@ -16,13 +16,12 @@
 	
 	<!-- 검색 멤바 카운타 -->
 	<select id="DsSearchTotCnt" resultType="int">
-		select count(*) from member where user_status=0 and user_id=#{searchTxt}
+		select count(*) from member where user_status=0 and user_id like '%'||#{user_id}||'%'
 	</select>
 	
-	DsSearchTotCnt
 	<!-- 검색 멤버 리스트 -->
 	<select id="DsSearchUser" resultType="Member" parameterType="Member">
-		select a.* from (select rownum rn, m.* from member m where user_status=0 and user_id=#{user_id} order by rn ) a
+		select a.* from (select rownum rn, m.* from member m where user_status=0 and user_id like '%'||#{user_id}||'%' order by rn ) a
 		where rn between #{start} and #{end}
 	</select>
 	

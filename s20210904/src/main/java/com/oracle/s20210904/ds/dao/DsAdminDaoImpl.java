@@ -186,4 +186,17 @@ public class DsAdminDaoImpl implements DsAdminDao {
 		int mtotCnt = session.selectOne("DsSearchTotCnt",searchTxt);
 		return mtotCnt;
 	}
+	
+	@Override
+	public List<DsComm> getMainCateList(DsComm dsComm) {	
+		List<DsComm> commList = session.selectList("DsMainCateList",dsComm);
+		return commList;
+
+	}
+	
+	@Override
+	public int mainCateCnt(String main_cat) {
+		int ttotCnt = session.selectOne("DsMainCateCnt",main_cat);
+		return ttotCnt;
+	}
 }

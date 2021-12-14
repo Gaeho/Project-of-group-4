@@ -82,7 +82,7 @@
               	<c:when test="${id == 'rhksflwk0000'}">						<!-- 관리자 한명만있음ㅋ -->
               		<ul class="nav">
               			<li><a class="btn btn-primary" href="logout">Logout</a></li>
-              			<li><a class="btn btn-primary btn-mypage" href="AdminMain">Admin</a><li>
+              			<li><a class="btn btn-primary btn-mypage" href="admin/AdminMain">Admin</a><li>
               			
               		</ul>
               	</c:when>

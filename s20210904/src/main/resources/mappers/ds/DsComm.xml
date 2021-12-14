@@ -29,4 +29,17 @@
 		insert into comm values(#{main_cat},#{sub_cat},#{comm_ctx})
 	</insert>
 	
+	
+	<select id="DsMainCateCnt" resultType="int" parameterType="String">
+		select count(*) from comm where main_cat=#{main_cat}
+	</select>
+	
+	<select id="DsMainCateList" resultType="DsComm" parameterType="DsComm">
+		select c.*, b.comm_ctx as comm_ctx2
+		from (select rownum rn, c.* from (select * from comm where sub_cat!='999' and main_cat= #{main_cat} order by main_cat,sub_cat) c) c,
+			 (select * from comm where sub_cat='999') b
+		where c.main_cat = b.main_cat and rn between #{start} and #{end}
+	</select>
+	
+	 
 </mapper>

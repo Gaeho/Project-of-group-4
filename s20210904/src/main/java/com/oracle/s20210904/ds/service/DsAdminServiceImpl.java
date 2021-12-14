@@ -182,4 +182,18 @@ public class DsAdminServiceImpl implements DsAdminService {
 		int mtotCnt = dsAdminDao.searchTotCnt(searchTxt);
 		return mtotCnt;
 	}
+	
+	@Override
+	public int mainCateCnt(String main_cat) {
+		int ttotCnt = dsAdminDao.mainCateCnt(main_cat);
+		return ttotCnt;
+	}
+	
+	@Override
+	public List<DsComm> getMainCateList(DsComm dsComm) {
+		List<DsComm> commList = dsAdminDao.getMainCateList(dsComm);
+		return commList;
+	}
+	
+
 }
