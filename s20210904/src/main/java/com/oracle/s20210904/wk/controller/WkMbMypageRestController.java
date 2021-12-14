@@ -183,6 +183,17 @@ public class WkMbMypageRestController {
 	}
 	
 	
+	// 마이페이지 알림 삭제
+	@PostMapping(value="mbMypageNoticeDelete", produces = "application/text; charset=UTF-8")//, method= RequestMethod.GET)
+	public String mbMypageNoticeDelete(HttpServletRequest request,Model model) {
+		System.out.println("WkMbMypageRestController mbMypageNoticeDelete()");
+		String mbid=checkId(request);
+		
+		ms.noticeDelete(mbid);
+		return null;
+	}
+	
+	
 	//uploadForm에서 호출하는 메소드이다.원래이름,용량,경로를 받아 처리한다.
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath ,String uploadPath_mid ,String mbid) throws Exception {
 		System.out.println("WkMbMypageRestController uploadFile()");

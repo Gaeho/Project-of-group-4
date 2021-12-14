@@ -222,5 +222,13 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 		return wkResumeDao.repResumeUpdate(resume);
 	}
 
+
+	@Transactional(rollbackFor = {RuntimeException.class ,Exception.class})
+	@Override
+	public void noticeDelete(String mbid) {
+		int result1 = wkNoticeDao.applyNoticeDelete(mbid);
+		int result2 = wkNoticeDao.resConNoticeDelete(mbid);
+	}
+
 	
 }

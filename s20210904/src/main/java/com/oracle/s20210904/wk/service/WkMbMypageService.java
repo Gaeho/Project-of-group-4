@@ -45,4 +45,6 @@ public interface WkMbMypageService {
 
 	int repResumeUpdate(Resume resume);
 
+	void noticeDelete(String mbid);
+
 }

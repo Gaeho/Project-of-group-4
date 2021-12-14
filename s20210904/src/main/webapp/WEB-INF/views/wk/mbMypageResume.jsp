@@ -103,6 +103,7 @@
 
  </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 <h1>mbMypageResume</h1><p><p>
 
 ${mbid }의 이력서<br>
@@ -124,6 +125,6 @@ ${mbid }의 이력서<br>
 	&nbsp;&nbsp; &nbsp;&nbsp; <input type="button" onclick="resume_delete(${resumelist.res_code})" value="삭제"><br>
 </c:forEach><p>
 <input type="hidden" id="rep_res" value="0">
-
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

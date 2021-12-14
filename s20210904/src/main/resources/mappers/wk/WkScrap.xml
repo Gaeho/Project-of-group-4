@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ScrapDao">
 	<select id="WkScrapList" resultType="WkScrap" parameterType="String">
-		select s.*,c.com_name ,a.anno_title, a.com_id, a.rec_vol, a.emp_type, comm.comm_ctx, a.rec_edu, a.pay_info, a.work_cdt,
+		select s.*,c.com_name ,a.anno_title,a.anno_code, a.com_id, a.rec_vol, a.emp_type, comm.comm_ctx, a.rec_edu, a.pay_info, a.work_cdt,
         a.anno_regdate, a.anno_c_regdate
 		from scrap s
 		inner join announce a
