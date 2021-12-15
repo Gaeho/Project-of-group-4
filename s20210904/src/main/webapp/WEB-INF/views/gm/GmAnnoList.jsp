@@ -48,7 +48,7 @@
 								 <c:forEach var="comanno" items="${listAnno}">
 									<tr>
 									    <td>${comanno.com_name}</td>
-										<td colspan="2"><a href="detail?anno_code=${comanno.anno_code}">${comanno.anno_title}</a></td>
+										<td colspan="2"><a href="detail?anno_code=${comanno.anno_code}&user_id=${id}">${comanno.anno_title}</a></td>
 										<td>${comanno.rec_edu}</td>
 										<td>${comanno.anno_regdate} ~</td>
 										<td>${comanno.anno_c_regdate}</td>

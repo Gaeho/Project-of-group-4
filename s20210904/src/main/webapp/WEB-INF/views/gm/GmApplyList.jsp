@@ -36,7 +36,7 @@
 <div id="container">
 	<div class="resume">
 		<div class="resume_title">
-		  <form action="applyResume"> 
+		  <form action="applyDetail"> 
 		  <h2> 이력서 목록 </h2>
 			<table>
 				<tr>
@@ -58,23 +58,13 @@
 				</c:forEach>
 				
 				<td>anno_code->${anno_code}</td>
-				<td><input type="submit" value="제출하기" onclick="location.href='applyDetail?user_id=${user_id}&anno_code=${anno_code}'" ></td>
+				<td><input type="submit" value="제출하기" <%-- onclick="location.href='applyDetail?user_id=${id}&anno_code=${anno_code}'"  --%>></td>
 			
 			</table>
 		 </form>
 		</div>
 		
-		<div class="page">
-			<c:if test="${pg.startPage > pg.pageBlock }">
-				<a href="GmAnnoList?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
-			</c:if>
-			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-				<a href="GmAnnoList?currentPage=${i}">[${i}]</a>
-			</c:forEach>
-			<c:if test="${pg.endPage < pg.totalPage}">
-				<a href="GmAnnoList?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
-			</c:if>
-		</div>
+		
 	</div>
 </div>
 
