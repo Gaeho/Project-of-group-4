@@ -35,8 +35,9 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 	public List<ComAnnounce> listAnno(ComAnnounce comAnnounce) {
 		List<ComAnnounce> annoList = null;
 		System.out.println("GmAnnoDaoImpl listAnno Start...");
+		System.out.println("comAnnounce.getAnnosearch()->"+comAnnounce.getAnnosearch());
 		try {
-			annoList = session.selectList("GmAnnoSearchList", comAnnounce);
+			annoList = session.selectList("GmAnnoListAll", comAnnounce);
 		} catch (Exception e) {
 			System.out.println("GmAnnoDaoImpl listAnno Exception"+e.getMessage());
 		}
@@ -259,10 +260,11 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				Apply ap = null;
 				try {
 					ap = session.selectOne("GmCheckRC", apply);
-					System.out.println("ap.getAnno_code()->"+ap.getAnno_code());
+					//System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl checkRC Exception "+e.getMessage());
 				}
+				System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
 				return ap;
 			}
 
@@ -291,8 +293,6 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				}
 			}
 			
-
-
 			@Override
 			public List<ComAnnounce> listsearchAnno(ComAnnounce comAnnounce) {
 				

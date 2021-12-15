@@ -13,7 +13,7 @@
 		left join comm
 		on company.com_sec=comm.SUB_CAT
 		where comm.MAIN_CAT='050'
-		and company.com_id='znvkd323'
+		and company.com_id=#{com_id}
 	</select>
 	
 	<select id="SrComAnnReg" parameterType="Announce" resultType="Announce">
@@ -84,7 +84,7 @@
     		 from (select b.com_id, m.user_img, b.user_id, b.mrk_date, b.MRK_RES_CODE
                     from member m, bookmark b
                     where m.user_id = b.user_id
-                    and b.com_id = 'tlstprp5184') a
+                    and b.com_id = #{com_id}) a
     		        )
 		where rn between #{start} and #{end}
 	</select>
