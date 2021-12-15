@@ -54,6 +54,26 @@ public class GmAnnoListController {
 	public String GmAnnoList(HttpServletRequest request, ComAnnounce comAnnounce, String currentPage, Model model) {
 		System.out.println("GmAnnoListController Start List...");
 		
+		/* 2021-12-15 11:33 대성 머지 오류났는데 지우면 안될거같아서 남겨둠;;
+		//원본토탈
+		//int total = as.total();
+		
+		int total = 0;
+		//띄어쓰기 제거
+		if(annosearch!=null) {
+			System.out.println("annosearch->"+annosearch);
+			String annosearch1 = annosearch.replaceAll("\\s+","");
+			total = as.searchtotal(annosearch1);
+			System.out.println("변환된 annosearch1 내용->"+annosearch1);
+			System.out.println("검색어 있을 때의 total->"+total);	
+			comAnnounce.setAnnosearch(annosearch1);
+			model.addAttribute("annosearch1", annosearch1);
+		} else if (annosearch==null) {
+			total = as.total();
+			System.out.println("검색어 없을 때의 total->"+total);
+		}
+		*/
+		
 		String id=check_userid(request);
 		System.out.println("세션 확인 아이디를 갖고오는지->"+id);
 		

@@ -144,7 +144,7 @@
 							varStatus="status">
 							<c:if test="${status.index < 5 }">
 								<tr>
-									<td class="announceItem"><a href="detail?anno_code=${announceList.anno_code}">${announceList.anno_title}</a>
+									<td class="announceItem"><a href="<%=context%>/detail?anno_code=${announceList.anno_code}">${announceList.anno_title}</a>
 									</td>
 								</tr>
 							</c:if>

@@ -3,6 +3,7 @@ package com.oracle.s20210904.sr.service;
 import java.util.List;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
@@ -54,6 +55,16 @@ public interface SrComMypageService {
 	List<Resume> userIdListbyResume(Resume resume);
 
 	CommMemResume comAppStatusListdetail(String user_id);
+
+	List<Announce> AnnounceList(String comid);
+
+	int applyTotCnt(String anno_code);
+
+	void memFail(Apply apply);
+
+	void memPass(Apply apply);
+
+	void applyStsUpdate(Apply apply);
 
 	
 
