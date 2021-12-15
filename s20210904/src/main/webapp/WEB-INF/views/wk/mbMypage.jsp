@@ -13,8 +13,8 @@
 
 
 <div class="mypageContent-wrap">
-	<div>
-		<h1>mbMypage</h1>
+	<div class="mypageTitle">
+		<h1>마이페이지</h1>
 		<c:if test="${not empty mypage_update_msg }">
 			${mypage_update_msg} <p>
 			<script type="text/javascript">
@@ -25,11 +25,12 @@
 	<!-- https://seill.tistory.com/426 -->
 	<div class="mbMypageMenu">
 		<ul>
-		  <li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
-		  <li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
-		  <li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
-		  <li><a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a></li>
-		  <li><a class="mbMypageMenuBox" href="mbMypageUpdate">마이페이지수정</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageUpdate">마이페이지수정</a></li>
 		</ul>
 	</div>
 	

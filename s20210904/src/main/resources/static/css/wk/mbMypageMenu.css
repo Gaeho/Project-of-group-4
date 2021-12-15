@@ -2,10 +2,16 @@
 
 
 .mypageContent-wrap{
-	max-width: 1080px;
-	height: 100%;
-	margin: 0 auto;
+	flex-wrap: wrap;
+    max-width: 1080px;
+    min-height: 700px;
+    margin: 0 auto;
     padding: 0 20px;
+    align-items: flex-start;
+}
+
+.mypageTitle{
+	width: 1000px;
 }
 
 .mbMypageMenu {
