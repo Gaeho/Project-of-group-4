@@ -291,35 +291,26 @@ public class GmAnnoListController {
 			return "gm/GmApplyList";
 			
 		}
-		/*
+		
 		// 이력서 제출
 		@GetMapping(value = "applyResume")
-		public String applyResume (Apply apply,  Model model) {
+		public int applyResume (Apply apply,  Model model) {
 			System.out.println("GmAnnoListController applyResume Start...");
 			System.out.println("GmAnnoListController applyResume apply.getRes_code()->"+apply.getRes_code());
 			System.out.println("GmAnnoListController applyResume apply.getAnno_code()->"+apply.getAnno_code());
 			System.out.println("GmAnnoListController applyResume apply.getUser_id()->"+apply.getUser_id());
 			// 1. 지원자 user_id, res_code, anno_code, app_sts(065-001), app_regdate(sysdate), com_ntc_code(sequence), user_ntc_code(회원알림 null)
 			int app = as.applyResume(apply);
-			
-			System.out.println("GmAnnoListController applyDetail Start...");
-			insertapplyDetail(apply);
-			apply = as.checkRC(apply);
-			System.out.println("GmAnnoListController applyDetail apply.getAnno_code()->"+apply.getAnno_code());
-			
-			model.addAttribute("apply", apply);
-			System.out.println("여기까지 왔어?");
-			
-
-			
-			return "gm/result";
+		
+			return app;
 			
 		}
-		*/
+		
 		// 알림
 		@GetMapping(value = "applyDetail")
 		public String applyDetail(Apply apply,Model model) {
 			System.out.println("GmAnnoListController applyDetail Start...");
+			//int app = as.applyResume(apply);
 			insertapplyDetail(apply);
 			apply = as.checkRC(apply);
 			System.out.println("GmAnnoListController applyDetail apply.getAnno_code()->"+apply.getAnno_code());
