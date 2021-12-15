@@ -245,7 +245,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				int app = 0;
 				try {
 					app = session.insert("GmApply", apply);
-				
+					System.out.println(app);
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl applyResume Exception "+e.getMessage());
 				}
@@ -264,7 +264,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl checkRC Exception "+e.getMessage());
 				}
-				System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
+				//System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
 				return ap;
 			}
 
