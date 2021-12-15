@@ -7,6 +7,7 @@
 %>
 <html>
 <head>
+<link href="css/wk/mbMypageMenu.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -45,14 +46,14 @@
 			dataType:'text',
 			success:function(data){
 				if(data>0){
-					alert("대표이력서 해제되었습니다");	
+					/* alert("대표이력서 해제되었습니다"); */	
 					location.replace("mbMypageResume");
 				}else{
-					alert("해제 실패"+data);
+					/* alert("해제 실패"+data); */
 				}
 			},
 			error:function(){
-				alert("대표이력서 해제에 실패하였습니다"+data);
+				/* alert("대표이력서 해제에 실패하였습니다"+data); */
 			}
 		});
 	}
@@ -74,14 +75,14 @@
 			dataType:'text',
 			success:function(data){
 				if(data>0){
-					alert("대표이력서로 설정되었습니다");
+					/* alert("대표이력서로 설정되었습니다"); */
 					location.replace("mbMypageResume");
 				}else{
-					alert("설정 실패"+data);
+					/* alert("설정 실패"+data); */
 				}
 			},
 			error:function(){
-				alert("대표이력서 설정에 실패하였습니다"+data);
+				/* alert("대표이력서 설정에 실패하였습니다"+data); */
 			}
 		});
 	}
@@ -104,27 +105,46 @@
  </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-<h1>mbMypageResume</h1><p><p>
+<div class="mypageContent-wrap">
+	<div class="mypageTitle">
+		<h1>이력서 관리</h1><p><p>
+	</div>
+	<div class="mbMypageMenu">
+		<input type="image" class="profile_img" src="${profile}" 
+			alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" ><br>
+			${mbid } 님<p>
+		<ul>
+			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageUpdate">마이페이지수정</a></li>
+		</ul>
+	</div>
+	<div class="mbMypageMain">
+		${mbid }의 이력서<br>
+		<c:if test="${not empty msg}">${msg }<br> </c:if>
+		
+		<c:forEach var="resumelist" items="${resumelist}" varStatus="status">
+			${status.count} &nbsp;&nbsp; ${resumelist.res_title} &nbsp;&nbsp; ${resumelist.res_date} &nbsp;&nbsp; 
+			
+			<c:if test="${resumelist.rep_res eq 1}">
+				대표이력서&nbsp;&nbsp; &nbsp;&nbsp; 
+				<input type="button" value="대표이력서 해제" onclick="rep_resume_del(${resumelist.res_code})">
+				<input type="hidden" id="rep_res" value="${resumelist.res_code}">
+			</c:if>
+			<c:if test="${resumelist.rep_res eq 0}">
+				&nbsp;&nbsp; &nbsp;&nbsp; 
+				<input type="button" value="대표이력서로 설정" onclick="rep_resume(${resumelist.res_code})">
+			</c:if>
+			&nbsp;&nbsp; &nbsp;&nbsp; <input type="submit" onclick="location.href='mbMypageResumeUpdate?res_code=${resumelist.res_code}'" value="수정">
+			&nbsp;&nbsp; &nbsp;&nbsp; <input type="button" onclick="resume_delete(${resumelist.res_code})" value="삭제"><br>
+		</c:forEach><p>
+		<input type="hidden" id="rep_res" value="0">
+	</div>
+</div>
 
-${mbid }의 이력서<br>
-<c:if test="${not empty msg}">${msg }<br> </c:if>
-
-<c:forEach var="resumelist" items="${resumelist}" varStatus="status">
-	${status.count} &nbsp;&nbsp; ${resumelist.res_title} &nbsp;&nbsp; ${resumelist.res_date} &nbsp;&nbsp; 
-	
-	<c:if test="${resumelist.rep_res eq 1}">
-		대표이력서&nbsp;&nbsp; &nbsp;&nbsp; 
-		<input type="button" value="대표이력서 해제" onclick="rep_resume_del(${resumelist.res_code})">
-		<input type="hidden" id="rep_res" value="${resumelist.res_code}">
-	</c:if>
-	<c:if test="${resumelist.rep_res eq 0}">
-		&nbsp;&nbsp; &nbsp;&nbsp; 
-		<input type="button" value="대표이력서로 설정" onclick="rep_resume(${resumelist.res_code})">
-	</c:if>
-	&nbsp;&nbsp; &nbsp;&nbsp; <input type="submit" onclick="location.href='mbMypageResumeUpdate?res_code=${resumelist.res_code}'" value="수정">
-	&nbsp;&nbsp; &nbsp;&nbsp; <input type="button" onclick="resume_delete(${resumelist.res_code})" value="삭제"><br>
-</c:forEach><p>
-<input type="hidden" id="rep_res" value="0">
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
