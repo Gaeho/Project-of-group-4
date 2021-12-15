@@ -36,7 +36,7 @@
 <div id="container">
 	<div class="resume">
 		<div class="resume_title">
-		  <form action="applyDetail"> 
+		  <form action=applyDetail> 
 		  <h2> 이력서 목록 </h2>
 			<table>
 				<tr>
@@ -58,7 +58,7 @@
 				</c:forEach>
 				
 				<td>anno_code->${anno_code}</td>
-				<td><input type="submit" value="제출하기" <%-- onclick="location.href='applyDetail?user_id=${id}&anno_code=${anno_code}'"  --%>></td>
+				<td><input type="submit" value="제출하기" <%--  onclick="location.href='applyDetail?user_id=${user_id}&anno_code=${anno_code}'"  --%>></td>
 			
 			</table>
 		 </form>
