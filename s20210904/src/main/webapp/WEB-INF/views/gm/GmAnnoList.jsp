@@ -29,13 +29,13 @@
 <div class="container">
 	<div class="annolistContainer">
 		<div class="annolist1">
-				<div class="annolisttitle"> 
+				<div class="annolisttitle">
 					<h2> 공고 </h2>
 				</div>
 				
 				<div class="annolist1">
-					<table class="table">
-							<thead class="table-light">					
+					<table class="table table-hover">
+							<thead class="table-light">				
 								<tr>
 									<th scope="col">기업명</th>
 									<th scope="col" colspan="2">제목</th>
@@ -43,7 +43,7 @@
 									<th scope="col">등록일</th>
 									<th scope="col">마감일</th>
 								</tr>
-							</thead>	
+							</thead>
 							<tbody>
 								 <c:forEach var="comanno" items="${listAnno}">
 									<tr>

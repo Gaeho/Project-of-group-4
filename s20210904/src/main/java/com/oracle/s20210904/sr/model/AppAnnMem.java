@@ -12,7 +12,7 @@ public class AppAnnMem {
 	private String user_id;
 
 	// apply
-	private int res_code;
+	private Integer mrk_res_code;
 	private String conno_code;
 	private String app_sts;
 	private Date app_regdate;
