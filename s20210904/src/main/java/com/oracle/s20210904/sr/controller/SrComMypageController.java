@@ -148,6 +148,7 @@ public class SrComMypageController {
 	// 북마크 List
 	@GetMapping (value = "bookmarkList")
 	public String bookmarkList (String currentPage, MemBmark memBmark, Model model, CommCompany commCompany) {
+		System.out.println("memBmark내용?->"+memBmark.getCom_id());
 		System.out.println("SrComMypageController Start List...");
 		int total = scms.total();
 		System.out.println("GmAnnoList total->"+total);
