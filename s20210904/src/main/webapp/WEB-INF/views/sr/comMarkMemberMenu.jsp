@@ -55,7 +55,7 @@
 				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
 			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
-			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
+			<a class="menuBox" href="ComMemSearch"><span>검색</span></a>
 		</div>
 		<%-- <c:set var="num" value="${pg.total-pg.start+1 }"></c:set> --%>
 		<div class="comMarkMemberMenu">
@@ -69,22 +69,10 @@
 			<c:forEach var="bookmarkList" items="${bookmarkList }">
 				<tr>
 				  <td><img class="memberImg" src="${bookmarkList.user_img}"/></td>
-				  <td><a href="detail2?user_id=${bookmarkList.user_id }">${bookmarkList.user_id}</a></td>
-				  <td>${bookmarkList.mrk_date}</td>
+				  <td><a href="detail2?user_id=${bookmarkList.user_id }&com_id=${bookmarkList.com_id}&mrk_res_code=${bookmarkList.mrk_res_code}">${bookmarkList.user_id}</a></td>
+				  <td>${bookmarkList.mrk_date}</td> 
+				  <td>${bookmarkList.mrk_res_code}</td>
 				</tr>
-			   
-
-			    
-				<%-- <div class="divTableCol">
-					<div class="divTableRow">${num}</div>
-				</div> --%> 
-				
-				<%-- <a href="#" class="bMarkMem">
-					회원프사 : <img class="memberImg" src="${member.user_img}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					회원아이디 : ${bookmark.userㅏ
-				</a> --%>
-				
-				<%-- <c:set var="num" value="${num - 1 }"></c:set> --%>
 			</c:forEach>
 			</table>
 		</div>

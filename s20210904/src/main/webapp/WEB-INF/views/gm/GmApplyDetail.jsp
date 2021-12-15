@@ -8,7 +8,7 @@
 </head>
 <body>
 	성공~
-	${apply.user_id}님이 ${apply.anno_code}에 ${apply.res_code}를 ${apply.app_Regdate}에 지원하였습니다.
+	${apply.user_id}님이 ${apply.anno_code}에 ${apply.res_code}를 ${apply.app_regdate}에 지원하였습니다.
  	분류코드 : ${apply.com_ntc_code}
 	
 	

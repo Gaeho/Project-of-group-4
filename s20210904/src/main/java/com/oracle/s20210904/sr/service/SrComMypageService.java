@@ -4,17 +4,15 @@ import java.util.List;
 
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
-import com.oracle.s20210904.comm.model.Comm;
-
-import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.MemBmark;
-
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.Resume;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.CommResMemBook;
 import com.oracle.s20210904.sr.model.MemResumeBmark;
 
 public interface SrComMypageService {
@@ -34,17 +32,7 @@ public interface SrComMypageService {
 	
 	List<MemBmark> bookmarkList(MemBmark memBmark);
 
-	CommMemResume userdetail(String user_id);
-
-	Comm jobtag(CommMemResume mem);
-	
-	Comm hsmjr(CommMemResume mem);
-
-	Comm restag1(CommMemResume mem);
-
-	Comm restag2(CommMemResume mem);
-
-	Comm restag3(CommMemResume mem);
+	CommResMemBook userdetail(CommResMemBook commResMemBook, Integer isResume);
 
 	int bookmarkgetinfo(Bookmark bookmark);
 
@@ -60,5 +48,15 @@ public interface SrComMypageService {
 
 
 	List<MemResumeBmark> memResumeBmarkList(String keyword1);
+
+	Member member2(Member member);
+
+	List<Resume> userIdListbyResume(Resume resume);
+
+	CommMemResume comAppStatusListdetail(String user_id);
+
+	
+
+	
 
 }

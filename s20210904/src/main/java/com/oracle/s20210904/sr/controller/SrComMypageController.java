@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Bookmark;
-import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
@@ -20,6 +19,7 @@ import com.oracle.s20210904.comm.service.Paging;
 import com.oracle.s20210904.sr.model.AppAnnMem;
 import com.oracle.s20210904.sr.model.CommCompany;
 import com.oracle.s20210904.sr.model.CommMemResume;
+import com.oracle.s20210904.sr.model.CommResMemBook;
 import com.oracle.s20210904.sr.model.MemResumeBmark;
 import com.oracle.s20210904.sr.service.SrComMypageService;
 
@@ -32,7 +32,7 @@ public class SrComMypageController {
 	// 기업정보
 	@GetMapping(value = "ComInfo")
 	public String ComInfo(Model model, CommCompany commCompany) {
-
+		
 		System.out.println("SrComMypageController ComInfo START...");
 
 		// company+comm JOIN
@@ -88,58 +88,9 @@ public class SrComMypageController {
 		return "sr/comAnnMenu";
 	}
 
-	// 지원현황
-	@GetMapping(value = "ComAppStatus")
-	public String ComAppStatus(Model model, String currentPage, Member member, AppAnnMem appAnnMem,
-			CommCompany commCompany, String id) {
-
-		System.out.println("SrComMypageController ComAppStatus START...");
-
-		// paging
-		int total = scms.total();
-		Paging pg = new Paging(total, currentPage);
-		appAnnMem.setStart(pg.getStart()); // 1
-		appAnnMem.setEnd(pg.getEnd()); // 5
-		// ----------------------------------------------------------------------------
-		// company
-		CommCompany commCompany1 = null;
-		commCompany1 = scms.comInfo(commCompany);
-		// ----------------------------------------------------------------------------
-		// apply+member+announce JOIN list
-		List<AppAnnMem> appAnnMember = scms.appAnnMemReg(appAnnMem);
-		if (id != null) {
-			if (id.equals("0")) {
-				appAnnMember = scms.appAnnMemReg(appAnnMem);
-				System.out.println("bnt1");
-				System.out.println("SrComMypageController appAnnMember appAnnMemReg size=>" + appAnnMember.size());
-			} else {
-				appAnnMember = scms.appAnnMemCReg(appAnnMem);
-				System.out.println("bnt2");
-				System.out.println("SrComMypageController appAnnMember appAnnMemCReg size=>" + appAnnMember.size());
-
-			}
-		}
-		// ----------------------------------------------------------------------------
-		System.out.println("SrComMypageController ComAppStatus total=>" + total);
-		System.out.println("SrComMypageController ComAppStatus company1=>" + commCompany1);
-		System.out.println("SrComMypageController ComAppStatus appAnnMember=>" + appAnnMember);
-		for (AppAnnMem appAnnMember1 : appAnnMember) {
-			System.out.println("appAnnMember1.getApp_regdate()->" + appAnnMember1.getApp_regdate());
-			System.out.println("appAnnMember1.getUser_id()->" + appAnnMember1.getUser_id());
-			System.out.println("appAnnMember1.getUser_img()->" + appAnnMember1.getUser_img());
-		}
-		// ----------------------------------------------------------------------------
-		model.addAttribute("total", total);
-		model.addAttribute("pg", pg);
-		model.addAttribute("commCompany1", commCompany1);
-		model.addAttribute("appAnnMember", appAnnMember);
-
-		return "sr/comAppStatusMenu";
-	}
-
-	// 회원검색
-
 	
+	
+	// 회원검색
 	@RequestMapping(value = "ComMemSearch")
 	public String ComMemberSearch1() {
 		
@@ -151,7 +102,6 @@ public class SrComMypageController {
 	@GetMapping(value = "SrSearch")
 	public String ComMemberSearch(Model model, String currentPage, MemResumeBmark memResumeBmark, CommCompany commCompany,
 			String keyword) {
-
 
 		System.out.println("SrComMypageController ComMemberSearch START...");
 	
@@ -176,85 +126,28 @@ public class SrComMypageController {
 		System.out.println("memResumeBmarkList 시작..");
 		List<MemResumeBmark>  memResumeBmarkList= scms.memResumeBmarkList(keyword1);
 		System.out.println("List<MemResumeBmark>의 size?->"+memResumeBmarkList.size());
-
+		for(MemResumeBmark memResumeBmarkList1 : memResumeBmarkList) {
+			System.out.println("---------bookmarkList Start -------------");
+			System.out.println("memResumeBmarkList1.getRes_title()-> "+memResumeBmarkList1.getRes_title());
+			System.out.println("memResumeBmarkList1.getMrk_res_code()-> "+memResumeBmarkList1.getMrk_res_code());
+			System.out.println("----------bookmarkList End------------------");
+			
+		}
 		
 		model.addAttribute("memResumeBmarkList", memResumeBmarkList); //검색한 내용 
 		model.addAttribute("keyword1", keyword1);//검색 키워드
-		
-		//기업로고
 		model.addAttribute("commCompany1", commCompany1);
-
+		
+		String com_id="tlstprp5184";
+		model.addAttribute("com_id", com_id);
 		
 		return "sr/comMemberSearchMenuDetail";
 
 	}
-	/*
-	 * // 북마크회원
-	 * 
-	 * @GetMapping(value = "ComMarkMember") public String ComMarkMember(String
-	 * user_id, Model model, String currentPage, CommCompany CommCompany , Bookmark
-	 * bookmark) { // 북마크 유무 String com_id ="tlstprp5184"; //String user_id =
-	 * "dmdtla054";
-	 * //------------------------------------------------------------------------
-	 * 
-	 * System.out.println("SrComMypageController ComMarkMember가 시작되었다귱~~"); int
-	 * total = scms.total(); System.out.println("SrComMypageController total=>" +
-	 * total); // Paging Paging pg = new Paging(total, currentPage); // list
-	 * bookmark.setStart(pg.getStart()); // 1 bookmark.setEnd(pg.getEnd()); // 5
-	 * 
-	 * 
-	 * //--------------------------------------------------------------------------
-	 * 
-	 * System.out.println("SrComMypageController listBmark 시작");
-	 * 
-	 * List<Bookmark> listBmark = scms.listBmark1(bookmark);
-	 * 
-	 * System.out.println("SrComMypageController listBmark size=>"+listBmark.size())
-	 * ;
-	 * 
-	 * for (Bookmark listBmarkk : listBmark) {
-	 * System.out.println("listBmarkk.getUser_id=>" + listBmarkk.getUser_id());
-	 * System.out.println("listBmarkk.getCom_id=>" + listBmarkk.getCom_id()); }
-	 * 
-	 * //---------------------------------------------------------------------------
-	 * // company CommCompany commCompany1 = null; commCompany1 =
-	 * scms.comInfo(CommCompany);
-	 * //---------------------------------------------------------------------------
-	 * 
-	 * 
-	 * MemBmark memBmark1=null; memBmark1=scms.memBmark2(memBmark);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * //--------------------------------------------------------------------------
-	 * //---------------------------------------------------------------------------
-	 * 
-	 * model.addAttribute("total", total); model.addAttribute("listBmark",
-	 * listBmark); System.out.println("listBmark 확인=>" + listBmark);
-	 * System.out.println("listBmark 확인=>" + model); model.addAttribute("pg", pg);
-	 * model.addAttribute("commCompany1", commCompany1); //
-	 * model.addAttribute("memBmark1", memBmark1);
-	 * 
-	 * //
-	 * ---------------------------------------------------------------------------
-	 * 
-	 * 
-	 * //Bookmark bookmark = new Bookmark(); bookmark.setCom_id(com_id);
-	 * bookmark.setUser_id(user_id);
-	 * 
-	 * int itbookmark = scms.bookmarkgetinfo(bookmark);
-	 * System.out.println("Controller itbookmark->"+itbookmark);
-	 * model.addAttribute("itbookmark", itbookmark);
-	 * 
-	 * 
-	 * return "sr/comMarkMemberMenu"; }
-	 * 
-	 */
 	
 	// 북마크 List
 	@GetMapping (value = "bookmarkList")
-	public String bookmarkList (String currentPage, MemBmark memBmark, Model model) {
+	public String bookmarkList (String currentPage, MemBmark memBmark, Model model, CommCompany commCompany) {
 		System.out.println("SrComMypageController Start List...");
 		int total = scms.total();
 		System.out.println("GmAnnoList total->"+total);
@@ -276,6 +169,7 @@ public class SrComMypageController {
 			System.out.println("MemBmark.getCom_id()->"+MemBmark.getCom_id());
 			System.out.println("MemBmark.getIt_bookmark()->"+MemBmark.getIt_bookmark());
 			System.out.println("MemBmark.getMrk_date()-> "+MemBmark.getMrk_date());
+			System.out.println("MemBmark.getMrk_res_code())-> "+MemBmark.getMrk_res_code());
 			System.out.println("----------bookmarkList End------------------");
 			
 		}
@@ -288,71 +182,97 @@ public class SrComMypageController {
 		
 	}
 	
+	// 지원현황 list
+		@GetMapping(value = "ComAppStatus")
+		public String ComAppStatus(Model model, AppAnnMem appAnnMem, CommCompany commCompany
+				, String id, String key) {
+
+			System.out.println("SrComMypageController ComAppStatus START...");
+
+			// ----------------------------------------------------------------------------
+			// company
+			CommCompany commCompany1 = null;
+			commCompany1 = scms.comInfo(commCompany);
+			// ----------------------------------------------------------------------------
+			// apply+member+announce JOIN list
+			List<AppAnnMem> appAnnMember = scms.appAnnMemReg(appAnnMem);
+			if (id != null) {
+				if (id.equals("0")) {
+					appAnnMember = scms.appAnnMemReg(appAnnMem);
+					System.out.println("bnt1");
+					System.out.println("SrComMypageController appAnnMember appAnnMemReg size=>" + appAnnMember.size());
+				} else {
+					appAnnMember = scms.appAnnMemCReg(appAnnMem);
+					System.out.println("bnt2");
+					System.out.println("SrComMypageController appAnnMember appAnnMemCReg size=>" + appAnnMember.size());
+
+				}
+			}
+			// ----------------------------------------------------------------------------
+			System.out.println("SrComMypageController ComAppStatus company1=>" + commCompany1);
+			System.out.println("SrComMypageController ComAppStatus appAnnMember=>" + appAnnMember);
+			for (AppAnnMem appAnnMember1 : appAnnMember) {
+				System.out.println("appAnnMember1.getApp_regdate()->" + appAnnMember1.getAnno_title());
+				System.out.println("appAnnMember1.getUser_id()->" + appAnnMember1.getUser_id());
+				System.out.println("appAnnMember1.getUser_img()->" + appAnnMember1.getUser_img());
+				System.out.println("appAnnMember1.getAnno_code->" + appAnnMember1.getAnno_code());
+			}
+			// ----------------------------------------------------------------------------
+			model.addAttribute("commCompany1", commCompany1);
+			model.addAttribute("appAnnMember", appAnnMember);
+			model.addAttribute("key", key);
+
+			return "sr/comAppStatusMenu";
+		}
 	
+	// 지원현황+북마크 상세(이력서 포함)
+		@GetMapping(value = "detail2")
+		public String detail(String user_id, String com_id, Integer mrk_res_code, Integer isResume, CommMemResume commMemResume, Model model,
+				CommResMemBook commResMemBook, CommCompany commCompany) {
+			
+			System.out.println("뷰에서 넘어온 com_id=>"+com_id);
+			System.out.println("뷰에서 넘어온 user_id=>"+user_id);
+			System.out.println("뷰에서 넘어온 mrk_res_code=>"+mrk_res_code);
+			
+			System.out.println("SrComMypageController detail Start...");
+			CommResMemBook mem = scms.userdetail(commResMemBook, isResume);
+			System.out.println("----------------------------------------");
+			System.out.println("SrComMypageController mem.getUser_name()->" + mem.getUser_name());
+			System.out.println("SrComMypageController mem.getUser_email()->" + mem.getUser_email());
+			System.out.println("SrComMypageController mem.getUser_tel()->" + mem.getUser_tel());
+			System.out.println("SrComMypageController mem.getUser_addr()->" + mem.getUser_addr());
+			System.out.println("SrComMypageController jobtag.getComm_ctx()->" + mem.getJobTag());
+			System.out.println("SrComMypageController hsmjr.getComm_ctx()" + mem.getHsMjr());
+			System.out.println("SrComMypageController restag1.getComm_ctx()" + mem.getTag1());
+			System.out.println("SrComMypageController restag2.getComm_ctx()" + mem.getTag2());
+			System.out.println("SrComMypageController restag3.getComm_ctx()" + mem.getTag3());
+			System.out.println("----------------------------------------");
+			
+			//---------------------------------------------------------------------
 
-	// 지원현황 개인 상세(이력서 포함)
-	@GetMapping(value = "detail2")
-	public String detail(String user_id, CommMemResume commMemResume, Model model) {
+			// 북마크 유무
+			Bookmark bookmark = new Bookmark();
+			bookmark.setCom_id(com_id);
+			bookmark.setUser_id(user_id);
+			int itbookmark = scms.bookmarkgetinfo(bookmark);
+			System.out.println("Controller itbookmark->" + itbookmark);
+			
+			//---------------------------------------------------------------------
+			
+			// company
+			CommCompany commCompany1 = null;
+			commCompany1 = scms.comInfo(commCompany);
+			
+			//---------------------------------------------------------------------
+			
+			model.addAttribute("itbookmark", itbookmark);
+			model.addAttribute("mem", mem);
+			model.addAttribute("com_id", com_id);
+			model.addAttribute("user_id", user_id);
+			model.addAttribute("commCompany", commCompany);
 
-		String com_id = "tlstprp5184";
-		String user_Id = "dmdtla054";
-
-		System.out.println("SrComMypageController detail Start...");
-		CommMemResume mem = scms.userdetail(user_id);
-		model.addAttribute("mem", mem);
-		System.out.println("----------------------------------------");
-		System.out.println("mem.getUser_name()->" + mem.getUser_name());
-		System.out.println("mem.getUser_email()->" + mem.getUser_email());
-		System.out.println("mem.getUser_tel()->" + mem.getUser_tel());
-		System.out.println("mem.getUser_addr()->" + mem.getUser_addr());
-		System.out.println("----------------------------------------");
-
-		// 북마크 유무
-		Bookmark bookmark = new Bookmark();
-		bookmark.setCom_id(com_id);
-		bookmark.setUser_id(user_id);
-
-		int itbookmark = scms.bookmarkgetinfo(bookmark);
-		System.out.println("Controller itbookmark->" + itbookmark);
-		model.addAttribute("itbookmark", itbookmark);
-
-		// 공통 테이블에서 원하는 직종 가져오기
-		System.out.println("SrComMypageController jobtag Start...");
-		Comm jobtag = scms.jobtag(mem);
-		System.out.println("SrComMypageController jobtag.getComm_ctx()->" + jobtag.getComm_ctx());
-		model.addAttribute("jobtag", jobtag);
-		System.out.println("----------------------------------------");
-
-		// <고등학교 계열>
-		System.out.println("SrComMypageController hsmjr Start...");
-		Comm hsmjr = scms.hsmjr(mem);
-		System.out.println("SrComMypageController hsmjr.getComm_ctx()" + hsmjr.getComm_ctx());
-		model.addAttribute("hsmjr", hsmjr);
-		System.out.println("----------------------------------------");
-
-		// <이력서 tag1>
-		System.out.println("SrComMypageController restag1 Start...");
-		Comm restag1 = scms.restag1(mem);
-		System.out.println("SrComMypageController restag1.getComm_ctx()" + restag1.getComm_ctx());
-		model.addAttribute("restag1", restag1);
-		System.out.println("----------------------------------------");
-
-		// <이력서 tag2>
-		System.out.println("SrComMypageController restag2 Start...");
-		Comm restag2 = scms.restag2(mem);
-		System.out.println("SrComMypageController restag2.getComm_ctx()" + restag2.getComm_ctx());
-		model.addAttribute("restag2", restag2);
-		System.out.println("----------------------------------------");
-
-		// <이력서 tag3>
-		System.out.println("SrComMypageController restag3 Start...");
-		Comm restag3 = scms.restag3(mem);
-		System.out.println("SrComMypageController restag3.getComm_ctx()" + restag3.getComm_ctx());
-		model.addAttribute("restag3", restag3);
-		System.out.println("----------------------------------------");
-
-		return "sr/comMarkMemDetail";
-	}
+			return "sr/comMarkMemDetail";
+		}
 
 	// 북마크
 	@RequestMapping(value = "bookmark", produces = "application/text;charset=UTF-8")
@@ -417,4 +337,5 @@ public class SrComMypageController {
 		}
 		return result;
 	}
+	
 }
