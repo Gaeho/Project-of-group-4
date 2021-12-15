@@ -45,9 +45,9 @@ public class WkMbMypageController {
 	private String checkId(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("mbid");
-		if(id==null || id.equals("")){              
-			return "/wk/wkindex";
-		}
+//		if(id==null || id.equals("")){              
+//			return "/wk/wkindex";
+//		}
 //		System.out.println("checkId : "+id);
 		return id;
 	}
@@ -89,9 +89,11 @@ public class WkMbMypageController {
 	
 	// 마이페이지 입사지원현황
 	@GetMapping(value = "mbMypageApply")
-	public String mbMypageApply(HttpServletRequest request, Model model) {
+	public String mbMypageApply(HttpServletRequest request, Model model, String notice_msg) {
 		System.out.println("WkMbMypageController mbMypageApply()");
 		String mbid=checkId(request);
+		
+		
 		
 		List<WkApplyCount> countapply=ms.countApply(mbid);
 		model.addAttribute("countapply", countapply);
@@ -101,6 +103,8 @@ public class WkMbMypageController {
 		
 		List<WkNotice> resConList=ms.resConList(mbid);
 		model.addAttribute("resConList", resConList);
+		
+		model.addAttribute("notice_msg", notice_msg);
 		
 		return "/wk/mbMypageApply";
 	}
@@ -189,15 +193,21 @@ public class WkMbMypageController {
 		resume=ms.resumeSelect(resume);
 		List<ResumeDetail> resumeDetailList=ms.resumeDetailSelect(resume);
 		
+		Member memberdetail=ms.memberDetail(mbid);
+		model.addAttribute("memberdetail", memberdetail);
+		
 		if(resume!=null && !resume.getRes_sts().equals("003")) {
 			res_select_msg=true;
-			
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-			String[] univ_date_array=resume.getUniv_date().split("~");
-			Date univ_date1=new Date(sdf.parse(univ_date_array[0]).getTime());
-			Date univ_date2=new Date(sdf.parse(univ_date_array[1]).getTime());
-			model.addAttribute("univ_date1", univ_date1);
-			model.addAttribute("univ_date2", univ_date2);
+			
+			if(!memberdetail.getUser_edu().equals("001")) {
+				String[] univ_date_array=resume.getUniv_date().split("~");
+				Date univ_date1=new Date(sdf.parse(univ_date_array[0]).getTime());
+				Date univ_date2=new Date(sdf.parse(univ_date_array[1]).getTime());
+				model.addAttribute("univ_date1", univ_date1);
+				model.addAttribute("univ_date2", univ_date2);
+			}
+			
 			
 			if(resumeDetailList!=null) {
 				Date[] emp_date1 = new Date[2], 
@@ -228,8 +238,7 @@ public class WkMbMypageController {
 			commlist=ms.commList(main_cat);
 			model.addAttribute("tag2_commlist", commlist);
 			
-			Member memberdetail=ms.memberDetail(mbid);
-			model.addAttribute("memberdetail", memberdetail);
+
 			
 		}
 		model.addAttribute("res_select_msg", res_select_msg);
@@ -299,6 +308,10 @@ public class WkMbMypageController {
 		
 		String user_pw=request.getParameter("user_pw");
 		Member member=ms.memberDetail(mbid);
+		
+		String main_cat="061";
+		List<WkCommDto> commlist=ms.commList(main_cat);
+		model.addAttribute("user_edu_commlist", commlist);
 		
 		if(user_pw.equals(member.getUser_pw())) {
 			model.addAttribute("member", member);
