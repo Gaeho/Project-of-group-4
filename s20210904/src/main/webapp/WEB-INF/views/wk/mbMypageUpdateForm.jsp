@@ -123,7 +123,18 @@
 		<label><input type="radio" value="M" name="user_sex" checked="checked">여성</label>
 	</c:if>
 	<br>
-	학력 <input type="text" value="${member.user_edu }" name="user_edu"><br>
+	학력
+	<select name="user_edu">
+		<c:forEach var="commlist" items="${user_edu_commlist }">
+			<c:if test="${member.user_edu eq commlist.sub_cat }">
+				<option value="${commlist.sub_cat }" selected="selected">${commlist.comm_ctx }</option>
+			</c:if>
+			<c:if test="${member.user_edu ne commlist.sub_cat }">
+				<option value="${commlist.sub_cat }">${commlist.comm_ctx }</option>
+			</c:if>
+		</c:forEach>
+	</select>
+	<br>
 	전화번호 <input type="text" value="${member.user_tel }" name="user_tel"><br>
 	이메일 <input type="text" value="${member.user_email }" name="user_email"><br>
 	주소 <input type="text" value="${member.user_addr }" name="user_addr"><br>

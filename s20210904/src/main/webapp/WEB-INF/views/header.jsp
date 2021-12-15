@@ -29,7 +29,7 @@ window.onload=function alramList(){
 		dataType:'json',
 		success:function(data){
 			if(data.length >0){
-				alert("알람ON"+data);	
+				/* alert("알람ON"+data); */	
 				$("#alramImg").attr("src","img/ds/alram-on.png");
 				
 				$(data).each(
@@ -38,10 +38,10 @@ window.onload=function alramList(){
 								str +="<li><a class='dropdown-item' href='#scrollspyHeading3'>["+this.anno_title+"]공고에 "+this.apply_id+"]님이 지원했습니다</a></li>"
 									 +"<li><hr class='dropdown-divider'></li>";
 							}else if(this.ntc_ctg =='002'){
-								str += "<li><a class='dropdown-item' href='#scrollspyHeading3'>지원하신 ["+this.anno_title+"] 공고에 "+this.app_sts+"하셨습니다</a></li>"
+								str += "<li><a class='dropdown-item' href='mbMypageApply'>지원하신 ["+this.anno_title+"] 공고에 "+this.app_sts+"하셨습니다</a></li>"
 									  +"<li><hr class='dropdown-divider'></li>";
 							}else if(this.ntc_ctg =='003'){
-								str += "<li><a class='dropdown-item' href=''#scrollspyHeading3'>["+this.com_name+"]님이 ["+this.read_res+"]를 조회했습니다</a></li>"
+								str += "<li><a class='dropdown-item' href='mbMypageApply?notice_msg=2'>["+this.com_name+"]님이 ["+this.read_res+"]를 조회했습니다</a></li>"
 									  +"<li><hr class='dropdown-divider'></li>";	
 							}
 						}

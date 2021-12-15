@@ -47,10 +47,20 @@
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <div class="tab_content">
-	<input type="radio" name="tabmenu" id="tab01" checked="checked" value="test1">
-	<label for="tab01">지원결과 </label>
-	<input type="radio"  name="tabmenu" id="tab02" value="test2">
-	<label for="tab02">나의 이력서 열람기업 </label>
+	<c:if test="${notice_msg eq 1 or empty notice_msg}">
+		<input type="radio" name="tabmenu" id="tab01" checked="checked" value="test1">
+		<label for="tab01">지원결과 </label>
+		<input type="radio"  name="tabmenu" id="tab02" value="test2">
+		<label for="tab02">나의 이력서 열람기업 </label>
+	</c:if>
+	
+	<c:if test="${notice_msg eq 2}">
+		<input type="radio" name="tabmenu" id="tab01" value="test1">
+		<label for="tab01">지원결과 </label>
+		<input type="radio"  name="tabmenu" id="tab02" checked="checked" value="test2">
+		<label for="tab02">나의 이력서 열람기업 </label>
+	</c:if>
+	
 	
 	<div class="conbox con1">
 		지원완료 : ${countapply[0].applying}<br>
