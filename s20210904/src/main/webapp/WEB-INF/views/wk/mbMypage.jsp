@@ -23,8 +23,8 @@
 		</c:if>
 	</div>
 	<!-- https://seill.tistory.com/426 -->
-	<div>
-		<ul class="mbMypageMenu">
+	<div class="mbMypageMenu">
+		<ul>
 		  <li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
 		  <li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
 		  <li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
