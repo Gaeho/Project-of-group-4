@@ -2,6 +2,9 @@ package com.oracle.s20210904.sr.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -118,20 +121,6 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		return appAnnMemCReg;
 	}
 
-	/*
-	 * //북마크회원
-	 * 
-	 * @Override public List<Bookmark> listBmark3(Bookmark bookmark) {
-	 * 
-	 * System.out.println("SrComMypageDaoImpl listBmark 시작!!"); List<Bookmark>
-	 * listBmark4=null; try { listBmark4 = session.selectList("SrMemBmarkList",
-	 * bookmark);
-	 * System.out.println("SrComMypageDaoImpl listBmark listBmark.size"+listBmark4.
-	 * size()); } catch (Exception e) {
-	 * System.out.println("SrComMypageDaoImpl listBmark 오류"+e.getMessage()); }
-	 * return listBmark4; }
-	 */
-	
 		// 북마크 List
 
 		@Override
