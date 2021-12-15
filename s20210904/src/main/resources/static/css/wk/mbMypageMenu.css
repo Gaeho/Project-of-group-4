@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+
+.mypageContent-wrap{
+	max-width: 1080px;
+	margin: 0 auto;
+    padding: 0 20px;
+}
+
+.mbMypageMenu {
+	float: left;
+    width: 20%;
+    padding: 75px 0 32px;
+
+}
+
+
+.mbMypageMain {
+	float: right;
+    width: 80%;
+    padding: 72px 0 60px;
+}

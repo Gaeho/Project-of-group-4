@@ -45,9 +45,9 @@ public class WkMbMypageController {
 	private String checkId(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("mbid");
-		if(id==null || id.equals("")){              
-			return "/wk/wkindex";
-		}
+//		if(id==null || id.equals("")){              
+//			return "/wk/wkindex";
+//		}
 //		System.out.println("checkId : "+id);
 		return id;
 	}
