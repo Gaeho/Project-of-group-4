@@ -10,21 +10,19 @@ public interface SyPostService {
 	
 	List<Post> postSelect(PostSearch postSearch) throws Exception;
 	
-	public void postInsert(Post post) throws Exception;
+	public int postInsert(Post post) throws Exception;
 	
-//	public Post postView(int post_code) throws Exception;
+	public Post postView(int post_code) throws Exception;
 	
-	List<Post> postView(int post_code) throws Exception;
+	public int postUpdate(Post post) throws Exception;
 	
-	public void postUpdate(Post post) throws Exception;
-	
-	public void postDelete(String user_id) throws Exception;
-
-//	int total(PostSearch postSearch) throws Exception;
+	public int postDelete(int post_code) throws Exception;
 	
 	List<Post> total(PostSearch postSearch) throws Exception;
+	
+	public void postViewCount(int post_code, String user_id) throws Exception;
 
-	boolean postReply(Post post);
+	public Post postViewReply(int post_code) throws Exception;
 
-	List<Post> postGetReply(int post_code);
+	public int postReply(Post post) throws Exception;
 }

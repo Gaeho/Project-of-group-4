@@ -18,59 +18,60 @@ public class SyPostServiceImpl implements SyPostService {
 	
 	@Override
 	public List<Post> postSelect(PostSearch postSearch) throws Exception {
-		/* List<Post> postSelect = syPostDaoImpl.postSelect(postSearch); */		
+		System.out.println("syPostServiceImpl.postSelect START");
 		return syPostDaoImpl.postSelect(postSearch);
 	}
 	
 	@Override
-	public void postInsert(Post post) throws Exception {
-		
-		syPostDaoImpl.postInsert(post);	
+	public int postInsert(Post post) throws Exception {
+		System.out.println("syPostServiceImpl.postInsert START");
+		int result = syPostDaoImpl.postInsert(post);
+		return result;		
 	}
 	
-/*	public Post postView(int post_code) throws Exception {
+	@Override
+	public Post postView(int post_code) throws Exception {
+		System.out.println("syPostServiceImpl.postView START");
 		return syPostDaoImpl.postView(post_code);
-	} */
-	
-	public List<Post> postView(int post_code) throws Exception {
-		return syPostDaoImpl.postView(post_code);
+	} 
+
+	@Override
+	public int postUpdate(Post post) throws Exception {
+		System.out.println("syPostServiceImpl.postUpdate START");
+		int result = syPostDaoImpl.postUpdate(post);
+		return result;
 	}
 
 	@Override
-	public void postUpdate(Post post) throws Exception {
-		
-		syPostDaoImpl.postUpdate(post);		
+	public int postDelete(int post_code) throws Exception {
+		System.out.println("syPostServiceImpl.postDelete START");
+		int result = syPostDaoImpl.postDelete(post_code);
+		return result;
 	}
-
+	
 	@Override
-	public void postDelete(String user_id) throws Exception {
-		
-		syPostDaoImpl.postDelete(user_id);	
-	}
-	
-/*	@Override
-	public int total(PostSearch postSearch) throws Exception {	
-		
-		int totalCount = syPostDaoImpl.total(postSearch);
-
-		return totalCount;
-	} */
-	
-	public List<Post> total(PostSearch postSearch) throws Exception {
-		
-		List<Post> totalCount = syPostDaoImpl.total(postSearch);
-		
+	public List<Post> total(PostSearch postSearch) throws Exception {	
+		List<Post> totalCount = syPostDaoImpl.total(postSearch);	
 		return totalCount;
 	}
-	
-	@Override
-	public boolean postReply(Post post) {
-		return syPostDaoImpl.postReply(post);
-	}
-	
-	@Override
-	public List<Post> postGetReply(int post_code) {
-		return syPostDaoImpl.postGetReply(post_code);
-	}
 
+	@Override
+	public void postViewCount(int post_code, String user_id) throws Exception {
+		System.out.println("syPostServiceImpl.postViewCount START");
+		syPostDaoImpl.postViewCount(post_code, user_id);		
+	} 
+	
+	@Override
+	public Post postViewReply(int post_code) throws Exception {
+		System.out.println("syPostServiceImpl.postViewReply START");
+		return syPostDaoImpl.postViewReply(post_code);
+	} 
+	
+	@Override
+	public int postReply(Post post) throws Exception {
+		System.out.println("syPostServiceImpl.postReply START");
+		int result = syPostDaoImpl.postReply(post);
+		return result;
+	}
+	
 }

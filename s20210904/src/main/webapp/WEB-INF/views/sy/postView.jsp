@@ -44,25 +44,31 @@
 		<button type="submit" id="btnList">목록</button>
 	</div>
 	
-<script>
+<script type="text/javascript">
 	$(document).ready(function () {
 	
 	    var formObj = $("form[role='form']");
 	    console.log(formObj);
+	    
+	    $("#btnReply").on("click", function () {
+	        formObj.attr("action", "${pageContext.request.contextPath}/postReply");
+	        formObj.attr("method", "get");
+	        formObj.submit();
+	    });
 	
 	    $("#btnUpdate").on("click", function () {
-	        formObj.attr("action", "/postUpdate");
+	        formObj.attr("action", "${pageContext.request.contextPath}/postUpdate");
 	        formObj.attr("method", "get");
 	        formObj.submit();
 	    });
 	
 	    $("#btnDelete").on("click", function () {
-	       formObj.attr("action", "/postDelete");
+	       formObj.attr("action", "${pageContext.request.contextPath}/postDelete");
 	       formObj.submit();
 	    });
 	
 	    $("#btnList").on("click", function () {
-	       self.location = "/postList"
+	       self.location = "${pageContext.request.contextPath}/postList"
 	    });
 	
 	});
