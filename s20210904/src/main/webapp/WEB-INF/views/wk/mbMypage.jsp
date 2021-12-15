@@ -17,13 +17,13 @@
 		<h1>마이페이지</h1>
 		<c:if test="${not empty mypage_update_msg }">
 			${mypage_update_msg} <p>
-			<script type="text/javascript">
-				alert("1");
-			</script>
 		</c:if>
 	</div>
 	<!-- https://seill.tistory.com/426 -->
 	<div class="mbMypageMenu">
+		<input type="image" class="profile_img" src="${profile}" 
+			alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" ><br>
+			${mbid } 님<p>
 		<ul>
 			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
@@ -36,8 +36,6 @@
 	
 	
 	<div class="mbMypageMain">
-		mbid : ${mbid }<p>
-		
 		지원완료 : ${countapply[0].applying}<br>
 		서류통과 : ${countapply[0].passdoc}<br>
 		최종합격 : ${countapply[0].failed}<br>

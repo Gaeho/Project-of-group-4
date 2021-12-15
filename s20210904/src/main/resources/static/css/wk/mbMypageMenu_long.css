@@ -4,11 +4,10 @@
 .mypageContent-wrap{
 	flex-wrap: wrap;
     max-width: 1200px;
-    min-height: 700px;
+    min-height: auto;
     margin: 0 auto;
     padding: 0 20px;
     align-items: flex-start;
-    overflow:auto;
 }
 
 .mypageTitle{

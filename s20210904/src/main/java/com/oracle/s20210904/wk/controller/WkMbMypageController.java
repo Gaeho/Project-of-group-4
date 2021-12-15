@@ -52,6 +52,11 @@ public class WkMbMypageController {
 		return id;
 	}
 	
+	private String Profile_img(String mbid) {
+		String profile=ms.memberImg(mbid);
+		return profile;
+	}
+	
 	@GetMapping(value = "wkindex")
 	public String index() {
 		return "/wk/wkindex";
@@ -76,6 +81,8 @@ public class WkMbMypageController {
 //		String id=
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
 //		System.out.println("WkMbMypageController mbMypage() mbid : "+mbid );
 		
 		List<WkApplyCount> countapply=ms.countApply(mbid);
@@ -92,8 +99,9 @@ public class WkMbMypageController {
 	public String mbMypageApply(HttpServletRequest request, Model model, String notice_msg) {
 		System.out.println("WkMbMypageController mbMypageApply()");
 		String mbid=checkId(request);
-		
-		
+		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
 		
 		List<WkApplyCount> countapply=ms.countApply(mbid);
 		model.addAttribute("countapply", countapply);
@@ -115,6 +123,8 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageResume()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
 		
 		List<WkResume> resumelist=ms.resumeList(mbid);
 		model.addAttribute("resumelist", resumelist);
@@ -128,6 +138,8 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageResumeWrite()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
 		
 		String main_cat="062";
 		List<WkCommDto> commlist=ms.commList(main_cat);
@@ -153,6 +165,8 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageResumeWritePro()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
 		
 		// 이력서프로필에 사진을 그대로 이력서사진에 넣을때 이력서 사진파일을 이력서폴더에 복사
 		System.out.println("WkMbMypageController mbMypageResumeWritePro() uploadstate : "+uploadstate);
@@ -185,6 +199,9 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageResumeUpdate()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
+		
 		Resume resume=new Resume();
 		resume.setUser_id(mbid);
 		resume.setRes_code(res_code);
@@ -251,6 +268,9 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageResumeUpdatePro()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
+		
 		String msg=null;
 
 		
@@ -278,6 +298,8 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageScrap()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
 		
 		List<WkScrap> scarplist=ms.scarpList(mbid);
 		model.addAttribute("scarplist", scarplist);
@@ -293,6 +315,8 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageUpdate()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
 		
 		return "/wk/mbMypageUpdate"; 
 	}
@@ -303,6 +327,8 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageUpdateForm()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
 		
 		String returnpage=null;
 		
@@ -330,6 +356,9 @@ public class WkMbMypageController {
 		System.out.println("WkMbMypageController mbMypageUpdatePro()");
 		String mbid=checkId(request);
 		model.addAttribute("mbid", mbid);
+		String profile=Profile_img(mbid);
+		model.addAttribute("profile", profile);
+		
 		System.out.println("WkMbMypageController mbMypageUpdatePro() user_img : "+user_img);
 //		Member member2=member;
 		System.out.println("WkMbMypageController mbMypageUpdatePro() member : "+member.getUser_img());
