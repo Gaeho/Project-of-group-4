@@ -60,7 +60,7 @@ public class GmAnnoListController {
 			model.addAttribute("annosearch1", annosearch1);
 		} else if (annosearch==null) {
 			total = as.total();
-			System.out.println("검색어 없을 때의 total->"+total);	
+			System.out.println("검색어 없을 때의 total->"+total);
 		}
 		
 		

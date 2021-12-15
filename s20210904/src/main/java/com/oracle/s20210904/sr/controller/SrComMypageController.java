@@ -2,6 +2,8 @@ package com.oracle.s20210904.sr.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
@@ -184,43 +187,39 @@ public class SrComMypageController {
 	
 	// 지원현황 list
 		@GetMapping(value = "ComAppStatus")
-		public String ComAppStatus(Model model, AppAnnMem appAnnMem, CommCompany commCompany
-				, String id, String key) {
-
+		public String ComAppStatus(Model model,  AppAnnMem appAnnMem, CommCompany commCompany
+				, HttpServletRequest request,String currentPage) {
+			String comid=(String)request.getSession().getAttribute("id");
 			System.out.println("SrComMypageController ComAppStatus START...");
 
 			// ----------------------------------------------------------------------------
-			// company
-			CommCompany commCompany1 = null;
-			commCompany1 = scms.comInfo(commCompany);
+			// company img 보여주기용
+			CommCompany commCompany1 = scms.comInfo(commCompany);
+
+			//공고리스트 뿌려줄거
+			List<Announce> annoList = scms.AnnounceList(comid);
+			//처음들어왔을때 디폴트값
+			if(appAnnMem.getAnno_code()==null) {
+				appAnnMem.setAnno_code(annoList.get(0).getAnno_code());
+			}
+			model.addAttribute("annoList",annoList);
+			
 			// ----------------------------------------------------------------------------
 			// apply+member+announce JOIN list
+			int applyTotCnt = scms.applyTotCnt(appAnnMem.getAnno_code());
+			Paging pg = new Paging(applyTotCnt, currentPage);
+			appAnnMem.setStart(pg.getStart());
+			appAnnMem.setEnd(pg.getEnd());
+			
 			List<AppAnnMem> appAnnMember = scms.appAnnMemReg(appAnnMem);
-			if (id != null) {
-				if (id.equals("0")) {
-					appAnnMember = scms.appAnnMemReg(appAnnMem);
-					System.out.println("bnt1");
-					System.out.println("SrComMypageController appAnnMember appAnnMemReg size=>" + appAnnMember.size());
-				} else {
-					appAnnMember = scms.appAnnMemCReg(appAnnMem);
-					System.out.println("bnt2");
-					System.out.println("SrComMypageController appAnnMember appAnnMemCReg size=>" + appAnnMember.size());
-
-				}
-			}
+			
 			// ----------------------------------------------------------------------------
 			System.out.println("SrComMypageController ComAppStatus company1=>" + commCompany1);
 			System.out.println("SrComMypageController ComAppStatus appAnnMember=>" + appAnnMember);
-			for (AppAnnMem appAnnMember1 : appAnnMember) {
-				System.out.println("appAnnMember1.getApp_regdate()->" + appAnnMember1.getAnno_title());
-				System.out.println("appAnnMember1.getUser_id()->" + appAnnMember1.getUser_id());
-				System.out.println("appAnnMember1.getUser_img()->" + appAnnMember1.getUser_img());
-				System.out.println("appAnnMember1.getAnno_code->" + appAnnMember1.getAnno_code());
-			}
+
 			// ----------------------------------------------------------------------------
 			model.addAttribute("commCompany1", commCompany1);
 			model.addAttribute("appAnnMember", appAnnMember);
-			model.addAttribute("key", key);
 
 			return "sr/comAppStatusMenu";
 		}
@@ -338,4 +337,17 @@ public class SrComMypageController {
 		return result;
 	}
 	
+	@GetMapping(value="memFail")
+	public String memFail(Apply apply) {
+		scms.memFail(apply);
+		scms.applyStsUpdate(apply);
+		return "redirect:ComAppStatus";
+	}
+	
+	@GetMapping(value="memPass")
+	public String memPass(Apply apply) {
+		scms.memPass(apply);
+		scms.applyStsUpdate(apply);
+		return "redirect:ComAppStatus";
+	}
 }

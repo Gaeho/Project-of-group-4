@@ -52,15 +52,14 @@
 	
 	<select id="SrAppAnnMemReg" parameterType="AppAnnMem" resultType="AppAnnMem">
 		<![CDATA[
-		select mem.user_id, mem.user_img, app.APP_REGDATE, app.res_code as mrk_res_code, anno.ANNO_CODE
-		, anno.ANNO_C_REGDATE, anno.ANNO_REGDATE, anno.com_id, anno.ANNO_TITLE
+		select * from(select rownum rn, mem.user_id, mem.user_img, app.APP_REGDATE, app.res_code as mrk_res_code , anno.ANNO_CODE
+		, anno.ANNO_C_REGDATE, anno.ANNO_REGDATE, anno.com_id, anno.ANNO_TITLE, app.app_sts
 		from member mem
 		left join apply app
 		on mem.USER_ID=app.USER_ID
 		left join ANNOUNCE anno
 		on app.ANNO_CODE=anno.ANNO_CODE
-		where anno.com_id='tlstprp5184'
-		and anno.ANNO_C_REGDATE > sysdate
+		where anno.anno_code=#{anno_code}) where rn between #{start} and #{end}
 		]]>
 	</select>
 	
@@ -241,6 +240,7 @@
 		select distinct user_id
 		from resume
 	</select>
+	
 	<select id="SrComAppStatusListDetail" parameterType="java.lang.String" resultType="CommMemResume">
 		select DISTINCT mem.*, bmark.IT_BOOKMARK, bmark.MRK_DATE, bmark.com_id
 		from bookmark bmark
@@ -252,8 +252,25 @@
 		and mem.user_id=#{user_id}
 	</select>
 	
+	<select id="SrAnnoList" parameterType="String" resultType="Announce">
+		select * from Announce where com_id=#{comid}
+	</select>
 	
+	<select id="SrApplyCnt" parameterType="String" resultType="int">
+		select count(*) from apply where anno_code=#{anno_code}
+	</select>
 	
+	<update id="SrMemPass" parameterType="Apply">
+		update apply set app_sts='003' where user_id=#{user_id} and res_code=#{res_code}
+	</update>
+	
+	<update id="SrMemFail" parameterType="Apply">
+		update apply set app_sts='004' where user_id=#{user_id} and res_code=#{res_code}
+	</update>
+	
+	<insert id="SrApplyStsUpdate" parameterType="Apply">
+		insert into Notice values(not_seq.nextval,#{user_id},#{anno_code},'002',sysdate)
+	</insert>
 	
 	
 	
