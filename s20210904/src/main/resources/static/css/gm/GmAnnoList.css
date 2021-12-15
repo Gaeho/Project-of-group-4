@@ -15,10 +15,15 @@
 }
 
 
+.anno_paging_container {
+	
+	display: flex;
+}
 
-
-
-
+.anno_paging_container > div {
+	
+	margin: 0 auto;
+}
 
 
 

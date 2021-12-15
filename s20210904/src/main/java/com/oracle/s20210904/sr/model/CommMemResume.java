@@ -30,7 +30,7 @@ public class CommMemResume {
 	
 	
 	//resume
-	private int res_code;
+	private Integer res_code;
 	private String res_sts;
 	private String res_title;
 	private String rep_res;

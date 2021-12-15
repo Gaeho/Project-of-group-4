@@ -55,4 +55,7 @@ public class ComAnnounce {
 	private int end;
 	
 
+	
+	//공고검색용
+	private String annosearch;
 }

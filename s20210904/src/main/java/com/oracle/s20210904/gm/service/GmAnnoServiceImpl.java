@@ -201,12 +201,22 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				
 				return resList;
 			}
-
+			
+			// 이력서 제출
+			@Override
+			public int applyResume(Apply apply) {
+				System.out.println("GmAnnoServiceImpl applyResume Start...");
+				int app = ad.applyResume(apply);
+				
+				return app;
+			}
+	
 			// 이력서 지원 기록 있는지 check
 			@Override
 			public Apply checkRC(Apply apply) {
 				System.out.println("GmAnnoServiceImpl checkRC Start...");
 				Apply ap = ad.checkRC(apply);
+				//System.out.println("Service ap.getAnno_code()->"+ap.getAnno_code());
 				
 				return ap;
 			}
@@ -228,13 +238,16 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 				
 			}
 	 
-			// 이력서 제출
 			@Override
-			public int applyResume(Apply apply) {
-				System.out.println("GmAnnoServiceImpl applyResume Start...");
-				int app = ad.applyResume(apply);
+			public List<ComAnnounce> listsearchAnno(ComAnnounce comAnnounce) {
 				
-				return app;
+				return ad.listsearchAnno(comAnnounce);
+			}
+
+			@Override
+			public int searchtotal(String annosearch) {
+				
+				return ad.searchtotal(annosearch);
 			}
 	
 

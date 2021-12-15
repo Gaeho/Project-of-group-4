@@ -26,10 +26,11 @@ public class MemBmark {
 	private String com_id;
 	private Date mrk_date;
 	private int it_bookmark;
+	private Integer mrk_res_code;
 	
 	
 	//조회용
-	private int start;
-	private int end;
+	private int start=1;
+	private int end=5;
 
 }

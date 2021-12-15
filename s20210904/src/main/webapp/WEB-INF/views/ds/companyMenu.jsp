@@ -2,22 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%
-	String context = request.getContextPath();
+	String context1 = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/ds/admin.css" type="text/css">
-<link rel="stylesheet" href="css/reset.css" type="text/css">
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
 		function companyDetail(Vcom_id){
 			 console.log(Vcom_id);
 			$.ajax({
-				url:"<%=context%>/comDetail",  
+				url:"<%=context1%>/comDetail",  
 				data:{com_id : Vcom_id},
 				dataType:'Json',
 				success:function(data){     
@@ -36,7 +32,7 @@
 		function joinConfirm(com_id){
 			 console.log(com_id);
 			$.ajax({
-				url:"<%=context%>/joinConfirm",  
+				url:"<%=context1%>/joinConfirm",  
 				data:{comId : com_id},
 				dataType:'text',
 				success:function(data){     
@@ -50,7 +46,7 @@
 		function joinRefuse(com_id){
 			 console.log(com_id);
 			$.ajax({
-				url:"<%=context%>/joinRefuse",  
+				url:"<%=context1%>/joinRefuse",  
 				data:{comId : com_id},
 				dataType:'text',
 				success:function(data){     
@@ -64,7 +60,7 @@
 		function companyDel(com_id){
 			 console.log(com_id);
 			$.ajax({
-				url:"<%=context%>/companyDel",  
+				url:"<%=context1%>/companyDel",  
 				data:{comId : com_id},
 				dataType:'text',
 				success:function(data){     
@@ -78,30 +74,11 @@
 <body>
 	<div class="body">
 
-		<div class="nav">
-			<div class="alram">
-				<span class="alram_btn"> <img src="#"><a href="boardMenu">미답변</a>&nbsp;&nbsp;
-										 <img src="#"><a href="companyMenu">미승인</a>
-				</span>
-			</div>
-			<div class=navBtn>
-				<a href="#" class="logo"><img src="img/ds/logo.png" width="100%" height="50px"></a>
-				<hr class="line"> 
-				<a href="AdminMain"><span>대시보드</span></a>
-				<hr class="line">
-				<a href="memberMenu"><span>회원관리</span></a>
-				<hr class="line">
-				<a href="companyMenu"><span>기업관리</span></a>
-				<hr class="line">
-			 	<a href="tagMenu"><span>태그관리</span></a>
-			 	<hr class="line">
-			 	<a href="boardMenu"><span>게시판관리</span></a>
-			 </div>
-		</div>
+<%@ include file="/WEB-INF/views/ds/AdminNav.jsp" %>
 		<div id="companyListbox" class="companyListbox" >
 			<div class="companyList">
 				<span class="subject">기업관리</span>
-				<span class="search"><input type="text" class="searchTxt"><input type="button" value="검색" class="searchBtn"></span>
+				
 				<table class="memberList">
 					<tr class="title">
 						<th >아이디</th><th>기업명</th><th></th>
@@ -131,7 +108,7 @@
 			</div>
 			<div class="companyConfirmList">
 					<span class="subject">가입승인</span>
-					<span class="search"><input type="text" class="searchTxt" ><input type="button" value="검색" class="searchBtn"></span>
+					
 					<table class="memberList">
 						<tr class="title">
 							<th >아이디</th><th>기업명</th><th></th>

@@ -35,6 +35,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 	public List<ComAnnounce> listAnno(ComAnnounce comAnnounce) {
 		List<ComAnnounce> annoList = null;
 		System.out.println("GmAnnoDaoImpl listAnno Start...");
+		System.out.println("comAnnounce.getAnnosearch()->"+comAnnounce.getAnnosearch());
 		try {
 			annoList = session.selectList("GmAnnoListAll", comAnnounce);
 		} catch (Exception e) {
@@ -237,6 +238,21 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				return resList;
 			}
 
+			// 이력서 제출
+			@Override
+			public int applyResume(Apply apply) {
+				System.out.println("GmAnnoDaoImpl applyResume Start...");
+				int app = 0;
+				try {
+					app = session.insert("GmApply", apply);
+					System.out.println(app);
+				} catch (Exception e) {
+					System.out.println("GmAnnoDaoImpl applyResume Exception "+e.getMessage());
+				}
+				return app;
+			}
+			
+			
 			// 지원 이력서 있는지 check
 			@Override
 			public Apply checkRC(Apply apply) {
@@ -244,10 +260,11 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				Apply ap = null;
 				try {
 					ap = session.selectOne("GmCheckRC", apply);
-					System.out.println("ap.getAnno_code()->"+ap.getAnno_code());
+					//System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl checkRC Exception "+e.getMessage());
 				}
+				//System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
 				return ap;
 			}
 
@@ -276,23 +293,37 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				}
 			}
 			
-			// 이력서 제출
 			@Override
-			public int applyResume(Apply apply) {
-				System.out.println("GmAnnoDaoImpl applyResume Start...");
-				int app = 0;
-				try {
-					app = session.insert("GmApply", apply);
+			public List<ComAnnounce> listsearchAnno(ComAnnounce comAnnounce) {
 				
+				List<ComAnnounce> result = null;
+				
+				try {
+					result= session.selectList("GmAnnoSearchList", comAnnounce);
 				} catch (Exception e) {
-					System.out.println("GmAnnoDaoImpl applyResume Exception "+e.getMessage());
+					System.out.println("listsearchAnno에서 예외 발생!->"+e.getMessage());
 				}
-				return app;
+				
+				return result;
+			}
+
+			@Override//검색결과 페이징 위한 것
+			public int searchtotal(String annosearch) {
+				
+				int result = 0;
+				
+				try {
+					result = session.selectOne("GmAnnoSearch", annosearch);
+				} catch (Exception e) {
+					System.out.println("searchtotal에서 오류 발생"+e.getMessage());
+				}
+				
+				
+				return result;
 			}
 			
 			
 			
-
 		}
 
 

@@ -20,6 +20,7 @@ public class MemResumeBmark {
 	private String com_id;
 	private int it_bookmark;
 	private Date mrk_date;
+	private Integer mrk_res_code;
 	
 	//member
 	private String user_pw;
