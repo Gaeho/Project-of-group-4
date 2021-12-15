@@ -86,13 +86,13 @@
 								    <input type="hidden" name="anno_code" value="${comanno.anno_code}">
 								
 								 <%--    <input type="button" value="지원하기" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}'">  --%>
-								    <input type="button" value="지원하기" class="btn btn-warning" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}'"> 
+								    <input type="button" value="지원하기" class="btn btn-warning" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}&user_id=${id}'"> 
 								   
 
 								    	<div class="scrap_infos">
-										     anno_code : <input type="text" id="anno_code"    value="1"          ><p>
-											 user_id :   <input type="text" id="user_id"      value="dmdtla054"  ><p>
-											 it_like :   <input type="text" id="it_like"      value="${itlike }" ><p>
+										     anno_code : <input type="text" id="anno_code"    value="${comanno.anno_code}"><p>
+											 user_id :   <input type="text" id="user_id"      value="${id}"  ><p>
+											 it_like :   <input type="text" id="it_like"      value="${itlike}" ><p>
 										</div>
 								</div>	 						
 					</div>	

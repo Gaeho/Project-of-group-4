@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,47 +62,8 @@
     </head>
     <body>
     	<%@ include file="/WEB-INF/views/header.jsp"%>
-    
-       <%--  <!-- Navigation 혹시 몰라서 남겨 둠-->
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="main">Codingmon</a>
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                      <a class="nav-link" href="GmAnnoList">공고</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="postList">게시판</a>
-                    </li>
-              </ul>
-              id = ${id }
-              <c:choose>
-              	<c:when test="${id == null || id =='' }"> 					<!-- 로그인 NO -->
-              		<a class="btn btn-primary" href="login">Login</a>
-              	</c:when>
-              	<c:when test="${id == 'rhksflwk0000'}">						<!-- 관리자 한명만있음ㅋ -->
-              		<ul class="nav">
-              			<li><a class="btn btn-primary" href="logout">Logout</a></li>
-              			<li><a class="btn btn-primary btn-mypage" href="admin/AdminMain">Admin</a><li>
-              			
-              		</ul>
-              	</c:when>
-              	<c:otherwise>						<!-- 로그인 OK -->
-              		<ul class="nav">
-						<li class="nav-item dropdown">
-							<a	class="nav-link" data-bs-toggle="dropdown"	href="#" role="button" aria-expanded="false"><img src="img/ds/alram-on.png" width="30px" height="30px" id="alramImg"></a>
-							<ul class="dropdown-menu">
-							</ul>
-						</li>
-						<li><a class="btn btn-primary" href="logout">Logout</a></li>
-              			<li><a class="btn btn-primary btn-mypage" href="myPage?grade=${grade}">MyPage</a><li>
-              		</ul>
-              	</c:otherwise>
-              </c:choose>
-            </div>
-        </nav> --%>
-        
-        <!-- Masthead-->
+          
+       <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">

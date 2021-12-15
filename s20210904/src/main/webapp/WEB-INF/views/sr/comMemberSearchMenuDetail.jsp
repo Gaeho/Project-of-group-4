@@ -2,110 +2,64 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="header.jsp"%>
+<%@ include file="myPageMenu.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ComMypage</title>
-<style type="text/css">
-.testcss {
-	width: 150px;
-	height: 150px;
-	border: 1px solid black;
-}
-
-.menuBox {
-	text-decoration: none;
-	text-align: center;
-	color: white;
-	padding: 8px 16px;
-	background-color: black;
-	border: 1px solid white;
-	transition: background-color 0.3s, color 0.3s;
-}
-
-.menuBox:hover {
-	color: black;
-	background-color: white;
-}
-
-.divTableRow {
-	text-decoration: none;
-	text-align: center;
-	color: black;
-	padding: 8px 16px;
-	background-color: pink;
-	border: 1px solid white;
-	transition: background-color 0.3s, color 0.3s;
-}
-
-.memberImg {
-	width: 100px;
-	height: 100px;
-	border: 1px solid black;
-}
-</style>
 </head>
 <body>
 	<div class="CompanyMypageContainer">
-	
-	
- 		 <a href="#" id="ComMylogo"> <img class="testcss"
-			src="${company1.com_img}" /></a>  
-			
-		<div class="CompanyMypageMenu"
-			style="display: flex; flex-direction: column; width: fit-content;">
-			<a class="menuBox" href="ComInfo"> <span>기업정보</span></a> <br> <a
-				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br> <a
-				class="menuBox" href="ComAnn"><span>채용공고</span></a><br> <a
-				class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
-			<a class="menuBox" href="ComMemSearch"><span>검색</span></a>
-		</div>  
-		
-			<!-- <div class="comMemberSearch">
-				<form class="search_form" action="SrSearch">
-				 	<input class="search_keyword" name="keyword" type="text" placeholder="검색어를 입력하세요"/>
-               		<button class="search_bnt" type="submit">search</button>
-				</form>
-			</div> -->
-		
-		
 		<%-- <c:set var="num" value="${pg.total-pg.start+1 }"></c:set> --%>
 		<div class="compAppStatus_in">
-				<table>
-					<tr>
-						<th>회원프사</th>
-						<th>회원 아이디</th>
-						<th>이력서 제목</th>
-						<th>지원날짜</th>
-						<!-- <th>지원 공고</th> -->
-					</tr>
+			<table>
+				<tr>
+					<th>회원프사</th>
+					<th>회원 아이디</th>
+					<th>이력서 제목</th>
+					<th>지원날짜</th>
+					<!-- <th>지원 공고</th> -->
+				</tr>
 
-					<c:forEach var="memResumeBmarkList" items="${memResumeBmarkList }">
-						<tr>
-							<td><img class="MemImg" src="${memResumeBmarkList.user_img }" /></td>
-							<td><a href="detail2?user_id=${memResumeBmarkList.user_id }&com_id=${com_id}&mrk_res_code=${memResumeBmarkList.mrk_res_code}&isResume=1">${memResumeBmarkList.user_id}</a></td>
-							<td>${memResumeBmarkList.res_title}</td>
-							<td>${memResumeBmarkList.res_date} </td>
-							<%-- <td>${}</td> --%>
-						</tr>
-					</c:forEach>
-				</table>
-			</div> 
+				<c:forEach var="memResumeBmarkList" items="${memResumeBmarkList }">
+					<tr>
+						<td><img class="MemImg" src="${memResumeBmarkList.user_img }" /></td>
+						<td><a
+							href="detail2?user_id=${memResumeBmarkList.user_id }&com_id=${com_id}&mrk_res_code=${memResumeBmarkList.mrk_res_code}&isResume=1">${memResumeBmarkList.user_id}</a></td>
+						<td>${memResumeBmarkList.res_title}</td>
+						<td>${memResumeBmarkList.res_date}</td>
+						<%-- <td>${}</td> --%>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
-	
-	
-	<%-- <div class="paging">
+
+
+	<div class="page11">
+		<input type="hidden" id="keyword" value="${keyword1}">
 		<c:if test="${pg.startPage > pg.pageBlock }">
-			<a href="ComAppStatus?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
+			<a href="SrSearch?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
 		</c:if>
 		<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-			<a href="ComAppStatus?currentPage=${i}">[${i}]</a>
+			<a href="#" onclick="pageMove(${i})">[${i}]</a>
 		</c:forEach>
-		<c:if test="${pg.endPage < pg.totalPage }">
-			<a href="CComAppStatus?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
+		<c:if test="${pg.endPage < pg.totalPage}">
+			<a href="SrSearch?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
 		</c:if>
-	</div> --%>
-	
+
+		<script type="text/javascript">
+			function pageMove(vCurrentpage)
+			{
+			alert("vCurrentpage->"+vCurrentpage);
+			var keyword = $('#keyword').val();
+			alert("keyword->"+keyword);
+			location.href="SrSearch?currentPage="+vCurrentPage+"&keyword="+key;
+			}
+													
+		</script>
+	</div>
+
 </body>
 </html>
