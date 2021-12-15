@@ -78,7 +78,7 @@
 		<div id="companyListbox" class="companyListbox" >
 			<div class="companyList">
 				<span class="subject">기업관리</span>
-				<span class="search"><input type="text" class="searchTxt"><input type="button" value="검색" class="searchBtn"></span>
+				
 				<table class="memberList">
 					<tr class="title">
 						<th >아이디</th><th>기업명</th><th></th>
@@ -108,7 +108,7 @@
 			</div>
 			<div class="companyConfirmList">
 					<span class="subject">가입승인</span>
-					<span class="search"><input type="text" class="searchTxt" ><input type="button" value="검색" class="searchBtn"></span>
+					
 					<table class="memberList">
 						<tr class="title">
 							<th >아이디</th><th>기업명</th><th></th>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
@@ -176,10 +177,33 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		CommMemResume comAppStatusListdetail=scmd.comAppStatusListDetail(user_id);
 		return comAppStatusListdetail;
 	}
-
-
-
 	
+	@Override
+	public List<Announce> AnnounceList(String comid) {
+		List<Announce> annoList = scmd.AnnounceList(comid);
+		return annoList;
+	}
+	
+	@Override
+	public int applyTotCnt(String anno_code) {
+		int applyTotCnt = scmd.applyTotCnt(anno_code);
+		return applyTotCnt;
+	}
+
+	@Override
+	public void memFail(Apply apply) {
+		scmd.memFail(apply);
+	}
+	
+	@Override
+	public void memPass(Apply apply) {
+		scmd.memPass(apply);
+	}
+
+	@Override
+	public void applyStsUpdate(Apply apply) {
+		scmd.applyStsUpdate(apply);
+	}
 
 	
 }

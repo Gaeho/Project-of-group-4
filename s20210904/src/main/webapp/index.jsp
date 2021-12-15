@@ -17,7 +17,6 @@
 	<%-- <%response.sendRedirect("ComMemSearch");%> --%>
 	<%-- <%response.sendRedirect("login");%> --%>
 
-
 	<%--  <%response.sendRedirect("ComInfo"); %>  --%>
 	<%--  <%response.sendRedirect("login");%>  --%>
 
@@ -27,9 +26,7 @@
 	<%--  <%response.sendRedirect("applyDetail"); %>  --%>
 
 	<%-- <%response.sendRedirect("applyDetail"); %>  --%>
-
 	<%-- <%response.sendRedirect("resumeDetail"); %> --%>
-
 
 </body>
 </html>

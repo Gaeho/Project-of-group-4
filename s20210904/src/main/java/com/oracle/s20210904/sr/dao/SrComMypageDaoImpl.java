@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.s20210904.comm.model.Announce;
+import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.Bookmark;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
@@ -275,7 +276,34 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			CommMemResume comAppStatusListDetail=session.selectOne("SrComAppStatusListDetail", user_id);
 			return comAppStatusListDetail;
 		}
+		
+		@Override
+		public List<Announce> AnnounceList(String comid) {
+			List<Announce> annoList = session.selectList("SrAnnoList",comid);
+			return annoList;
+		}
+		
+		@Override
+		public int applyTotCnt(String anno_code) {
+			int applyTotCnt = session.selectOne("SrApplyCnt",anno_code);
+			return applyTotCnt;
+		}
+		
+		@Override
+		public void memFail(Apply apply) {
+			session.update("SrMemFail",apply);
+			
+		}
+		
+		@Override
+		public void memPass(Apply apply) {
+			session.update("SrMemPass",apply);
+		}
 
+		@Override
+		public void applyStsUpdate(Apply apply) {
+			session.insert("SrApplyStsUpdate",apply);
+		}
 
 	
 
