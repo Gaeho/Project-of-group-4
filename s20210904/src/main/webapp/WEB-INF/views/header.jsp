@@ -72,7 +72,7 @@ window.onload=function alramList(){
                       <a class="nav-link" href="GmAnnoList">공고</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">게시판</a>
+                      <a class="nav-link" href="postList">게시판</a>
                     </li>
               </ul>
               id = ${id } cnt = ${cnt }
