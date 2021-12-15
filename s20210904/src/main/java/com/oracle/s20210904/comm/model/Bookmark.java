@@ -12,6 +12,7 @@ public class Bookmark {
 	private String user_id;
 	private int it_bookmark;
 	private Date mrk_date;
+	private int mrk_res_code;
 	private int start;
 	private int end;
 }

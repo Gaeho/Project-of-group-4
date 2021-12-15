@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <link href="css/dj/tapstyle.css" rel="stylesheet" type="text/css">
 <title>검색 결과 페이지</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+
 </head>
 <body>
 <!-- <div class="container"> -->
@@ -51,16 +53,29 @@
 								</table>
 								</div>
 								
+								
+								
 								<div class="page11">
+									<input type="hidden" id="mainsearch" value="${mainsearch1}">
 									<c:if test="${pg.startPage > pg.pageBlock }">
 										<a href="search?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
 									</c:if>
 									<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-										<a href="search?currentPage=${i}">[${i}]</a>
+										<a href="#" onclick="pageMove(${i})">[${i}]</a>
 									</c:forEach>
 									<c:if test="${pg.endPage < pg.totalPage}">
 										<a href="search?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
 									</c:if>
+									
+									<script type="text/javascript">
+									function pageMove(vCurrentpage){
+										alert("vCurrentpage->"+vCurrentpage);
+										var mainsearch = $('#mainsearch').val();
+										alert("mainsearch->"+mainsearch);
+										location.href="search?currentPage="+vCurrentPage+"&mainsearch="+mainsearch;
+										}
+													
+								</script>
 								</div>
 					     </div> 
 				
@@ -87,16 +102,32 @@
 							</table>
 							</div>
 							
+							<!--  -->
+							<script type="text/javascript">
+							
+							</script>
+							<!--  -->
 							<div class="page22">
-								<c:if test="${pg2.startPage > pg2.pageBlock }">
-									<a href="search?currentPage=${pg2.startPage-pg2.pageBlock}">[이전]</a>
+							<input type="hidden" id="mainsearch2" value="${mainsearch1}">
+								<c:if test="${pg.startPage > pg.pageBlock }">
+									<a href="search?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
 								</c:if>
-								<c:forEach var="j" begin="${pg2.startPage}" end="${pg2.endPage}">
-									<a href="search?currentPage=${j}">[${j}]</a>
+								<c:forEach var="j" begin="${pg.startPage}" end="${pg.endPage}">
+									<a href="#" onclick="pageMove2(${j})">[${j}]</a>
 								</c:forEach>
-								<c:if test="${pg2.endPage < pg2.totalPage}">
-									<a href="search?currentPage=${pg2.startPage + pg2.pageBlock}">[다음]</a>
+								<c:if test="${pg.endPage < pg.totalPage}">
+									<a href="search?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
 								</c:if>
+								
+								<script type="text/javascript">
+									function pageMove2(vCurrentpage1){
+										alert("vCurrentpage1->"+vCurrentpage1);
+										var mainsearch = $('#mainsearch2').val();
+										alert("mainsearch->"+mainsearch);
+										location.href="search?currentPage="+vCurrentPage1+"&mainsearch="+mainsearch;
+										}
+													
+								</script>
 							</div>
 								    
 				    </div>

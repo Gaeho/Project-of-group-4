@@ -54,10 +54,22 @@
 				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
 			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
-			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
+			<a class="menuBox" href="ComMemSearch"><span>검색</span></a>
 		</div>
-		<input type="button" class="btn" value="진행중()" onclick="location.href='ComAnn?id=0'"> <!-- ajax -->
-		<input type="button" class="btn" value="마감()" onclick="location.href='ComAnn?id=1'">  <!-- ajax -->
+		<!-- <input type="button" value="진행중()" onclick="location.href='ComAppStatus?id=0'"> -->
+				<select onchange="location.href='ComAnn?id=0'">
+					<option value="" selected disabled hidden>진행중</option>
+					<option>공고 1</option>
+					<option>공고 2</option>
+					<option>공고 3</option>
+				</select>
+				<!-- <input type="button" value="마감()" onclick="location.href='ComAppStatus?id=1'"> -->
+				<select onchange="location.href='ComAnn?id=1'">
+					<option value="" selected disabled hidden>마감</option>
+					<option>공고 1</option>
+					<option>공고 2</option>
+					<option>공고 3</option>
+				</select>
 		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
 		<div class="comAnnMenu">
 			<c:forEach var="announce" items="${listAnn }">
@@ -70,6 +82,7 @@
 				<c:set var="num" value="${num - 1 }"></c:set>
 			</c:forEach>
 		</div>
+		<input class="annoWrite" type="button" value="공고 작성하기"  onclick="location.href='DjAnnoWriteForm'">
 	</div>
 <c:if test="${pg.startPage > pg.pageBlock }">
 	<a href="ComAnn?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>

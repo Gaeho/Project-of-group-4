@@ -95,13 +95,11 @@
 				class="menuBox" href="ComAppStatus"><span>지원현황</span></a><br>
 			<a class="menuBox" href="ComAnn"><span>채용공고</span></a><br>
 			<a class="menuBox" href="bookmarkList"><span>북마크회원</span></a><br>
-			<a class="menuBox" href="ComMemberSearch"><span>검색</span></a>
+			<a class="menuBox" href="ComMemSearch"><span>검색</span></a>
 		</div>
 		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
 		
 <!-------------------------------------------------------------------------------------------------------------------->
-		
-	
 	 
 	     <div class="bookmark">
 	      <tr>
@@ -118,8 +116,8 @@
 			    </c:when>
 			  </c:choose>
 			  
-			   com_id      : <input type="text"  id="com_id"      value="tlstprp5184" ><p>
-			   user_id 	   : <input type="text"  id="user_id"     value="dmdtla054"  ><p>
+			   com_id      : <input type="text"  id="com_id"      value=" ${com_id }"><p>
+			   user_id 	   : <input type="text"  id="user_id"     value="${user_id }"  ><p>
 			   it_bookmark : <input type="text"  id="it_bookmark" value="${itbookmark }" ><p>
 			  
 	       </td>
@@ -137,7 +135,7 @@
 	      </table>
 	      
 	      <table class="user_info2">
-	      	<tr><th>원하는 직종</th><td>${jobtag.comm_ctx}</td></tr>
+	      	<tr><th>원하는 직종</th><td>${mem.jobTag}</td></tr>
 	      </table>
 	      
 	      <table class="resume">
@@ -146,14 +144,14 @@
 	     	<tr><th>이름</th><td>${mem.user_name}</td></tr>
 	      	<tr><th>이메일</th><td>${mem.res_email}</td></tr>
 	      	<tr><th>고등학교</th><td>${mem.hs_name}</td></tr>
-	      	<tr><th>고등학교 계열</th><td>${hsmjr.comm_ctx}</td></tr>
+	      	<tr><th>고등학교 계열</th><td>${mem.hsMjr}</td></tr>
 	      	<tr><th>대학교</th><td>${mem.univ_name}</td></tr>
 	      	<tr><th>대학교 재학 기간</th><td>${mem.univ_date}</td></tr>
 	      	<tr><th>대학교 전공</th><td>${mem.hs_name}</td></tr>
 	      	<tr><th>자기소개서</th><td>${mem.cov_let}</td></tr>
-	      	<tr><th>이력서 tag1</th><td>${restag1.comm_ctx}</td></tr>
-	      	<tr><th>이력서 tag2</th><td>${restag2.comm_ctx}</td></tr>
-	      	<tr><th>이력서 tag3</th><td>${restag3.comm_ctx}</td></tr>
+	      	<tr><th>이력서 tag1</th><td>${mem.tag1}</td></tr>
+	      	<tr><th>이력서 tag2</th><td>${mem.tag2}</td></tr>
+	      	<tr><th>이력서 tag3</th><td>${mem.tag3}</td></tr>
 	     </table>
 	
 		 
