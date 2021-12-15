@@ -46,7 +46,7 @@ public class DjAnnoWriteController {
 		//com_id의 항목이 넘어오기 때문에 회원(user_id)이 이 페이지를 로드하려고 하면 메인으로 튕길 것
 			
 		if(cid==null || cid.equals("")){              
-			return "/Main"; //여기 다시 조정할 것
+			cid = "session_none"; //여기 다시 조정할 것
 		}
 		
 		
@@ -59,16 +59,24 @@ public class DjAnnoWriteController {
 	public String annoWriteForm(HttpServletRequest request ,String com_id,Announce anno, Model model) {
 		System.out.println("DjAnnoWriteController의 annoWrite 시작되었습니다.");
 		
+		//경우에 따라 리턴할 객체 생성
+		String returnString = null;
+		String sessionCheck = "session_none";
 		//세션 처리 (로그인 문제 해결되면 연결할 것)
-		String cmid=check_anno(request);
-		System.out.println("세션 확인 아이디를 갖고오는지->"+cmid);
+		String cid=check_anno(request);
+		System.out.println("세션 확인 아이디를 갖고오는지->"+cid);
+		
+		if(cid.equals(sessionCheck)) {
+			System.out.println("이거 실행은 됐어 근데 아래것이 작동 안하는거임");
+			return "redirect:/main";
+		} else if(cid != null) {
+			
+			returnString = "dj/annoWrite";
+		}
 
-		com_id = "thsl90"; //공고 리스트와 잇기 전에 임시로 객체에 정보 넣기// 세션처리 시 삭제
-		
-		
-		
+				
 		//회사 테이블에서 회사정보 가져오기 이것은 메뉴를 뿌려 줄 때 사용한다.
-		Company compInfo = das.comInfoList(com_id);
+		Company compInfo = das.comInfoList(cid);
 		System.out.println("여기는 컨트롤러 회사정보 가져왔니? 회사명은?->"+compInfo.getCom_id());
 		//-----------------------------------------
 		//직종과 기술스택 가져오기 방법1 (가장 원시적인 방법 - 따로 가져오기)
@@ -162,7 +170,7 @@ public class DjAnnoWriteController {
 		model.addAttribute("recEdu", recEdu);
 	
 		
-		return "dj/annoWrite";
+		return returnString;
 	}
 	
 	

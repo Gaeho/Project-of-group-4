@@ -22,6 +22,35 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<!-- 공고 List 검색 -->
+	<select id="GmAnnoSearchList" parameterType="ComAnnounce" resultType="ComAnnounce">
+		select *
+		from
+		(
+		  select rownum rn, z.*
+		  from (select a.anno_title, a.anno_code, a.anno_regdate, a.anno_c_regdate, a.rec_edu,c.com_name
+				from announce a 
+				left outer join company c
+				on a.com_id = c.com_id
+		        where a.anno_title LIKE '%'||#{annosearch}||'%'
+		        or c.com_name LIKE '%'||#{annosearch}||'%'
+         ) z
+		)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<!-- 공고 total 검색 -->
+	<select id="GmAnnoSearch" parameterType="java.lang.String" resultType="int">
+		select count(*)
+		from(
+		select a.anno_title, a.anno_code, a.anno_regdate, a.anno_c_regdate, a.rec_edu,c.com_name
+				from announce a 
+				left outer join company c
+				on a.com_id = c.com_id
+		        where a.anno_title LIKE '%'||#{annosearch}||'%'
+		        or c.com_name LIKE '%'||#{annosearch}||'%')
+	</select>
+	
 	<!-- 공고 상세 -->
 	<select id="GmAnnoSelOne" parameterType="java.lang.String" resultType="ComAnnounce">
 		select * 
@@ -117,13 +146,7 @@
 	
 	<!-- 이력서 List -->
 	<select id="GmResumeList" parameterType="Resume" resultType="Resume">
-		select *
-		from
-		(
-		  select rownum rn, a.*
-		  from (select res_code, user_id, res_title, res_date from resume where user_id = 'siasia54') a
-		)
-		where rn between #{start} and #{end}
+		  select res_code, user_id, res_title, res_date from resume where user_id = #{user_id}
 	</select>
 	
 	<!-- 이력서 제출  -->
@@ -143,7 +166,7 @@
 	<!-- 지원자 추가  -->
 	<insert id="GminsertapplyDetail" parameterType="Apply">
 		insert into apply
-		values(#{user_id},#{res_code},#{anno_code},#{app_sts},sysdate,not_seq.nextval,null)
+		values(#{user_id}, #{res_code}, #{anno_code},'001', sysdate, not_seq.nextval, null)
 	</insert>
 	
 	<!-- 알림 추가 -->
@@ -152,36 +175,4 @@
 		values (#{ntc_code}, #{user_id}, #{anno_code}, #{ntc_ctg}, sysdate)
 	</insert>
 	
-	
-	
-	
-		<!-- 공고 List 검색 -->
-	<select id="GmAnnoSearchList" parameterType="ComAnnounce" resultType="ComAnnounce">
-		select *
-		from
-		(
-		  select rownum rn, a.*
-		  from (select a.anno_title, a.anno_code, a.anno_regdate, a.anno_c_regdate, a.rec_edu,
-                c.com_name
-          from announce a, company c
-         where a.com_id = c.com_id
-         and a.anno_title LIKE '%'||#{annosearch}||'%'
-         or c.com_name LIKE '%'||#{annosearch}||'%'
-         ) a
-		)
-		where rn between #{start} and #{end}
-	</select>
-	
-	<select id="GmAnnoSearch" parameterType="java.lang.String" resultType="int">
-		select count(*)
-		from(
-		select a.anno_title, a.anno_code, a.anno_regdate, a.anno_c_regdate, a.rec_edu,
-		                c.com_name
-		          from announce a, company c
-		         where a.com_id = c.com_id
-		         and a.anno_title LIKE '%'||#{annosearch}||'%'
-		         and c.com_name LIKE '%'||#{annosearch}||'%')
-	</select>
-
-
 </mapper>

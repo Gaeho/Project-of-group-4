@@ -1,8 +1,9 @@
 package com.oracle.s20210904.gm.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.s20210904.comm.model.Apply;
@@ -21,7 +19,6 @@ import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.Resume;
-import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.model.Scrap;
 import com.oracle.s20210904.comm.service.Paging;
 import com.oracle.s20210904.gm.service.GmAnnoService;
@@ -41,32 +38,27 @@ public class GmAnnoListController {
 	}
 	*/
 	
-	//공고리스트
-	@RequestMapping(value = "GmAnnoList")
-	public String GmAnnoList(ComAnnounce comAnnounce, String currentPage, Model model,String annosearch) {
-		System.out.println("GmAnnoListController Start List...");
-		//원본토탈
-		//int total = as.total();
-		
-		int total = 0;
-		//띄어쓰기 제거
-		if(annosearch!=null) {
-			System.out.println("annosearch->"+annosearch);
-			String annosearch1 = annosearch.replaceAll("\\s+","");
-			total = as.searchtotal(annosearch1);
-			System.out.println("변환된 annosearch1 내용->"+annosearch1);
-			System.out.println("검색어 있을 때의 total->"+total);	
-			comAnnounce.setAnnosearch(annosearch1);
-			model.addAttribute("annosearch1", annosearch1);
-		} else if (annosearch==null) {
-			total = as.total();
-			System.out.println("검색어 없을 때의 total->"+total);	
+	private String check_userid(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("mbid");
+		//user_id의 항목이 넘어오기 때문에 기업(com_id)이 이 페이지를 로드하려고 하면 메인으로 튕길 것
+			
+		if(id==null || id.equals("")){              
+			return "/Main"; //여기 다시 조정할 것
 		}
 		
+		return id;
+	}
+	
+	@RequestMapping(value = "GmAnnoList")
+	public String GmAnnoList(HttpServletRequest request, ComAnnounce comAnnounce, String currentPage, Model model) {
+		System.out.println("GmAnnoListController Start List...");
 		
+		String id=check_userid(request);
+		System.out.println("세션 확인 아이디를 갖고오는지->"+id);
+		
+		int total = as.total();
 		System.out.println("GmAnnoList total->"+total);
-		System.out.println("GmAnnoList currentPage->"+currentPage);
-		System.out.println("GmAnnoList getAnnosearch->"+comAnnounce.getAnnosearch());
 		System.out.println("----------------------------------");
 		
 		// Paging
@@ -98,15 +90,12 @@ public class GmAnnoListController {
 		
 	}
 	
-	
-	
-	
-	
-	
 	@GetMapping(value = "detail")
-	public String detail(String anno_code, ComAnnounce com, Model model) {
+	public String detail(HttpServletRequest request, String anno_code, ComAnnounce com, Model model) {
 		
-		String user_id ="dmdtla054";
+		//String user_id ="dmdtla054";
+		String id=check_userid(request);
+		System.out.println("세션 확인 아이디를 갖고오는지->"+id);
 		
 		System.out.println("GmAnnoListController detail Start...");
 		System.out.println("anno_code->"+anno_code);
@@ -114,7 +103,6 @@ public class GmAnnoListController {
 		model.addAttribute("comanno", comanno);
 		System.out.println("----------------------------------------");
 		System.out.println("comanno.getCom_name()-> "+comanno.getCom_name());
-		System.out.println("comanno.getCom_id()->"+comanno.getCom_id());
 		System.out.println("comanno.getAnno_code()->"+comanno.getAnno_code());
 		System.out.println("comanno.getAnno_title()-> "+comanno.getAnno_title());
 		System.out.println("comanno.getJob_tag()-> "+comanno.getJob_tag());
@@ -123,7 +111,7 @@ public class GmAnnoListController {
 		// 스크랩 유무
 		Scrap scrap = new Scrap();
 		scrap.setAnno_code(anno_code);
-		scrap.setUser_id(user_id);
+		//scrap.setUser_id(user_id);
 		
 		int itlike = as.likegetinfo(scrap);
 		model.addAttribute("itlike",itlike);
@@ -188,7 +176,7 @@ public class GmAnnoListController {
 		System.out.println("------------------------------------");
 		
 		return "gm/GmAnnoDetail";
-			
+		
 	}
 	
 	/*
@@ -235,23 +223,30 @@ public class GmAnnoListController {
 		
 		// 이력서 List
 		@RequestMapping(value = "GmApplyList")
-		public String apply(Resume resume, String anno_code, String currentPage, Model model) {
+		public String apply(HttpServletRequest request, Resume resume, String anno_code, String currentPage, Model model) {
+			
+			String id=check_userid(request);
+			System.out.println("세션 확인 아이디를 갖고오는지->"+id);
+			
 			System.out.println("GmAnnoListController apply Start List...");
 			int tot = as.applytotal();
 			System.out.println("applyList tot->"+tot);
 			System.out.println("----------------------------------");
 			
 			// Paging
-			Paging pg = new Paging(tot, currentPage);
-			resume.setStart(pg.getStart()); // 1 
-			resume.setEnd(pg.getEnd()); // 5
-			
-			ComAnnounce comanno = new ComAnnounce();
-			comanno.setAnno_code(anno_code);
+//			Paging pg = new Paging(tot, currentPage);
+//			resume.setStart(pg.getStart()); // 1 
+//			resume.setEnd(pg.getEnd()); // 5
+//			
+//			ComAnnounce comanno = new ComAnnounce();
+//			comanno.setAnno_code(anno_code);
 			
 			System.out.println("GmAnnoListController applyList Start...");
-			System.out.println("GmAnnoListController applyList anno_code->"+comanno.getAnno_code());
+			System.out.println("GmAnnoListController applyList resume.getUser_id()->"+resume.getUser_id());
+//			System.out.println("GmAnnoListController applyList anno_code->"+pg.getStart());
+//			System.out.println("GmAnnoListController applyList anno_code->"+comanno.getAnno_code());
 			String user_id = "";
+			// 이력서 List
 			List<Resume> listres = as.listres(resume); 
 			
 			System.out.println("GmAnnoListController applyList listres.size->"+listres.size());
@@ -270,32 +265,37 @@ public class GmAnnoListController {
 			
 			model.addAttribute("tot", tot);
 			model.addAttribute("listres", listres);
-			model.addAttribute("pg", pg);
 			model.addAttribute("anno_code", anno_code); // 따로 가져온 값들을 저장해서 넘겨야함
 			model.addAttribute("user_id", user_id); // 따로 가져온 값들을 저장해서 넘겨야함
 			
 			return "gm/GmApplyList";
 			
 		}
-		
+		/*
 		// 이력서 제출
 		@GetMapping(value = "applyResume")
 		public String applyResume (Apply apply,  Model model) {
 			System.out.println("GmAnnoListController applyResume Start...");
 			System.out.println("GmAnnoListController applyResume apply.getRes_code()->"+apply.getRes_code());
 			System.out.println("GmAnnoListController applyResume apply.getAnno_code()->"+apply.getAnno_code());
-			System.out.println("GmAnnoListController applyResume apply.getUser_id()"+apply.getUser_id());
+			System.out.println("GmAnnoListController applyResume apply.getUser_id()->"+apply.getUser_id());
 			// 1. 지원자 user_id, res_code, anno_code, app_sts(065-001), app_regdate(sysdate), com_ntc_code(sequence), user_ntc_code(회원알림 null)
 			int app = as.applyResume(apply);
 			
+			System.out.println("GmAnnoListController applyDetail Start...");
+			insertapplyDetail(apply);
+			apply = as.checkRC(apply);
+			System.out.println("GmAnnoListController applyDetail apply.getAnno_code()->"+apply.getAnno_code());
+			
 			model.addAttribute("apply", apply);
+			System.out.println("여기까지 왔어?");
 			
 
 			
 			return "gm/result";
 			
 		}
-		
+		*/
 		// 알림
 		@GetMapping(value = "applyDetail")
 		public String applyDetail(Apply apply,Model model) {
@@ -314,7 +314,7 @@ public class GmAnnoListController {
 		// 지원 이력서 확인
 		public int insertapplyDetail(Apply apply) {
 			
-			String user_id ="siasia54";
+			//String user_id ="siasia54";
 			System.out.println("insertapplyDetail apply.getUser_id()->"+apply.getUser_id());
 			System.out.println("insertapplyDetail apply.getAnno_code()->"+apply.getAnno_code());
 			
