@@ -117,13 +117,7 @@
 	
 	<!-- 이력서 List -->
 	<select id="GmResumeList" parameterType="Resume" resultType="Resume">
-		select *
-		from
-		(
-		  select rownum rn, a.*
-		  from (select res_code, user_id, res_title, res_date from resume where user_id = 'siasia54') a
-		)
-		where rn between #{start} and #{end}
+		  select res_code, user_id, res_title, res_date from resume where user_id = #{user_id}
 	</select>
 	
 	<!-- 이력서 제출  -->
@@ -143,7 +137,7 @@
 	<!-- 지원자 추가  -->
 	<insert id="GminsertapplyDetail" parameterType="Apply">
 		insert into apply
-		values(#{user_id},#{res_code},#{anno_code},#{app_sts},sysdate,not_seq.nextval,null)
+		values(#{user_id}, #{res_code}, #{anno_code},'001', sysdate, not_seq.nextval, null)
 	</insert>
 	
 	<!-- 알림 추가 -->
