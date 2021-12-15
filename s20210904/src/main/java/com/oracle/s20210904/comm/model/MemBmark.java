@@ -30,7 +30,7 @@ public class MemBmark {
 	
 	
 	//조회용
-	private int start;
-	private int end;
+	private int start=1;
+	private int end=5;
 
 }
