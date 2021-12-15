@@ -259,10 +259,11 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				Apply ap = null;
 				try {
 					ap = session.selectOne("GmCheckRC", apply);
-					System.out.println("ap.getAnno_code()->"+ap.getAnno_code());
+					//System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl checkRC Exception "+e.getMessage());
 				}
+				System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
 				return ap;
 			}
 
@@ -291,8 +292,6 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				}
 			}
 			
-
-
 			@Override
 			public List<ComAnnounce> listsearchAnno(ComAnnounce comAnnounce) {
 				
