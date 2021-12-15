@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인회원가입 주소 검색 불러오기</title>
+<title>기업회원가입 주소 검색 불러오기</title>
 </head>
 <body>
  <script type="text/javascript">
@@ -42,8 +42,8 @@
             console.log(fullRoadAddr);
             
             
-            $("[name=user_addr]").val(data.zonecode);
-            $("[name=user_addr]").val(fullRoadAddr);
+            $("[name=com_addr]").val(data.zonecode);
+            $("[name=com_addr]").val(fullRoadAddr);
             
             /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
             document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;

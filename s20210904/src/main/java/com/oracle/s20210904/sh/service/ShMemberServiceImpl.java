@@ -98,6 +98,10 @@ public class ShMemberServiceImpl implements ShMemberService {
 		
 		return result;
 	}
+
+	
+	
+
 	
 
 	
