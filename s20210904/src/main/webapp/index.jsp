@@ -16,7 +16,7 @@
 	
 
 	<%--  <%response.sendRedirect("ComInfo"); %>  --%>
-    <%response.sendRedirect("main");%>  
+    <%response.sendRedirect("join");%>  
 
 
 

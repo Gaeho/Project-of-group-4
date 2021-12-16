@@ -10,7 +10,7 @@
 <body>
 
 
-	 <c:if test="${check==1 }">성공적으로 전송되었습니다</c:if>
-	<c:if test="${check!=1 }">메일전송이 실패되었습니다</c:if>
+	 <c:if test="${check==1 }">성공적으로 전송되었습니다.메일을 확인해보세요.</c:if>
+	<c:if test="${check!=1 }">메일전송이 실패되었습니다.다시 확인해주세요</c:if>
 </body>
 </html>
