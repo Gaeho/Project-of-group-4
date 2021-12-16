@@ -11,7 +11,6 @@
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>개인회원가입</title>
-<link rel="stylesheet" href="css/header.css" type="text/css">
 <link rel="stylesheet" href="css/sh/register.css" type="text/css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="/resources/js/addressapi.js"></script>
@@ -143,12 +142,13 @@
 						         <div class="registerFormInputBox">	
 		                               <input type="text" name="user_email"   id="user_email"    placeholder="email입력하시오">
 	                                   <input type="button" value="이메일 인증"  onclick="memberVerify()"><p>
+	                                   
 			 	                 </div>
 					  </div>	
 		             <input type="submit" value="회원가입"   disabled="disabled">
 			  		</div>
 			  </form>
-		
+		</div>
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </html>		

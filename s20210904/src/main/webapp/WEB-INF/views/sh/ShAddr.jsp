@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 주소 검색 불러오기</title>
+<title>개인회원가입 주소 검색 불러오기</title>
 </head>
 <body>
  <script type="text/javascript">

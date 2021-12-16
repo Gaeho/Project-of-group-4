@@ -230,5 +230,12 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 		int result2 = wkNoticeDao.resConNoticeDelete(mbid);
 	}
 
+
+
+	@Override
+	public String memberImg(String mbid) {
+		return wkMemberDao.memberImg(mbid);
+	}
+
 	
 }

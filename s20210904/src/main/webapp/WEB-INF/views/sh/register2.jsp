@@ -24,7 +24,7 @@
 		//	var  submitId = document.getElementById('submitId');
 			alert("com_email->"+com_email); 
 			$.ajax({
-				url:"<%=context%>/verifyEmail",
+				url:"<%=context%>/verifyEmail2",
 				data:{com_email : com_email},
 				dataType:'text',
 				success:function(data){
@@ -43,6 +43,35 @@
 		})
 	}
  </script>
+ 
+ <c:if test="${result == 0 }">
+	<script type="text/javascript">
+		alert("가입 대기");
+		location.href="";
+	</script>
+</c:if>
+
+<c:if test="${result == 1 }">
+	<script type="text/javascript">
+		alert("승인");
+		history.go(-1);
+	</script>
+</c:if>
+
+<c:if test="${result == 2 }">
+	<script type="text/javascript">
+		alert("거절");
+		history.go(-1);
+	</script>
+</c:if>
+
+<c:if test="${result == -1 }">
+	<script type="text/javascript">
+		alert("탈퇴")
+		history.go(-1);
+	</script>
+</c:if>
+
 </head>
 <!-- 헤더부분 -->
 <%@ include file="/WEB-INF/views/header.jsp"%>
@@ -76,7 +105,7 @@
                      </div>
                      <div class="form-group">
                                  <input class="form-control" placeholder="상세주소" name="com_addr" id="addr3" type="text"  />
-                     	         <%@ include file="/WEB-INF/views/sh/ShAddr.jsp"%>
+                     	         <%@ include file="/WEB-INF/views/sh/ShAddr2.jsp"%>
                      </div>
 			  	   </div>   
 			  	  </div>		
@@ -136,11 +165,12 @@
 						<div class="registerFormRow">
 							<div class="registerFormLabel">이메일</div>
 								<div class="registerFormInputBox">
-	                  				 <input type="text" name="com_email" placeholder="emiall입력하시오">
+	                  				 <input type="text" name="com_email"  id="com_email"  placeholder="emiall입력하시오">
 	                  				 <input type="button" value="이메일 인증"  onclick="memberVerify2()"><p>
 							</div>
 						</div>
 					<input type="submit" value="회원가입"   disabled="disabled">
+					</div>
 		</form>
 	</div>
 </body>

@@ -216,6 +216,9 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 			public Apply checkRC(Apply apply) {
 				System.out.println("GmAnnoServiceImpl checkRC Start...");
 				Apply ap = ad.checkRC(apply);
+
+				//System.out.println("Service ap.getAnno_code()->"+ap.getAnno_code());
+
 				
 				return ap;
 			}

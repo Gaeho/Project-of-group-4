@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SySearchDao">
+
+	<select id="SyPostSearch" parameterType="Post" resultType="Post">
+			select *
+			from(
+			select rownum rn, z.*
+			from (	
+			
+			select post_code, post_title, post_regdate, post_view, user_id,
+					from post
+					where post_title Like '%'||#{post_search}||'%'
+					or user_id Like '%'||#{post_search}||'%'			
+					) z
+				 )
+			where rn between #{start} and #{end}
+	
+	</select>
+	
+	<!-- <select id="SyMainPostSearch" parameterType="SySearch" resultType="SySearch">
+		
+			select *
+			from(
+			select rownum rn, z.*
+				from (	
+
+				select p.post_code post_code, p.brd_code brd_code, p.post_title post_title, p.user_id user_id
+				
+				from Post p 
+				
+				where p.brd_code like '%'||#{post_search}||'%'
+				or p.post_title like '%'||#{post_search}||'%'           
+				or p.user_id like '%'||#{post_search}||'%'              
+				) z
+	 
+			)
+			where rn between #{start} and #{end}          
+	
+	</select> -->
+</mapper>

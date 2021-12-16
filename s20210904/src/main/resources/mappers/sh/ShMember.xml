@@ -4,13 +4,20 @@
 <mapper namespace="ShMemberDao">
 
 	<insert id="ShJoinMember"   parameterType="Member" >
-		insert into MEMBER values (#{user_id},#{user_pw},#{user_name},#{user_sex},#{user_brh},#{user_edu}, 
-																#{user_addr},#{user_tel},#{user_email},#{user_img})
+		insert into MEMBER(user_id,user_pw,user_name,user_sex,
+												user_brh,user_edu,user_addr,user_tel,user_email
+												) 
+								values (#{user_id},#{user_pw},#{user_name},#{user_sex},
+												#{user_brh},#{user_edu}, #{user_addr},#{user_tel},
+												#{user_email})
 	</insert>
 		
 	<insert id="ShJoinCompany" parameterType="Company">
-		insert into COMPANY values (#{com_id},#{com_pw},#{com_name},#{com_tel},#{com_addr},#{com_email},
-																		#{com_user},#{com_sec},#{com_bus},#{com_regnum},#{com_mgr_tel},#{com_web},#{com_img},#{com_grade})
+		insert into COMPANY(com_id,com_pw,com_name,com_addr,
+												  com_regnum,com_sec,com_user,com_mgr_tel,com_email
+												  ) 
+							values (#{com_id},#{com_pw},#{com_name},#{com_addr},#{com_email},
+																		#{com_user},#{com_sec},#{com_regnum},#{com_mgr_tel})
 	</insert>
 	
 	<select id="ShLogin"  parameterType="Member"  resultType="int"> 
@@ -60,7 +67,6 @@
 	
 	</update>
 
-
-
+	
 
 </mapper>

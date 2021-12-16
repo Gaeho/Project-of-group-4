@@ -16,6 +16,9 @@ public interface ShMemberDao {
 	int tempComSavePw(Company company); //기업 회원 비밀번호 찾기 
 	
 	
+	
+	
+	
 
 	
 	

@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +18,7 @@
 	<table>
 		<thead>		
 			<tr>
-				<th>번호</th>
+				<!--<th>번호</th> -->
 				<th>분류</th>
 				<th>작성자</th>
 				<th>제목</th>
@@ -28,30 +27,25 @@
 			</tr>
 		</thead>	
 		<tbody>
-			 <c:forEach items="${postSelect}" var="post">
-				<tr>
-					<td><c:out value="${post.post_code }"/></td>
-					<td><c:out value="${post.brd_code }"/></td>
-				    <td><c:out value="${post.user_id}"/></td>
-					<td><a href="postView?post_code=${post.post_code}">${post.post_title}</a></td>
-					<td><c:out value="${post.post_view}"></c:out></td>
-					<td><c:out value="${post.post_regdate}"/></td>
-				</tr>
-			</c:forEach>
+		 <c:forEach items="${postSelect}" var="post">
+			<tr>
+			<!-- 	<td><c:out value="${post.post_code }"/></td> -->
+				<td><c:out value="${post.brd_code }"/></td>
+			    <td><c:out value="${post.user_id}"/></td>
+				<td><a href="postView?post_code=${post.post_code}">${post.post_title}</a></td>
+				<td><c:out value="${post.post_view}"></c:out></td>
+				<td><c:out value="${post.post_regdate}"/></td>
+			</tr>
+		</c:forEach>
 		</tbody>	
 	</table>
 </div>
 
-	<select name="searchType" id="searchType">
-		<option value="post_title">제목</option>
-		<option value="post_ctx">본문</option>
-		<option value="user_id">작성자</option>
- 	</select>
- 	
- 	<div>
-	 	<input type="text" name="keyword" id="keyword">
-	 	<button name="btn-search" id="btnSearch">검색</button>
- 	</div>
+	<form action="postList" method="post">
+		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
+		<input type="text" value="${post_search}" name="post_search" id="post_search" placeholder="검색어를 입력하세요">
+		<button type="submit">검색</button>
+	</form>
 
 	<div>
 		<c:if test="${paging.startPage > paging.pageBlock }">
@@ -69,7 +63,7 @@
 	<c:url var="postListURL" value="/postList"></c:url>
 	
 <script>
-	$(document).on('click', '#btnSearch', function(e){
+/* 	$(document).on('click', '#btnSearch', function(e){
 		e.preventDefault();
 		var url = "${postList}";
 		url = url + "?searchType=" + $('#searchType').val();
@@ -79,16 +73,19 @@
 	
 	});	
 	
-	var result = "${result}";        
+		var msg = "${result}";        
        if (result === "InsertSuccess") {
-           alert("작성이 완료되었습니다.");
+           alert("작성이 완료되었습니다.");   
            
        } else if (result === "UpdateSuccess") {
            alert("수정이 완료되었습니다.");
        }           
        } else if (result === "DeleteSuccess") {
            alert("삭제가 완료되었습니다.");
-       }    
+       }     */
+       function pageMove(vCurrentPage){
+    	   var  post_search = $('#post_search').val();
+    	   location.href="postList?currentPage="+vCurrentPage+"&post_search="+post_search;
    }    
 </script>
 </body>

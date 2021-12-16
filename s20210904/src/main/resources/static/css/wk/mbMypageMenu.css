@@ -3,15 +3,16 @@
 
 .mypageContent-wrap{
 	flex-wrap: wrap;
-    max-width: 1080px;
+    max-width: 1200px;
     min-height: 700px;
     margin: 0 auto;
     padding: 0 20px;
     align-items: flex-start;
+    overflow:auto;
 }
 
 .mypageTitle{
-	width: 1000px;
+	width: 1150px;
 }
 
 .mbMypageMenu {
@@ -26,4 +27,9 @@
 	float: right;
     width: 80%;
     padding: 72px 0 60px;
+}
+
+.profile_img{
+	width: 150px;
+	height: 150px;
 }

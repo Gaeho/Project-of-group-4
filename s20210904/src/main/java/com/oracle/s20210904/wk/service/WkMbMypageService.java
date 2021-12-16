@@ -47,4 +47,6 @@ public interface WkMbMypageService {
 
 	void noticeDelete(String mbid);
 
+	String memberImg(String mbid);
+
 }

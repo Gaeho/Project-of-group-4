@@ -150,6 +150,11 @@ public class ShMemberDaoImpl implements ShMemberDao {
 	}
 
 	
+
+	
+	
+
+	
 	
 	
 

@@ -12,9 +12,9 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 
-	/*  function apply() {
+	  function apply() {
 		alert("이력서 제출이 완료되었습니다.");
-	} */ 
+	}  
 /* 
 	function apply() {
 		var result = confirm("선택한 이력서를 제출하시겠습니까?")
@@ -36,7 +36,7 @@
 <div id="container">
 	<div class="resume">
 		<div class="resume_title">
-		  <form action="applyDetail"> 
+		  <form action=applyDetail  onsubmit="apply()" > 
 		  <h2> 이력서 목록 </h2>
 			<table>
 				<tr>
@@ -58,7 +58,7 @@
 				</c:forEach>
 				
 				<td>anno_code->${anno_code}</td>
-				<td><input type="submit" value="제출하기" <%-- onclick="location.href='applyDetail?user_id=${id}&anno_code=${anno_code}'"  --%>></td>
+				<td><input type="submit" value="제출하기"></td>
 			
 			</table>
 		 </form>
