@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +13,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 	<form action="postReply" method="post">
 		<input type="hidden" name="brd_code" value="Q&A">
 		<input type="hidden" name="user_id" value="${postReply.user_id}">
@@ -23,14 +23,14 @@
    <table>
 		<tr>
 			<td>제목</td>
-			<td><input type="text" name="post_title" value="답글" + "${postReply.post_title}"></td>
+			<td><input type="text" name="post_title" id="post_title" value="답변"></td>
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea rows="10"  name="post_ctx">${postReply.post_ctx}</textarea></td>
+			<td><textarea rows="10" name="post_ctx" id="post_ctx"></textarea></td>
 		</tr>		
    </table>
-   			<input type="submit" value="입력"></input>
+   			<input type="submit" value="저장" onclick="location.href='postList'">	
 	</form>
 </body>
 </html>
