@@ -291,7 +291,7 @@ public class GmAnnoListController {
 			return "gm/GmApplyList";
 			
 		}
-		
+		/*
 		// 이력서 제출
 		@GetMapping(value = "applyResume")
 		public int applyResume (Apply apply,  Model model) {
@@ -305,7 +305,7 @@ public class GmAnnoListController {
 			return app;
 			
 		}
-		
+		*/
 		// 알림
 		@GetMapping(value = "applyDetail")
 		public String applyDetail(Apply apply,Model model) {
@@ -318,7 +318,7 @@ public class GmAnnoListController {
 			model.addAttribute("apply", apply);
 			System.out.println("여기까지 왔어?");
 			
-			return "gm/GmApplyDetail";
+			return "/Main";
 			
 		}
 		
@@ -340,7 +340,8 @@ public class GmAnnoListController {
 				if(result == 1) {
 					ap = as.checkRC(apply);
 					Notice notice = new Notice();
-					notice.setUser_id(ap.getUser_id());
+					// 기업에 알람이 가야하기 때문에 com_id가 와야함
+					//notice.setUser_id(ap.getUser_id());
 					notice.setAnno_code(ap.getAnno_code());
 					notice.setNtc_ctg("001");
 					notice.setNtc_code(ap.getCom_ntc_code());

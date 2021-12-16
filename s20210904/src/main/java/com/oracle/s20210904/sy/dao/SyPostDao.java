@@ -10,22 +10,21 @@ public interface SyPostDao {
 	
 	List<Post> postSelect(PostSearch postSearch) throws Exception;
 	
-	public void postInsert(Post post) throws Exception;
+	public int postInsert(Post post) throws Exception;
 	
-//	public Post postView(int post_code) throws Exceptions;
+	public Post postView(int post_code) throws Exception;
 	
-	List<Post> postView(int post_code) throws Exception;
+	public int postUpdate(Post post) throws Exception;
 	
-	public void postUpdate(Post post) throws Exception;
-	
-	public void postDelete(String user_id) throws Exception;
-
-//	int total(PostSearch postSearch) throws Exception;
+	public int postDelete(int post_code) throws Exception;
 	
 	List<Post> total(PostSearch postSearch) throws Exception;
 
-	boolean postReply(Post post);
+	public void postViewCount(int post_code, String user_id) throws Exception;
 
-	List<Post> postGetReply(int post_code);
+	public Post postViewReply(int post_code) throws Exception;
+	
+	public int postReply(Post post) throws Exception;
+
 }
 

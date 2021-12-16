@@ -44,18 +44,20 @@
 		</trim>
 	</select>
 		
-	<insert id="postInsert">
+	<insert id="postInsert" parameterType="Post">
 		insert into post(
-			post_title
+			post_code
+			, brd_code
+			, post_title
 			, post_ctx
 			, post_regdate
-			, post_view
 			, user_id
 		) values (
-			#{post_title}
+			post_seq.NEXTVAL
+			, #{brd_code}
+			, #{post_title}
 			, #{post_ctx}
 			, #{post_regdate}
-			, #{post_view}
 			, #{user_id}
 		)
 	</insert>
@@ -63,6 +65,7 @@
 	<select id="postView" parameterType="int" resultType="Post">
 		select 
 			post_code
+			, user_id
 			, post_title
 			, post_ctx
 			, post_regdate
@@ -71,31 +74,45 @@
 		where post_code = #{post_code}
 	</select>
 	
-	<update id="postUpdate">
+	 <update id="postUpdate">
 		update post
 		set
 			post_title = #{post_title}
 			, post_ctx = #{post_ctx}
+			, user_id = #{user_id}
 		where 
 			post_code = #{post_code} 
 	</update>
 	
-	<delete id="postDelete">
+	<delete id="postDelete" parameterType="int"  >
 		delete
 		from post
-		where user_id = #{user_id}
+		where post_code = #{post_code} 
 	</delete>
 	
-    
-    <insert id="postReply">
-    	insert into post (post_code, ref, ref_step, ref_ctx)
-    	values (#{post_code}, #{ref}, #{ref_step}, #{ref_ctx})
-    </insert>
-
-	<select id="postGetReply" resultType="Post">
-		select ref, post_code as post_code, ref_step as re ref_step, ref_ctx
-		from post
-		where post_code = #{post_code}
+	<insert id="postReply" parameterType="Post">
+		insert into post(
+			post_code
+			, brd_code
+			, post_title
+			, post_ctx
+			, post_regdate
+			, user_id
+			, ref
+			, ref_step
+			, ref_lev
+		) values (
+			post_seq.NEXTVAL
+			, #{brd_code}
+			, #{post_title}
+			, #{post_ctx}
+			, #{post_regdate}
+			, #{user_id}
+			, #{ref}
+			, #{ref_step}
+			, #{ref_lev}
+		)
 		order by ref_step asc
-	</select>
+	</insert>
+	
 </mapper>
