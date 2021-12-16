@@ -34,6 +34,9 @@ public class SyPostController {
 	private String idCheck(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("userId");
+		if(id==null || id.equals("")){              
+			return "dmdtla054"; 
+		}
 
 		return id;
 	}
@@ -95,6 +98,7 @@ public class SyPostController {
 	@ResponseBody
 	public String postInsert(Post post, HttpServletRequest request, Model model, RedirectAttributes redirect) throws Exception {
 		System.out.println("SyPostController postInsert POST");
+
 		String userId=idCheck(request);
 		model.addAttribute("userId", userId);
 		post.setUser_id(userId);
@@ -109,7 +113,7 @@ public class SyPostController {
 		
 		/* redirect.addFlashAttribute("msg", "InsertSuccess"); */
 
-		return "redirect:postList";
+		return "sy/postList";
 	}
 	
 	// 게시글 조회

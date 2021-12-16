@@ -22,6 +22,9 @@
 <!-- 알람입니당 -->
 <script type="text/javascript">
 window.onload=function alramList(){
+	// var id = ${id};
+	//alert("id->"+id)
+	
 	str = "";
 	$.ajax({
 		url:"alramList",

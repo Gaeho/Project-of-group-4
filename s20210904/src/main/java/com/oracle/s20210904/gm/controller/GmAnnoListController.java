@@ -18,6 +18,7 @@ import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.NoticeCom;
 import com.oracle.s20210904.comm.model.Resume;
 import com.oracle.s20210904.comm.model.Scrap;
 import com.oracle.s20210904.comm.service.Paging;
@@ -338,14 +339,30 @@ public class GmAnnoListController {
 				result = as.insertapplyDetail(apply);
 				// insert 확인  성공시 1, 성공했으면 알림 추가~
 				if(result == 1) {
-					ap = as.checkRC(apply);
+					Apply apply1 = as.checkRC(apply);
+					NoticeCom noticeCom = new NoticeCom();
+					noticeCom = as.selectNc(apply1);
+					System.out.println("컨트롤러noticeCom.getCom_id()->"+noticeCom.getCom_id());
+					
+					/*
 					Notice notice = new Notice();
 					// 기업에 알람이 가야하기 때문에 com_id가 와야함
+					
 					//notice.setUser_id(ap.getUser_id());
 					notice.setAnno_code(ap.getAnno_code());
 					notice.setNtc_ctg("001");
 					notice.setNtc_code(ap.getCom_ntc_code());
 					as.Noticeinesert(notice);
+					*/
+					
+					
+					// 기업에 알람이 가야하기 때문에 com_id가 와야함
+					//.setCom_id(noticeCom.getCom_id());
+					//noticeCom.setAnno_code(noticeCom.getAnno_code());
+					//noticeCom.setNtc_code(noticeCom.getCom_ntc_code());
+					//noticeCom.setNtc_ctg("001");
+					as.Noticeinesert(noticeCom);
+					
 				}
 			}
 			return result;

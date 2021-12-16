@@ -44,7 +44,7 @@
 		</trim>
 	</select>
 		
-	<insert id="postInsert" parameterType="Post">
+  	<insert id="postInsert" parameterType="Post">
 		insert into post(
 			post_code
 			, brd_code
@@ -57,7 +57,7 @@
 			, #{brd_code}
 			, #{post_title}
 			, #{post_ctx}
-			, #{post_regdate}
+			, sysdate
 			, #{user_id}
 		)
 	</insert>
