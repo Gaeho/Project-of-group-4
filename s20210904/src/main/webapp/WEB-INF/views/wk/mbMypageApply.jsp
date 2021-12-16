@@ -12,31 +12,45 @@
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
+	var notice_apply=0;
+	var notice_resCon=0;
+	
+	// radio버튼을 눌러서 페이지로 이동해야 알림이 삭제되도록 삭제되는 알림 분류
 	$(function(){ 
 		if($('input:radio[id=tab01]').is(":checked")){
-			alert('test1 : ');
+			notice_apply=1;
 		}
 		
 		if($('input:radio[id=tab02]').is(":checked")){
-			alert('test2 : ');
+			notice_resCon=1;
 		}
 		
-        
+		$("input:radio[id=tab01]").click(function(){
+			notice_apply=1;
+		});
+		
+		$("input:radio[id=tab02]").click(function(){
+			notice_resCon=1;
+		});
 	});
 	
+	
+	
+	
+	// 알림삭제 ajax
 	function noticeDelete(){
 		alert('noticeDelete start');
 		
 		$.ajax({
 		   url: "mbMypageNoticeDelete",
 		   type: "POST",
-		   /* data: {"img_path":img_path,"uploadsts":uploadsts}, */
-		   /* dataType:'text', */
+		   data: {"notice_apply":notice_apply,"notice_resCon":notice_resCon},
+		   dataType:'text',
 		   success: function () {
-			   /* alert("삭제성공!!"); */
+			   alert("삭제성공!!");
 			},
 		    error: function () {
-		    	/* alert("삭제실패ㅜㅜ"); */
+		    	alert("삭제실패ㅜㅜ");
 		      // Handle upload error
 		    }
 		});

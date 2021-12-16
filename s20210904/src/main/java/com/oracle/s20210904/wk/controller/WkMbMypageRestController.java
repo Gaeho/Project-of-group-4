@@ -185,11 +185,11 @@ public class WkMbMypageRestController {
 	
 	// 마이페이지 알림 삭제
 	@PostMapping(value="mbMypageNoticeDelete", produces = "application/text; charset=UTF-8")//, method= RequestMethod.GET)
-	public String mbMypageNoticeDelete(HttpServletRequest request,Model model) {
+	public String mbMypageNoticeDelete(HttpServletRequest request,Model model, String notice_apply, String notice_resCon) {
 		System.out.println("WkMbMypageRestController mbMypageNoticeDelete()");
 		String mbid=checkId(request);
 		
-		ms.noticeDelete(mbid);
+		ms.noticeDelete(mbid, notice_apply, notice_resCon);
 		return null;
 	}
 	
