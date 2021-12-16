@@ -22,26 +22,53 @@
 	/*alert("Vdeptno->"+Vdeptno); */
 			var user_email = $('#user_email').val();
 		//	var  submitId = document.getElementById('submitId');
-			alert("user_email->"+user_email); 
+		
+			if(user_email==""){
+				alert("이메일을 입력해 주세요.");
+				 $('#user_email').foucs();
+				return;
+			}
+			alert("user_email-> "+user_email); 
+			
 			$.ajax({
 				url:"<%=context%>/verifyEmail",
 				data:{user_email : user_email},
 				dataType:'text',
 				success:function(data){
-
 					 if(data == '1') {
-
 						 // tag를 풀어줌 
-						 alert("성공적으로 인증되었습니다. 가입누르시면되용");
+						 alert("이메일 인증번호를 입력해 주세요.");
 						// submitId.disabled = true;
-						 $('input[type="submit"]').prop('disabled', false);
+						 $('#emailAuthentication').prop('disabled', false);
+						 $('#emailAuthBtn').prop('disabled', false);
+						 
 					 } else{
 						 // Dim Tag유지
-						 alert("인증이 실패되었습니다.이메일을 확인해주세요");
+						 alert("인증번호 발송이 실패하였습니다.이메일을 확인해주세요");
 					 }
  			   }
 		})
 	}
+	 
+	 
+	function emailAuth(){
+		var authNumber = $('#emailAuthentication').val();
+			$.ajax({
+				url:"<%=context%>/emailAuthentication",
+				type:"post",
+				data:{authNumber : authNumber},
+				dataType:'text',
+				success:function(data){
+					 if($.trim(data)== 'success') {
+						 alert("인증이 완료되었습니다!.");
+						 $('input[type="submit"]').prop('disabled', false);						 
+						 $('#emailAuthentication').prop('disabled', true);
+					 } else{
+						 alert("인증이 실패되었습니다.이메일을 확인해주세요");
+					 }
+ 			   }
+		})
+	} 
  </script>
 
 </head>
@@ -144,7 +171,19 @@
 	                                   <input type="button" value="이메일 인증"  onclick="memberVerify()"><p>
 	                                   
 			 	                 </div>
-					  </div>	
+					  </div>
+					 
+					  
+				<!-- 이메일 인증번호 -->	  
+				 		<div class="registerFormRow" id="emailAuthBtnDiv" >
+					  		 <div class="registerFormLabel">이메일 인증번호</div>
+					         	 <div class="registerFormInputBox">	
+	                               <input type="text" name="emailAuthentication"   id="emailAuthentication"    placeholder="이메일 인증번호"  disabled="disabled" style="width: 300px;" >
+                                   <input type="button" value="이메일 인증번호 입력"  onclick="emailAuth()"    id="emailAuthBtn"  disabled="disabled"><p>
+                                   
+		 	                 </div>
+				  		</div>
+					  	
 		             <input type="submit" value="회원가입"   disabled="disabled">
 			  		</div>
 			  </form>

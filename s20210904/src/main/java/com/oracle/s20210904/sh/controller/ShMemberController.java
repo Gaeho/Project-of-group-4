@@ -59,7 +59,7 @@ public class ShMemberController {
 		//System.out.println("ShMemberController joinmember"+joinmemeber.getUser_id());
 		model.addAttribute("joinmember", joinmember);
 		
-		return "sh/main";
+		return "sh/registerresult";
 	}
 	
 
@@ -282,7 +282,7 @@ public class ShMemberController {
 		//Mail Ajax(개인회원가입 이메일인증)
 		@RequestMapping(value = "verifyEmail" , produces = "application/text;charset=UTF-8")
 		@ResponseBody
-		public String  verifyEmail(String  user_email , Model model) {
+		public String  verifyEmail(String  user_email , Model model, HttpSession session) {
 			
 			System.out.println("mailSending...");  //받는사람이메일
 			String tomail = user_email;
@@ -303,7 +303,8 @@ public class ShMemberController {
 				mailsender.send(message);
 				tempVerifyStatus= "1";
 				
-			
+				//세션에 인증 번호 저장
+				session.setAttribute("tempPassword", tempPassword);
 
 			} catch (Exception e) {
 				System.out.println("message Error->"+e.getMessage());
@@ -317,7 +318,7 @@ public class ShMemberController {
 		//Mail Ajax2(기업회원가입 이메일인증)
 				@RequestMapping(value = "verifyEmail2" , produces = "application/text;charset=UTF-8")
 				@ResponseBody
-				public String  verifyEmail2(String  com_email , Model model) {
+				public String  verifyEmail2(String  com_email , Model model,  HttpSession session) {
 		        System.out.println("mailSending...");  //받는사람이메일
 				String tomail = com_email;
 				System.out.println("verifyEmail2 tomail->"+tomail);
@@ -332,11 +333,13 @@ public class ShMemberController {
 						messageHelper.setTo(tomail); 
 						messageHelper.setSubject(title); 
 						String tempPassword = (int) (Math.random() * 999999) + 1 + "";
-						messageHelper.setText("인증 번호입니다:" + tempPassword); //
+						messageHelper.setText("인증 번호입니다: " + tempPassword); //
 						System.out.println("인증번호입니다" + tempPassword); 
 						mailsender.send(message);
 						tempVerifyStatus = "1";
 
+						//세션에 인증 번호 저장
+						session.setAttribute("tempPassword", tempPassword);
 					} catch (Exception e) {
 						System.out.println("message Error->"+e.getMessage());
 						tempVerifyStatus = "0";
@@ -344,9 +347,18 @@ public class ShMemberController {
 					System.out.println("ShMemberController verifyEmail tempVerifyStatus->" + tempVerifyStatus); 
 					
 					return tempVerifyStatus;
+		}
+	
+				//이메일 인증 처리
+				@PostMapping("emailAuthentication")
+				@ResponseBody
+				public String emailAuthentication(HttpSession session , String authNumber) {			
+					String tempPassword=(String)session.getAttribute("tempPassword");
+					if(tempPassword.equals(authNumber)) {				
+						return "success";
+					}else
+					return "failed";
 				}
-	
-	
 	
 	
 	
