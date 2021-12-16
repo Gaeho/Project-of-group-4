@@ -165,7 +165,7 @@
 						<div class="registerFormRow">
 							<div class="registerFormLabel">이메일</div>
 								<div class="registerFormInputBox">
-	                  				 <input type="text" name="com_email" placeholder="emiall입력하시오">
+	                  				 <input type="text" name="com_email"  id="com_email"  placeholder="emiall입력하시오">
 	                  				 <input type="button" value="이메일 인증"  onclick="memberVerify2()"><p>
 							</div>
 						</div>
