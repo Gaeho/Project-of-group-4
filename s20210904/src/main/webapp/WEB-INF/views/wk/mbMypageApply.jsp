@@ -13,8 +13,14 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){ 
-		/* var listVar = $('input[name=tabmenu]').is(":checked"); */
-		/* alert('test : '); */
+		if($('input:radio[id=tab01]').is(":checked")){
+			alert('test1 : ');
+		}
+		
+		if($('input:radio[id=tab02]').is(":checked")){
+			alert('test2 : ');
+		}
+		
         
 	});
 	
@@ -48,13 +54,18 @@
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <div class="mypageContent-wrap">
+	<div class="mypageTitle">
+		<div class="conbox con1"><h1>입사지원현황</h1></div>
+		<div class="conbox con2"><h1>나의 이력서 열람기업</h1></div>
+	</div>
 	<div class="mbMypageMenu">
 		<input type="image" class="profile_img" src="${profile}" 
 			alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" ><br>
-			${mbid } 님<p>
+			&bsnp;&bsnp;${mbid } 님<p>
 		<ul>
 			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageApply?notice_msg=2">나의 이력서 열람기업</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a></li>
