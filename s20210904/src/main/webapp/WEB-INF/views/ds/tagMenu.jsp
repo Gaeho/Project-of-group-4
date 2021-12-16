@@ -55,7 +55,7 @@
 					<c:if test="${ttotCnt > 0 }">
 						<c:forEach var="tagList" items="${dsCommList}">
 							<tr>
-								<td>${tagList.comm_ctx}</td><td>${tagList.sub_cat}</td><td>${tagList.comm_ctx2}</td><td><input type="button" value="삭제"></td>
+								<td>${tagList.comm_ctx}</td><td>${tagList.sub_cat}</td><td>${tagList.comm_ctx2}</td><td><input type="button" value="삭제" onclick="location.href='<%=context1%>/tagDel?main_cat=${tagList.main_cat}&sub_cat=${tagList.sub_cat}'"></td>
 							</tr>
 						</c:forEach>
 					</c:if>
