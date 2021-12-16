@@ -9,6 +9,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 <h2>검색 결과</h2>
 	<h4>검색어 : ${searchPost1}</h4>
 	<table>

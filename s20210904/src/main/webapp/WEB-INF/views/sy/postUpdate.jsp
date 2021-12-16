@@ -8,11 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
+<link href="css/sy/postView.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 	<form action="postUpdate" method="post">
 		<input type="hidden" name="post_code" value="${post.post_code}">
 		<input type="hidden" name="user_id" value="${post.user_id}">
@@ -23,7 +25,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><input type="text" name="post_ctx" value="${post.post_ctx}"></td>
+				<td><input type="text" id="post_ctx" name="post_ctx" value="${post.post_ctx}"></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
