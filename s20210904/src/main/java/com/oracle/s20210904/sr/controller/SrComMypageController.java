@@ -430,7 +430,6 @@ public class SrComMypageController {
 	}
 
 	@GetMapping(value = "memFail")
-
 	public String memFail(Apply apply) {
 		scms.memFail(apply);
 		scms.applyStsUpdate(apply);
