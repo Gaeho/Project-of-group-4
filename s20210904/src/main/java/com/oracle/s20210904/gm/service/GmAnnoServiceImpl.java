@@ -10,6 +10,7 @@ import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.NoticeCom;
 import com.oracle.s20210904.comm.model.Resume;
 import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.model.Scrap;
@@ -232,9 +233,9 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 
 			// 알림 추가
 			@Override
-			public void Noticeinesert(Notice notice) {
+			public void Noticeinesert(NoticeCom noticeCom) {
 				System.out.println("GmAnnoServiceImpl Noticeinesert Start...");
-				ad.Noticeinesert(notice);
+				ad.Noticeinesert(noticeCom);
 				
 			}
 	 
@@ -248,6 +249,14 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 			public int searchtotal(String annosearch) {
 				
 				return ad.searchtotal(annosearch);
+			}
+
+			@Override
+			public NoticeCom selectNc(Apply apply) {
+				System.out.println("GmAnnoServiceImpl에서 selectNc실행 중..");
+				NoticeCom noticecom = ad.selectNc(apply);
+				
+				return noticecom;
 			}
 	
 

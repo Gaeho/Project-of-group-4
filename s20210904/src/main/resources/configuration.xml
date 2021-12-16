@@ -36,6 +36,7 @@
 		<typeAlias alias="CommMemResume" type="com.oracle.s20210904.sr.model.CommMemResume"/>
 		<typeAlias alias="CommResMemBook" type="com.oracle.s20210904.sr.model.CommResMemBook"/>
 		<typeAlias alias="NoticeApplyAnno" type="com.oracle.s20210904.comm.model.NoticeApplyAnno"/>
-
+		<typeAlias alias="NoticeCom" type="com.oracle.s20210904.comm.model.NoticeCom"/>
+		
 	</typeAliases>
 </configuration>
