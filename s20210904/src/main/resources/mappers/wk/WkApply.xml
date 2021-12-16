@@ -17,7 +17,7 @@
         		from apply ap2
         		inner join comm co2
         		on ap2.app_sts=co2.sub_cat
-        		where ap2.user_id='dmdtla054'
+        		where ap2.user_id=#{mbid}
         		and co2.main_cat='065') sub
 		inner join resume re
 		on sub.user_id=re.user_id
