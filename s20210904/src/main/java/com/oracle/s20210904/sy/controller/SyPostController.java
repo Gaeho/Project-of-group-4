@@ -93,8 +93,10 @@ public class SyPostController {
         String result=null;
         if (userId == null) {
            result = "redirect:login";
-        }else
+        }else {
            result = "sy/postInsert";
+        }
+        
         model.addAttribute("userId", userId);
        System.out.println("Session Check : "+userId);
             
@@ -109,7 +111,7 @@ public class SyPostController {
 		String userId=idCheck(request);
 		post.setUser_id(userId);
 		
-    	int maxCount = syPostServiceImpl.total()+1;
+    	int maxCount = syPostServiceImpl.max()+1;
     	
     	if(post.getPost_code()!=0) {
     		syPostServiceImpl.updateRef(post);

@@ -40,7 +40,13 @@ public class SyPostDaoImpl implements SyPostDao {
 		    System.out.println("SyPostDaoImpl postInsert post getPost_regdate->"+post.getPost_regdate());    
 		    System.out.println("SyPostDaoImpl postInsert post getUser_id->"+post.getUser_id());	
 		   
-			result = sqlSession.insert("postInsert", post);
+		    if(!(post.getUser_id().equals("rhksflwk0000"))) {
+				result = sqlSession.insert("postInsert", post);
+		   }else {
+			   post.setBrd_code("공지");
+			   result = sqlSession.insert("postInsert", post);
+		   }
+
 			
 		} catch (Exception e) {
 			System.out.println("SyPostDaoImpl postInsert Exception : "+e.getMessage());
@@ -167,5 +173,11 @@ public class SyPostDaoImpl implements SyPostDao {
 	public List<Post> postSearch(Post post) {
 		List<Post> postSearch = sqlSession.selectList("SySearchPost",post);
 		return postSearch;
+	}
+	
+	@Override
+	public int max() {
+		int maxCount = sqlSession.selectOne("max");
+		return maxCount;
 	}
 }

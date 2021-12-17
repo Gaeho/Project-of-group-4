@@ -33,4 +33,6 @@ public interface SyPostService {
 	List<Post> noticeList();
 
 	List<Post> postSearch(Post post);
+
+	int max();
 }

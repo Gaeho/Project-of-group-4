@@ -62,7 +62,7 @@
 					</c:forEach>
 				</c:if>
 			</table>
-			
+			<input type="button" value="작성하기" class="btn_notice" onclick="location.href='<%=context%>/postInsert'">
 			<ul class="pageBtn">
 						<li><c:if test="${pg2.startPage > pg2.pageBlock }">
 							<a href="boardMenu?currentPage2=${pg2.startPage-pg2.pageBlock}&currentPage=${pg.currentPage}">[이전]</a></c:if>
