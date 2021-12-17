@@ -176,10 +176,10 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 			@Override
 			public int likegetinfo(Scrap scrap) {
 				System.out.println("GmAnnoServiceImpl likeinsert Start...");
-				int like = ad.likegetinfo(scrap);
-				System.out.println("Service like ->"+like);
+				int itlike = ad.likegetinfo(scrap);
+				System.out.println("Service like ->"+itlike);
 				
-				return like;
+				return itlike;
 			}
 			
 			// 이력서 total

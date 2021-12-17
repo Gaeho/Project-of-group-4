@@ -127,6 +127,7 @@ function deleteFile() {
 			</div>
 		</div>
 	</div>
+<!-- 	<a class="mbMypageMenuBox" href="ComMypageUpdate">마이페이지수정</a> -->
 		<div>
 		<div class="middleTitle_anno_text">
 			<label for="compimg3">회사 이미지</label>

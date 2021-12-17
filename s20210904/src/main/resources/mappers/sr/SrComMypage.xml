@@ -17,20 +17,9 @@
 	</select>
 	
 	<select id="SrComAnnReg" parameterType="Announce" resultType="Announce">
-	<![CDATA[
-		select *
-		from 
-    		(
-    		 select rownum rn, z.*
-    		 from ( 
-    		 		select * 
-			 		from announce
-			 		where ANNO_C_REGDATE > sysdate
-			 		and com_id = 'tlstprp5184'
-			 	   ) z
-    		 )
-		where rn between #{start} and #{end}
-		]]>
+    	select * 
+		from announce
+		where com_id = #{com_id}
 	</select>
 	
 	<select id="SrComAnnCReg" parameterType="Announce" resultType="Announce">
@@ -184,19 +173,22 @@
 	<select id="SrGetInfo" parameterType="Bookmark" resultType="int">
 		select count(*)
 		from bookmark 
-		where com_id = #{com_id}
+		where com_id =  #{com_id}
 		and user_id = #{user_id}
+   		and MRK_RES_CODE = #{mrk_res_code}
 	</select>
 	
 	<insert id="SrBminsert" parameterType="Bookmark">
 		insert into bookmark 
-		values (#{com_id},#{user_id},1,sysdate)
+		values (#{com_id},#{user_id},1,sysdate,#{mrk_res_code})
 	</insert>
 	
 	<delete id="SrBmdelete" parameterType="Bookmark">
-		delete from bookmark 
+		delete 
+		from bookmark 
 		where com_id = #{com_id} 
 		and user_id = #{user_id}
+		and mrk_res_code = ${mrk_res_code}
 	</delete>
 	
 	<!-- 열람이력 확인~ -->
@@ -227,13 +219,14 @@
 		on mem.user_id=bmark.user_id
 		where res.res_title like '%'||#{keyword1}||'%'
     	and bmark.com_id='tkstjd234' -->
-    	select DISTINCT mem.user_id, res.RES_CODE, res.RES_TITLE, bmark.MRK_RES_CODE, mem.USER_IMG, res.RES_DATE
+    	select DISTINCT mem.user_id, res.RES_CODE mrk_res_code, res.RES_TITLe, mem.USER_IMG, res.RES_DATE,res.REP_RES
 		from member mem
 		left join resume res
 		on mem.user_id=res.user_id
 		left join bookmark bmark
 		on res.RES_CODE=bmark.MRK_RES_CODE
 		where res.RES_TITLE like '%'||#{keyword1}||'%'
+		<!-- and res.rep_res='1' -->
 	</select>
 	
 	<select id="SrUser_idListByResume" parameterType="Resume" resultType="Resume">
@@ -271,8 +264,19 @@
 	<insert id="SrApplyStsUpdate" parameterType="Apply">
 		insert into Notice values(not_seq.nextval,#{user_id},#{anno_code},'002',sysdate)
 	</insert>
-	
-	
+	<select id="SrComAnn" parameterType="Announce" resultType="Announce">
+		select * 
+		from announce
+		where com_id = #{com_id}
+	</select>
+	<select id="SrBoo" parameterType="Bookmark" resultType="Bookmark">
+	select bookmark.*
+	from bookmark
+	where com_id=#{com_id}
+	and user_id=#{user_id}
+	and mrk_res_code=#{mrk_res_code}
+	and it_bookmark='1'
+	</select>
 	
 	
 	

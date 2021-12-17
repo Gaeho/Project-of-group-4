@@ -1,9 +1,6 @@
 @charset "UTF-8";
 
-input {
-  width:600px;
-}
+textarea.autosize { min-height: 100px; }
 
 
 
-tr { height: 30px; }

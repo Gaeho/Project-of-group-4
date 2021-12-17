@@ -116,6 +116,7 @@
 		<ul>
 			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageApply?notice_msg=2">나의 이력서 열람기업</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a></li>

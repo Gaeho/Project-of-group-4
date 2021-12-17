@@ -1,5 +1,6 @@
 package com.oracle.s20210904.sr.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.oracle.s20210904.comm.model.Announce;
@@ -63,6 +64,12 @@ public interface SrComMypageDao {
 	void memPass(Apply apply);
 
 	void applyStsUpdate(Apply apply);
+
+	List<Announce> listAnn(Announce announce);
+
+	Bookmark bookmark(Bookmark bookmark);
+
+	
 
 
 	

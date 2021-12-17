@@ -15,11 +15,10 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-<div>
+<div class="container">
 	<table>
 		<thead>		
 			<tr>
-				<!--<th>번호</th> -->
 				<th>분류</th>
 				<th>작성자</th>
 				<th>제목</th>
@@ -51,11 +50,11 @@
 	</table>
 </div>
 
-<!--	<form action="postList" method="post">
+	<form action="postList" method="post">
 		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
 		<input type="text" value="${post_search}" name="post_search" id="post_search" placeholder="검색어를 입력하세요">
 		<button type="submit">검색</button>
-	</form> -->
+	</form>
 
 	<div>
 		<c:if test="${paging.startPage > paging.pageBlock }">
