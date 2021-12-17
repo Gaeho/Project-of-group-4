@@ -93,9 +93,7 @@
 
 
 .combus_ctx {
-	border: 1px solid black;
-	width: 300px;
-	height: 150px;
+	
 }
 
 
@@ -142,9 +140,27 @@
 	
 }
 
+.submitbtn_wrap{
+	
+	display: flex;
+}
+
+.submitbtn_wrap > div{
+	
+	margin: 0 auto;
+}
+
 
 .gobut {
 	width: 500px;
 	height: 100px;
+	
+}
+
+.sideTitle_anno{
+	
+	font-size: 30px;
+	padding: 20px;
+	border: none;
 	
 }

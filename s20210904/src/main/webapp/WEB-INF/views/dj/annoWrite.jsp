@@ -166,99 +166,7 @@ function deleteFile() {
 					
 					<div class="anno_wri_mid">
 						<div class="DjContainer">
-							<div class="compInfoContainer">
-								<div class="bigTitle_anno">회사 정보</div>
-				
-								<div>
-									<div class="middleTitle_anno">회사명</div>
-									<div class="anno1_ctx">${compInfo.com_name}</div>
-								</div>
-								<p>
-								<div>
-									<div class="middleTitle_anno">주요 사업 내용</div>
-									<div class="combus_ctx">${compInfo.com_bus}</div>
-								</div>
-								<p>  
-				
-									<%-- <label for="complogo1" >회사 로고</label>
-										<input class="textsquare1" id ="complogo1" value="${}"> <p> --%>
-								<div>
-									<div class="middleTitle_anno_text">
-										<label for="compimg3">회사 이미지</label>
-									
-									<%-- 	<form id="fileForm" name="frm" method="post">
-										  <input class="imagesquare1" name="com_img11" type="image" src="${compInfo.com_img}" 
-										  		 alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" 
-										  		 value="${compInfo.com_img}"><p>						  
-										  		
-										  <input type="hidden" id="comId1" name="comId1" value ="${compInfo.com_id}" ><p> 
-										  <div class="input-group mb-3">
-											  <input  type="file"  class="form-control" id="inputGroupFile01" />
-										  </div>
-										  <input type="button" value="업로드" onclick="uploadFile()">
-										  <input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
-										</form> --%>
-									<div class="input-group mb-3">
-							 			<form id="fileForm" name="frm" method="post">
-										  <input class="imagesquare1" name="com_img11" type="image" src="${compInfo.com_img}" 
-										  		 alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" 
-										  		 value="${compInfo.com_img}"><p>
-										 	 						  
-										 <input  type="file" class="form-control" id="file1" name="file1" />
-										  <input type="hidden" id="comId1" name="comId1" value ="${compInfo.com_id}" ><p> 
-										  <input type="button" value="업로드" onclick="uploadFile()">
-										  <input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
-										</form> 
-									</div>
-										
-				
-										
 							
-									</div>
-									
-									
-								</div>
-								<p>
-									<!-- 회사 환경 이미지 넣기  시작-->
-									
-									
-						<%-- 			
-										 <form id="addForm">
-										        <div style="display: inline;">
-										            <label for="img_upload">
-										                <img src="/img/dj/fileaddbtn.png" style="width:100px; height:100px; cursor: pointer;">
-										            </label>
-										            <input type="file" name="img_upload" id="img_upload"
-										                   onchange="previewImage(this,'View_area')"
-										                   style="display: none;" multiple>
-										 
-										            <span id='View_area'
-										                  style='position:relative; color: black; border: 0px solid black;'>
-											        </span>
-											        </div>
-											 
-											        <div style="align-content: center; width: 100%; text-align: center;">
-											            <input type="button" class="btn" style="background: #F1C40F; color: #000000;" onclick="dataSubmit();"
-											                   value="전송하기">
-											        </div>
-											 
-											        <div id="resultDiv">
-											            <p ><c:out value="${log}"></c:out> </p>
-										        </div>
-				   						 </form>
-				 --%>
-				
-									<!-- 회사 환경 이미지 넣기 끝 -->
-								<div>
-									<div class="middleTitle_anno">회사 주소</div>
-									<%-- <input class="textsquare_addr" type="text" name="com_addr" id="compaddr1" value="${compInfo.com_addr}"> --%>
-									<div class="textsquare_addr">${compInfo.com_addr}</div>
-								</div>
-								<p>
-							</div>
-				
-							<hr size="5px">
-				
 							<form action="DjAnnoWriting" method="post">
 							
 								<div style="display:none"> <!-- type hidden으로 정보가 안넘겨져서 이 방법을 사용함  -->
@@ -341,9 +249,35 @@ function deleteFile() {
 											<p>
 										</div>
 				
-										<div>
+										<!-- <div>
 											<div class="middleTitle_anno_text">모집 상세</div>
 											<textarea name="rec_dtl" rows="40" cols="50"></textarea>
+										</div> -->
+										
+										<div class="middleTitle_anno_text">모집 상세</div>
+										<div class="form-floating">
+										
+										 <!--  <textarea class="form-control" name="rec_dtl" placeholder="모집 상세 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea> -->
+												
+												<div class="accordion" id="accordionExample">
+												  <div class="accordion-item">
+												    <h2 class="accordion-header" id="headingOne">
+												      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+												  		      모집 상세 #1
+												      </button>
+												    </h2>
+												    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+												      <div class="accordion-body">
+												       		<!-- 내용 -->
+												        			<div class="form-floating">
+																	  <textarea class="form-control" name="rec_dtl" placeholder="모집 상세 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea>
+																	</div>
+												        	<!-- 내용 -->
+												      </div>
+												    </div>
+												  </div>
+												</div>		
+										
 										</div>
 										<p>
 									</div>
@@ -363,12 +297,57 @@ function deleteFile() {
 									<p>
 									<div>
 										<div class="middleTitle_anno_text">상세 근무 조건</div>
-										<textarea name="work_cdt" rows="30" cols="50" required="required"></textarea>
+										<div class="form-floating">
+										
+										 <!--  <textarea class="form-control" name="rec_dtl" placeholder="상세 근무 조건 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea> -->
+											<div class="accordion" id="accordionExample">
+												<div class="accordion-item">
+													    <h2 class="accordion-header" id="headingTwo">
+													      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+													       	 상세 근무 조건 #2
+													      </button>
+													    </h2>
+													    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+													      <div class="accordion-body">
+													        	<!-- 내용 -->
+													        		<div class="form-floating">
+																		 <textarea class="form-control" name="work_cdt" placeholder="상세 근무 조건 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea>
+																	</div>
+													        	<!-- 내용 -->
+													      </div>
+													    </div>
+												  </div>
+											</div>
+										
+										</div>
 									</div>
 									<p>
 									<div>
 										<div class="middleTitle_anno_text">기타 입력 사항</div>
-										<textarea name="etc_cdt" rows="40" cols="50"></textarea>
+										<div class="form-floating">
+										
+										 <!--  <textarea class="form-control" name="rec_dtl" placeholder="기타 사항 입력 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea> -->
+											<div class="accordion" id="accordionExample">
+												
+												<div class="accordion-item">
+												    <h2 class="accordion-header" id="headingThree">
+												      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+												    	    기타 입력 사항 #3
+												      </button>
+												    </h2>
+												    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+												      <div class="accordion-body">
+												        	<!-- 내용 -->
+												        		<div class="form-floating">
+																	 <textarea class="form-control" name="etc_cdt" placeholder="모집 상세 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea>
+																</div>
+												        	<!-- 내용 -->
+												      </div>
+												    </div>
+												  </div>
+												
+											</div>
+										</div>
 									</div>
 									<p>
 								</div>
@@ -393,10 +372,11 @@ function deleteFile() {
 								</div>
 				
 								<hr size="5px">
-				
-								<button type="submit" name="gobut" class="gobut">공고 작성 완료하기
-								</button>
-				
+								<div class="submitbtn_wrap">
+									<div>
+										<button type="submit" name="gobut" class="gobut">공고 작성 완료하기</button>
+									</div>
+								</div>
 							</form>
 				
 							<br>
@@ -404,12 +384,71 @@ function deleteFile() {
 						</div>
 						<div class="anno_wri_side">
 							<div>
-								여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.					여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.
-								여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.
-								여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.
-								여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.
-								여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.여기는 사이드정보 공간입니다.
 								
+								<!--  -->
+								
+								<div class="compInfoContainer">
+								
+									<div class="accordion" id="accordionExample">
+												
+											<div class="accordion-item">
+											    <h2 class="accordion-header" id="headingThree">
+											      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+											    	    회사 정보 #4
+											      </button>
+											    </h2>
+											    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+											      <div class="accordion-body">
+											        	<!-- 내용 -->
+											        			<div class="card" style="width: 18rem;">
+																  <div class="card-header">
+																    <h4>${compInfo.com_name}</h4>
+																  </div>
+																  <ul class="list-group list-group-flush">
+																    <li class="list-group-item">
+																    	<div class="middleTitle_anno">주요 사업 내용</div>
+																		<div class="combus_ctx">${compInfo.com_bus}</div>
+																    </li>
+																    <li class="list-group-item">
+																    	
+																    	<div class="middleTitle_anno">회사 이미지</div>
+																    	<div class="input-group mb-3">
+																 			<form id="fileForm" name="frm" method="post">
+																			  <input class="imagesquare1" name="com_img11" type="image" src="${compInfo.com_img}" 
+																			  		 alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" 
+																			  		 value="${compInfo.com_img}"><p>
+																			 	 						  
+																			 <input  type="file" class="form-control" id="file1" name="file1" />
+																			  <input type="hidden" id="comId1" name="comId1" value ="${compInfo.com_id}" ><p> 
+																			  <input type="button" class="btn btn-primary" value="업로드" onclick="uploadFile()">
+																			  <input type="button" class="btn btn-primary" value="삭제" id="delImg12" onclick="deleteFile()">
+																			</form> 
+																		</div>
+																    	
+																    </li>
+																    <li class="list-group-item">
+																   		
+																   		<div class="middleTitle_anno">회사 주소</div>
+																		<div class="textsquare_addr">${compInfo.com_addr}</div>
+																   		
+																    </li>
+																  </ul>
+																</div>	
+											        	 	
+											      </div>
+											    </div>
+											  </div>
+												
+										</div>
+								
+								
+								<!--  -->
+									
+										
+										
+								</div>
+								
+								<!--  -->
 							</div>
 						</div>
 					
@@ -418,6 +457,8 @@ function deleteFile() {
 				</div>
 		</div>			
 	</div><!-- 전체 컨테이너 닫기 -->	
+	
+	
 		<%@ include file="/WEB-INF/views/footer.jsp"%>
 		
 </body>
