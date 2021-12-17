@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="myPageMenu.jsp" %>
+<%@ include file="footer.jsp" %>
 <!DOCTYPE html>
 <html>
 <%
@@ -49,7 +50,7 @@
 					alert("성공");
 				/* 	$('#it_bookmark').val(data); */
 				
-					/*  location.reload(); */ // 페이지 리로드
+					location.reload(); // 페이지 리로드
 			},
 			error:function(){
 				alert("에러 발생");
@@ -75,18 +76,18 @@
 	      <tr>
 	       <td>
 	        <c:choose>
-			    <c:when test="${itbookmark == 0}">
+			    <c:when test="${itbookmark eq 0}">
 			      <input type="button" class = "btn btn_light" id="likebtn" value="북마크  ☆ " onclick="setBookmark()">
 				<%--   <input type="hidden" id="likecheck" value="${itbookmark}"> --%>
 			    </c:when>
 			    
-		        <c:when test="${itbookmark == 1}"> 
+		        <c:when test="${itbookmark eq 1}"> 
 			      <input type="button" class = "btn btn_danger" id="likebtn" value="북마크 ★" onclick="setBookmark()">
 			  <%--     <input type="hidden" id="likecheck" value="${itbookmark}"> --%>
 			    </c:when>
 			  </c:choose>
 			  
-			   com_id      : <input type="text"  id="com_id"      value=" ${com_id }"><p>
+			   com_id      : <input type="text"  id="com_id"      value="${com_id }"><p>
 			   user_id 	   : <input type="text"  id="user_id"     value="${user_id }"  ><p>
 			   it_bookmark : <input type="text"  id="it_bookmark" value="${itbookmark }" ><p>
 			   mrk_res_code : <input type="text"  id="mrk_res_code" value="${mrk_res_code }" ><p>
@@ -118,7 +119,7 @@
 	      	<tr><th>고등학교 계열</th><td>${mem.hsMjr}</td></tr>
 	      	<tr><th>대학교</th><td>${mem.univ_name}</td></tr>
 	      	<tr><th>대학교 재학 기간</th><td>${mem.univ_date}</td></tr>
-	      	<tr><th>대학교 전공</th><td>${mem.hs_name}</td></tr>
+	      	<tr><th>대학교 전공</th><td>${mem.univ_mjr}</td></tr>
 	      	<tr><th>자기소개서</th><td>${mem.cov_let}</td></tr>
 	      	<tr><th>이력서 tag1</th><td>${mem.tag1}</td></tr>
 	      	<tr><th>이력서 tag2</th><td>${mem.tag2}</td></tr>
