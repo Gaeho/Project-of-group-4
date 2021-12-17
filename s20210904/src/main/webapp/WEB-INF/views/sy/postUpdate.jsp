@@ -21,9 +21,9 @@
 			<tr><td><input type="text" class="form-control" name="post_title" value="${post.post_title}" /></td><tr>
 			<tr class="table-heading"><td>내용</td></tr>
 			<tr><td><textarea class="form-control" rows="5" name="post_ctx">${post.post_ctx}</textarea></td></tr>
-			<tr class="table-heading"><td>작성자</td></tr>
+			<tr class="table-headings"><td>작성자</td></tr>
 			<tr><td><input type="text" class="form-control" name="user_id" value="${post.user_id}" readonly="readonly"/></td></tr>
-			<tr class="table-heading"><td>등록일</td></tr>
+			<tr class="table-headings"><td>등록일</td></tr>
 			<tr><td><input type="text" class="form-control" name="post_regdate" value="${post.post_regdate}" readonly="readonly"/></td></tr>		
 		</table>
 		</div>
