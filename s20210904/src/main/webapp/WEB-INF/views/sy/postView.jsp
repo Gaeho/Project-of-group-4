@@ -46,8 +46,10 @@
 	</div>
 	<div>
 		<button type="submit" id="btnReply">답글</button>
-		<button type="submit" id="btnUpdate">수정</button>
-		<button type="submit" id="btnDelete">삭제</button>
+		<c:if test="${postView.user_id == id }">
+			<button type="submit" id="btnUpdate">수정</button>
+			<button type="submit" id="btnDelete">삭제</button>
+		</c:if>
 		<button type="submit" id="btnList">목록</button>
 	</div>
 </div>

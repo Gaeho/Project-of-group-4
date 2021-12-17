@@ -50,9 +50,9 @@
 	</table>
 </div>
 
-	<form action="postList" method="post">
+	<form action="postList">
 		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
-		<input type="text" value="${post_search}" name="post_search" id="post_search" placeholder="검색어를 입력하세요">
+		<input type="text" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요">
 		<button type="submit">검색</button>
 	</form>
 
@@ -72,7 +72,7 @@
 	<c:url var="postListURL" value="/postList"></c:url>
 	
 <script>
-/* 	$(document).on('click', '#btnSearch', function(e){
+	$(document).on('click', '#btnSearch', function(e){
 		e.preventDefault();
 		var url = "${postList}";
 		url = url + "?searchType=" + $('#searchType').val();

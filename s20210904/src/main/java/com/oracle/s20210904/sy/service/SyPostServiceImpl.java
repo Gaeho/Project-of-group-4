@@ -56,9 +56,9 @@ public class SyPostServiceImpl implements SyPostService {
 	}
 
 	@Override
-	public void postViewCount(int post_code, String user_id) throws Exception {
+	public void postViewCount(int post_code) throws Exception {
 		System.out.println("syPostServiceImpl.postViewCount START");
-		syPostDaoImpl.postViewCount(post_code, user_id);		
+		syPostDaoImpl.postViewCount(post_code);		
 	} 
 	
 	@Override
@@ -93,5 +93,11 @@ public class SyPostServiceImpl implements SyPostService {
 		System.out.println("syPostServiceImpl.noticeList START");
 		List<Post> noitceList = syPostDaoImpl.noticeList();
 		return noitceList;
+	}
+	
+	@Override
+	public List<Post> postSearch(Post post) {
+		List<Post> postSearch = syPostDaoImpl.postSearch(post);
+		return postSearch;
 	}
 }
