@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
+<!-- <style type="text/css">
 .testcss {
 	width: 150px;
 	height: 150px;
@@ -36,7 +36,7 @@
 	border: 1px solid white;
 	transition: background-color 0.3s, color 0.3s;
 }
-</style>
+</style> -->
 </head>
 <body>
 <a href="#" id="ComMylogo"> <img class="testcss" src="${commCompany1.com_img}" /></a>
