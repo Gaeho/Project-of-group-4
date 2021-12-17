@@ -38,14 +38,14 @@ window.onload=function alramList(){
 				$(data).each(
 						function(){
 							if(this.ntc_ctg == '001'){
-								str +="<li><a class='dropdown-item' href='#scrollspyHeading3'>["+this.anno_title+"]공고에 "+this.apply_id+"]님이 지원했습니다</a></li>"
+								str +="<li><a class='dropdown-item' href='noticeDel?ntc_code="+this.ntc_code+"'>["+this.anno_title+"]공고에 ["+this.apply_id+"]님이 지원했습니다</a></li>"
 									 +"<li><hr class='dropdown-divider'></li>";
 							}else if(this.ntc_ctg =='002'){
 								str += "<li><a class='dropdown-item' href='mbMypageApply'>지원하신 ["+this.anno_title+"] 공고에 "+this.app_sts+"하셨습니다</a></li>"
 									  +"<li><hr class='dropdown-divider'></li>";
 							}else if(this.ntc_ctg =='003'){
 								str += "<li><a class='dropdown-item' href='mbMypageApply?notice_msg=2'>["+this.com_name+"]님이 ["+this.read_res+"]를 조회했습니다</a></li>"
-									  +"<li><hr class='dropdown-divider'></li>";	
+									  +"<li><hr class='dropdown-divider'></li>";
 							}
 						}
 				)	

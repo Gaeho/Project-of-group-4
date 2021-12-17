@@ -317,8 +317,14 @@ public class SrComMypageController {
 
 	}
 
+	@GetMapping(value="noticeDel")
+	public String noticeDel(String ntc_code) {
+		scms.noticeDel(ntc_code);
+		
+		return "redirect:ComAppStatus";
+	}
+	
 	// 지원현황 list
-
 	@GetMapping(value = "ComAppStatus")
 	public String ComAppStatus(Model model, AppAnnMem appAnnMem, CommCompany commCompany, HttpServletRequest request,
 			String currentPage/* , Bookmark bookmark */) {

@@ -61,7 +61,7 @@
 	</div>
 
 	<div>
-	<button type="button" class="btn btn-sm btn-primary" id="btnInsert">글쓰기</button>
+		<button type="button" class="btn btn-sm btn-primary" id="btnInsert">글쓰기</button>
 	</div>
 </div>	
 <script type="text/javascript">

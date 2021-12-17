@@ -278,6 +278,10 @@
 	and it_bookmark='1'
 	</select>
 	
+	<delete id="noticeDel" parameterType="String">
+		delete from notice where ntc_code=#{ntc_code}
+	</delete>
+	
 	
 	
 </mapper>

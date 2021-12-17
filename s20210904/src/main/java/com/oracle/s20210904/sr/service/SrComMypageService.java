@@ -70,6 +70,8 @@ public interface SrComMypageService {
 
 	Bookmark bookmark(Bookmark bookmark);
 
+	void noticeDel(String ntc_code);
+
 	
 
 	
