@@ -178,5 +178,12 @@ public class DsAdminController {
 		System.out.println("잘됐지?"+result);
 		return "redirect:/admin/tagMenu";
 	}
+	
+	@GetMapping(value="tagDel")
+	public String tagDel(Comm comm) {
+		int result= dsAdminService.tagDel(comm);
+		System.out.println("잘됐으면  1줘 ="+result);
+		return "redirect:/admin/tagMenu";
+	}
 
 }

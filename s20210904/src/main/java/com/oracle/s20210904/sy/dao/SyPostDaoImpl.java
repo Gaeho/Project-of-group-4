@@ -18,10 +18,10 @@ public class SyPostDaoImpl implements SyPostDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<Post> postSelect(PostSearch postSearch) throws Exception {
+	public List<Post> postSelect(Post post) throws Exception {
 		List<Post> result = null;
 		try {
-			result = sqlSession.selectList("postSelect", postSearch);
+			result = sqlSession.selectList("postSelect", post);
 		} catch (Exception e) {
 			System.out.println("SyPostDaoImpl postSelect Exception : "+e.getMessage());
 		}
@@ -85,11 +85,11 @@ public class SyPostDaoImpl implements SyPostDao {
 	}
 	
 	@Override
-	public List<Post> total(PostSearch postSearch) throws Exception {
-		List<Post> result = null;
+	public int total() throws Exception {
+		int result =0;
 		try {
 			System.out.println("syPostDaoImpl total START");
-			result =  sqlSession.selectList("postTotal", postSearch);
+			result =  sqlSession.selectOne("postTotal");
 		} catch (Exception e) {
 			System.out.println("SyPostDaoImpl total Exception : "+e.getMessage());
 		}	
@@ -142,5 +142,23 @@ public class SyPostDaoImpl implements SyPostDao {
 			System.out.println("SyPostDaoImpl postReply Exception : "+e.getMessage());
 		}		
 		return result;
+	}
+	
+	@Override
+	public void updateRef(Post post) {
+		sqlSession.update("SyUpdateRef",post);
+		
+	}
+	
+	@Override
+	public int noticeCount() {
+		int result = sqlSession.selectOne("SyNoticeCount");
+		return result;
+	}
+	
+	@Override
+	public List<Post> noticeList() {
+		List<Post> noticeList = sqlSession.selectList("SyNoticeList");
+		return noticeList;
 	}
 }

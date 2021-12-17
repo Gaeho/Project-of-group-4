@@ -33,41 +33,43 @@ public class SyPostController {
 	// 로그인 확인
 	private String idCheck(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("userId");
 
-		return userId;
+		String id = (String) session.getAttribute("id");
+		if(id==null || id.equals("")){              
+			return "dmdtla054"; 
+		}
+		return id;
 	}
 	
 	// 게시글 목록
 	@RequestMapping(value = "postList", method = RequestMethod.GET)
-	public String postSelect(HttpServletRequest request, Post post, Model model
-			, @RequestParam(required = false, defaultValue = "5") int total
-			, @RequestParam(required = false, defaultValue = "1") String currentPage
-			, @RequestParam(required = false, defaultValue = "post_title") String searchType
-			, @RequestParam(required = false) String keyword
-				) throws Exception {
+	public String postSelect(Post post, Model model, String currentPage) throws Exception {
+
 		
 		logger.info("postList");
+		int totalCount = syPostServiceImpl.total();
 		
-		/*
-		 * String userId=idCheck(request); System.out.println("Session Check->"+userId);
-		 */
-		
-		Paging paging = new Paging(total, currentPage);
+
+		Paging paging = new Paging(totalCount, currentPage);
+
 		post.setStart(paging.getStart());
 		post.setEnd(paging.getEnd());
 		
-		PostSearch postSearch = new PostSearch(total, keyword);
-		postSearch.setSearchType(searchType);
-		postSearch.setKeyword(keyword);
+		int noticeCount = syPostServiceImpl.noticetotal();
+		List<Post> noticeList = syPostServiceImpl.noticeList();
 		
-		List<Post> totalCount = syPostServiceImpl.total(postSearch);
+//		PostSearch postSearch = new PostSearch(total, keyword);
+//		postSearch.setSearchType(searchType);
+//		postSearch.setKeyword(keyword);
 		
-		postSearch.paging(total, currentPage);
+//		List<Post> totalCount = syPostServiceImpl.total(postSearch);
 		
-		List<Post> postSelect = syPostServiceImpl.postSelect(postSearch);
-
-		model.addAttribute("total", total);
+//		postSearch.paging(total, currentPage);
+		
+		List<Post> postSelect = syPostServiceImpl.postSelect(post);
+		model.addAttribute("noticeCount",noticeCount);
+		model.addAttribute("postNotice",noticeList);
+		model.addAttribute("total", totalCount);
 		model.addAttribute("postSelect", postSelect);
 		model.addAttribute("paging", paging);
 
@@ -87,25 +89,35 @@ public class SyPostController {
     
     // 게시글 작성 처리
 	@RequestMapping(value = "postInsert", method = RequestMethod.POST)
-	@ResponseBody
 	public String postInsert(Post post, HttpServletRequest request, Model model, RedirectAttributes redirect) throws Exception {
 		System.out.println("SyPostController postInsert POST");
 
 		String userId=idCheck(request);
-		model.addAttribute("userId", userId);
 		post.setUser_id(userId);
+		
+    	int maxCount = syPostServiceImpl.total()+1;
+    	
+    	if(post.getPost_code()!=0) {
+    		syPostServiceImpl.updateRef(post);
+    		post.setRef_step(post.getRef_step()+1);
+    		post.setRef_step(post.getRef_lev()+1);
+    	}
+    	if(post.getPost_code()==0) {
+    		post.setRef(maxCount);
+    		post.setPost_code(maxCount);
+    	}
+    	
+    	syPostServiceImpl.postInsert(post);
+		
 	    System.out.println("SyPostController postInsert post getPost_title->"+post.getPost_title());	
 	    System.out.println("SyPostController postInsert post getBrd_code->"+post.getBrd_code());	
 	    System.out.println("SyPostController postInsert post getPost_ctx->"+post.getPost_ctx());
 	    System.out.println("SyPostController postInsert post getPost_regdate->"+post.getPost_regdate());
 	    System.out.println("SyPostController postInsert post getUser_id->"+post.getUser_id());	
 	    System.out.println("SyPostController postInsert post getPost_code->"+post.getPost_code());	
-		
-		syPostServiceImpl.postInsert(post);
-		
 		/* redirect.addFlashAttribute("msg", "InsertSuccess"); */
 
-		return "sy/postList";
+		return "redirect:/postList";
 	}
 	
 	// 게시글 조회

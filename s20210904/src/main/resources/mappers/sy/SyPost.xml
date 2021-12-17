@@ -3,21 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Post">
 	
-	<select id="postSelect" resultType="Post">
-		select *
-		from post
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="searchType=='post_title' and keyword != null and keyword != '' ">
-				AND post_title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='post_ctx' and keyword != null and keyword != '' ">
-				AND post_ctx like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='user_id' and keyword != null and keyword != '' ">
-				AND user_id like CONCAT('%', #{keyword}, '%')
-			</if>	
-		</trim>
-		order by post_code desc, post_regdate desc
+	<select id="postSelect" resultType="Post" parameterType="Post">
+		<![CDATA[
+		select * from (select rownum rn ,a.* from(select * from post where brd_code='Q&A' order by ref desc,ref_step) a )
+		where rn between #{start} and #{end}
+		]]>
+	</select>
+
+	<select id="SyNoticeList" resultType="Post">
+		select * from (select rownum rn ,a.* from(select * from post where brd_code='공지' order by ref desc,ref_step) a )
+		where rn between 1 and 5
 	</select>
 	
 	<select id="postSelectOne" parameterType="java.lang.String" resultType="Post">
@@ -26,45 +21,37 @@
 		where post_code = #{post_code}
 	</select>
 	
+	<select id="SyNoticeCount" resultType="int">
+		select count(*) from post where brd_code='공지'
+	</select>
+	
 	<select id="postTotal" resultType="int">
-		select *
-		from post
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
-		<if test="keyword != null and keyword != '' ">
-			<if test="searchType=='post_title'">
-				and post_title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='post_ctx'">
-				and post_ctx like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='user_id'">
-				and user_id like CONCAT('%', #{keyword}, '%')
-			</if>
-     	 </if>
-		</trim>
+		<![CDATA[
+		select count(*) from post where brd_code='Q&A'
+		]]>
 	</select>
 		
   	<insert id="postInsert" parameterType="Post">
 		insert into post(
-			post_code
+			  post_code
 			, brd_code
+			, user_id
 			, post_title
 			, post_ctx
 			, post_regdate
-			, user_id
-<!-- 			, ref		글번호
-			, ref_lev	답변일시 +1  
-			, ref_step  글 순서 -->
+			, ref
+			, ref_lev
+			, ref_step
 		) values (
-			post_seq.NEXTVAL
+			  post_seq.NEXTVAL
 			, #{brd_code}
+			, #{user_id}
 			, #{post_title}
 			, #{post_ctx}
 			, sysdate
-			, #{user_id}
-<!-- 			, ref
-			, ref_lev
-			, ref_step -->
+			, #{ref}
+			, #{ref_lev}
+			, #{ref_step}
 		)
 	</insert>
 	
@@ -120,5 +107,9 @@
 		)
 		order by ref_step asc
 	</insert>
+	
+	<update id="SyUpdateRef" parameterType="Post">
+		String sql2 = "update board set ref_step = ref_step+1 where ref = #{ref} and ref_step > #{ref_step}";
+	</update>
 	
 </mapper>
