@@ -12,25 +12,45 @@
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
+	var notice_apply=0;
+	var notice_resCon=0;
+	
+	// radio버튼을 눌러서 페이지로 이동해야 알림이 삭제되도록 삭제되는 알림 분류
 	$(function(){ 
-		/* var listVar = $('input[name=tabmenu]').is(":checked"); */
-		/* alert('test : '); */
-        
+		if($('input:radio[id=tab01]').is(":checked")){
+			notice_apply=1;
+		}
+		
+		if($('input:radio[id=tab02]').is(":checked")){
+			notice_resCon=1;
+		}
+		
+		$("input:radio[id=tab01]").click(function(){
+			notice_apply=1;
+		});
+		
+		$("input:radio[id=tab02]").click(function(){
+			notice_resCon=1;
+		});
 	});
 	
+	
+	
+	
+	// 알림삭제 ajax
 	function noticeDelete(){
 		alert('noticeDelete start');
 		
 		$.ajax({
 		   url: "mbMypageNoticeDelete",
 		   type: "POST",
-		   /* data: {"img_path":img_path,"uploadsts":uploadsts}, */
-		   /* dataType:'text', */
+		   data: {"notice_apply":notice_apply,"notice_resCon":notice_resCon},
+		   dataType:'text',
 		   success: function () {
-			   /* alert("삭제성공!!"); */
+			   alert("삭제성공!!");
 			},
 		    error: function () {
-		    	/* alert("삭제실패ㅜㅜ"); */
+		    	alert("삭제실패ㅜㅜ");
 		      // Handle upload error
 		    }
 		});
@@ -48,13 +68,18 @@
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <div class="mypageContent-wrap">
+	<div class="mypageTitle">
+		<div class="conbox con1"><h1>입사지원현황</h1></div>
+		<div class="conbox con2"><h1>나의 이력서 열람기업</h1></div>
+	</div>
 	<div class="mbMypageMenu">
 		<input type="image" class="profile_img" src="${profile}" 
 			alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" ><br>
-			${mbid } 님<p>
+			&bsnp;&bsnp;${mbid } 님<p>
 		<ul>
 			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageApply?notice_msg=2">나의 이력서 열람기업</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a></li>
