@@ -1,5 +1,6 @@
 package com.oracle.s20210904.sr.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -98,7 +99,7 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	// 북마크 개인 상세
 	@Override
 	public CommResMemBook userdetail(CommResMemBook commResMemBook, Integer isResume) {
-		System.out.println("SrComMypageServiceImpl userdetail Start...");
+		System.out.println("3.SrComMypageServiceImpl userdetail Start...");
 		CommResMemBook mem = scmd.userdetail(commResMemBook, isResume);
 //		System.out.println("Service mem.getUser_name()->"+mem.getUser_name());
 //		System.out.println("Service mem.getUser_addr()->"+mem.getUser_addr());
@@ -109,9 +110,9 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	// 북마크 유무
 	@Override
 	public int bookmarkgetinfo(Bookmark bookmark) {
-		System.out.println("SrComMypageServiceImpl bookmarkgetinfo Start...");
+		System.out.println("7.SrComMypageServiceImpl bookmarkgetinfo Start...");
 		int getinfo = scmd.getinfo(bookmark);
-		System.out.println("Service getinfo->"+getinfo);
+		System.out.println("10.Service getinfo->"+getinfo);
 		
 		return getinfo;
 	}
@@ -132,10 +133,11 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 
 	
 	@Override
-		public List<MemResumeBmark> memResumeBmarkList(String keyword1) {
-			List<MemResumeBmark> memResumeBmarkList=scmd.memResumeBmarkList(keyword1);
+	public List<MemResumeBmark> memResumeBmarkList(String keyword1) {
+		List<MemResumeBmark> memResumeBmarkList=scmd.memResumeBmarkList(keyword1);
 			return memResumeBmarkList;
 		}
+
 
 	//열람 기록 있는지 Check
 	@Override
@@ -204,6 +206,22 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	public void applyStsUpdate(Apply apply) {
 		scmd.applyStsUpdate(apply);
 	}
+
+	@Override
+	public List<Announce> listAnn(Announce announce) {
+		System.out.println("SrComMypageServiceImpl listAnnReg이 시작되었댱~~~");
+		List<Announce> listAnn=scmd.listAnn(announce);
+		System.out.println("SrComMypageServiceImpl listAnnReg CHECK....");
+		return listAnn;
+	}
+
+	@Override
+	public Bookmark bookmark(Bookmark bookmark) {
+		Bookmark bookmark2=scmd.bookmark(bookmark);
+		return bookmark2;
+	}
+
+	
 
 	
 }

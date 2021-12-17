@@ -19,6 +19,7 @@
 					<th>회원 아이디</th>
 					<th>이력서 제목</th>
 					<th>지원날짜</th>
+					<th>이력서 코드</th>
 					<!-- <th>지원 공고</th> -->
 				</tr>
 
@@ -29,6 +30,7 @@
 							href="detail2?user_id=${memResumeBmarkList.user_id }&com_id=${com_id}&mrk_res_code=${memResumeBmarkList.mrk_res_code}&isResume=1">${memResumeBmarkList.user_id}</a></td>
 						<td>${memResumeBmarkList.res_title}</td>
 						<td>${memResumeBmarkList.res_date}</td>
+						<td>${memResnmeBmarkList.mrk_res_code}</td>
 						<%-- <td>${}</td> --%>
 					</tr>
 				</c:forEach>

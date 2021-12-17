@@ -20,22 +20,36 @@
 		var com_id = $('#com_id').val()
 		var user_id = $('#user_id').val()
 		var it_bookmark = $('#it_bookmark').val()
+		var mrk_res_code = $('#mrk_res_code').val()
 		alert("setBookmark com_id->"+ com_id);  
 		alert("setBookmark user_id->"+user_id);  
-		alert("setBookmark it_bookmark->"+it_bookmark);  
-	
+		alert("setBookmark it_bookmark->"+it_bookmark);
+		alert("setBookmark mrk_res_code->"+mrk_res_code); 
+		
+		
 	 	$.ajax({
 			url:"<%=context%>/bookmark",
 			data:{com_id 	  : com_id,
 			      user_id     : user_id,
-			      it_bookmark : it_bookmark
+			      it_bookmark : it_bookmark,
+			      mrk_res_code: mrk_res_code
 			    },	/*  */
-			dataType:'text',			/* 서버에서 내려온 data 형식 */
+			contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			dataType:"json",			/* 서버에서 내려온 data 형식 */
 			success:function(data){		/* 요청이 성공됬을때 실행되는 callback 함수 */
-					alert("success data"+data);  
+					alert("success data"+data);
+					alert("setBookmark com_id->"+ data.com_id);  
+					alert("setBookmark user_id->"+data.user_id);  
+					alert("setBookmark it_bookmark->"+data.it_bookmark);
+					alert("setBookmark mrk_res_code->"+data.mrk_res_code);
+					$("#com_id").text(data.com_id);
+					$("#user_id").text(data.user_id);
+					$("#it_bookmark").val(data.it_bookmark);
+					$("#mrk_res_code").text(data.mrk_res_code);
 					alert("성공");
-					/* $('#likebtn').val(data); */
-					location.reload(); // 페이지 리로드
+				/* 	$('#it_bookmark').val(data); */
+				
+					/*  location.reload(); */ // 페이지 리로드
 			},
 			error:function(){
 				alert("에러 발생");
@@ -63,18 +77,19 @@
 	        <c:choose>
 			    <c:when test="${itbookmark == 0}">
 			      <input type="button" class = "btn btn_light" id="likebtn" value="북마크  ☆ " onclick="setBookmark()">
-				  <input type="hidden" id="likecheck" value="${itbookmark}">
+				<%--   <input type="hidden" id="likecheck" value="${itbookmark}"> --%>
 			    </c:when>
 			    
 		        <c:when test="${itbookmark == 1}"> 
 			      <input type="button" class = "btn btn_danger" id="likebtn" value="북마크 ★" onclick="setBookmark()">
-			      <input type="hidden" id="likecheck" value="${itbookmark}">
+			  <%--     <input type="hidden" id="likecheck" value="${itbookmark}"> --%>
 			    </c:when>
 			  </c:choose>
 			  
 			   com_id      : <input type="text"  id="com_id"      value=" ${com_id }"><p>
 			   user_id 	   : <input type="text"  id="user_id"     value="${user_id }"  ><p>
 			   it_bookmark : <input type="text"  id="it_bookmark" value="${itbookmark }" ><p>
+			   mrk_res_code : <input type="text"  id="mrk_res_code" value="${mrk_res_code }" ><p>
 			  
 	       </td>
 	      </tr>
