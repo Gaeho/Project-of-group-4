@@ -28,6 +28,15 @@
 			</tr>
 		</thead>	
 		<tbody>
+		 <c:forEach items="${postNotice}" var="postnotice">							
+					<tr>
+						<td><c:out value="${postnotice.brd_code }"/></td>
+					    <td><c:out value="${postnotice.user_id}"/></td>
+						<td><a href="postView?post_code=${postnotice.post_code}">${postnotice.post_title}</a></td>
+						<td><c:out value="${postnotice.post_view}"></c:out></td>
+						<td><c:out value="${postnotice.post_regdate}"/></td>
+					</tr>
+		 </c:forEach>
 		 <c:forEach items="${postSelect}" var="post">
 			<tr>
 			<!-- 	<td><c:out value="${post.post_code }"/></td> -->
