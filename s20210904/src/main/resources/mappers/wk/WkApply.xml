@@ -26,10 +26,10 @@
 		on sub.anno_code=an.anno_code
 		inner join company com
 		on an.com_id=com.com_id
-		inner join comm co
+		left outer join comm co
 		on an.job_tag=co.sub_cat
 		where sub.user_id=#{mbid}
-		and co.main_cat='001'
+		and (co.main_cat='001' or an.job_tag is null)
 	</select>
 	
 	

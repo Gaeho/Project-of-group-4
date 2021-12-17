@@ -77,13 +77,16 @@
 			<div class="mbMypageTable">
 				<table class="table">
 					<tr class="table-light">
-						<th>번호</th><th>이력서 제목</th><th>작성 날짜</th><th>희망 직종</th><th>대표이력서</th>
+						<th>번호</th><th>이력서 제목</th><th>작성 날짜</th><th>희망 직종</th><th></th>
 					</tr>
 					
 					<c:forEach var="resumelist" items="${resumelist}" varStatus="status">
 						<tr>
-							<td>${status.count}</td><td>${resumelist.res_title}</td>
-							<td>${resumelist.res_date}</td><td>${resumelist.comm_ctx}</td>
+							<td>${status.count}</td><td>${resumelist.res_title}</td><td>${resumelist.res_date}</td>
+							<td>
+								<c:if test="${empty resumelist.comm_ctx}">없음</c:if>
+								<c:if test="${not empty resumelist.comm_ctx}">${resumelist.comm_ctx}</c:if>
+							</td>
 							<td><c:if test="${resumelist.rep_res eq 1}">대표이력서</c:if></td>
 							<%-- ${resumelist.comm_ctx} --%>
 						</tr>
