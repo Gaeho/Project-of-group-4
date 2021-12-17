@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <link href="css/wk/mbMypageMenu.css" rel="stylesheet" type="text/css">
+<link href="css/wk/mbMypageApplySum.css" rel="stylesheet" type="text/css">
+<link href="css/wk/mbMypageTable.css" rel="stylesheet" type="text/css">
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 
@@ -37,29 +39,60 @@
 	
 	
 	<div class="mbMypageMain">
-		지원완료 : ${countapply[0].applying}<br>
-		서류통과 : ${countapply[0].passdoc}<br>
-		최종합격 : ${countapply[0].failed}<br>
-		불합격 : ${countapply[0].pass}<p>
+		<div class="mbMypageApplySum">
+			<h2 class="mbMypageApplySum_title">지원 현황</h2>
+			<ul class="mbMypageApplySum_ul">
+				<li>
+					<a href="mbMypageApply">
+						<em>${countapply[0].applying}</em>
+						<span>지원 완료</span>
+					</a>
+				</li>
+				<li>
+					<a href="mbMypageApply">
+						<em>${countapply[0].passdoc}</em>
+						<span>서류 통과</span>
+					</a>
+				</li>
+				<li>
+					<a href="mbMypageApply">
+						<em>${countapply[0].failed}</em>
+						<span>최종 합격</span>
+					</a>
+				</li>
+				<li>
+					<a href="mbMypageApply">
+						<em>${countapply[0].pass}</em>
+						<span>불합격</span>
+					</a>
+				</li>
+			</ul>
+		</div>
 		
-		${mbid }의 이력서<br>
-		
-		
-		
-		<table>
-			<tr>
-				<th>번호</th><th>이력서 제목</th><th>작성 날짜</th><th>대표이력서</th>
-			</tr>
+		<c:if test="${empty resumelist}">
+			작성한 이력서가 없습니다
+		</c:if>
+		<c:if test="${not empty resumelist}">
+			<h3 class="mbMypageTable_title">나의 이력서</h3>
+			<div class="mbMypageTable">
+				<table class="table">
+					<tr class="table-light">
+						<th>번호</th><th>이력서 제목</th><th>작성 날짜</th><th>희망 직종</th><th>대표이력서</th>
+					</tr>
+					
+					<c:forEach var="resumelist" items="${resumelist}" varStatus="status">
+						<tr>
+							<td>${status.count}</td><td>${resumelist.res_title}</td>
+							<td>${resumelist.res_date}</td><td>${resumelist.comm_ctx}</td>
+							<td><c:if test="${resumelist.rep_res eq 1}">대표이력서</c:if></td>
+							<%-- ${resumelist.comm_ctx} --%>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
 			
-			<c:forEach var="resumelist" items="${resumelist}" varStatus="status">
-				<tr>
-					<td>${status.count}</td><td>${resumelist.res_title}</td><td>${resumelist.res_date}</td>
-					<td><c:if test="${resumelist.rep_res eq 1}">대표이력서</c:if></td>
-					<%-- ${resumelist.comm_ctx} --%>
-				</tr>
-			</c:forEach>
-			
-		</table>
+		</c:if>
+		
 		<br>
 		
 	<!-- 	<a href="mbMypageApply">입사지원현황</a><br>

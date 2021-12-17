@@ -47,10 +47,10 @@
 		   data: {"notice_apply":notice_apply,"notice_resCon":notice_resCon},
 		   dataType:'text',
 		   success: function () {
-			   alert("삭제성공!!");
+			   /* alert("삭제성공!!"); */
 			},
 		    error: function () {
-		    	alert("삭제실패ㅜㅜ");
+		    	/* alert("삭제실패ㅜㅜ"); */
 		      // Handle upload error
 		    }
 		});
@@ -75,7 +75,7 @@
 	<div class="mbMypageMenu">
 		<input type="image" class="profile_img" src="${profile}" 
 			alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" ><br>
-			&bsnp;&bsnp;${mbid } 님<p>
+			${mbid } 님<p>
 		<ul>
 			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
