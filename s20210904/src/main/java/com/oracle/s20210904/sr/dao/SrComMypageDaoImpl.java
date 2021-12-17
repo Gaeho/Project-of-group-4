@@ -158,6 +158,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 				System.out.println("5.SrComMypageCDaoImpl mem.getTag1()=>" + mem.getTag1());
 				System.out.println("5.SrComMypageDaoImpl mem.getTag2()=>" + mem.getTag2());
 				System.out.println("5.SrComMypageDaoImpl mem.getTag3()=>" + mem.getTag3());
+				System.out.println("5.SrComMypageDaoImpl mem.getTag3()=>" + mem.getUniv_mjr());
 			} catch (Exception e) {
 				System.out.println("5.SrComMypageDaoImpl userdetail error"+e.getMessage());
 			}

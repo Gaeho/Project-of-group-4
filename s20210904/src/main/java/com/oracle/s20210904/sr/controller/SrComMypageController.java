@@ -411,6 +411,7 @@ public class SrComMypageController {
 		System.out.println("6.SrComMypageController restag1.getComm_ctx()" + mem.getTag1());
 		System.out.println("6.SrComMypageController restag2.getComm_ctx()" + mem.getTag2());
 		System.out.println("6.SrComMypageController restag3.getComm_ctx()" + mem.getTag3());
+		System.out.println("6.SrComMypageController restag3.getComm_ctx()" + mem.getUniv_mjr());
 		System.out.println("----------------------------------------");
 
 		// 북마크 유무

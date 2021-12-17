@@ -25,7 +25,7 @@
 		</table>
 		</div>
 	<div>
-		<button type="submit" class="btn btn-sm btn-primary">입력</button>				
+		<button type="submit" class="btn btn-sm btn-primary">저장</button>				
 		<button type="button" class="btn btn-sm btn-primary" id="btnPrev">이전</button>
 	</div>
 		</form>

@@ -22,7 +22,7 @@
 		<tr class="table-heading"><td>제목</td></tr>
 		<tr><td><input type="text" class="form-control" name="post_title" value="${postView.post_title}" readonly="readonly" /></td></tr>
 		<tr class="table-heading"><td>내용</td></tr>
-		<tr><td><textarea class="form-control" rows="5" name="post_ctx" readonly="readonly">${postView.post_ctx}</textarea></td></tr>
+		<tr><td><textarea class="form-control" name="post_ctx" readonly="readonly">${postView.post_ctx}</textarea></td></tr>
 		<tr class="table-heading"><td>작성자</td></tr>
 		<tr><td><input type="text" class="form-control" name="user_id" value="${postView.user_id}" readonly="readonly"/></td></tr>
 		<tr class="table-heading"><td>등록일</td></tr>
@@ -30,12 +30,14 @@
 	</table>
 	</div>
 	<div>
-		<button type="submit" id="btnReply">답글</button>
+		<c:if test="${id != null}">
+		<button type="submit" class="btn btn-sm btn-primary" id="btnReply">답글</button>
+		</c:if>	
 		<c:if test="${postView.user_id == id }">
-			<button type="submit" id="btnUpdate">수정</button>
-			<button type="submit" id="btnDelete">삭제</button>
+			<button type="submit" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+			<button type="submit" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 		</c:if>
-		<button type="submit" id="btnList">목록</button>
+		<button type="submit" class="btn btn-sm btn-primary" id="btnList">목록</button>
 	</div>
 </div>
 <script type="text/javascript">
