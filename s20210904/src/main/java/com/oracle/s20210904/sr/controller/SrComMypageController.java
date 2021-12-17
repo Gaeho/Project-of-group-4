@@ -366,7 +366,7 @@ public class SrComMypageController {
 
 	// 지원현황+북마크 상세(이력서 포함)
 	@GetMapping(value = "detail2")
-	public String detail(String user_id, String com_id, Integer mrk_res_code, Integer isResume, String anno_cod
+	public String detail(String user_id, String com_id, Integer mrk_res_code, Integer isResume, String anno_code,
 			CommMemResume commMemResume, Model model, CommResMemBook commResMemBook
 			, CommCompany commCompany) {
 		
