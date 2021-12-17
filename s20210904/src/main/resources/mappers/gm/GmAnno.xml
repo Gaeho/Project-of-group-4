@@ -170,9 +170,18 @@
 	</insert>
 	
 	<!-- 알림 추가 -->
-	<insert id="GmNoticeinesert" parameterType="Notice">
-		insert into notice
-		values (#{ntc_code}, #{user_id}, #{anno_code}, #{ntc_ctg}, sysdate)
+	<insert id="GmNoticeinesert" parameterType="NoticeCom">
+		insert into notice (NTC_CODE, USER_ID, ANNO_CODE, NTC_CTG, NTC_TIME )
+		values (#{ntc_code}, #{com_id}, #{anno_code}, '001', sysdate)
 	</insert>
+	
+	<!-- notice에 apply+com_id 가져오기 -->
+	<select id="GmNoticeCom" parameterType="Apply" resultType="NoticeCom">
+		select ap.com_ntc_code as ntc_code , an.com_id as com_id , ap.anno_code as anno_code
+		from apply ap
+		left outer join announce an
+		on an.anno_code = #{anno_code}
+		where ap.com_ntc_code = #{com_ntc_code}
+	</select>
 	
 </mapper>

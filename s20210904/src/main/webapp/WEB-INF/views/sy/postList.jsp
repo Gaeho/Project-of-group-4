@@ -14,6 +14,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 <div>
 	<table>
 		<thead>		
@@ -41,11 +42,11 @@
 	</table>
 </div>
 
-	<form action="postList" method="post">
+<!--	<form action="postList" method="post">
 		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
 		<input type="text" value="${post_search}" name="post_search" id="post_search" placeholder="검색어를 입력하세요">
 		<button type="submit">검색</button>
-	</form>
+	</form> -->
 
 	<div>
 		<c:if test="${paging.startPage > paging.pageBlock }">

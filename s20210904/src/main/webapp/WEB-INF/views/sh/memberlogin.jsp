@@ -31,9 +31,9 @@
 						<!-- <img src="C:/Team project employment/Project-of-group-4/s20210904/src/main/webapp/upload/sh"  onclick="location.href='join'">-->
 						 <input type="button" class="btn3" value="회원가입" onclick="location.href='join'">
 					</div>			
-		</form>
-</div>
-</div>
+			</form>
+		</div>
+	</div>
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </html>
@@ -79,5 +79,3 @@
 				    </div>
 				</div>	
 	</div>-->
-	
-

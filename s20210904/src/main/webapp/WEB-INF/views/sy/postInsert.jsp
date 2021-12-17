@@ -27,7 +27,7 @@
 			<td><textarea rows="10" name="post_ctx" id="post_ctx" ></textarea></td>
 		</tr>
 	</table>		
-			<input type="submit" value="입력"></input>				
+			<input type="submit" value="입력" onClick="location.href='postList'"></input>				
 	</form>
 		<div>
 		<button type="button" id="btnPrev">이전</button>
