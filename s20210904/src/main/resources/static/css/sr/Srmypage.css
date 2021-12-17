@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.CompanyMypageContainer{
+	display: flex;
+}
+
+.CompanyMypageContainer > div {
+	margin: 0 auto;
+}
+
+.comInfoUpper{
+	margin: 0 auto;
+	min-height: 200px;
+}
+
+.comInfoUnder{
+	display: flex;
+}
+
+.comInfoleft{
+	width: 40%;
+}
+.comInforight{
+	width:60%;
+	border: 1px solid silver;
+}
+
+.testcss{
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+	
+}

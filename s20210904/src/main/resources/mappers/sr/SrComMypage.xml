@@ -81,7 +81,7 @@
 	<select id="SrUserDetail" parameterType="CommResMemBook" resultType="CommResMemBook">
 		select DISTINCT mem.user_name, mem.user_img, mem.user_email, mem.USER_TEL, mem.user_addr,res.res_title,res.res_email, res.univ_name
 		,res.univ_date, res.HS_NAME, res.cov_let, boo.MRK_RES_CODE, jobTag.comm_ctx as jobTag, hsMjr.comm_ctx as hsMjr,
-		tag1.comm_ctx as tag1, tag2.comm_ctx as tag2, tag3.comm_ctx as tag3
+		tag1.comm_ctx as tag1, tag2.comm_ctx as tag2, tag3.comm_ctx as tag3,res.univ_mjr
 		from member mem
 		left outer join resume res
 		on res.user_id = mem.user_id
@@ -128,7 +128,7 @@
 	<select id="SrUserDetail2" parameterType="CommResMemBook" resultType="CommResMemBook">
 		select DISTINCT mem.user_name, mem.user_img, mem.user_email, mem.USER_TEL, mem.user_addr,res.res_title,res.res_email, res.univ_name
 		,res.univ_date, res.HS_NAME, res.cov_let, res.RES_CODE as mrk_res_code, jobTag.comm_ctx as jobTag, hsMjr.comm_ctx as hsMjr,
-		tag1.comm_ctx as tag1, tag2.comm_ctx as tag2, tag3.comm_ctx as tag3
+		tag1.comm_ctx as tag1, tag2.comm_ctx as tag2, tag3.comm_ctx as tag3,res.univ_mjr
 		from member mem
 		left outer join resume res
 		on res.user_id = mem.user_id
