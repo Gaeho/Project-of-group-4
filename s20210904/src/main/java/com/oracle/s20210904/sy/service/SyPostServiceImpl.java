@@ -17,9 +17,9 @@ public class SyPostServiceImpl implements SyPostService {
 	private SyPostDao syPostDaoImpl;
 	
 	@Override
-	public List<Post> postSelect(PostSearch postSearch) throws Exception {
+	public List<Post> postSelect(Post post) throws Exception {
 		System.out.println("syPostServiceImpl.postSelect START");
-		return syPostDaoImpl.postSelect(postSearch);
+		return syPostDaoImpl.postSelect(post);
 	}
 	
 	@Override
@@ -50,8 +50,8 @@ public class SyPostServiceImpl implements SyPostService {
 	}
 	
 	@Override
-	public List<Post> total(PostSearch postSearch) throws Exception {	
-		List<Post> totalCount = syPostDaoImpl.total(postSearch);	
+	public int total() throws Exception {	
+		int totalCount = syPostDaoImpl.total();	
 		return totalCount;
 	}
 
@@ -74,4 +74,24 @@ public class SyPostServiceImpl implements SyPostService {
 		return result;
 	}
 	
+	@Override
+	public void updateRef(Post post) {
+		System.out.println("syPostServiceImpl.updateRef START");
+		syPostDaoImpl.updateRef(post);
+		
+	}
+	
+	@Override
+	public int noticetotal() {
+		System.out.println("syPostServiceImpl.noticetotal START");
+		int result = syPostDaoImpl.noticeCount();
+		return result;
+	}
+	
+	@Override
+	public List<Post> noticeList() {
+		System.out.println("syPostServiceImpl.noticeList START");
+		List<Post> noitceList = syPostDaoImpl.noticeList();
+		return noitceList;
+	}
 }

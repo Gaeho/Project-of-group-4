@@ -366,10 +366,22 @@ public class SrComMypageController {
 
 	// 지원현황+북마크 상세(이력서 포함)
 	@GetMapping(value = "detail2")
-	public String detail(String user_id, String com_id, Integer mrk_res_code, Integer isResume,
+	public String detail(String user_id, String com_id, Integer mrk_res_code, Integer isResume, String anno_cod
 			CommMemResume commMemResume, Model model, CommResMemBook commResMemBook
 			, CommCompany commCompany) {
 		
+		System.out.println("SrComMypageController detail2 Start...");
+		
+		//최초 조회시 알림갑니다-----------------------
+		ResumeContect rc = new ResumeContect();
+		rc.setCom_id(com_id);
+		rc.setUser_id(user_id);
+		rc.setRes_code(mrk_res_code);
+		rc.setAnno_code(anno_code);
+		insertResumeContect(rc);
+		//-------------------------------------
+		
+
 		// company+comm JOIN
 				CommCompany commCompany1 = null;
 				commCompany1 = scms.comInfo(commCompany);
@@ -383,6 +395,7 @@ public class SrComMypageController {
 		// comm+resume+member+bookmark JOIN
 		CommResMemBook mem = scms.userdetail(commResMemBook, isResume);
 		System.out.println("----------------------------------------");
+
 		System.out.println("6.SrComMypageController mem.getUser_name()->" + mem.getUser_name());
 		System.out.println("6.SrComMypageController mem.getUser_email()->" + mem.getUser_email());
 		System.out.println("6.SrComMypageController mem.getUser_tel()->" + mem.getUser_tel());
@@ -484,14 +497,17 @@ public class SrComMypageController {
 		// 없으면 인서트할게요~
 		if (rc == null) {
 			result = scms.insertResumeContect(resumeContect);
+			System.out.println(result);
 			// 인서트 확인~성공시 1 성공했으면 알림 추가할게요~
 			if (result == 1) {
-				// 알ㄹ
+				System.out.println("알림드가유~");
 				rc = scms.findRC(resumeContect);
+				rc.setAnno_code(resumeContect.getAnno_code());
 				Notice notice = new Notice();
 				notice.setUser_id(rc.getUser_id());
 				notice.setNtc_ctg("003");
 				notice.setNtc_code(rc.getNtc_code());
+				notice.setAnno_code(rc.getAnno_code());
 				scms.insertNotice(notice);
 
 			}
@@ -500,7 +516,6 @@ public class SrComMypageController {
 	}
 
 	@GetMapping(value = "memFail")
-
 	public String memFail(Apply apply) {
 		scms.memFail(apply);
 		scms.applyStsUpdate(apply);
