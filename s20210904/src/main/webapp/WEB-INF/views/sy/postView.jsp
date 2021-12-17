@@ -9,11 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세</title>
+<link href="css/sy/postView.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 	<table>
 		<tr>
 			<td>제목</td>
@@ -38,31 +40,37 @@
      </form>
      
 	<div>
-		<button type="submit" id="btnReply">답글</button>
+<!-- 		<button type="submit" id="btnReply">답글</button> -->
 		<button type="submit" id="btnUpdate">수정</button>
 		<button type="submit" id="btnDelete">삭제</button>
 		<button type="submit" id="btnList">목록</button>
 	</div>
 	
-<script>
+<script type="text/javascript">
 	$(document).ready(function () {
 	
 	    var formObj = $("form[role='form']");
 	    console.log(formObj);
+	    
+	    $("#btnReply").on("click", function () {
+	        formObj.attr("action", "${pageContext.request.contextPath}/postReply");
+	        formObj.attr("method", "get");
+	        formObj.submit();
+	    });
 	
 	    $("#btnUpdate").on("click", function () {
-	        formObj.attr("action", "/postUpdate");
+	        formObj.attr("action", "${pageContext.request.contextPath}/postUpdate");
 	        formObj.attr("method", "get");
 	        formObj.submit();
 	    });
 	
 	    $("#btnDelete").on("click", function () {
-	       formObj.attr("action", "/postDelete");
+	       formObj.attr("action", "${pageContext.request.contextPath}/postDelete");
 	       formObj.submit();
 	    });
 	
 	    $("#btnList").on("click", function () {
-	       self.location = "/postList"
+	       self.location = "${pageContext.request.contextPath}/postList"
 	    });
 	
 	});

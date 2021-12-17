@@ -13,15 +13,9 @@
 	<%-- <%response.sendRedirect("AdminMain"); %> --%>
 	 <%-- <%response.sendRedirect("GmAnnoList"); %>  --%> 
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
-	 <% response.sendRedirect("main"); %> 
-	<%-- <%response.sendRedirect("ComMemSearch");%> --%>
-	<%-- <%response.sendRedirect("login");%> --%>
 
 	<%--  <%response.sendRedirect("ComInfo"); %>  --%>
-	<%--  <%response.sendRedirect("login");%>  --%>
-
-
-
+    <%response.sendRedirect("join");%>  
 
 	<%--  <%response.sendRedirect("applyDetail"); %>  --%>
 

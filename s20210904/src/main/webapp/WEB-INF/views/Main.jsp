@@ -28,7 +28,7 @@
 					dataType:'json',
 					success:function(data){
 						if(data.length >0){
-							alert("알람ON"+data);	
+							//alert("알람ON"+data);	
 							$("#alramImg").attr("src","img/ds/alram-on.png");
 							
 							$(data).each(
@@ -46,7 +46,7 @@
 									}
 							)	
 						}else{
-							alert("알람OFF"+data);
+							//alert("알람OFF"+data);
 							$("#alramImg").attr("src","img/ds/alram-off.png");
 							str = "<li><hr class='dropdown-divider'></li>"
 							+"<li><a class='dropdown-item' href='#scrollspyHeading3'>알림이 없어요~</a></li>"

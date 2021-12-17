@@ -225,9 +225,24 @@ public class WkMbMypageServiceImpl implements WkMbMypageService{
 
 	@Transactional(rollbackFor = {RuntimeException.class ,Exception.class})
 	@Override
-	public void noticeDelete(String mbid) {
-		int result1 = wkNoticeDao.applyNoticeDelete(mbid);
-		int result2 = wkNoticeDao.resConNoticeDelete(mbid);
+	public void noticeDelete(String mbid, String notice_apply, String notice_resCon) {
+		int result1=0;
+		int result2=0;
+		System.out.println("noticeDelete : "+notice_apply+" : "+notice_resCon );
+		if(notice_apply.equals("1")) {
+			result1 = wkNoticeDao.applyNoticeDelete(mbid);
+		}
+		if(notice_resCon.equals("1")) {
+			result2 = wkNoticeDao.resConNoticeDelete(mbid);
+		}
+		System.out.println("noticeDelete apply, resCon result : "+result1 +" : "+ result2);
+	}
+
+
+
+	@Override
+	public String memberImg(String mbid) {
+		return wkMemberDao.memberImg(mbid);
 	}
 
 	

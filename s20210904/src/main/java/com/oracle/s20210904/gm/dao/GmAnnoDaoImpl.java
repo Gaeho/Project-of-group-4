@@ -9,9 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
-import com.oracle.s20210904.comm.model.Notice;
+import com.oracle.s20210904.comm.model.NoticeCom;
 import com.oracle.s20210904.comm.model.Resume;
-import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.model.Scrap;
 
 @Repository
@@ -37,7 +36,8 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 		System.out.println("GmAnnoDaoImpl listAnno Start...");
 		System.out.println("comAnnounce.getAnnosearch()->"+comAnnounce.getAnnosearch());
 		try {
-			annoList = session.selectList("GmAnnoListAll", comAnnounce);
+			//annoList = session.selectList("GmAnnoListAll", comAnnounce);
+			annoList = session.selectList("GmAnnoSearchList", comAnnounce);
 		} catch (Exception e) {
 			System.out.println("GmAnnoDaoImpl listAnno Exception"+e.getMessage());
 		}
@@ -245,7 +245,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				int app = 0;
 				try {
 					app = session.insert("GmApply", apply);
-				
+					System.out.println(app);
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl applyResume Exception "+e.getMessage());
 				}
@@ -264,7 +264,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl checkRC Exception "+e.getMessage());
 				}
-				System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
+				//System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
 				return ap;
 			}
 
@@ -284,10 +284,10 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 
 			// 알림 추가
 			@Override
-			public void Noticeinesert(Notice notice) {
+			public void Noticeinesert(NoticeCom noticeCom) {
 				System.out.println("GmAnnoDaoImpl Noticeinesert Start...");
 				try {
-					session.insert("GmNoticeinesert", notice);
+					session.insert("GmNoticeinesert", noticeCom);
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl Noticeinesert Exception " + e.getMessage());
 				}
@@ -312,6 +312,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				
 				int result = 0;
 				
+				
 				try {
 					result = session.selectOne("GmAnnoSearch", annosearch);
 				} catch (Exception e) {
@@ -320,6 +321,27 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				
 				
 				return result;
+			}
+
+			@Override
+			public NoticeCom selectNc(Apply apply) {
+				System.out.println("GmAnnoDaoImpl selectNc() 실행되었습니다.");
+				NoticeCom noticecom = null;
+				System.out.println("apply.getAnno_code()->"+apply.getAnno_code());
+				System.out.println("apply.getCom_ntc_code()->"+apply.getCom_ntc_code());
+				try {
+					noticecom = session.selectOne("GmNoticeCom", apply);
+					System.out.println("noticecom.getCom_id()->"+noticecom.getCom_id());
+					System.out.println("noticecom.getAnno_code()->"+noticecom.getAnno_code());
+					
+					
+					
+				} catch (Exception e) {
+					System.out.println("selectNc에서 예외 발생"+e.getMessage());
+				}
+				
+				
+				return noticecom;
 			}
 			
 			

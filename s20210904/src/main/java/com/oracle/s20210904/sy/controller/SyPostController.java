@@ -3,6 +3,8 @@ package com.oracle.s20210904.sy.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.s20210904.comm.model.Post;
@@ -26,6 +29,17 @@ public class SyPostController {
 
 	@Autowired
 	private SyPostService syPostServiceImpl;
+	
+	// 로그인 확인
+	private String idCheck(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("userId");
+		if(id==null || id.equals("")){              
+			return "dmdtla054"; 
+		}
+
+		return id;
+	}
 	
 	// 게시글 목록
 	@RequestMapping(value = "postList", method = RequestMethod.GET)
@@ -61,24 +75,45 @@ public class SyPostController {
 	
 	// 게시글 작성 페이지 이동
     @RequestMapping(value= "postInsert", method = RequestMethod.GET)
-	public String getPostInsert() throws Exception {
-    	
-    	logger.info("postInsert GET");
+	public String PostInsertView(HttpServletRequest request, Model model) throws Exception {
+    	System.out.println("SyPostController postInsert GET");
+//    	String returnString = null;
+//    	String sessionCheck = "sessionNone";
+    	String userId=idCheck(request);
+		System.out.println("Session Check : "+userId);
+		
+/*		if(userId.equals(sessionCheck)) {
+			System.out.println("redirect:/main");
+			return "redirect:/main";
+		} else if(userId != null) {
+			
+			returnString = "sy/postInsert";
+		} */
     	
 		return "sy/postInsert";
 	}
     
     // 게시글 작성 처리
 	@RequestMapping(value = "postInsert", method = RequestMethod.POST)
-	public String postInsert(Post post, RedirectAttributes redirect) throws Exception {
+	@ResponseBody
+	public String postInsert(Post post, HttpServletRequest request, Model model, RedirectAttributes redirect) throws Exception {
+		System.out.println("SyPostController postInsert POST");
+
+		String userId=idCheck(request);
+		model.addAttribute("userId", userId);
+		post.setUser_id(userId);
+	    System.out.println("SyPostController postInsert post getPost_title->"+post.getPost_title());	
+	    System.out.println("SyPostController postInsert post getBrd_code->"+post.getBrd_code());	
+	    System.out.println("SyPostController postInsert post getPost_ctx->"+post.getPost_ctx());
+	    System.out.println("SyPostController postInsert post getPost_regdate->"+post.getPost_regdate());
+	    System.out.println("SyPostController postInsert post getUser_id->"+post.getUser_id());	
+	    System.out.println("SyPostController postInsert post getPost_code->"+post.getPost_code());	
 		
-		logger.info("postInsert POST");
-
 		syPostServiceImpl.postInsert(post);
+		
+		/* redirect.addFlashAttribute("msg", "InsertSuccess"); */
 
-		redirect.addFlashAttribute("result", "InsertSuccess");
-
-		return "redirect:postList";
+		return "sy/postList";
 	}
 	
 	// 게시글 조회
@@ -94,53 +129,71 @@ public class SyPostController {
 	
 	// 게시글 수정 페이지 이동
 	@RequestMapping(value = "postUpdate", method = RequestMethod.GET)
-	public String getPostUpdate(Model model, @RequestParam("post_code") int post_code) throws Exception {
-		logger.info("postUpdate GET");
-		
-		model.addAttribute("postUpdate", syPostServiceImpl.postView(post_code));
+	public String getPostUpdate(HttpServletRequest request, Model model, @RequestParam("post_code") int post_code) throws Exception {
+		String userId=idCheck(request);
+		model.addAttribute("userId", userId);
+	    System.out.println("SyPostController postUpdate GET getPost_title : "+post_code);
+		logger.info("getpostUpdate GET");
+		model.addAttribute("post", syPostServiceImpl.postView(post_code));
 		
 		return "sy/postUpdate";
 	}
 	
 	// 게시글 수정 처리
 	@RequestMapping(value = "postUpdate", method = RequestMethod.POST)
-	public String postUpdate(Post post, RedirectAttributes redirect) throws Exception {
+	public String postUpdate(HttpServletRequest request, Model model, Post post, RedirectAttributes redirect) throws Exception {
+		String userId=idCheck(request);
+		model.addAttribute("userId", userId);
+	    System.out.println("SyPostController postUpdate POST getPost_title : "+post.getPost_title());	
+	    System.out.println("SyPostController postUpdate POST getPost_ctx : "+post.getPost_ctx());	
+	    System.out.println("SyPostController postUpdate POST getUser_id : "+post.getUser_id());	
+	    System.out.println("SyPostController postUpdate POST getPost_code : "+post.getPost_code());	
 		logger.info("postUpdate POST");
-		
-		syPostServiceImpl.postUpdate(post);
-		
-		redirect.addFlashAttribute("result", "UpdateSuccess");
+		int updateResult = syPostServiceImpl.postUpdate(post);	
+		//redirect.addFlashAttribute("message", "UpdateSuccess");
 
 		return "redirect:postList";
 	}
 	
 	// 게시글 삭제 처리
-	@RequestMapping(value = "postDelete", method = RequestMethod.POST)
-	public String postDelete(RedirectAttributes redirect, @RequestParam("user_id") String user_id) throws Exception {
-		
-		logger.info("postDelete");
-		
-		syPostServiceImpl.postDelete(user_id);
-
-		redirect.addFlashAttribute("result", "DeleteSuccess");
+	@RequestMapping(value = "postDelete")
+	public String postDelete(@RequestParam int post_code) throws Exception {
+	    System.out.println("SyPostController postDelete getPost_code : "+post_code);	
+		syPostServiceImpl.postDelete(post_code);
+		logger.info("postDelete START");
+//		redirect.addFlashAttribute("message", "DeleteSuccess");
 
 		return "redirect:postList";
 	}
 
-	@RequestMapping("postReply")
-	public String postReplyView (HttpServletRequest request, Model model) {
+	@RequestMapping(value = "postReply", method = RequestMethod.GET)
+	public String postViewReply (HttpServletRequest request, Model model, @RequestParam("post_code") int post_code) throws Exception {
+		logger.info("postViewReply START");
 		
-		model.addAttribute("request", request);
+		model.addAttribute("postViewReply", syPostServiceImpl.postViewReply(post_code));
 				
 		return "sy/postReply";
 	}
 	
-	@RequestMapping("/reply")
-	public String postReply(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "postReply", method = RequestMethod.POST)
+	@ResponseBody
+	public String postReply(Post post, HttpServletRequest request, Model model, RedirectAttributes redirect) throws Exception {
+		System.out.println("SyPostController postReply POST");
+		String userId=idCheck(request);
+		model.addAttribute("userId", userId);
+		post.setUser_id(userId);
+	    System.out.println("SyPostController postReply post getPost_code->"+post.getPost_code());
+	    System.out.println("SyPostController postReply post getBrd_code->"+post.getBrd_code());
+	    System.out.println("SyPostController postReply post getPost_title->"+post.getPost_title());	
+	    System.out.println("SyPostController postReply post getPost_ctx->"+post.getPost_ctx());
+	    System.out.println("SyPostController postReply post getPost_regdate->"+post.getPost_regdate());
+	    System.out.println("SyPostController postReply post getUser_id->"+post.getUser_id());		
+	    System.out.println("SyPostController postReply post getPost_code->"+post.getRef());	
+	    System.out.println("SyPostController postReply post getPost_code->"+post.getRef_step());	
+	    System.out.println("SyPostController postReply post getPost_code->"+post.getRef_lev());	
 		
-		model.addAttribute("request", request);
-		
-		
+		syPostServiceImpl.postReply(post);
+
 		return "redirect:postList";
 	}
 	 

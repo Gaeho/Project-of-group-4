@@ -41,5 +41,17 @@ public class WkMemberDaoImpl implements WkMemberDao{
 		return result;
 	}
 
+	@Override
+	public String memberImg(String mbid) {
+		System.out.println("WkMemberDaoImpl memberImg()");
+		String result=null;
+		try {
+			result=(String)session.selectOne("WkMemberImg", mbid);
+		} catch (Exception e) {
+			System.out.println("WkMemberDaoImpl memberImg() error : "+e.getMessage());
+		}
+		return result;
+	}
+
 
 }

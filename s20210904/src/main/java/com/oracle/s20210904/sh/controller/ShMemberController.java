@@ -51,12 +51,15 @@ public class ShMemberController {
 	@RequestMapping(value = "joinSave")
 	public String joinSave (Member member, Model model) {
 		System.out.println("ShMemberController joinSave Start...");
+		System.out.println("member.getUser_id()->"+member.getUser_id());
 		
 		int joinmember = ms.joinmember(member);
+		System.out.println("joinmember->"+joinmember);
+		
 		//System.out.println("ShMemberController joinmember"+joinmemeber.getUser_id());
 		model.addAttribute("joinmember", joinmember);
 		
-		return "redirect:/";
+		return "sh/registerresult";
 	}
 	
 
@@ -72,7 +75,7 @@ public class ShMemberController {
 		System.out.println("ShMemberController ComjoinSave Start...");
 	    int joincom = ms.joincom(company);
 		model.addAttribute("joincom", joincom);
-		return "redirect:/";
+		return "sh/main";
 		
 	}
 	//개인로그인 
@@ -279,14 +282,15 @@ public class ShMemberController {
 		//Mail Ajax(개인회원가입 이메일인증)
 		@RequestMapping(value = "verifyEmail" , produces = "application/text;charset=UTF-8")
 		@ResponseBody
-		public String  verifyEmail(String  user_email , Model model) {
+		public String  verifyEmail(String  user_email , Model model, HttpSession session) {
+			
 			System.out.println("mailSending...");  //받는사람이메일
 			String tomail = user_email;
 			System.out.println("verifyEmail tomail->"+tomail);
 			String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
 			String title = "인증 번호입니다"; //제목
-			String tempVerifyStatus = "0";     
-				
+			String tempVerifyStatus= "0";    
+										
 			try {
 				MimeMessage message = mailsender.createMimeMessage();
 				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
@@ -297,8 +301,11 @@ public class ShMemberController {
 				messageHelper.setText("인증 번호입니다:" + tempPassword); //
 				System.out.println("인증번호입니다" + tempPassword); 
 				mailsender.send(message);
-				tempVerifyStatus = "1";
-			
+				tempVerifyStatus= "1";
+				
+				//세션에 인증 번호 저장
+				session.setAttribute("tempPassword", tempPassword);
+
 			} catch (Exception e) {
 				System.out.println("message Error->"+e.getMessage());
 				tempVerifyStatus = "0";
@@ -311,10 +318,10 @@ public class ShMemberController {
 		//Mail Ajax2(기업회원가입 이메일인증)
 				@RequestMapping(value = "verifyEmail2" , produces = "application/text;charset=UTF-8")
 				@ResponseBody
-				public String  verifyEmail2(String  com_email , Model model) {
-		     	                     System.out.println("mailSending...");  //받는사람이메일
+				public String  verifyEmail2(String  com_email , Model model,  HttpSession session) {
+		        System.out.println("mailSending...");  //받는사람이메일
 				String tomail = com_email;
-				System.out.println("verifyEmail tomail->"+tomail);
+				System.out.println("verifyEmail2 tomail->"+tomail);
 				String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
 				String title = "인증 번호입니다"; //제목
 				String tempVerifyStatus = "0";     
@@ -326,11 +333,13 @@ public class ShMemberController {
 						messageHelper.setTo(tomail); 
 						messageHelper.setSubject(title); 
 						String tempPassword = (int) (Math.random() * 999999) + 1 + "";
-						messageHelper.setText("인증 번호입니다:" + tempPassword); //
+						messageHelper.setText("인증 번호입니다: " + tempPassword); //
 						System.out.println("인증번호입니다" + tempPassword); 
 						mailsender.send(message);
 						tempVerifyStatus = "1";
 
+						//세션에 인증 번호 저장
+						session.setAttribute("tempPassword", tempPassword);
 					} catch (Exception e) {
 						System.out.println("message Error->"+e.getMessage());
 						tempVerifyStatus = "0";
@@ -338,9 +347,18 @@ public class ShMemberController {
 					System.out.println("ShMemberController verifyEmail tempVerifyStatus->" + tempVerifyStatus); 
 					
 					return tempVerifyStatus;
+		}
+	
+				//이메일 인증 처리
+				@PostMapping("emailAuthentication")
+				@ResponseBody
+				public String emailAuthentication(HttpSession session , String authNumber) {			
+					String tempPassword=(String)session.getAttribute("tempPassword");
+					if(tempPassword.equals(authNumber)) {				
+						return "success";
+					}else
+					return "failed";
 				}
-	
-	
 	
 	
 	

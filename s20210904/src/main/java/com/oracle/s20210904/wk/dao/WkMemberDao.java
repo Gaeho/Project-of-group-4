@@ -8,4 +8,6 @@ public interface WkMemberDao {
 
 	int memberUpdate(Member member);
 
+	String memberImg(String mbid);
+
 }

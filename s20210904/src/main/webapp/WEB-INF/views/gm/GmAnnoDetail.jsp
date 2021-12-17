@@ -57,9 +57,7 @@
 	
 		<div class="TopContainer">
 			<div>				
-				<div class="Top1s">
-					
-								<h2> -공고 상세- </h2>
+				<div class="Top1s">					
 								  <div class="com_title">
 									<div><h1>${comanno.anno_title}</h1></div>
 								  </div>
@@ -137,14 +135,14 @@
 				<div>	
 					<h3><기업 정보></h3>
 					<table class="table table align-middle">
-						<tr><th>기업명</th><td>${comanno.com_name}</td></tr>
+						<tr><th class ="table th { width: 100px; }">기업명</th><td>${comanno.com_name}</td></tr>
 						<tr><th>E-mail</th><td>${comanno.com_email}</td></tr>
 						<tr><th>연락처</th><td>${comanno.com_tel}</td></tr>
 						<tr><th>담당자</th><td>${comanno.com_user}(${comanno.com_mgr_tel})</td></tr>
 						<tr><th>기업 주소</th><td>${comanno.com_addr}</td></tr>
 						<tr><th>업종</th><td>${comsec.comm_ctx}</td></tr> 
-						<tr><th>사업<p>내용</th><td>${comanno.com_bus}</td></tr>
-						<tr><th>홈페<p>이지</th><td>${comanno.com_web}</td></tr>
+						<tr><th>사업내용</th><td>${comanno.com_bus}</td></tr>
+						<tr><th>홈페이지</th><td>${comanno.com_web}</td></tr>
 					</table>	
 				</div>		
 				<!----------------------------------------------------------------------------------->

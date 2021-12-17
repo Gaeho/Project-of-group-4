@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,30 +13,40 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	<form action="/postInsert" method="POST">
-		<div>
-			<label>제목</label>
-			<input name="post_title" id="post_title"/>
-		</div>
-		<div>
-			<label>내용</label>
-			<textarea name="post_ctx" id="post_ctx"></textarea>
-		</div>
-		<div>			
-			<button type="submit" id="btnSave">작성</button>
-			<button type="button" id="btnList">목록</button>
-		</div>						
+	<form action="postInsert" method="post">
+		<input type="hidden" name="brd_code" value="Q&A">
+		<input type="hidden" name="user_id" value="${postInsert.user_id}">	
+	<!-- 	<input type="hidden" name="post_regdate" value="${postInsert.post_regdate}"> -->	
+	<table>
+		<tr>  
+			<td>제목</td>
+			<td><input type="text" name="post_title" id="post_title" value=""/></td>
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td><textarea rows="10" name="post_ctx" id="post_ctx" ></textarea></td>
+		</tr>
+	</table>		
+			<input type="submit" value="입력" onClick="location.href='postList'"></input>				
 	</form>
+		<div>
+		<button type="button" id="btnPrev">이전</button>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function () {
 	
-<script>
-	$(document).on('click', '#btnSave', function(e){
-		e.preventDefault();		
-		$("#form").submit();
-	});
-
-	$(document).on('click', '#btnList', function(e){
-		e.preventDefault();
-		location.href="${pageContext.request.contextPath}/postList";
+	    var formObj = $("form[role='form']");
+	    console.log(formObj);
+	
+	
+	    $("#btnPrev").on("click", function () {
+	        history.go(-1);
+	    });
+	
+	    $("#btnList").on("click", function () {
+	        self.location = "${pageContext.request.contextPath}/postList"
+	    });
+	
 	});
 </script>
 </body>

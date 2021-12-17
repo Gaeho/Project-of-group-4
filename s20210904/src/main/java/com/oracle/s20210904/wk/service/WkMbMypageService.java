@@ -45,6 +45,8 @@ public interface WkMbMypageService {
 
 	int repResumeUpdate(Resume resume);
 
-	void noticeDelete(String mbid);
+	void noticeDelete(String mbid, String notice_apply, String notice_resCon);
+
+	String memberImg(String mbid);
 
 }
