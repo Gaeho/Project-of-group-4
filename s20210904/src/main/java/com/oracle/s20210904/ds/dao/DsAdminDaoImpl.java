@@ -199,4 +199,10 @@ public class DsAdminDaoImpl implements DsAdminDao {
 		int ttotCnt = session.selectOne("DsMainCateCnt",main_cat);
 		return ttotCnt;
 	}
+	
+	@Override
+	public int tagDel(Comm comm) {
+		int result = session.delete("DsTagDel",comm);
+		return result;
+	}
 }

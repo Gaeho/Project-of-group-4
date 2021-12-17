@@ -14,23 +14,24 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-	<form action="postReply" method="post">
+	<form action="postInsert" method="post">
+		<input type="hidden" name="post_code" value="${postViewReply.post_code}">
 		<input type="hidden" name="brd_code" value="Q&A">
-		<input type="hidden" name="user_id" value="${postReply.user_id}">
-		<input type="hidden" name="ref" value="${postReply.ref}">
-		<input type="hidden" name="ref_step" value="${postReply.ref_step}">
-		<input type="hidden" name="ref_lev" value="${postReply.ref_lev}">
+		<input type="hidden" name="user_id" value="${postViewReply.user_id}">
+		<input type="hidden" name="ref" value="${postViewReply.ref}">
+		<input type="hidden" name="ref_step" value="${postViewReply.ref_step}">
+		<input type="hidden" name="ref_lev" value="${postViewReply.ref_lev}">
    <table>
 		<tr>
 			<td>제목</td>
-			<td><input type="text" name="post_title" id="post_title" value="답변"></td>
+			<td><input type="text" name="post_title" id="post_title" value="[답변]${postViewReply.post_title}"></td>
 		</tr>
 		<tr>
 			<td>내용</td>
 			<td><textarea rows="10" name="post_ctx" id="post_ctx"></textarea></td>
 		</tr>		
    </table>
-   			<input type="submit" value="저장" onclick="location.href='postList'">	
+   			<input type="submit" value="저장">	
 	</form>
 </body>
 </html>

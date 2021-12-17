@@ -45,5 +45,6 @@ public interface DsAdminService {
 	int searchTotCnt(String searchTxt);
 	int mainCateCnt(String main_cat);
 	List<DsComm> getMainCateList(DsComm dsComm);
+	int tagDel(Comm comm);
 
 }
