@@ -198,9 +198,18 @@ function deleteFile() {
 										<p>
 										<div>
 											<div class="middleTitle_anno">고용 형태</div>
-											<input type="radio" id="one" name="emp_type" value="001" checked="checked"> 정규직 
-											<input type="radio" id="two" name="emp_type" value="002"> 계약직 
-											<input type="radio" id="three" name="emp_type" value="003"> 파견직
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="emp_type" id="inlineCheckbox1" value="001" checked="checked">
+											  <label class="form-check-label" for="inlineCheckbox1">정규직</label>
+											</div>
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="emp_type" id="inlineCheckbox2" value="002">
+											  <label class="form-check-label" for="inlineCheckbox2">계약직</label>
+											</div>
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="emp_type" id="inlineCheckbox3" value="003">
+											  <label class="form-check-label" for="inlineCheckbox3">파견직</label>
+											</div>
 											<p>
 										</div>
 				
@@ -240,12 +249,30 @@ function deleteFile() {
 										<p>
 										<div>
 											<div class="middleTitle_anno">경력</div>
-											<input type="radio" id="one11" name="career" value="001"checked="checked"> 신입 
-											<input type="radio" id="two22" name="career" value="002"> 경력직(연차무관) 
-											<input type="radio" id="three33" name="career" value="003"> 경력무관 
-											<input type="radio" id="four44" name="career" value="004"> 3년 이상
-											<input type="radio" id="five55" name="career" value="005"> 5년 이상 
-											<input type="radio" id="six66" name="career" value="006"> 10년 이상
+								 			<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="career" id="inlineCheckbox1" value="001" checked="checked">
+											  <label class="form-check-label" for="inlineCheckbox1">신입</label>
+											</div>
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="career" id="inlineCheckbox2" value="002">
+											  <label class="form-check-label" for="inlineCheckbox2">경력직(연차무관)</label>
+											</div>
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="career" id="inlineCheckbox3" value="003">
+											  <label class="form-check-label" for="inlineCheckbox3">경력무관</label>
+											</div>
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="career" id="inlineCheckbox4" value="004">
+											  <label class="form-check-label" for="inlineCheckbox3">3년 이상</label>
+											</div>
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="career" id="inlineCheckbox5" value="005">
+											  <label class="form-check-label" for="inlineCheckbox3">5년 이상</label>
+											</div>
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="career" id="inlineCheckbox6" value="006">
+											  <label class="form-check-label" for="inlineCheckbox3">10년 이상</label>
+											</div>
 											<p>
 										</div>
 				
@@ -270,7 +297,7 @@ function deleteFile() {
 												      <div class="accordion-body">
 												       		<!-- 내용 -->
 												        			<div class="form-floating">
-																	  <textarea class="form-control" name="rec_dtl" placeholder="모집 상세 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea>
+																	  <textarea class="form-control" name="rec_dtl" placeholder="모집 상세 " id="floatingTextarea" style="height: 300px; width: 100%;"></textarea>
 																	</div>
 												        	<!-- 내용 -->
 												      </div>
@@ -311,7 +338,7 @@ function deleteFile() {
 													      <div class="accordion-body">
 													        	<!-- 내용 -->
 													        		<div class="form-floating">
-																		 <textarea class="form-control" name="work_cdt" placeholder="상세 근무 조건 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea>
+																		 <textarea class="form-control" name="work_cdt" placeholder="상세 근무 조건 " id="floatingTextarea" style="height: 300px; width: 100%;"></textarea>
 																	</div>
 													        	<!-- 내용 -->
 													      </div>
@@ -339,7 +366,7 @@ function deleteFile() {
 												      <div class="accordion-body">
 												        	<!-- 내용 -->
 												        		<div class="form-floating">
-																	 <textarea class="form-control" name="etc_cdt" placeholder="모집 상세 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea>
+																	 <textarea class="form-control" name="etc_cdt" placeholder="모집 상세 " id="floatingTextarea" style="height: 300px; width: 100%;"></textarea>
 																</div>
 												        	<!-- 내용 -->
 												      </div>
@@ -356,14 +383,15 @@ function deleteFile() {
 				
 								<div class="annoOptContainer">
 									<div class="bigTitle_anno">공고 설정</div>
-									<div class="middleTitle_anno">공고 시작일</div>
-				
-									<input type="date" id="regdate" value="anno_regdate"
-										name="anno_regdate" required="required" onchange="addMonth();">
-				
-									<input type="date" class="input_anno_c_regdate"
-										name="anno_c_regdate" id="c_regdate">
-				
+									
+									<div class="anno_time_wrap">
+										<div class="middleTitle_anno">공고 시작일</div>
+										<input type="date" id="regdate" value="anno_regdate"
+											name="anno_regdate" required="required" onchange="addMonth();"><br>
+										<div class="middleTitle_anno">공고 종료일</div>
+										<input type="date" class="input_anno_c_regdate" 
+										name="anno_c_regdate" id="c_regdate" readonly="readonly">
+									</div>
 									<div class="anno_date_notice1">
 										<h2>공고는 작성일로부터 한 달간 게시됩니다.</h2>
 									</div>

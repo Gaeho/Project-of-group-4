@@ -129,15 +129,24 @@
 	box-shadow: none;
 }
 
-.input_anno_c_regdate{
-	 display: none; 
+.anno_time_wrap{
+	
+	padding-bottom: 10px;
+    padding-left: 20px;
+    padding-top: 20px;
+	
 }
-
 
 .anno_date_notice1 {
 	padding-bottom: 10px;
-    padding-left: 10px;
+    padding-left: 20px;
+    padding-top: 20px;
 	
+}
+
+.input_anno_c_regdate{
+	
+	/* outline: none; */
 }
 
 .submitbtn_wrap{
