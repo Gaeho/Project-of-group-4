@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세</title>
+<link href="css/sy/post.css" rel="stylesheet" type="text/css">
 <link href="css/sy/postView.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
@@ -17,31 +18,15 @@
      	<input type="hidden" name="post_code" value="${postView.post_code}">
      </form>
    <div class="table-responsive">
-	<table class="table align-top">
-		<tr class="table-active">
-			<td>제목</td>
-		</tr>
-		<tr>
-			<td><input type="text" class="form-control" name="post_title" value="${postView.post_title}" readonly="readonly" /></td>
-		</tr>
-		<tr class="table-heading">
-			<td>내용</td>
-		</tr>
-		<tr>
-			<td><textarea class="form-control" rows="5" name="post_ctx" readonly="readonly">${postView.post_ctx}</textarea></td>
-		</tr>
-		<tr class="table-heading">
-			<td>작성자</td>
-		</tr>
-		<tr>
-			<td><input type="text" class="form-control" name="user_id" value="${postView.user_id}" readonly="readonly"/></td>
-		</tr>	
-		<tr class="table-heading">
-			<td>등록일</td>
-		</tr>
-		<tr>
-			<td><input type="text" class="form-control" name="post_regdate" value="${postView.post_regdate}" readonly="readonly"/></td>
-		</tr>			
+	<table class="table table-borderless">
+		<tr class="table-heading"><td>제목</td></tr>
+		<tr><td><input type="text" class="form-control" name="post_title" value="${postView.post_title}" readonly="readonly" /></td></tr>
+		<tr class="table-heading"><td>내용</td></tr>
+		<tr><td><textarea class="form-control" rows="5" name="post_ctx" readonly="readonly">${postView.post_ctx}</textarea></td></tr>
+		<tr class="table-heading"><td>작성자</td></tr>
+		<tr><td><input type="text" class="form-control" name="user_id" value="${postView.user_id}" readonly="readonly"/></td></tr>
+		<tr class="table-heading"><td>등록일</td></tr>
+		<tr><td><input type="text" class="form-control" name="post_regdate" value="${postView.post_regdate}" readonly="readonly"/></td></tr>		
 	</table>
 	</div>
 	<div>
@@ -53,35 +38,34 @@
 		<button type="submit" id="btnList">목록</button>
 	</div>
 </div>
-	
 <script type="text/javascript">
-	$(document).ready(function () {
-	
-	    var formObj = $("form[role='form']");
-	    console.log(formObj);
+	$(document).ready(function () {	
+	    var form = $("form[role='form']");
+	    console.log(form);
 	    
 	    $("#btnReply").on("click", function () {
-	        formObj.attr("action", "${pageContext.request.contextPath}/postReply");
-	        formObj.attr("method", "get");
-	        formObj.submit();
+	        form.attr("action", "${pageContext.request.contextPath}/postReply");
+	        form.attr("method", "get");
+	        form.submit();
 	    });
 	
 	    $("#btnUpdate").on("click", function () {
-	        formObj.attr("action", "${pageContext.request.contextPath}/postUpdate");
-	        formObj.attr("method", "get");
-	        formObj.submit();
+	        form.attr("action", "${pageContext.request.contextPath}/postUpdate");
+	        form.attr("method", "get");
+	        form.submit();
 	    });
 	
 	    $("#btnDelete").on("click", function () {
-	       formObj.attr("action", "${pageContext.request.contextPath}/postDelete");
-	       formObj.submit();
+	       form.attr("action", "${pageContext.request.contextPath}/postDelete");
+	       form.submit();
 	    });
 	
-	    $("#btnList").on("click", function () {
-	       self.location = "${pageContext.request.contextPath}/postList"
+	    $("#btnPrev").on("click", function () {
+	        history.go(-1);
 	    });
 	
 	});
 </script>
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
