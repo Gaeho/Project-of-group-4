@@ -203,7 +203,7 @@
 }
 .companyConfirmList{
 	border: 1px solid black;
-	width:39.6%;
+	width:39%;
 	height:700px;
 	display: flex;
 	flex-wrap: wrap;
