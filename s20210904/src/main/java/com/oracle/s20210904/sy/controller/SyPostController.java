@@ -37,8 +37,8 @@ public class SyPostController {
 		String id = (String) session.getAttribute("id");
 		if(id==null || id.equals("")){              
 			return "dmdtla054"; 
-
-		return userId;
+		}
+		return id;
 	}
 	
 	// 게시글 목록
