@@ -194,7 +194,7 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 
 			// 이력서 목록
 			@Override
-			public List<Resume> listres(Resume resume) {
+			public List<Resume> listres(Resume resume) { 
 				List<Resume> resList = null;
 				System.out.println("GmAnnoServiceImpl listres Start...");
 				resList = ad.listres(resume);

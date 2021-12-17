@@ -16,12 +16,12 @@
 	var uploadsts="non";
 	var page_location="mypage";
 	function uploadFile() {
-	    alert('uploadFile Start...');
+	    // alert('uploadFile Start...');
 	    var form = new FormData();
 	    /* var user_id = document.getElementById('user_id').value; */
 	    img_path=document.getElementById('user_img').value;
-	    alert('img_path>>'+img_path);
-	    alert('uploadsts>>'+uploadsts);
+	    // alert('img_path>>'+img_path);
+	    // alert('uploadsts>>'+uploadsts);
 	    
 	    form.append( "file1", $("#file1")[0].files[0] );
 		form.append( "img_path", img_path);
