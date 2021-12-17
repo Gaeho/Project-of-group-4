@@ -35,7 +35,7 @@
 				<c:forEach var="appAnnMember" items="${appAnnMember }">
 						<tr>
 							<td><img class="MemImg" src="${appAnnMember.user_img}" /></td>
-							<td><a href="detail2?user_id=${appAnnMember.user_id }&com_id=${appAnnMember.com_id}&mrk_res_code=${appAnnMember.mrk_res_code}&isResume=1">${appAnnMember.user_id}</a></td>
+							<td><a href="detail2?user_id=${appAnnMember.user_id }&com_id=${appAnnMember.com_id}&mrk_res_code=${appAnnMember.mrk_res_code}&isResume=1&anno_code=${appAnnMember.anno_code}">${appAnnMember.user_id}</a></td>
 							<td>${appAnnMember.app_regdate }</td>
 							<c:choose>
 								<c:when test="${appAnnMember.app_sts == '001'}">

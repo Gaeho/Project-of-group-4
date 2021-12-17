@@ -29,4 +29,6 @@ public class ResumeContect implements Serializable{
 	private int res_code;
 	private Date res_date;
 	private String ntc_code;
+	
+	private String anno_code;
 }

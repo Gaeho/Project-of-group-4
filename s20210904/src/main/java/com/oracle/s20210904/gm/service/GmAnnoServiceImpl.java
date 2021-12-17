@@ -194,7 +194,7 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 
 			// 이력서 목록
 			@Override
-			public List<Resume> listres(Resume resume) {
+			public List<Resume> listres(Resume resume) { 
 				List<Resume> resList = null;
 				System.out.println("GmAnnoServiceImpl listres Start...");
 				resList = ad.listres(resume);
@@ -217,7 +217,9 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 			public Apply checkRC(Apply apply) {
 				System.out.println("GmAnnoServiceImpl checkRC Start...");
 				Apply ap = ad.checkRC(apply);
+
 				//System.out.println("Service ap.getAnno_code()->"+ap.getAnno_code());
+
 				
 				return ap;
 			}

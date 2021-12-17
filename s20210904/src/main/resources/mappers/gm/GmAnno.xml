@@ -151,7 +151,7 @@
 	
 	<!-- 이력서 List -->
 	<select id="GmResumeList" parameterType="Resume" resultType="Resume">
-		  select res_code, user_id, res_title, res_date from resume where user_id = #{user_id}
+		  select res_code, user_id, res_title, res_date from resume where user_id = #{user_id} and RES_STS!='003'
 	</select>
 	
 	<!-- 이력서 제출  -->

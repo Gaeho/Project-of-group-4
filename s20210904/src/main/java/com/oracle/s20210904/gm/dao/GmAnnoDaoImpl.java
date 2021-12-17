@@ -264,7 +264,9 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 				} catch (Exception e) {
 					System.out.println("GmAnnoDaoImpl checkRC Exception "+e.getMessage());
 				}
+
 				//System.out.println("Dao ap.getAnno_code()->"+ap.getAnno_code());
+
 				return ap;
 			}
 

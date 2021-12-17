@@ -6,10 +6,10 @@
 		select r.res_code ,r.res_title, r.res_date, r.rep_res, c.comm_ctx
 		from resume r
 		inner join comm c
-		on r.res_sts=c.sub_cat 
+		on r.res_tag1=c.sub_cat 
 		where r.user_id =#{mbid}
 		and r.res_sts!='003'
-		and c.main_cat='063'
+		and c.main_cat='001'
 		order by res_date desc
 	</select>
 	

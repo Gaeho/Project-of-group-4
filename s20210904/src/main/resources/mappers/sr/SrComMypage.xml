@@ -206,7 +206,7 @@
 	<!-- 알림추가요~ -->
 	<insert id="SrInsertNotice" parameterType="Notice">
 		insert into notice
-		values(#{ntc_code},#{user_id},#{anno_code},#{ntc_ctg})
+		values(#{ntc_code},#{user_id},#{anno_code},#{ntc_ctg},sysdate)
 	</insert>
 	
 	<select id="SrMemResumeBmarkList" parameterType="MemResumeBmark" resultType="MemResumeBmark">

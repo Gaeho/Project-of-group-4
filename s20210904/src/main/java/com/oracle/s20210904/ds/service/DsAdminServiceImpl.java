@@ -195,5 +195,11 @@ public class DsAdminServiceImpl implements DsAdminService {
 		return commList;
 	}
 	
+	@Override
+	public int tagDel(Comm comm) {
+		int result = dsAdminDao.tagDel(comm);
+		return result;
+	}
+	
 
 }

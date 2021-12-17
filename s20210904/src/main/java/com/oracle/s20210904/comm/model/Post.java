@@ -26,6 +26,9 @@ public class Post {
 	private int start;
 	private int end;
 	
+	// Search
+	private String searchText;
+	
 	// Reply
 	public void PostReply(int ref, int post_code, int ref_step, String ref_ctx) {
 	this.ref = ref;

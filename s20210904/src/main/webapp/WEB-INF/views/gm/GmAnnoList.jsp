@@ -12,9 +12,9 @@
 	/* pageMove */
 	function pageMove(vCurrentPage){
 		// console.log(vCurrentPage);
-    	/* 	alert("vCurrentPage->"+vCurrentPage);  */
+    		alert("vCurrentPage->"+vCurrentPage);  
 		var  annosearch = $('#annosearch').val();
-		/* alert("annosearch->"+annosearch);  */
+		 alert("annosearch->"+annosearch); 
 		location.href="GmAnnoList?currentPage="+vCurrentPage+"&annosearch="+annosearch;
 	}
 

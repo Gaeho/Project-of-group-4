@@ -30,8 +30,11 @@ public class PostSearch extends Paging{
 	private String user_id;        
 	
 	// Paging
-	private int currentPage;
-	private int totalPage;
+//	private int currentPage;
+//	private int totalPage;
+	private int start;
+	private int end;
+	
 	
 	// Search
 	private String searchType;
@@ -42,12 +45,6 @@ public class PostSearch extends Paging{
 	this.typeArr = searchType.split("");
 	}
 	
-	@Override
-	public String toString() {
-		return "SySearch [currentPage=" + currentPage + ", totalPage=" + totalPage + ", keyword " + keyword + ", searchType=" + searchType
-				+ ", typeArr=" + Arrays.toString(typeArr) + "]";
-	}
-
 	public void paging(int total, String currentPage2) {
 		// TODO Auto-generated method stub
 		
