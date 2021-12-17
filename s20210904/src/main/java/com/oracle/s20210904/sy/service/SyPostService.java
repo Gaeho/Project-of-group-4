@@ -20,7 +20,7 @@ public interface SyPostService {
 	
 	int total() throws Exception;
 	
-	public void postViewCount(int post_code, String user_id) throws Exception;
+	public void postViewCount(int post_code) throws Exception;
 
 	public Post postViewReply(int post_code) throws Exception;
 
@@ -31,4 +31,6 @@ public interface SyPostService {
 	int noticetotal();
 
 	List<Post> noticeList();
+
+	List<Post> postSearch(Post post);
 }

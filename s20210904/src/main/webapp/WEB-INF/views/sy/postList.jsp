@@ -40,6 +40,14 @@
 		</c:forEach>	
 	</table>
 </div>
+
+	<form action="postList">
+		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
+		<input type="text" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요">
+		<button type="submit">검색</button>
+	</form>
+
+
 	<div>
 		<c:if test="${paging.startPage > paging.pageBlock }">
 		<a href="postList?currentPage=${paging.startPage-paging.pageBlock}">이전</a>
@@ -51,6 +59,7 @@
 		<a href="postList?currentPage=${paging.startPage + paging.pageBlock}">다음</a>
 		</c:if>
 	</div>
+
 	<div>
 	<button type="button" class="btn btn-sm btn-primary" id="btnInsert">글쓰기</button>
 	</div>
@@ -66,6 +75,7 @@
 	        form.submit();
 	    });
 	});
+
 </script>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>

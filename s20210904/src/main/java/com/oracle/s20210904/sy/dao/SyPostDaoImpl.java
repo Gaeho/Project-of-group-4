@@ -97,16 +97,17 @@ public class SyPostDaoImpl implements SyPostDao {
 	}
 	
 	@Override
-	public void postViewCount(int post_code, String user_id) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("post_code", post_code);
-		map.put("user_id", user_id);
-		String result = sqlSession.selectOne("postViewCount", map);
+	public void postViewCount(int post_code) throws Exception {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("post_code", post_code);
+//		map.put("user_id", user_id);
+		System.out.println("DaoImpl post_code="+post_code);
+		sqlSession.update("postViewCount", post_code);
 		
-		if(result == null) {
-			sqlSession.update("postViewCount", post_code);
-			sqlSession.insert("addUserToViewCount", map);
-		}
+//		if(result == null) {
+//			sqlSession.update("postViewCount", post_code);
+//			sqlSession.insert("addUserToViewCount", map);
+//		}
 	}
 	
 	@Override
@@ -160,5 +161,11 @@ public class SyPostDaoImpl implements SyPostDao {
 	public List<Post> noticeList() {
 		List<Post> noticeList = sqlSession.selectList("SyNoticeList");
 		return noticeList;
+	}
+	
+	@Override
+	public List<Post> postSearch(Post post) {
+		List<Post> postSearch = sqlSession.selectList("SySearchPost",post);
+		return postSearch;
 	}
 }

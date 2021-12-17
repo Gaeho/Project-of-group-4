@@ -30,10 +30,12 @@
 	</table>
 	</div>
 	<div>
-		<button type="submit" class="btn btn-sm btn-primary" id="btnReply">답글</button>
-		<button type="submit" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
-		<button type="submit" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-		<button type="button" class="btn btn-sm btn-primary" id="btnPrev">이전</button>
+		<button type="submit" id="btnReply">답글</button>
+		<c:if test="${postView.user_id == id }">
+			<button type="submit" id="btnUpdate">수정</button>
+			<button type="submit" id="btnDelete">삭제</button>
+		</c:if>
+		<button type="submit" id="btnList">목록</button>
 	</div>
 </div>
 <script type="text/javascript">

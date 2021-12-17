@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class SyPostController {
 	
 	// 게시글 목록
 	@RequestMapping(value = "postList", method = RequestMethod.GET)
-	public String postSelect(Post post, Model model, String currentPage) throws Exception {
+	public String postSelect(Post post, Model model, String currentPage, String searchText) throws Exception {
 
 		
 		logger.info("postList");
@@ -66,13 +67,21 @@ public class SyPostController {
 		
 //		postSearch.paging(total, currentPage);
 		
-		List<Post> postSelect = syPostServiceImpl.postSelect(post);
+		List<Post> postSelect = null;
+		
+		if(searchText != null) {
+			postSelect = syPostServiceImpl.postSearch(post);
+		}
+		
+		if(searchText == null) {
+			postSelect = syPostServiceImpl.postSelect(post);
+		}
 		model.addAttribute("noticeCount",noticeCount);
 		model.addAttribute("postNotice",noticeList);
 		model.addAttribute("total", totalCount);
 		model.addAttribute("postSelect", postSelect);
 		model.addAttribute("paging", paging);
-
+		
 		return "sy/postList";
 	}
 	
@@ -102,6 +111,7 @@ public class SyPostController {
     		post.setRef_step(post.getRef_step()+1);
     		post.setRef_step(post.getRef_lev()+1);
     	}
+    	
     	if(post.getPost_code()==0) {
     		post.setRef(maxCount);
     		post.setPost_code(maxCount);
@@ -122,11 +132,13 @@ public class SyPostController {
 	
 	// 게시글 조회
 	@RequestMapping(value= "postView", method = RequestMethod.GET)
-	public String postView(Model model, @RequestParam("post_code") int post_code) throws Exception {
-		
+	public String postView(HttpServletRequest request ,Model model, @RequestParam("post_code") int post_code) throws Exception {
+		String id = idCheck(request);
 		logger.info("postView");
-			
+		System.out.println("Controller psotView post_code ="+post_code);
+		syPostServiceImpl.postViewCount(post_code);	
 		model.addAttribute("postView", syPostServiceImpl.postView(post_code));
+		model.addAttribute("id",id);
 		
 		return "sy/postView";
 	}

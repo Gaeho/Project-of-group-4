@@ -57,12 +57,7 @@
 	
 	<select id="postView" parameterType="int" resultType="Post">
 		select 
-			post_code
-			, user_id
-			, post_title
-			, post_ctx
-			, post_regdate
-			, post_view
+			*
 		from post
 		where post_code = #{post_code}
 	</select>
@@ -109,7 +104,15 @@
 	</insert>
 	
 	<update id="SyUpdateRef" parameterType="Post">
-		String sql2 = "update board set ref_step = ref_step+1 where ref = #{ref} and ref_step > #{ref_step}";
+		update post set ref_step = ref_step+1 where ref = #{ref} and ref_step > #{ref_step}
 	</update>
 	
+	<update id="postViewCount" parameterType="int">
+		update post set post_view=post_view+1 where post_code=#{post_code}
+	</update>
+	
+	<select id="SySearchPost" parameterType="Post" resultType="Post">
+		select * from (select rownum rn ,a.* from(select * from post where post_title like '%'|| #{searchText} ||'%' order by ref desc,ref_step) a )
+		where rn between #{start} and #{end}
+	</select>
 </mapper>
