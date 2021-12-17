@@ -15,45 +15,42 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
+<div class="container">
 	<form action="postUpdate" method="post">
 		<input type="hidden" name="post_code" value="${post.post_code}">
 		<input type="hidden" name="user_id" value="${post.user_id}">
-		<table>
+<div class="table-responsive">
+	<table class="table align-middle">
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="post_title" value="${post.post_title}" /></td>
+				<td><input type="text" class="form-control" name="post_title" value="${post.post_title}" /></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><input type="text" id="post_ctx" name="post_ctx" value="${post.post_ctx}"></td>
+				<<td><textarea class="form-control" rows="5" name="post_ctx">${postView.post_ctx}</textarea></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td>${post.user_id}</td>
+				<td><input type="text" class="form-control" name="user_id" value="${postView.user_id}" readonly="readonly"/></td>
 			</tr>		
-		</table>	
+		</table>
+		</div>	
 		<!-- <input type="submit" id="btnUpdate" >수정</button> -->
-    	<input type="submit" value="수정">
+    	<button type="submit" class="btn btn-sm btn-primary">수정</button>
 	</form>
 	
 	<div>
-		<button type="button" id="btnPrev">이전</button>
-		<button type="button" id="btnList">목록</button>
+		<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
 	</div>
-
+</div>
 <script type="text/javascript">
 	$(document).ready(function () {
 	
 	    var formObj = $("form[role='form']");
 	    console.log(formObj);
 	
-	
-	    $("#btnPrev").on("click", function () {
-	        history.go(-1);
-	    });
-	
 	    $("#btnList").on("click", function () {
-	        self.location = "${pageContext.request.contextPath}/postList"
+	        history.go(-1);
 	    });
 	
 	});

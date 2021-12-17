@@ -33,17 +33,14 @@ public class SyPostController {
 	// 로그인 확인
 	private String idCheck(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("userId");
-		if(id==null || id.equals("")){              
-			return "dmdtla054"; 
-		}
+		String userId = (String) session.getAttribute("userId");
 
-		return id;
+		return userId;
 	}
 	
 	// 게시글 목록
 	@RequestMapping(value = "postList", method = RequestMethod.GET)
-	public String postSelect(Post post, Model model
+	public String postSelect(HttpServletRequest request, Post post, Model model
 			, @RequestParam(required = false, defaultValue = "5") int total
 			, @RequestParam(required = false, defaultValue = "1") String currentPage
 			, @RequestParam(required = false, defaultValue = "post_title") String searchType
@@ -51,6 +48,10 @@ public class SyPostController {
 				) throws Exception {
 		
 		logger.info("postList");
+		
+		/*
+		 * String userId=idCheck(request); System.out.println("Session Check->"+userId);
+		 */
 		
 		Paging paging = new Paging(total, currentPage);
 		post.setStart(paging.getStart());
@@ -77,19 +78,10 @@ public class SyPostController {
     @RequestMapping(value= "postInsert", method = RequestMethod.GET)
 	public String PostInsertView(HttpServletRequest request, Model model) throws Exception {
     	System.out.println("SyPostController postInsert GET");
-//    	String returnString = null;
-//    	String sessionCheck = "sessionNone";
     	String userId=idCheck(request);
+    	model.addAttribute("userId", userId);
 		System.out.println("Session Check : "+userId);
-		
-/*		if(userId.equals(sessionCheck)) {
-			System.out.println("redirect:/main");
-			return "redirect:/main";
-		} else if(userId != null) {
-			
-			returnString = "sy/postInsert";
-		} */
-    	
+		  	
 		return "sy/postInsert";
 	}
     

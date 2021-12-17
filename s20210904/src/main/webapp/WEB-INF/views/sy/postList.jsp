@@ -15,11 +15,10 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-<div>
+<div class="container">
 	<table>
 		<thead>		
 			<tr>
-				<!--<th>번호</th> -->
 				<th>분류</th>
 				<th>작성자</th>
 				<th>제목</th>
@@ -28,6 +27,15 @@
 			</tr>
 		</thead>	
 		<tbody>
+		<c:forEach items="${postNotice}" var="postnotice">                     
+             <tr>
+                <td><c:out value="${postnotice.brd_code }"/></td>
+                 <td><c:out value="${postnotice.user_id}"/></td>
+                <td><a href="postView?post_code=${postnotice.post_code}">${postnotice.post_title}</a></td>
+                <td><c:out value="${postnotice.post_view}"></c:out></td>
+                <td><c:out value="${postnotice.post_regdate}"/></td>
+             </tr>
+       </c:forEach>
 		 <c:forEach items="${postSelect}" var="post">
 			<tr>
 			<!-- 	<td><c:out value="${post.post_code }"/></td> -->
@@ -42,11 +50,11 @@
 	</table>
 </div>
 
-<!--	<form action="postList" method="post">
+	<form action="postList" method="post">
 		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
 		<input type="text" value="${post_search}" name="post_search" id="post_search" placeholder="검색어를 입력하세요">
 		<button type="submit">검색</button>
-	</form> -->
+	</form>
 
 	<div>
 		<c:if test="${paging.startPage > paging.pageBlock }">

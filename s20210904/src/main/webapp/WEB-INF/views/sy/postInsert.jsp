@@ -13,10 +13,11 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+<div class="container">
 	<form action="postInsert" method="post">
 		<input type="hidden" name="brd_code" value="Q&A">
 		<input type="hidden" name="user_id" value="${postInsert.user_id}">	
-	<!-- 	<input type="hidden" name="post_regdate" value="${postInsert.post_regdate}"> -->	
+<!-- 	<input type="hidden" name="post_regdate" value="${postInsert.post_regdate}"> -->
 	<table>
 		<tr>  
 			<td>제목</td>
@@ -26,12 +27,11 @@
 			<td>내용</td>
 			<td><textarea rows="10" name="post_ctx" id="post_ctx" ></textarea></td>
 		</tr>
-	</table>		
-			<input type="submit" value="입력" onClick="location.href='postList'"></input>				
+	</table>	
+		<input type="submit" value="입력"></input>				
+		<button type="button" id="btnPrev" class="btn btn-primary">이전</button>
 	</form>
-		<div>
-		<button type="button" id="btnPrev">이전</button>
-	</div>
+</div>
 <script type="text/javascript">
 	$(document).ready(function () {
 	
@@ -42,11 +42,7 @@
 	    $("#btnPrev").on("click", function () {
 	        history.go(-1);
 	    });
-	
-	    $("#btnList").on("click", function () {
-	        self.location = "${pageContext.request.contextPath}/postList"
-	    });
-	
+
 	});
 </script>
 </body>

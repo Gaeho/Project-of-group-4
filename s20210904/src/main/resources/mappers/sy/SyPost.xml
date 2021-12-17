@@ -52,6 +52,9 @@
 			, post_ctx
 			, post_regdate
 			, user_id
+<!-- 			, ref		글번호
+			, ref_lev	답변일시 +1  
+			, ref_step  글 순서 -->
 		) values (
 			post_seq.NEXTVAL
 			, #{brd_code}
@@ -59,6 +62,9 @@
 			, #{post_ctx}
 			, sysdate
 			, #{user_id}
+<!-- 			, ref
+			, ref_lev
+			, ref_step -->
 		)
 	</insert>
 	
