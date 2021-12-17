@@ -1,5 +1,6 @@
 package com.oracle.s20210904.sr.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.oracle.s20210904.comm.model.Announce;
@@ -47,7 +48,6 @@ public interface SrComMypageService {
 
 	void insertNotice(Notice notice);
 
-
 	List<MemResumeBmark> memResumeBmarkList(String keyword1);
 
 	Member member2(Member member);
@@ -65,6 +65,12 @@ public interface SrComMypageService {
 	void memPass(Apply apply);
 
 	void applyStsUpdate(Apply apply);
+
+	List<Announce> listAnn(Announce announce);
+
+	Bookmark bookmark(Bookmark bookmark);
+
+	
 
 	
 
