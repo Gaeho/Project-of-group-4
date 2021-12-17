@@ -9,10 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.ComAnnounce;
 import com.oracle.s20210904.comm.model.Comm;
-import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.NoticeCom;
 import com.oracle.s20210904.comm.model.Resume;
-import com.oracle.s20210904.comm.model.ResumeContect;
 import com.oracle.s20210904.comm.model.Scrap;
 
 @Repository
@@ -38,7 +36,8 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 		System.out.println("GmAnnoDaoImpl listAnno Start...");
 		System.out.println("comAnnounce.getAnnosearch()->"+comAnnounce.getAnnosearch());
 		try {
-			annoList = session.selectList("GmAnnoListAll", comAnnounce);
+			//annoList = session.selectList("GmAnnoListAll", comAnnounce);
+			annoList = session.selectList("GmAnnoSearchList", comAnnounce);
 		} catch (Exception e) {
 			System.out.println("GmAnnoDaoImpl listAnno Exception"+e.getMessage());
 		}
@@ -312,6 +311,7 @@ public class GmAnnoDaoImpl implements GmAnnoDao {
 			public int searchtotal(String annosearch) {
 				
 				int result = 0;
+				
 				
 				try {
 					result = session.selectOne("GmAnnoSearch", annosearch);
