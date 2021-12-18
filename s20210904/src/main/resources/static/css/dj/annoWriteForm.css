@@ -54,7 +54,7 @@
 	font-size: 30px;
 	padding: 20px;
 	border: none;
-	background: #F1C40F;
+	background: #F8F9FA;
 	
 }
 
@@ -67,7 +67,7 @@
 
 .textsquare_addr {
 	
-	width: 400px;
+	width: 100%;
 }
 
 .anno1_ctx{
@@ -115,10 +115,10 @@
 /* 	float : left; */
 	width: 80px;
 	height: 30px; 
-	background-color: #ccc;
+	background-color: #F8F9FA;
 	border-radius: 20px;
 	
-	box-shadow : 3px 3px 3px black;
+	box-shadow : 3px 3px 3px #ccc;
 	transition-duration:0.3s;
 	
 }
