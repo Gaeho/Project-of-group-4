@@ -7,32 +7,49 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>기업로그인</title>
-<link rel="stylesheet" href="css/header.css" type="text/css">
-<link rel="stylesheet" href="css/sh/companylogin.css" type="text/css">
+<link rel="stylesheet" href="css/sh/login.css" type="text/css">
 </head>
-<%@ include file="/WEB-INF/views/header.jsp"%>
 <body>
-
-<div class="container">
-	<div class="Comlogin" >
-		<form action="ComloginForm" method="post">
-		<h2>로그인</h2>
-			<input type="button" value="회원"  onclick="location.href='login'">
-			<input type="button" value="기업" ><p>
-			
-			아이디 : <input type="text" id="id" name="com_id" placeholder="아이디를 입력하세요"><P>
-			비밀번호 : <input type="password" name="com_pw" placeholder="비밀번호를 입력하세요" ><p>
-			<input type="submit" value="로그인">
-			
-			<div class="btn">			
-						<input type="button" class="btn1" value="기업아이디 찾기" onclick="location.href='findComId'">
-						<input type="button" class="btn2" value="기업비밀번호 찾기" onclick="location.href='findComPw'">
-						<input type="button" class="btn3" value="기업회원가입" onclick="location.href='Comjoin'">
-					</div>	
-	
-		</form>
-	</div>
-</div>
+	<%@ include file="/WEB-INF/views/header.jsp"%>					
+					
+					<div id="Shcontainer">
+							<div class="main">
+									<form action="ComloginForm"  method="post" class="main__form">
+											<h1>Login</h1>
+						
+										<div class="main__form__find">
+											<label for="sign_id">아이디</label>
+											<input type="text" id="id"  name="com_id"  placeholder="Enter id">
+										</div>
+						
+										<div class="main__form__find">
+											<label for="sign_pw">비밀번호</label>
+											<input type="password"  name="com_pw"  placeholder="Enter password">
+										</div>
+						
+										<div class="main__form__link">
+											<a href="login">개인이라면 여기를 눌러주세요!</a>
+						
+											<a href="Comjoin"> <p>코딩몬이 처음이신가요?그럼 우리와 함께 할 수 있는 계정을 만들어 보아요 :)</p></a>
+										</div>
+						
+										<div class="form__find__button">
+											<button type="submit" class="form__find__btn">LOGIN</button>
+										</div>
+						
+										<div class="form__find__border">
+											<p>or</p>
+										</div>
+						
+										<div class="form__find__bottom">
+											<a href="findComId">아이디를 잊으셨나요?</a>
+											<a href="findComPw">비밀번호를 잊으셨나요?</a>
+										</div>
+									</form>
+							</div>
+					</div>
+				
+		<%@ include file="/WEB-INF/views/footer.jsp"%>					
 </body>
-<%@ include file="/WEB-INF/views/footer.jsp"%>
+
 </html>

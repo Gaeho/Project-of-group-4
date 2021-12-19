@@ -6,20 +6,26 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 <link href="css/sy/postList.css" rel="stylesheet" type="text/css">
+<link href="css/sy/post.css" rel="stylesheet" type="text/css">
+<!-- Font Link -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-<div class="container">
-	<form role="form" action="postList" method="post">
+<div class="container-sm">
+	<h2 class="h2-style">코딩톡</h2>
+	<form action="postList" class="form-inline ml-auto">
 		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
-		<input type="text" value="${post_search}" name="post_search" id="post_search" placeholder="검색어를 입력하세요">
-		<button type="submit">검색</button>
+		<input type="text" class="form-control mr-sm-2" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요">	
+		<button type="submit" class="btn btn-sm btn-primary">검색</button>	
 	</form>
 <div class="table-responsive">
-	<table class="table align-middle">	
+	<table class="table table-hover">	
 		<c:forEach items="${postNotice}" var="postnotice">                     
              <tr>
                 <td><c:out value="${postnotice.brd_code }"/></td>
@@ -39,15 +45,6 @@
 			</tr>
 		</c:forEach>	
 	</table>
-</div>
-
-	<form action="postList">
-		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
-		<input type="text" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요">
-		<button type="submit">검색</button>
-	</form>
-
-
 	<div>
 		<c:if test="${paging.startPage > paging.pageBlock }">
 		<a href="postList?currentPage=${paging.startPage-paging.pageBlock}">이전</a>
@@ -59,11 +56,11 @@
 		<a href="postList?currentPage=${paging.startPage + paging.pageBlock}">다음</a>
 		</c:if>
 	</div>
-
 	<div>
-	<button type="button" class="btn btn-sm btn-primary" id="btnInsert">글쓰기</button>
+		<button type="button" class="btn btn-sm btn-primary" id="btnInsert">글쓰기</button>
 	</div>
-</div>	
+	</div>	
+</div>
 <script type="text/javascript">
 	$(document).ready(function () {	
 	    var form = $("form[role='form']");

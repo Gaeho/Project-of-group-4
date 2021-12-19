@@ -88,12 +88,17 @@ public class SyPostController {
 	// 게시글 작성 페이지 이동
     @RequestMapping(value= "postInsert", method = RequestMethod.GET)
 	public String PostInsertView(HttpServletRequest request, Model model) throws Exception {
-    	System.out.println("SyPostController postInsert GET");
-    	String userId=idCheck(request);
-    	model.addAttribute("userId", userId);
-		System.out.println("Session Check : "+userId);
-		  	
-		return "sy/postInsert";
+        System.out.println("SyPostController postInsert GET");
+        String userId=idCheck(request);
+        String result=null;
+        if (userId == null) {
+           result = "redirect:login";
+        }else
+           result = "sy/postInsert";
+        model.addAttribute("userId", userId);
+       System.out.println("Session Check : "+userId);
+            
+       return result;
 	}
     
     // 게시글 작성 처리

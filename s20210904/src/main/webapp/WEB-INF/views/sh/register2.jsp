@@ -70,147 +70,167 @@
 			})
 		} 	
  </script>
- 
- <c:if test="${result == 0 }">
-	<script type="text/javascript">
-		alert("가입 대기");
-		location.href="";
-	</script>
-</c:if>
-
-<c:if test="${result == 1 }">
-	<script type="text/javascript">
-		alert("승인");
-		history.go(-1);
-	</script>
-</c:if>
-
-<c:if test="${result == 2 }">
-	<script type="text/javascript">
-		alert("거절");
-		history.go(-1);
-	</script>
-</c:if>
-
-<c:if test="${result == -1 }">
-	<script type="text/javascript">
-		alert("탈퇴")
-		history.go(-1);
-	</script>
-</c:if>
-
-</head>
-<!-- 헤더부분 -->
-<%@ include file="/WEB-INF/views/header.jsp"%>
+ </head>
 <body>
-
-	<div class="container">
-		<form action="ComjoinSave">
-		<h2>기업회원가입</h2>
-		<input type="button" value="회원" onclick="location.href='join'">
-		<input type="button" value="기업" ><p>
-		
-		<!-- 회사명 적는 칸 -->
-			<div class="registerFormWrapper">
-				<div class="registerFormRow">
-					<div class="registerFormLabel">회사명</div>
-					<div class="registerFormInputBox">
-						<input type="text" name="com_name" placeholder="회사명을 입력하세요"><p>
-					</div>
-				</div>
-			
-		 <!-- 회사 주소 적는 칸 -->
-			 <div class="addrFormRow">	
-			  	    <div class="form-group">
-		         	   <div class="addrFormLabel">회사주소</div>
-		         	   		<div class="addrFormInputBox" >        
-                               <input class="form-control"  style="width: 50%; display: inline;" placeholder="우편번호" name="com_addr" id="addr1" type="text" readonly="readonly" >
-                               <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
-                            </div>
-                     <div class="form-group">
-                                <input class="form-control" style="top: 7px;" placeholder="도로명 주소" name="com_addr" id="addr2" type="text" readonly="readonly" />
-                     </div>
-                     <div class="form-group">
-                                 <input class="form-control" placeholder="상세주소" name="com_addr" id="addr3" type="text"  />
-                     	         <%@ include file="/WEB-INF/views/sh/ShAddr2.jsp"%>
-                     </div>
-			  	   </div>   
-			  	  </div>		
-			
-		   <!-- 사업자 등록번호 적는 칸 -->	
-				<div class="registerFormRow">
-					<div class="registerFormLabel">사업자등록번호</div>
-						<div class="registerFormInputBox">
-								<input type="text" name="com_regnum"  placeholder="사업자등록번호를 입력하세요"><p>
-						</div>
-				</div>
-			
-			<!-- 기업 형태 적는 칸 -->
-				 <div class="registerFormRow">
-					 <div class="registerFormLabel">기업형태</div>
-						 <div class="registerFormInputBox">
-	   						   <input type="password" name="com_sec" placeholder="기업형태를 입력하세요 "><p>
-						 </div>
-				 </div>
-			
-				
-						<hr class="two"><p><h3>인사담당자정보</h3>
-				
-			  <!-- 아이디 적는 칸 -->		
-				   <div class="registerFormRow">
-						<div class="registerFormLabel">아이디</div>
-							<div class="registerFormInputBox">
-	   								<input type="text" name="com_id" placeholder="아이디를 입력하세요"><p>
-							</div>
-				   </div>
-			  
-			  <!-- 비밀번호 적는 칸 -->
-					<div class="registerFormRow">
-						<div class="registerFormLabel">비밀번호</div>
-							<div class="registerFormInputBox">
-	   			 					<input type="text" name="com_pw" placeholder="비밀번호 입력하세요"><p>
-							</div>
-					</div>
-			   
-			   <!-- 가입자명 적는 칸 -->
-					<div class="registerFormRow">
-						<div class="registerFormLabel">가입자명</div>
-							<div class="registerFormInputBox">
-	   								<input type="text" name="com_user" placeholder="이름을 입력하세요"><p>
-							</div>
-					</div>
-			
-				<!-- 전화번호 적는 칸 -->
-					 <div class="registerFormRow">
-						<div class="registerFormLabel">전화번호</div>
-							<div class="registerFormInputBox">
-	   				  				<input type="text" name="com_mgr_tel" placeholder="전화번호를 입력하세요"><p>
-							</div>
-					 </div>
-			
-				 <!-- 이메일 적는 칸 -->
-						<div class="registerFormRow">
-							<div class="registerFormLabel">이메일</div>
-								<div class="registerFormInputBox">
-	                  				 <input type="text" name="com_email"  id="com_email"  placeholder="emiall입력하시오">
-	                  				 <input type="button" value="이메일 인증"  onclick="memberVerify2()"><p>
+<%@ include file="/WEB-INF/views/header.jsp"%>
+			<div id="container">
+					<div class="main">
+						<div class="main__member">
+							<h1>기업회원가입</h1>
+							
+							<div class="main__member__border"></div>
+							<div class="main__btn">
+								<button type="button" class="member"  onclick="location.href='join'">회원</button>
+								<button type="button" class="company">기업</button>
 							</div>
 						</div>
 						
-					<!-- 이메일인증번호 -->
-		 				<div class="registerFormRow" id="emailAuthBtnDiv" >
-					   		<div class="registerFormLabel">이메일 인증번호</div>
-					         	<div class="registerFormInputBox">	
-	                               <input type="text" name="emailAuthentication"   id="emailAuthentication"    placeholder="이메일 인증번호"  disabled="disabled" style="width: 300px;" >
-                                   <input type="button" value="이메일 인증번호 입력"  onclick="emailAuth()"    id="emailAuthBtn"  disabled="disabled"><p>
-                                   
-		 	                 	</div>
-				  		</div>						
+						<form action="Comjoin" method="post" class="main__form">
+			
+							<!-- 회사명 적는 칸  -->
+							<div class="main__form__top">
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="com_name">회사명</label>
+									</div>
+			
+									<div class="form__find__right">
+										<input type="text" id="user_id" placeholder="회사명을 입력하세요">
+									</div>
+								</div>
+			
+								<!-- 주소 적는 칸 --> <!--수리 중  -->
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="user_addr">주소</label>
+									</div>
+								<div class="form__find__right">
+									<input type="text" id = "addr1" placeholder="우편번호"	 name="user_addr">
+									<button type="button" onclick="execPostCode();">우편번호 찾기</button>
+								</div>
+								<div class="form__find__right">	 
+									<input type="text" id = "addr2" placeholder="도로명 주소"	 name="user_addr">
+									</div>
+									<div class="form__find__right">	
+									<input type="text" id="addr3" name="user_addr"  placeholder="상세주소">
+									</div>
+									
+									<!-- <div class="form__find__right">
+										<input type="text" id="user_addr"  name="user_addr" id="addr1" placeholder="우편번호">
+									</div>
+									<button type="button"  onclick="execPostCode();" >우편번호 찾기</button>  -->
+											
+											<%-- <input class="form-control" style="width: 50%; display: inline;"
+												placeholder="우편번호" name="user_addr" id="addr1" type="text"
+												readonly="readonly">
+											<button type="button" class="btn btn-default"
+												onclick="execPostCode();">
+												<i class="fa fa-search"></i> 우편번호 찾기
+											</button>
+										<div class="form-group">
+											<input class="form-control" style="top: 7px;"
+												placeholder="도로명 주소" name="user_addr" id="addr2" type="text"
+												readonly="readonly" />
+										</div>
+										<div class="form-group">
+											<input class="form-control" placeholder="상세주소" name="user_addr"
+												id="addr3" type="text" />
+											<%@ include file="/WEB-INF/views/sh/ShAddr2.jsp"%>
+										</div> --%>
+									</div>
+									
+								<!-- 사업자 등록번호 적는 칸 -->
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="com_regnum">사업자등록번호</label>
+									</div>
+			
+									<div class="form__find__right">
+										<input type="password" id="com_regnum" placeholder="사업자등록번호를 입력하세요">
+									</div>
+								</div>
+								
+								<p><h3>인사담당자정보</h3><div class="main__member__border"></div><p>
+			
+								<!-- 아이디 적는 칸 -->
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="com_id">아이디</label>
+									</div>
+			
+									<div class="form__find__right">
+										<input type="text" id="com_id" placeholder="아이디를 입력하세요">
+									</div>
+								</div>
 						
-					<input type="submit" value="회원가입"   disabled="disabled">
+								<!--비밀번호 적는 칸 -->
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="com_pw">비밀번호</label>
+									</div>
+			
+									<div class="form__find__right">
+										<input type="text" id="com_pw" placeholder="비밀번호를 입력하세요">
+									</div>
+								</div>
+			
+								<!-- 가입자명 적는 칸 -->
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="com_user">가입자명</label>
+									</div>
+			
+									<div class="form__find__right">
+										<input type="text" id="com_user" placeholder="가입자명을 입력하세요">
+									</div>
+								</div>
+								
+								<!-- 전화번호 적는 칸 -->
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="com_mgr_tel">전화번호</label>
+									</div>
+			
+									<div class="form__find__right">
+										<input type="text" id="com_mgr_tel" placeholder="가입자명을 입력하세요">
+									</div>
+								</div>
+						
+								<!-- 이메일 적는 칸 -->
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="user_email">이메일</label>
+									</div>
+			
+									<div class="form__find__right">
+										<input type="email" id="user_email" placeholder="이메일을 입력하세요">
+										<button type="button" onclick="memberVerify2()">이메일 인증하기</button>
+									</div>
+								</div>
+													
+								<!-- 이메일 인증번호 -->
+								<div class="main__form__find">
+									<div class="form__find__left">
+										<label for="email_check">이메일 인증번호</label>
+									</div>
+						
+									<div class="form__find__right">
+										<input type="email" name="emailAuthentication" id="emailAuthentication"
+											placeholder="이메일 인증번호" disabled="disabled" style="width: 300px;">
+										<button type="button"  value="인증번호 입력"  onclick="emailAuth()"
+													id="emailAuthBtn" disabled="disabled">인증번호 입력</button>
+										</div>
+										
+								</div><p>
+						
+						<div class="form__find__right">			
+						<button type="submit"  value="회원가입 "  disabled="disabled" >회원가입</button>
+						</div>
+								</div>		
+						</form>
 					</div>
-		</form>
-	</div>
-</body>
+				</div>
+					
 <%@ include file="/WEB-INF/views/footer.jsp"%>
+	 </body>
 </html>
