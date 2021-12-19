@@ -16,6 +16,7 @@ public interface ShMemberService {
 	String findID(Company company); //기업 회원 아이디 찾기 
 	int tempSavePw(Member member); //개인 회원 비밀번호 찾기 
 	int tempComSavePw(Company company); //기업 회원 비밀번호 찾기 
+	int gradecheck(String com_id);
 
 
 	
