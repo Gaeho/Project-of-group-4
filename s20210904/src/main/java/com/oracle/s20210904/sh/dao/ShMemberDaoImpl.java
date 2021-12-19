@@ -149,6 +149,22 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		return result;
 	}
 
+	@Override
+	public int gradecheck(String com_id) {
+		System.out.println("ShMemberDaoImpl의 gradecheck시작함!!");
+		int gradenum = 0;
+		
+		try {
+			gradenum = session.selectOne("Shgradecheck", com_id);
+			System.out.println("gradenum->"+gradenum);
+		} catch (Exception e) {
+			System.out.println("gradecheck에서 예외 발생했습니다->"+e.getMessage());
+		}
+		
+		
+		return gradenum;
+	}
+
 	
 
 	

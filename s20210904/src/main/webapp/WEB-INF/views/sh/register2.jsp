@@ -135,7 +135,11 @@
 										<div class="form-group">
 											<input class="form-control" placeholder="상세주소" name="user_addr"
 												id="addr3" type="text" />
-											<%@ include file="/WEB-INF/views/sh/ShAddr.jsp"%>
+
+											
+
+											<%@ include file="/WEB-INF/views/sh/ShAddr2.jsp"%>
+
 										</div> --%>
 									</div>
 									

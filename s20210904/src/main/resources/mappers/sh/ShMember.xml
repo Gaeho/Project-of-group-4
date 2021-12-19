@@ -5,10 +5,10 @@
 
 	<insert id="ShJoinMember"   parameterType="Member" >
 		insert into MEMBER(user_id,user_pw,user_name,user_sex,
-												user_brh,user_edu,user_addr,user_tel,user_email
+												user_brh,user_addr,user_tel,user_email
 												) 
 								values (#{user_id},#{user_pw},#{user_name},#{user_sex},
-												#{user_brh},#{user_edu}, #{user_addr},#{user_tel},
+												#{user_brh}, #{user_addr},#{user_tel},
 												#{user_email})
 	</insert>
 		
@@ -66,6 +66,15 @@
 		and     com_email = #{com_email}
 	
 	</update>
+
+	<!-- 기업 등급 확인 1이면 통과  -->
+
+	<select id="Shgradecheck"  parameterType="java.lang.String"  resultType="int">
+		select COM_GRADE
+		from company
+		where COM_ID=#{com_id}
+	</select>
+
 
 	
 
