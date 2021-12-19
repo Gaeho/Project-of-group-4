@@ -81,27 +81,30 @@ public class SrComMypageController {
 	@GetMapping(value = "ComAnn")
 	public String ComAnn(HttpServletRequest request, CommCompany commCompany, Model model, Announce announce, String currentPage) {
 
+		String com_id="tlstprp5184";
+		announce.setCom_id(com_id);
+		
 		System.out.println("SrComMypageController ComAnn START...");
 		
-		// 경우에 따라 리턴 할 객체
-				String returnString = null;
-				String sessionCheck = "session_none";
-				// 세션 처리
-				String cid = checkId(request);
-				System.out.println("세션 잘 갖고 오는지 확인=>" + cid);
-
-				if (cid.equals(sessionCheck)) {
-					System.out.println("실행 완료");
-				} else if (cid != null) {
-					returnString = "sr/ComAnn";
-				}
-
-		commCompany.setCom_id(cid);
-		// company+comm JOIN
-		CommCompany commCompany1 = null;
-		commCompany1 = scms.comInfo(commCompany);
-		
-		announce.setCom_id(cid);
+//		// 경우에 따라 리턴 할 객체
+//				String returnString = null;
+//				String sessionCheck = "session_none";
+//				// 세션 처리
+//				String cid = checkId(request);
+//				System.out.println("세션 잘 갖고 오는지 확인=>" + cid);
+//
+//				if (cid.equals(sessionCheck)) {
+//					System.out.println("실행 완료");
+//				} else if (cid != null) {
+//					returnString = "sr/ComAnn";
+//				}
+//
+//		commCompany.setCom_id(cid);
+//		// company+comm JOIN
+//		CommCompany commCompany1 = null;
+//		commCompany1 = scms.comInfo(commCompany);
+//		
+//		announce.setCom_id(cid);
 
 		// announce list : id=0일 때 진행 중 공고, id=1일 때 마감 공고
 		List<Announce> listAnn = scms.listAnn(announce);

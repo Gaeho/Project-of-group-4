@@ -29,10 +29,6 @@
 	width: 30%;
 }
 
-.comInfoleft > div{
-	margin-left: 45px;
-    margin-top: 20px;
-}
 .comInforight{
 	width:70%;
 	border: 1px solid silver;
@@ -43,26 +39,20 @@
 	margin-top: 30px;
 }
 
-.testcss{
-	width: 150px;
-	height: 150px;
-	border: 1px solid black;
-	
-}
 
-.imagesquare1{
+/* .imagesquare1{
 	width: 200px;
 	height: 200px;
-}
+} */
 
-.middleTitle_anno_text{
+/* .middleTitle_anno_text{
 	display: flex;
-}
+} */
 
-.input-group mb-3{
+/* .input-group mb-3{
 	margin: 0 auto;
 }
-
+ */
 .info-text{
 	width: 150px;
 	text-align: right;

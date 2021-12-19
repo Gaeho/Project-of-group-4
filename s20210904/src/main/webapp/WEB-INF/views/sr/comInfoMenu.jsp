@@ -7,7 +7,7 @@
 %>
 <html>
 <head>
-<link href="css/sr/Srmypage.css" rel="stylesheet" type="text/css">
+<link href="css/sr/SrComInfo.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
