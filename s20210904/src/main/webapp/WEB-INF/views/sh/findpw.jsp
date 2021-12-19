@@ -6,26 +6,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>개인 비밀번호 찾기</title>
-<link rel="stylesheet" href="css/header.css" type="text/css">
-
+<link rel="stylesheet" href="css/sh/findPw.css" type="text/css">
 </head>
-<!-- 헤더부분 -->
-<%@ include file="/WEB-INF/views/header.jsp"%>
 <body>
+   <%@ include file="/WEB-INF/views/header.jsp"%>
+    <div class="container">
+        <h2>비밀번호 찾기</h2>
+        <form action="findPwForm">
+            <div>
+                <input type="text" name="" id="user_name"  required>
+                <label for="user_name">이름</label>
+            </div>
 
-	<h2>개인 비밀번호 찾기</h2>
-		<div class="findPw">
-			<form action="findPwForm">
-					이름 : <input type="text" name="user_name"  placeholder="이름을 입력하세요"><p>	
-					아이디 : <input type="text"  name="user_id"  placeholder="아이디를 입력하세요"><p>
-					이메일 : <input type="text" name="user_email"  placeholder="이메일을 입력하세요"><p>
-					
-					
-				<input type="submit"  value="비밀번호 찾기">
+            <div>
+                <input type="text" name="" id="user_id" required>
+                <label for="user_id">아이디</label>
+            </div>
+
+            <div>
+                <input type="email" name="" id="user_email" required>
+                <label for="user_email">이메일</label>
+            </div>
+            
+            <input type="submit" name="" value="비밀번호 찾기">
+        </form>
+    </div>
 	
-			
-			</form>		
-		</div>
+		<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
-<%@ include file="/WEB-INF/views/footer.jsp"%>
 </html>

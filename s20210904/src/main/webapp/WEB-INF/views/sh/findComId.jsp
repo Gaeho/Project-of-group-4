@@ -6,26 +6,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>기업 아이디 찾기</title>
-<link rel="stylesheet" href="css/header.css" type="text/css">
-
+<link rel="stylesheet" href="css/sh/findId.css" type="text/css">
 </head>
-<!-- 헤더부분 -->
-<%@ include file="/WEB-INF/views/header.jsp"%>
 <body>
-
-	<h2>기업 아이디 찾기</h2>
-  <c:if test="${com_id!=null }"> 찾는 기업 아이디 : ${com_id}</c:if><p>
-		<div class="findComId">
-			<form action="findComIdForm" >
-				회사명 : <input type="text" name="com_name"   placeholder="회사명을 입력하세요"><p>
-				담당자명  : <input type="text" name="com_user"   placeholder="담당자명을 입력하세요">	<p>
-				사업자 등록번호 : <input type="text" name="com_regnum"   placeholder="사업자등록번호를 입력하세요"><p>
-				이메일 : <input type="text" name="com_email"   placeholder="이메일을 입력하세요"><p>
-				
-				
-				<input type="submit" value="아이디찾기">
-			</form>
-		</div>
-</body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
+	<c:if test="${user_id!=null }"> 찾는 개인 아이디 : ${user_id}</c:if><p>
+		
+		<div class="Shcontainer">
+			
+				<h2>기업아이디 찾기</h2>
+				<form action="findComIdForm" >
+					
+					<div>
+						<input type="text" name="com_name" id="com_name"  placeholder="회사명을 입력하세요">
+						<label for="com_name">회사명</label>
+					</div>
+					
+					<div>
+						<input type="text" name="com_user" id="com_user"  placeholder="담당자명을 입력하세요">
+						<label for="com_user">담당자명</label>
+					</div>
+					
+					<div>
+						<input type="text" name="com_regnum" id="com_regnum"  placeholder="사업자등록번호를 입력하세요">
+						<label for="com_regnum">사업자등록번호</label>
+					</div>
+					
+					
+					<div>
+						<input type="email" name="com_email" id="com_email"  placeholder="이메일을 입력하세요">
+						<label for="com_email">이메일</label>
+					</div>
+					
+					<input type="submit" value="아이디 찾기">
+				</form>
+	
+			</div>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
+</body>
 </html>
