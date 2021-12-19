@@ -74,7 +74,7 @@ window.onload=function alramList(){
                       <a class="nav-link" href="postList">게시판</a>
                     </li>
               </ul>
-             <%--id= ${id }  cnt = ${cnt } --%>
+              id = ${id } cnt = ${cnt }
               <c:choose>
               	<c:when test="${id == null || id =='' }"> 					<!-- 로그인 NO -->
               		<a class="btn btn-primary" href="login">Login</a>
@@ -88,7 +88,6 @@ window.onload=function alramList(){
               	</c:when>
               	<c:otherwise>						<!-- 로그인 OK -->
               		<ul class="nav">
-              			<li> ${id } 님 반갑습니다 </li>
 						<li class="nav-item dropdown">
 							<a	class="nav-link" data-bs-toggle="dropdown"	href="#" role="button" aria-expanded="false"><img src="img/ds/alram-on.png" width="30px" height="30px" id="alramImg"></a>
 							<ul class="dropdown-menu">
