@@ -8,7 +8,7 @@ import com.oracle.s20210904.sy.model.PostSearch;
 
 public interface SyPostDao {
 	
-	List<Post> postSelect(PostSearch postSearch) throws Exception;
+	List<Post> postSelect(Post post) throws Exception;
 	
 	public int postInsert(Post post) throws Exception;
 	
@@ -18,13 +18,21 @@ public interface SyPostDao {
 	
 	public int postDelete(int post_code) throws Exception;
 	
-	List<Post> total(PostSearch postSearch) throws Exception;
+	int total() throws Exception;
 
-	public void postViewCount(int post_code, String user_id) throws Exception;
+	public void postViewCount(int post_code) throws Exception;
 
 	public Post postViewReply(int post_code) throws Exception;
 	
 	public int postReply(Post post) throws Exception;
+
+	void updateRef(Post post);
+
+	int noticeCount();
+
+	List<Post> noticeList();
+
+	List<Post> postSearch(Post post);
 
 }
 

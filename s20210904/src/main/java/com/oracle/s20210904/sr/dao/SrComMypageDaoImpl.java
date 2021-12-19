@@ -1,5 +1,6 @@
 package com.oracle.s20210904.sr.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -140,7 +141,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		// 북마크 개인 상세
 		@Override
 		public CommResMemBook userdetail(CommResMemBook commResMemBook, Integer isResume) {
-			System.out.println("SrComMypageDaoImpl userdetail Start...");
+			System.out.println("4.SrComMypageDaoImpl userdetail Start...");
 			CommResMemBook mem = null;
 //			System.out.println("컨트롤러에서 넘어온 user_id=>"+mem.user_id);
 //			System.out.println("컨트롤러에서 넘어온 mrk_res_code=>"+mrk_res_code);
@@ -150,15 +151,16 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 				} else {
 					mem = session.selectOne("SrUserDetail", commResMemBook);
 				}
-				System.out.println("SrComMypageDaoImpl mem.getUser_name()=>"+mem.getUser_name());
-				System.out.println("SrComMypageDaoImpl mem.getUser_addr()=>"+mem.getUser_addr());
-				System.out.println("SrComMypageDaoImpl mem.getJobTag()=>" + mem.getJobTag());
-				System.out.println("SrComMypageDaoImpl mem.getHsMjr()=>" + mem.getHsMjr());
-				System.out.println("SrComMypageCDaoImpl mem.getTag1()=>" + mem.getTag1());
-				System.out.println("SrComMypageDaoImpl mem.getTag2()=>" + mem.getTag2());
-				System.out.println("SrComMypageDaoImpl mem.getTag3()=>" + mem.getTag3());
+				System.out.println("5.SrComMypageDaoImpl mem.getUser_name()=>"+mem.getUser_name());
+				System.out.println("5.SrComMypageDaoImpl mem.getUser_addr()=>"+mem.getUser_addr());
+				System.out.println("5.SrComMypageDaoImpl mem.getJobTag()=>" + mem.getJobTag());
+				System.out.println("5.SrComMypageDaoImpl mem.getHsMjr()=>" + mem.getHsMjr());
+				System.out.println("5.SrComMypageCDaoImpl mem.getTag1()=>" + mem.getTag1());
+				System.out.println("5.SrComMypageDaoImpl mem.getTag2()=>" + mem.getTag2());
+				System.out.println("5.SrComMypageDaoImpl mem.getTag3()=>" + mem.getTag3());
+				System.out.println("5.SrComMypageDaoImpl mem.getTag3()=>" + mem.getUniv_mjr());
 			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl userdetail error"+e.getMessage());
+				System.out.println("5.SrComMypageDaoImpl userdetail error"+e.getMessage());
 			}
 			
 			return mem;
@@ -167,12 +169,13 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		// 북마크 유무
 		@Override
 		public int getinfo(Bookmark bookmark) {
-			System.out.println("SrComMypageDaoImpl getinfo Start...");
+			System.out.println("8.SrComMypageDaoImpl getinfo Start...");
 			int getinfo = 0;
 			try {
 				getinfo = session.selectOne("SrGetInfo", bookmark);
+				System.out.println("9.SrGetInfo Dao"+getinfo);
 			} catch (Exception e) {
-				System.out.println("SrComMypageDaoImpl getinfo error"+e.getMessage());
+				System.out.println("9.SrComMypageDaoImpl getinfo error"+e.getMessage());
 			}
 			return getinfo;
 		}
@@ -182,8 +185,13 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		@Override
 		public void bookmarkinsert(Bookmark bookmark) {
 			System.out.println("SrComMypageDaoImpl bookmarkinsert Start...");
+			System.out.println("북마크 추가 내용=>"+bookmark.getCom_id());
+			System.out.println("북마크 추가 내용=>"+bookmark.getUser_id());
+			System.out.println("북마크 추가 내용=>"+bookmark.getIt_bookmark());
+			System.out.println("북마크 추가 내용=>"+bookmark.getMrk_res_code());
 			try {
 				session.insert("SrBminsert", bookmark);
+				System.out.println("Dao.bookmark.getIt_bookmark()->"+bookmark.getIt_bookmark());
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl bookmarkinsert error"+e.getMessage());
 			}
@@ -243,7 +251,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 
 
 		@Override
-		public List<MemResumeBmark> memResumeBmarkList(String keyword1) {
+		public List<MemResumeBmark> memResumeBmarkList(String keyword1){
 			List<MemResumeBmark> memResumeBmarkList=null;
 			try {
 				memResumeBmarkList=session.selectList("SrMemResumeBmarkList", keyword1);
@@ -303,6 +311,32 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		@Override
 		public void applyStsUpdate(Apply apply) {
 			session.insert("SrApplyStsUpdate",apply);
+		}
+
+
+		@Override
+		public List<Announce> listAnn(Announce announce) {
+			System.out.println("SrComMypageDaoImpl listAnnReg START....");
+			System.out.println("다오 회사 아이디=>"+announce.getCom_id());
+			List<Announce> listAnn = session.selectList("SrComAnn", announce);
+			System.out.println(listAnn);
+			System.out.println("사이즈~~~"+listAnn.size());
+			for(Announce aaa:listAnn) {
+				System.out.println("------------------------------");
+				System.out.println("다오오오오오오옹"+aaa.getAnno_code());
+				System.out.println("다오오오오오오옹"+aaa.getAnno_title());
+				System.out.println("다오오오오오오옹"+aaa.getCom_bus());
+				System.out.println("------------------------------");
+			}
+			System.out.println("SrComMypageDaoImpl listAnnReg CHECK....");
+			return listAnn;
+		}
+
+
+		@Override
+		public Bookmark bookmark(Bookmark bookmark) {
+			Bookmark bookmark2=session.selectOne("SrBoo", bookmark);
+			return bookmark2;
 		}
 
 	

@@ -16,12 +16,12 @@
 	var uploadsts="non";
 	var page_location="mypage";
 	function uploadFile() {
-	    alert('uploadFile Start...');
+	    // alert('uploadFile Start...');
 	    var form = new FormData();
 	    /* var user_id = document.getElementById('user_id').value; */
 	    img_path=document.getElementById('user_img').value;
-	    alert('img_path>>'+img_path);
-	    alert('uploadsts>>'+uploadsts);
+	    // alert('img_path>>'+img_path);
+	    // alert('uploadsts>>'+uploadsts);
 	    
 	    form.append( "file1", $("#file1")[0].files[0] );
 		form.append( "img_path", img_path);
@@ -111,6 +111,7 @@
 		<ul>
 			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
+			<li><a class="mbMypageMenuBox" href="mbMypageApply?notice_msg=2">나의 이력서 열람기업</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
 			<li><a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a></li>

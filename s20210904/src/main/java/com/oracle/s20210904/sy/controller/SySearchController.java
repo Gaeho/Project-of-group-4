@@ -24,7 +24,7 @@ public class SySearchController {
 	@Autowired
 	private SySearchService sySearchServiceImpl;
 	
-	@PostMapping(value = "postSearch")
+	@RequestMapping(value = "postSearch", method = {RequestMethod.GET, RequestMethod.POST})
 	public String searchPost(SySearch sySearch, String currentPage, Post post, Model model, String post_search) {
 		System.out.println("SySearchController searchPost START");
 		System.out.println("SySearchController searchPost : "+post_search);

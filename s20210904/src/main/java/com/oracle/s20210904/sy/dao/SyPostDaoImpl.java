@@ -18,10 +18,10 @@ public class SyPostDaoImpl implements SyPostDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<Post> postSelect(PostSearch postSearch) throws Exception {
+	public List<Post> postSelect(Post post) throws Exception {
 		List<Post> result = null;
 		try {
-			result = sqlSession.selectList("postSelect", postSearch);
+			result = sqlSession.selectList("postSelect", post);
 		} catch (Exception e) {
 			System.out.println("SyPostDaoImpl postSelect Exception : "+e.getMessage());
 		}
@@ -85,11 +85,11 @@ public class SyPostDaoImpl implements SyPostDao {
 	}
 	
 	@Override
-	public List<Post> total(PostSearch postSearch) throws Exception {
-		List<Post> result = null;
+	public int total() throws Exception {
+		int result =0;
 		try {
 			System.out.println("syPostDaoImpl total START");
-			result =  sqlSession.selectList("postTotal", postSearch);
+			result =  sqlSession.selectOne("postTotal");
 		} catch (Exception e) {
 			System.out.println("SyPostDaoImpl total Exception : "+e.getMessage());
 		}	
@@ -97,16 +97,17 @@ public class SyPostDaoImpl implements SyPostDao {
 	}
 	
 	@Override
-	public void postViewCount(int post_code, String user_id) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("post_code", post_code);
-		map.put("user_id", user_id);
-		String result = sqlSession.selectOne("postViewCount", map);
+	public void postViewCount(int post_code) throws Exception {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("post_code", post_code);
+//		map.put("user_id", user_id);
+		System.out.println("DaoImpl post_code="+post_code);
+		sqlSession.update("postViewCount", post_code);
 		
-		if(result == null) {
-			sqlSession.update("postViewCount", post_code);
-			sqlSession.insert("addUserToViewCount", map);
-		}
+//		if(result == null) {
+//			sqlSession.update("postViewCount", post_code);
+//			sqlSession.insert("addUserToViewCount", map);
+//		}
 	}
 	
 	@Override
@@ -142,5 +143,29 @@ public class SyPostDaoImpl implements SyPostDao {
 			System.out.println("SyPostDaoImpl postReply Exception : "+e.getMessage());
 		}		
 		return result;
+	}
+	
+	@Override
+	public void updateRef(Post post) {
+		sqlSession.update("SyUpdateRef",post);
+		
+	}
+	
+	@Override
+	public int noticeCount() {
+		int result = sqlSession.selectOne("SyNoticeCount");
+		return result;
+	}
+	
+	@Override
+	public List<Post> noticeList() {
+		List<Post> noticeList = sqlSession.selectList("SyNoticeList");
+		return noticeList;
+	}
+	
+	@Override
+	public List<Post> postSearch(Post post) {
+		List<Post> postSearch = sqlSession.selectList("SySearchPost",post);
+		return postSearch;
 	}
 }

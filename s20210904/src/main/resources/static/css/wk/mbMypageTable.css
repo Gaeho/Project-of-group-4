@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.mbMypageTable_title{
+	font-size: 18px;
+    padding: 50px 32px 26px;
+    font-weight: 700;
+}
+
+.mbMypageTable>tr, th, td{
+	text-align: center !important;
+}
+

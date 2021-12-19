@@ -15,7 +15,6 @@
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
 
 	<%--  <%response.sendRedirect("ComInfo"); %>  --%>
-    <%response.sendRedirect("main");%>  
 
 	<%--  <%response.sendRedirect("applyDetail"); %>  --%>
 

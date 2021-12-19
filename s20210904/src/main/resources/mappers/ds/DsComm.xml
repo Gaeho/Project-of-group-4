@@ -41,5 +41,10 @@
 		where c.main_cat = b.main_cat and rn between #{start} and #{end}
 	</select>
 	
+	<delete id="DsTagDel" parameterType="DsComm">
+		delete from Comm 
+		where main_cat=#{main_cat} and sub_cat=#{sub_cat}
+	</delete>
+	
 	 
 </mapper>

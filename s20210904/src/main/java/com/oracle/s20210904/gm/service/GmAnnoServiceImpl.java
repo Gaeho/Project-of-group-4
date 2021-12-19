@@ -176,10 +176,10 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 			@Override
 			public int likegetinfo(Scrap scrap) {
 				System.out.println("GmAnnoServiceImpl likeinsert Start...");
-				int like = ad.likegetinfo(scrap);
-				System.out.println("Service like ->"+like);
+				int itlike = ad.likegetinfo(scrap);
+				System.out.println("Service like ->"+itlike);
 				
-				return like;
+				return itlike;
 			}
 			
 			// 이력서 total
@@ -194,7 +194,7 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 
 			// 이력서 목록
 			@Override
-			public List<Resume> listres(Resume resume) {
+			public List<Resume> listres(Resume resume) { 
 				List<Resume> resList = null;
 				System.out.println("GmAnnoServiceImpl listres Start...");
 				resList = ad.listres(resume);
@@ -217,7 +217,9 @@ public class GmAnnoServiceImpl implements GmAnnoService {
 			public Apply checkRC(Apply apply) {
 				System.out.println("GmAnnoServiceImpl checkRC Start...");
 				Apply ap = ad.checkRC(apply);
+
 				//System.out.println("Service ap.getAnno_code()->"+ap.getAnno_code());
+
 				
 				return ap;
 			}

@@ -54,7 +54,7 @@
 	font-size: 30px;
 	padding: 20px;
 	border: none;
-	background: #F1C40F;
+	background: #F8F9FA;
 	
 }
 
@@ -67,7 +67,7 @@
 
 .textsquare_addr {
 	
-	width: 400px;
+	width: 100%;
 }
 
 .anno1_ctx{
@@ -93,9 +93,7 @@
 
 
 .combus_ctx {
-	border: 1px solid black;
-	width: 300px;
-	height: 150px;
+	
 }
 
 
@@ -117,10 +115,10 @@
 /* 	float : left; */
 	width: 80px;
 	height: 30px; 
-	background-color: #ccc;
+	background-color: #F8F9FA;
 	border-radius: 20px;
 	
-	box-shadow : 3px 3px 3px black;
+	box-shadow : 3px 3px 3px #ccc;
 	transition-duration:0.3s;
 	
 }
@@ -131,20 +129,47 @@
 	box-shadow: none;
 }
 
-.input_anno_c_regdate{
-	 display: none; 
+.anno_time_wrap{
+	
+	padding-bottom: 10px;
+    padding-left: 20px;
+    padding-top: 20px;
+	
 }
-
 
 .anno_date_notice1 {
 	padding-bottom: 10px;
-    padding-left: 10px;
+    padding-left: 20px;
+    padding-top: 20px;
 	
+}
+
+.input_anno_c_regdate{
+	
+	/* outline: none; */
+}
+
+.submitbtn_wrap{
+	
+	display: flex;
+}
+
+.submitbtn_wrap > div{
+	
+	margin: 0 auto;
 }
 
 
 .gobut {
 	width: 500px;
 	height: 100px;
+	
+}
+
+.sideTitle_anno{
+	
+	font-size: 30px;
+	padding: 20px;
+	border: none;
 	
 }

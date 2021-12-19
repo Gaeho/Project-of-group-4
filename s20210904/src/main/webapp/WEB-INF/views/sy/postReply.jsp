@@ -14,23 +14,30 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-	<form action="postReply" method="post">
+<div class="container">
+	<form role="form" action="postInsert" method="post">
+		<input type="hidden" name="post_code" value="${postViewReply.post_code}">
 		<input type="hidden" name="brd_code" value="Q&A">
-		<input type="hidden" name="user_id" value="${postReply.user_id}">
-		<input type="hidden" name="ref" value="${postReply.ref}">
-		<input type="hidden" name="ref_step" value="${postReply.ref_step}">
-		<input type="hidden" name="ref_lev" value="${postReply.ref_lev}">
-   <table>
-		<tr>
-			<td>제목</td>
-			<td><input type="text" name="post_title" id="post_title" value="답변"></td>
-		</tr>
-		<tr>
-			<td>내용</td>
-			<td><textarea rows="10" name="post_ctx" id="post_ctx"></textarea></td>
-		</tr>		
+		<input type="hidden" name="user_id" value="${postViewReply.user_id}">
+		<input type="hidden" name="ref" value="${postViewReply.ref}">
+		<input type="hidden" name="ref_step" value="${postViewReply.ref_step}">
+		<input type="hidden" name="ref_lev" value="${postViewReply.ref_lev}">
+    <div class="table-responsive">
+	<table class="table table-borderless">
+		<tr class="table-heading"><td>제목</td></tr>
+		<tr><td><input type="text" class="form-control" name="post_title" id="post_title" value="[답글] ${postViewReply.post_title}"></td></tr>
+		<tr class="table-heading"><td>내용</td></tr>
+		<tr><td><textarea class="form-control" name="post_ctx" id="post_ctx"></textarea></td></tr>
+		<tr class="table-heading"><td>작성자</td></tr>
+		<tr><td><input type="text" class="form-control" name="user_id" value="${postViewReply.user_id}" readonly="readonly"/></td></tr>
+		<tr class="table-heading"><td>등록일</td></tr>
+		<tr><td><input type="text" class="form-control" name="post_regdate" value="${postViewReply.post_regdate}" readonly="readonly"/></td></tr>			
    </table>
-   			<input type="submit" value="저장" onclick="location.href='postList'">	
+   </div>
+   <div>
+   		<button type="submit" class="btn btn-sm btn-primary">저장</button>
+   </div>
 	</form>
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

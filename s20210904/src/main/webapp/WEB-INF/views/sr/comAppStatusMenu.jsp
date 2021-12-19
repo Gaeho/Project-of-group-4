@@ -2,25 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="header.jsp"%>
+<%@ include file="footer.jsp" %>
 <%@ include file="myPageMenu.jsp" %>
-<link href="css/sr/comMypage.css" rel="stylesheet" type="text/css">
-<%-- <%
-	String context = request.getContextPath();
-% --%>
->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ComMypage</title>
+<link href="css/sr/comMypage.css" rel="stylesheet" type="text/css">
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
 	<div class="CompanyMypageContainer">
-		<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
-		
-<!-- 		---------------------------------------------------------------------------- -->
 		<div class="compAppStatus_out">
 			<div class="compAppStatus_in">
 				<div class="compAppStatus_btn">
@@ -41,7 +35,7 @@
 				<c:forEach var="appAnnMember" items="${appAnnMember }">
 						<tr>
 							<td><img class="MemImg" src="${appAnnMember.user_img}" /></td>
-							<td><a href="detail2?user_id=${appAnnMember.user_id }&com_id=${appAnnMember.com_id}&mrk_res_code=${appAnnMember.mrk_res_code}&isResume=1">${appAnnMember.user_id}</a></td>
+							<td><a href="detail2?user_id=${appAnnMember.user_id }&com_id=${appAnnMember.com_id}&mrk_res_code=${appAnnMember.mrk_res_code}&isResume=1&anno_code=${appAnnMember.anno_code}">${appAnnMember.user_id}</a></td>
 							<td>${appAnnMember.app_regdate }</td>
 							<c:choose>
 								<c:when test="${appAnnMember.app_sts == '001'}">
@@ -72,17 +66,6 @@
 			</div>
 			</div>
 		</div>
-	</div>
-	<div class="paging">
-		<c:if test="${pg.startPage > pg.pageBlock }">
-			<a href="ComAppStatus?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
-		</c:if>
-		<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-			<a href="ComAppStatus?currentPage=${i}">[${i}]</a>
-		</c:forEach>
-		<c:if test="${pg.endPage < pg.totalPage }">
-			<a href="CComAppStatus?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
-		</c:if>
 	</div>
 </body>
 </html>

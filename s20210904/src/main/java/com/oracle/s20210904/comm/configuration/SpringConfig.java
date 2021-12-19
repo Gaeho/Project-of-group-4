@@ -14,8 +14,4 @@ public class SpringConfig {
 		this.dataSource = dataSource;
 		this.em = em;
 	}
-	
-	
-	
-	
 }

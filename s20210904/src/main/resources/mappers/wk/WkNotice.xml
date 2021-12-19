@@ -12,10 +12,10 @@
 		inner join resume res
 		on rc.user_id=res.user_id
 		and rc.res_code=res.res_code
-		inner join comm
+		left outer join comm
 		on com.com_sec=comm.sub_cat
 		where rc.user_id=#{mbid}
-		and comm.main_cat='050'
+		and (comm.main_cat='050' or com.com_sec is null)
 		order by rc.res_date desc
 	</select>
 	

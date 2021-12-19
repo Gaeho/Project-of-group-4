@@ -9,6 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/gm/GmAnnoDetail.css" rel="stylesheet" type="text/css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <title>코딩몬</title>
 
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -59,10 +62,10 @@
 			<div>				
 				<div class="Top1s">					
 								  <div class="com_title">
-									<div><h1>${comanno.anno_title}</h1></div>
+									<div><h1 class="h1-style">${comanno.anno_title}</h1></div>
 								  </div>
 								  <div class="com_name">
-									<div><h2>${comanno.com_name}</h2></div>
+									<div><h3>${comanno.com_name}</h3></div>
 								  </div>
 			    </div>				  
 				<div class="Top2s">				  
@@ -102,8 +105,8 @@
 			<div class="GmContainer">
 				<div class="TopInfoContainer">
 					<div class="Topupper">
-						<div>  
-							<h3><모집 내용></h3>
+						<div class="Topupper_left">  
+							<h3>모집 내용</h3>
 							<table class="table">				
 								<tr><th>모집직종</th><td>${recjob.comm_ctx}</td></tr>
 								<tr><th>고용형태</th><td>${emptype.comm_ctx}</td></tr>
@@ -115,10 +118,18 @@
 							</table>
 						</div>	
 			
-						<div>
-							<h3><근무조건></h3>
+						<div class="Topupper_right">
+							<h3>근무 조건</h3>
 							<table class="table">
-								<tr><th>급여정보</th><td class="table align-middle">${comanno.pay_info}원</td></tr>
+								<c:choose>
+									<c:when test="${comanno.pay_info == 0}">
+										<tr><th>급여정보</th><td class="table align-middle">급여협의</td></tr>
+									</c:when>
+									<c:otherwise>
+										<tr><th>급여정보</th><td class="table align-middle">${comanno.pay_info}원</td></tr>
+									</c:otherwise>
+								</c:choose>
+								
 								<tr><th>근무조건</th><td class="table align-middle">${comanno.work_cdt}</td></tr>
 								<tr><th>복리후생</th><td class="table align-middle">${comanno.etc_cdt}</td></tr>
 							</table>
@@ -132,8 +143,9 @@
 				</div>		
 					
 				<!----------------------------------------------------------------------------------->
-				<div>	
-					<h3><기업 정보></h3>
+				
+				<div class="anno_info11">	
+					<h3>기업 정보</h3>
 					<table class="table table align-middle">
 						<tr><th class ="table th { width: 100px; }">기업명</th><td>${comanno.com_name}</td></tr>
 						<tr><th>E-mail</th><td>${comanno.com_email}</td></tr>
@@ -147,15 +159,15 @@
 				</div>		
 				<!----------------------------------------------------------------------------------->
 				
-				<div>
-					<div><h3>[모집 상세]</h3></div>
+				<div class="anno_recruit11">
+					<div><h3>모집 상세</h3></div>
 					<div>${comanno.rec_dtl}</div>
 				</div>
 	
 				<!----------------------------------------------------------------------------------->
-				<div>	
+				<div class="anno_deadline11">	
 					<table class="anno_date">
-						<h3><공고 기간></h3>
+						<h3>공고 기간</h3>
 						<tr><th>공고 등록일 : </th><td>${comanno.anno_regdate}</td></tr>
 						<tr><th>공고 마감일 : </th><td>${comanno.anno_c_regdate}</td></tr>
 					</table>	
@@ -165,6 +177,8 @@
 							<button class="anno_apply_btn1" type="button" onclick="location.href='GmApplyList'">지원하기</button>
 						</div>
 				</div>
+		
+				
 				
 				<!-------------------------------------------------------------------------------------->
 
