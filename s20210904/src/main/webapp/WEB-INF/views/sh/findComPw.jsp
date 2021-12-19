@@ -6,24 +6,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>기업비밀번호찾기</title>
-<link rel="stylesheet" href="css/header.css" type="text/css">
+<link rel="stylesheet" href="css/sh/findPw.css" type="text/css">
 </head>
-<!-- 헤더부분 -->
-<%@ include file="/WEB-INF/views/header.jsp"%>
 <body>
+<%@ include file="/WEB-INF/views/header.jsp"%>
+	<div class="container">
+        <h2>비밀번호 찾기</h2>
+        	<form action="findComPwForm">
+           		 <div>
+		                <input type="text" name="" id="com_name"   required>
+		                <label for="com_name">회사명</label>
+            	  </div>
 
-	<h2>기업 비밀번호 찾기</h2>
-		<div class="findComPw">
-			<form action="findComPwForm">
-				회사명 : <input type="text" name="com_name"  placeholder="회사명을 입력하세요"><p>
-				가입자명 : <input type="text" name="com_user"  placeholder="가입자명을 입력하세요"><p>
-				아이디 : <input type="text" name="com_id"  placeholder="아이디를 입력하세요"><p>
-				사업자 등록번호 : <input type="text" name="com_regnum"  placeholder="사업자등록번호를 입력하세요"><p>
-				이메일 :  <input type="text" name="com_email"  placeholder="이메일을 입력하세요"><p>
-				
-				<input type="submit" value="비밀번호 찾기">
-			</form>
-		</div>
+            		<div>
+		                <input type="text" name="" id="com_user"  required>
+		                <label for="com_user">가입자명</label>
+            		</div>
+
+            		<div>
+		                <input type="text" name="" id="com_id"  required>
+		                <label for="com_id">아이디</label>
+           		    </div>
+            
+            		<div>
+		                <input type="text" name="" id="com_regnum"  required>
+		                <label for="com_regnum">사업자등록번호</label>
+            		</div>
+            
+            		<div>
+		                <input type="text" name="" id="com_email"  required>
+		                <label for="com_email">이메일</label>
+           		    </div>
+            
+            	<input type="submit" name="" value="비밀번호 찾기">
+        	</form>
+    </div>
+<%@ include file="/WEB-INF/views/footer.jsp"%>	
 </body>
-<%@ include file="/WEB-INF/views/footer.jsp"%>
 </html>
