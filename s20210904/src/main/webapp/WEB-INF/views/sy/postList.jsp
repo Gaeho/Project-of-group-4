@@ -17,13 +17,16 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
+<br>
 <div class="container-sm">
-	<h2 class="h2-style">코딩톡</h2>
+	<a href="main"><h2 class="h2-style">코딩톡</h2></a>
 	<form action="postList" class="form-inline ml-auto">
 		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
-		<input type="text" class="form-control mr-sm-2" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요">	
+		 <div class="col-lg-4">
+		<input type="text" class="form-control" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요">
+		</div>	
 		<button type="submit" class="btn btn-sm btn-primary">검색</button>	
-	</form>
+		
 <div class="table-responsive">
 	<table class="table table-hover">	
 		<c:forEach items="${postNotice}" var="postnotice">                     
@@ -45,21 +48,24 @@
 			</tr>
 		</c:forEach>	
 	</table>
-	<div>
-		<c:if test="${paging.startPage > paging.pageBlock }">
-		<a href="postList?currentPage=${paging.startPage-paging.pageBlock}">이전</a>
-		</c:if>
-		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
-		<a href="postList?currentPage=${i}">[${i}]</a>
-		</c:forEach>
-		<c:if test="${paging.endPage < paging.totalPage}">
-		<a href="postList?currentPage=${paging.startPage + paging.pageBlock}">다음</a>
-		</c:if>
+	</div>
+		<div class="row">
+			<div class='col-md-12 text-center'>
+			<c:if test="${paging.startPage > paging.pageBlock }">
+			<a href="postList?currentPage=${paging.startPage-paging.pageBlock}">이전</a>
+			</c:if>
+			<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+			<a href="postList?currentPage=${i}">[${i}]</a>
+			</c:forEach>
+			<c:if test="${paging.endPage < paging.totalPage}">
+			<a href="postList?currentPage=${paging.startPage + paging.pageBlock}">다음</a>
+			</c:if>
+		</div>
 	</div>
 	<div>
-		<button type="button" class="btn btn-sm btn-primary" id="btnInsert">글쓰기</button>
+		<button type="button" class="btn btn-sm btn-light"><a href="postInsert">글쓰기</button>
 	</div>
-	</div>	
+	</form>
 </div>
 <script type="text/javascript">
 	$(document).ready(function () {	
@@ -74,6 +80,7 @@
 	});
 
 </script>
+<br>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

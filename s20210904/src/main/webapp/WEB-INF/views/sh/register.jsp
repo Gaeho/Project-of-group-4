@@ -60,7 +60,7 @@
 				dataType:'text',
 				success:function(data){
 					 if($.trim(data)== 'success') {
-						 alert("인증이 완료되었습니다!!");
+						 alert("인증이 완료되었습니다!! 회원가입을 마저 진행해주세요");
 						 $('input[type="submit"]').prop('disabled', false);						 
 						 $('#emailAuthentication').prop('disabled', true);
 					 } else{
@@ -69,6 +69,46 @@
  			   }
 		})
 	} 
+	
+
+	function joincheck() {
+		if (!frm.user_id.value) {
+			alert("id를 입력해 주십시오.");
+			frm.user_id.focus();
+			return false;
+		}
+		if (!frm.user_pw.value) {
+			alert("비밀번호를 입력해 주십시오.");
+			frm.user_pw.focus();
+			return false;
+		}
+		if (!frm.user_name.value) {
+			alert("이름을 입력해 주십시오.");
+			frm.user_name.focus();
+			return false;
+		}
+		if (!frm.user_sex.value) {
+			alert("성별을 입력해 주십시오.");
+			frm.user_sex.focus();
+			return false;
+		}
+		if (!frm.user_brh.value) {
+			alert("생년월일을 입력해 주십시오.");
+			frm.user_brh.focus();
+			return false;
+		}
+		if (!frm.user_tel.value) {
+			alert("전화번호를 입력해 주십시오.");
+			frm.user_tel.focus();
+			return false;
+		}
+		if (!frm.user_email.value) {
+			alert("이메일을 입력해 주십시오.");
+			frm.user_email.focus();
+			return false;
+		}
+		return true;
+	}
  </script>
 </head>
 	<body>
@@ -86,7 +126,7 @@
 							</div>
 						</div>
 						
-						<form action="join" method="post" class="main__form">
+						<form action="joinSave" method="post" class="main__form" name="frm" onsubmit="return joincheck()">
 			
 								<!-- 아이디 적는 칸  -->
 								<div class="main__form__top">
@@ -96,7 +136,7 @@
 										</div>
 			
 										<div class="form__find__right">
-											<input type="text" id="user_id" placeholder="아이디를 입력하세요">
+											<input type="text" id="user_id" name="user_id" placeholder="아이디를 입력하세요">
 										</div>
 									</div>
 			
@@ -107,7 +147,7 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="password" id="user_pw" placeholder="비밀번호를 입력하세요">
+										<input type="password" id="user_pw"  name="user_pw" placeholder="비밀번호를 입력하세요">
 									</div>
 								 </div>
 			
@@ -118,7 +158,7 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="text" id="user_name" placeholder="이름을 입력하세요">
+										<input type="text" id="user_name"  name="user_name" placeholder="이름을 입력하세요">
 									</div>
 								</div>
 			
@@ -155,7 +195,7 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="text" id="user_brh" placeholder="생년월일을 입력하세요">
+										<input type="text" id="user_brh"  name="user_brh" placeholder="생년월일을 입력하세요">
 									</div>
 								</div>
 			
@@ -164,40 +204,22 @@
 									<div class="form__find__left">
 										<label for="user_addr">주소</label>
 									</div>
+								
 								<div class="form__find__right">
-									<input type="text" id = "addr1" placeholder="우편번호"	 name="user_addr">
+									<input type="text" id = "addr1" placeholder="우편번호"	 name="user_addr"   id ="addr1"    readonly="readonly">
 									<button type="button" onclick="execPostCode();">우편번호 찾기</button>
 								</div>
+								
 								<div class="form__find__right">	 
-									<input type="text" id = "addr2" placeholder="도로명 주소"	 name="user_addr">
-									</div>
-									<div class="form__find__right">	
-									<input type="text" id="addr3" name="user_addr"  placeholder="상세주소">
+									<input type="text" id = "addr2" placeholder="도로명 주소"	 name="user_addr"  readonly="readonly">
 									</div>
 									
-									<!-- <div class="form__find__right">
-										<input type="text" id="user_addr"  name="user_addr" id="addr1" placeholder="우편번호">
+								<div class="form__find__right">	
+									<input type="text"   placeholder="상세주소" >
+									<%@ include file="/WEB-INF/views/sh/ShAddr.jsp"%>
 									</div>
-									<button type="button"  onclick="execPostCode();" >우편번호 찾기</button>  -->
-											
-											<%-- <input class="form-control" style="width: 50%; display: inline;"
-												placeholder="우편번호" name="user_addr" id="addr1" type="text"
-												readonly="readonly">
-											<button type="button" class="btn btn-default"
-												onclick="execPostCode();">
-												<i class="fa fa-search"></i> 우편번호 찾기
-											</button>
-										<div class="form-group">
-											<input class="form-control" style="top: 7px;"
-												placeholder="도로명 주소" name="user_addr" id="addr2" type="text"
-												readonly="readonly" />
-										</div>
-										<div class="form-group">
-											<input class="form-control" placeholder="상세주소" name="user_addr"
-												id="addr3" type="text" />
-											<%@ include file="/WEB-INF/views/sh/ShAddr.jsp"%>
-										</div> --%>
-									</div>
+									
+								</div>
 								
 			
 								<!-- 번호 적는 칸 -->
@@ -207,7 +229,7 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="text" id="user_tel" placeholder="전화번호를 입력하세요">
+										<input type="text" id="user_tel"  name="user_tel" placeholder="전화번호를 입력하세요">
 									</div>
 								</div>
 			
@@ -219,12 +241,11 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="email" id="user_email" placeholder="이메일을 입력하세요">
-										<button type="button" onclick="memberVerify()">이메일 인증하기</button>
+										<input type="text" id="user_email"  name="user_email"  placeholder="이메일을 입력하세요">
+										<button type="button" onclick="memberVerify()" value="이메일 인증">이메일 인증하기</button>
 									</div>
 								</div>
-								
-					
+		                          					
 								<!-- 이메일 인증번호 -->
 								<div class="main__form__find">
 									<div class="form__find__left">
@@ -232,15 +253,15 @@
 									</div>
 						
 								 	<div class="form__find__right">
-										<input type="email" name="emailAuthentication" id="emailAuthentication"
+										<input type="text" name="emailAuthentication" id="emailAuthentication"
 											placeholder="이메일 인증번호" disabled="disabled" style="width: 300px;">
 										<button type="button"  value="인증번호 입력"  onclick="emailAuth()"
 													id="emailAuthBtn" disabled="disabled">인증번호 입력</button>
 								  	</div>
 								 </div><p>
 									
-									<div class="form__find__right">			
-									<button type="submit"  value="회원가입 "  disabled="disabled" >회원가입</button>
+									<div class="form__find__right2">			
+									<input type="submit"  value="회원가입 "  disabled="disabled" >
 									</div>
 											
 								</div>		

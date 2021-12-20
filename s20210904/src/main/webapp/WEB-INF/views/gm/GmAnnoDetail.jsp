@@ -47,8 +47,13 @@
 		}); 
 		
 	}
+	
+	function apply() {
+	alert("이력서 제출이 완료되었습니다.");
+	} 
 
 </script>
+
 </head>
 <body>
 
@@ -85,17 +90,65 @@
 									<!-- <input type="button" class = "btn btn_danger" id="likebtn" value="스크랩 " onclick="setScrap()"> -->
 
 								    <input type="hidden" name="anno_code" value="${comanno.anno_code}">
-								
-								 <%--    <input type="button" value="지원하기" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}'">  --%>
-								    <input type="button" value="지원하기" class="btn btn-warning" onclick="location.href='GmApplyList?anno_code=${comanno.anno_code}&user_id=${id}'"> 
-								   
+								  
+					  		 <!-- Button trigger modal -->
+								<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#test_modal" >
+								  지원하기
+								</button>
+							</div>
+							
+						<!-- 모달 실행 관련  -->
+							<!-- Modal -->
+							<div class="modal fade" id="test_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-scrollable">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="staticBackdropLabel">이력서 목록</h5>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body">
+							         <form action=applyDetail  onsubmit="apply()" > 
+										<table>
+											<tr>
+											 	<th>선택&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+												<th>제목</th>
+												<th>작성일</th>
+											</tr>
+											<tr>
+											    <td><input type="hidden" name="anno_code" value="${anno_code}"></td> 
+												<td><input type="hidden" name="user_id"  value="${user_id}"></td>
+											 </tr>
+											 <c:forEach var="resume" items="${listres}" varStatus="status">
+												<tr>
+													<td><input type="radio" name="res_code" checked="checked" value="${resume.res_code }" ></td>
+												    <td>${resume.res_title}</td> 
+													<td>${resume.res_date}</td> 
+													
+											      <%--   <td><input type="hidden" name="anno_code" value="${resume.anno_code}"></td>  --%>
+											    </tr>    
+											</c:forEach>
+											<%-- <td>anno_code->${anno_code}</td>
+											<td><input type="submit" value="제출하기"></td> --%>
+										
+										</table>
+									 
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+							        <button type="submit" class="btn btn-primary">제출하기</button>
+							      </div>
+							      </form>
+							       </div>
+							    </div>
+							  </div>
+							</div>
+						   
 
-								    	<div class="scrap_infos">
-										     anno_code : <input type="text" id="anno_code"    value="${comanno.anno_code}"><p>
-											 user_id :   <input type="text" id="user_id"      value="${id}"  ><p>
-											 it_like :   <input type="text" id="it_like"      value="${itlike}" ><p>
-										</div>
-								</div>	 						
+						    	<div class="scrap_infos">
+								     anno_code : <input type="text" id="anno_code"    value="${comanno.anno_code}"><p>
+									 user_id :   <input type="text" id="user_id"      value="${id}"  ><p>
+									 it_like :   <input type="text" id="it_like"      value="${itlike}" ><p>
+								</div>
+							 						
 					</div>	
 				</div>			 
 		   </div>		
@@ -174,7 +227,7 @@
 				</div>
 				<div class="anno_applys">
 						<div class="d-grid gap-2">
-							<button class="btn btn-primary btn-lg" style="width:500px; height:100px;" type="button" onclick="location.href='GmApplyList'">지원하기</button>
+							<button class="anno_apply_btn1" type="button" onclick="location.href='GmApplyList'">지원하기</button>
 						</div>
 				</div>
 		
@@ -193,9 +246,6 @@
 					<div  style="color:silver">${comanno.com_addr}</div>
 				</div>
 			</div>
-				
-				
-				
 				
 		</div>
 	</div>

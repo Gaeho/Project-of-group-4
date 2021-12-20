@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <!-- 알람입니당 -->
 <script type="text/javascript">
@@ -58,6 +58,7 @@ window.onload=function alramList(){
 			
 		}
 	});
+
 }
 </script>
 </head>
@@ -74,29 +75,30 @@ window.onload=function alramList(){
                       <a class="nav-link" href="postList">게시판</a>
                     </li>
               </ul>
-              id = ${id } cnt = ${cnt }
+             <%--id= ${id }  cnt = ${cnt } --%>
               <c:choose>
-              	<c:when test="${id == null || id =='' }"> 					<!-- 로그인 NO -->
-              		<a class="btn btn-primary" href="login">Login</a>
-              	</c:when>
-              	<c:when test="${id == 'rhksflwk0000'}">						<!-- 관리자 한명만있음ㅋ -->
-              		<ul class="nav">
-              			<li><a class="btn btn-primary" href="logout">Logout</a></li>
-              			<li><a class="btn btn-primary btn-mypage" href="admin/AdminMain">Admin</a><li>
-              			
-              		</ul>
-              	</c:when>
-              	<c:otherwise>						<!-- 로그인 OK -->
-              		<ul class="nav">
-						<li class="nav-item dropdown">
-							<a	class="nav-link" data-bs-toggle="dropdown"	href="#" role="button" aria-expanded="false"><img src="img/ds/alram-on.png" width="30px" height="30px" id="alramImg"></a>
-							<ul class="dropdown-menu">
-							</ul>
-						</li>
-						<li><a class="btn btn-primary" href="logout">Logout</a></li>
-              			<li><a class="btn btn-primary btn-mypage" href="myPage?grade=${grade}">MyPage</a><li>
-              		</ul>
-              	</c:otherwise>
+                 <c:when test="${id == null || id =='' }">                <!-- 로그인 NO -->
+                    <a class="btn btn-primary" href="login">Login</a>
+                 </c:when>
+                 <c:when test="${id == 'rhksflwk0000'}">                  <!-- 관리자 한명만있음ㅋ -->
+                    <ul class="nav">
+                       <li><a class="btn btn-primary" href="logout">Logout</a></li>
+                       <li><a class="btn btn-primary btn-mypage" href="admin/AdminMain">Admin</a><li>
+                       
+                    </ul>
+                 </c:when>
+                 <c:otherwise>                  <!-- 로그인 OK -->
+                    <ul class="nav">
+                       <li> ${id } 님 반갑습니다 </li>
+                  <li class="nav-item dropdown">
+                     <a   class="nav-link" data-bs-toggle="dropdown"   href="#" role="button" aria-expanded="false"><img src="img/ds/alram-on.png" width="30px" height="30px" id="alramImg"></a>
+                     <ul class="dropdown-menu">
+                     </ul>
+                  </li>
+                  <li><a class="btn btn-primary" href="logout">Logout</a></li>
+                       <li><a class="btn btn-primary btn-mypage" href="myPage?grade=${grade}">MyPage</a><li>
+                    </ul>
+                 </c:otherwise>
               </c:choose>
             </div>
         </nav>

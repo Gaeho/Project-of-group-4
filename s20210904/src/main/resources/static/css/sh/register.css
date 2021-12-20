@@ -33,7 +33,7 @@
     background-color: #FFEFA0;;
 }
 
-.main__member__border{
+.main__menber__border{
     width: 1004px;
     border-bottom: 4px solid #1d1d1d;
     margin-bottom: 15px;
@@ -76,9 +76,23 @@
 
 .form__find__right > input{
     border: 1px solid #c8c6c7;
-    width: 200px;
+    width: 260px;
     height: 24px;
-    padding: 10px 5px;
+    padding: 1px 5px;
+}
+
+.form__find__right2 > input{
+   display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100px;
+    height: 24px;
+    line-height: 24px;
+    border: none;
+    background-color: #FFEFA0;
+    border-radius: 5px;
+    color: #1d1d1d;
+    margin-left: 5px;
 }
 
 .main__form__find > *{

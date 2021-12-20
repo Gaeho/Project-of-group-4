@@ -5,6 +5,7 @@
 <html>
 <head>
 <link href="css/wk/mbMypageMenu.css" rel="stylesheet" type="text/css">
+<link href="css/wk/mbMypage.css" rel="stylesheet" type="text/css">
 <link href="css/wk/mbMypageApplySum.css" rel="stylesheet" type="text/css">
 <link href="css/wk/mbMypageTable.css" rel="stylesheet" type="text/css">
 <link href="css/wk/tapstyle.css" rel="stylesheet" type="text/css">
@@ -84,20 +85,46 @@
 <div class="mypageContent-wrap">
  	<div class="mypageTitle" id="mypageTitle">
 	</div> 
+	
 	<div class="mbMypageMenu">
-		<input type="image" class="profile_img" src="${profile}" 
-			alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" ><br>
-			${mbid } 님<p>
-		<ul>
-			<li><a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a></li>
-			<li><a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a></li>
-			<li><a class="mbMypageMenuBox" href="mbMypageApply?notice_msg=2">나의 이력서 열람기업</a></li>
-			<li><a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a></li>
-			<li><a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a></li>
-			<li><a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a></li>
-			<li><a class="mbMypageMenuBox" href="mbMypageUpdate">마이페이지수정</a></li>
-		</ul>
+		<div class="menu_profile">
+			<input type="image" class="profile_img" src="${profile}" 
+				alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="profile_img" >
+			<div class="mbFormText">${mbid } 님</div>
+		</div>
+		
+		<p>
+		
+		<div class="menu_bar">
+			<input type="image" class="Menu_img" src="./img/wk/icon1.png" onclick="location.href='mbMypage'">
+			<a class="mbMypageMenuBox" href="mbMypage">마이페이지홈</a>
+		</div>
+		<div class="menu_bar">
+			<input type="image" class="Menu_img" src="./img/wk/icon2.png" onclick="location.href='mbMypageApply'">
+			<a class="mbMypageMenuBox" href="mbMypageApply">입사지원현황</a>
+		</div>
+		<div class="menu_bar">
+			<input type="image" class="Menu_img" src="./img/wk/icon3.png" onclick="location.href='mbMypageApply?notice_msg=2'">
+			<a class="mbMypageMenuBox" href="mbMypageApply?notice_msg=2">나의 이력서 열람기업</a>
+		</div>
+		<div class="menu_bar">
+			<input type="image" class="Menu_img" src="./img/wk/icon4.png" onclick="location.href='mbMypageResume'">
+			<a class="mbMypageMenuBox" href="mbMypageResume">이력서관리</a>
+		</div>
+		<div class="menu_bar">
+			<input type="image" class="Menu_img" src="./img/wk/icon5.png" onclick="location.href='mbMypageResumeWrite'">
+			<a class="mbMypageMenuBox" href="mbMypageResumeWrite">이력서작성</a>
+		</div>
+		<div class="menu_bar">
+			<input type="image" class="Menu_img" src="./img/wk/icon6.png" onclick="location.href='mbMypageScrap'">
+			<a class="mbMypageMenuBox" href="mbMypageScrap">스크랩</a>
+		</div>
+		<div class="menu_bar">
+			<input type="image" class="Menu_img" src="./img/wk/icon7.png" onclick="location.href='mbMypageUpdate'">
+			<a class="mbMypageMenuBox" href="mbMypageUpdate">마이페이지수정</a>
+		</div>
 	</div>
+	
 	<div class="mbMypageMain">
 		<div class="tab_content">
 			<c:if test="${notice_msg eq 1 or empty notice_msg}">
@@ -147,7 +174,7 @@
 				
 				<div class="mbMypageTable">
 					<table class="table">
-						<tr class="table-light">
+						<tr class="table-warning">
 							<th> </th><th>지원회사</th><th>공고 제목</th><th>지원포지션</th><th>이력서제목</th><th>작성시간</th><th>상태</th>
 						</tr>
 						<c:forEach var="applyList" items="${applyList }">
@@ -162,9 +189,10 @@
 				</div>
 			</div>
 			<div class="conbox con2">
+				<p>
 				<div class="mbMypageTable">
 					<table class="table">
-						<tr class="table-light">
+						<tr class="table-warning">
 							<th> </th><th>이력서</th><th>회사명</th><th>주소</th><th>업종</th><th>열람일</th>
 							<c:forEach var="resConList" items="${resConList }">
 								<tr>
