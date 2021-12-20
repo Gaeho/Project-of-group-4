@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>검색 결과</title>
+<link href="css/sy/post.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
+<a href="postList"><h2 class="h2-style">코딩톡</h2></a>
 <h2>검색 결과</h2>
-	<h4>검색어 : ${searchPost1}</h4>
+	<h4>검색어 : ${result.posttitle}</h4>
 	<table>
 		<tr>
 			<th>제목</th>
@@ -47,6 +49,6 @@
 				location.href="postSearch?currentPage="+vCurrentPage+"&post_search="+post_search;
 				}							
 		</script>
-
+<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
