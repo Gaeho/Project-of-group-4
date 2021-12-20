@@ -34,5 +34,7 @@ public interface SyPostDao {
 
 	List<Post> postSearch(Post post);
 
+	int max();
+
 }
 

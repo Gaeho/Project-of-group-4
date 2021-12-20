@@ -69,6 +69,8 @@ public interface SrComMypageDao {
 
 	Bookmark bookmark(Bookmark bookmark);
 
+	void noticeDel(String ntc_code);
+
 	
 
 

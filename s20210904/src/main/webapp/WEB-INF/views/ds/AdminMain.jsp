@@ -74,7 +74,7 @@
 									<tr>
 										<td class="waitItem">${qnaList.post_title}<input
 											type="button" value="답변하기" class="answerBtn" name="answerBtn"
-											onclick="answerWrite('${qnaList.post_code}')">
+											onclick="location.href='<%=context%>/postView?post_code=${qnaList.post_code}'">
 										</td>
 									</tr>
 								</c:if>

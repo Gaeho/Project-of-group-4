@@ -44,28 +44,22 @@
 	height: 150px;
 	border: 1px solid black;
 }
+.user_info1{
+		align-items: center;
+	text-align: center;
+	border: 1px solid black;
+	height: 300px;
+	width: 700px;
+	font-size: 18px;
+}
+/* .user_info1{
+
+} */
 
 --------------------------------------
 
 
-/* .user_info1{
-	align-items: center;
-	text-align: center;
-	border: 1px solid black;
-	height: 300px;
-	width: 700px;
-	background: green;
-	font-size: 18px;
-} */
-.user_info1{
-	align-items: center;
-	text-align: center;
-	border: 1px solid black;
-	height: 300px;
-	width: 700px;
-	background: green;
-	font-size: 18px;
-}
+
 
 /* .user_info1{
 

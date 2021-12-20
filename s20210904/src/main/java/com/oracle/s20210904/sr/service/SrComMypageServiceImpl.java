@@ -221,7 +221,10 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		return bookmark2;
 	}
 
-	
+	@Override
+	public void noticeDel(String ntc_code) {
+		scmd.noticeDel(ntc_code);
+	}
 
 	
 }

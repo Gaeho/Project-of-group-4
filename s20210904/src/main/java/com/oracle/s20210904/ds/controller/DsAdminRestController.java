@@ -55,9 +55,12 @@ public class DsAdminRestController {
 		int resultNum = dsAdminService.maxSubCate(mainCate);
 		resultNum = resultNum+1;
 		String result = null;
-		if(resultNum<100) {
-			result = "0"+ resultNum;
-		}else {
+		if(resultNum<10) {
+			result = "00"+ resultNum;
+		}else if(resultNum<100){
+			result = "0"+resultNum;
+		}
+		else {
 			result = Integer.toString(resultNum);
 		}
 			
