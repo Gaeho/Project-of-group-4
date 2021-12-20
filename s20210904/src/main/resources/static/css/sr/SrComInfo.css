@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+.CompanyMypageContainer{
+	display: flex;
+	margin-bottom: 30px;
+}
+
+.CompanyMypageContainer > div {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+
+.comInfoUpper{
+	display: flex
+	min-height: 200px;
+}
+
+.comInfoUpper > div{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.comInfoUnder{
+	display: flex;
+}
+
+.comInfoleft{
+	width: 30%;
+}
+
+.comInforight{
+	width:70%;
+	border: 1px solid silver;
+}
+
+.divTableRow-mid > div{
+	margin-left: 60px;
+	margin-top: 30px;
+}
+
+
+/* .imagesquare1{
+	width: 200px;
+	height: 200px;
+} */
+
+/* .middleTitle_anno_text{
+	display: flex;
+} */
+
+/* .input-group mb-3{
+	margin: 0 auto;
+}
+ */
+.info-text{
+	width: 150px;
+	text-align: right;
+	margin-right: 15px;
+	font-weight: bold;
+}
+
+.divTableRow > div{
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.info-value{
+	margin-left: 80px;
+}
+
+.comLogo{
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+	margin-left: 100px;
+}
+
+.divTableRow-top > div{
+	display: flex;
+
+}
+
+#com_info-bus{
+	margin-top: 35px;
+}
+
+#com_info-bus > div{
+	margin-left:50px; 
+}
+
+.info-text-bus{
+	font-weight: bold;
+}
+
+.divTableRow-top{
+	margin-top: 50px; 
+}
+
+.imges{
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+}
+
+.divTableRow_bottom{
+	display: flex;
+	margin-top: 45px;
+}
+
+.divTableRow_bottom > div{
+	flex-direction: column;
+	margin-left: 100px;
+	margin-bottom: 50px;
+}
+
+#com_info_imges{
+	margin-left: 30px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.hrTag{
+	width: 600px;
+	margin: 0px auto;
+}

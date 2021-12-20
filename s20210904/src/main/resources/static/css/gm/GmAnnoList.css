@@ -14,6 +14,19 @@
 	min-width: 1000px;
 }
 
+.annolisttitle{
+	
+	height: 150px;
+}
+
+.h2-style {
+	font-family: 'Black Han Sans', sans-serif;
+    font-size: 56px;
+    font-weight: lighter;
+   	display: inline-block;
+    margin-top: 50px;
+}
+
 
 .anno_paging_container {
 	
@@ -26,10 +39,18 @@
 }
 
 
+.searchset11{
+	display: flex;
+	float: right;
+}
 
+.searchset11 > div {
+	
+}
 
-
-
+.anno_paging_container{
+	float: left;
+}
 
 
 

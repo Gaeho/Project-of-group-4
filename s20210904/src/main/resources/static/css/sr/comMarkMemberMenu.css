@@ -2,15 +2,23 @@
 
 .CompanyMypageContainer{
 	display: flex;
+	margin-bottom: 30px;
 }
 
 .CompanyMypageContainer > div {
 	margin: 0 auto;
+	width: 1000px;
 }
 
+
 .comInfoUpper{
-	margin: 0 auto;
+	display: flex
 	min-height: 200px;
+}
+
+.comInfoUpper > div{
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 .comInfoUnder{
@@ -18,16 +26,22 @@
 }
 
 .comInfoleft{
-	width: 40%;
+	width: 30%;
 }
+
 .comInforight{
-	width:60%;
+	width:70%;
 	border: 1px solid silver;
 }
 
-.testcss{
+/* .annoBottom{
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 30px;
+} */
+
+.memberImg{
 	width: 150px;
 	height: 150px;
 	border: 1px solid black;
-	
 }

@@ -178,12 +178,18 @@ function deleteFile() {
 				
 				
 				
-									<div class="bigTitle_anno">모집 내용</div>
+									<div class="bigTitle_anno">
+										<i class="bi bi-people-fill"></i>
+										모집 내용
+									</div>
 				
 									<div class="titleContainer">
-										<div class="middleTitle_anno">공고 제목</div>
+										<div class="middleTitle_anno">
+											<i class="bi bi-box-arrow-in-down-right"></i>
+											공고 제목
+										</div>
 										<input type="text" class="anno_title_insert" name="anno_title"
-											placeholder="공고 제목을 입력하세요." required="required">
+											placeholder="공고 제목을 입력하세요." required="required" maxlength="25">
 									</div>
 				
 									<div>
@@ -281,7 +287,10 @@ function deleteFile() {
 											<textarea name="rec_dtl" rows="40" cols="50"></textarea>
 										</div> -->
 										
-										<div class="middleTitle_anno_text">모집 상세</div>
+										<div class="middleTitle_anno_text">
+											<i class="bi bi-blockquote-left"></i>
+											모집 상세
+										</div>
 										<div class="form-floating">
 										
 										 <!--  <textarea class="form-control" name="rec_dtl" placeholder="모집 상세 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea> -->
@@ -313,9 +322,15 @@ function deleteFile() {
 								<hr size="5px">
 				
 								<div class="annoCondContainer">
-									<div class="bigTitle_anno">근무 조건</div>
+									<div class="bigTitle_anno">
+										<i class="bi bi-sort-alpha-down"></i>
+										근무 조건
+									</div>
 									<div>
-										<div class="middleTitle_anno">급여정보</div>
+										<div class="middleTitle_anno">
+											<i class="bi bi-cash-coin"></i>
+											급여정보
+										</div>
 										<input type="number" name="pay_info" id="pay_info" value='0'>
 										원
 										<button type="button" id="salButton" onclick="buttontoggle();">급여협의</button>
@@ -323,7 +338,10 @@ function deleteFile() {
 									</div>
 									<p>
 									<div>
-										<div class="middleTitle_anno_text">상세 근무 조건</div>
+										<div class="middleTitle_anno_text">
+											<i class="bi bi-blockquote-left"></i>
+											상세 근무 조건
+										</div>
 										<div class="form-floating">
 										
 										 <!--  <textarea class="form-control" name="rec_dtl" placeholder="상세 근무 조건 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea> -->
@@ -350,7 +368,10 @@ function deleteFile() {
 									</div>
 									<p>
 									<div>
-										<div class="middleTitle_anno_text">기타 입력 사항</div>
+										<div class="middleTitle_anno_text">
+											<i class="bi bi-blockquote-left"></i>
+											기타 입력 사항
+										</div>
 										<div class="form-floating">
 										
 										 <!--  <textarea class="form-control" name="rec_dtl" placeholder="기타 사항 입력 " id="floatingTextarea" style="height: 300px; width: 500px;"></textarea> -->
@@ -382,18 +403,27 @@ function deleteFile() {
 								<hr size="5px">
 				
 								<div class="annoOptContainer">
-									<div class="bigTitle_anno">공고 설정</div>
+									<div class="bigTitle_anno">
+										<i class="bi bi-sliders"></i>
+										공고 설정
+									</div>
 									
 									<div class="anno_time_wrap">
-										<div class="middleTitle_anno">공고 시작일</div>
+										<div class="middleTitle_anno"> 
+											<i class="bi-alarm"></i>
+											공고 시작일
+										</div>
 										<input type="date" id="regdate" value="anno_regdate"
 											name="anno_regdate" required="required" onchange="addMonth();"><br>
-										<div class="middleTitle_anno">공고 종료일</div>
+										<div class="middleTitle_anno">
+											<i class="bi-alarm"></i>
+											공고 종료일
+										</div>
 										<input type="date" class="input_anno_c_regdate" 
 										name="anno_c_regdate" id="c_regdate" readonly="readonly">
 									</div>
 									<div class="anno_date_notice1">
-										<h2>공고는 작성일로부터 한 달간 게시됩니다.</h2>
+										<h2><i class="bi bi-check-lg"></i>공고는 작성일로부터 한 달간 게시됩니다.</h2>
 									</div>
 				
 				
@@ -402,7 +432,8 @@ function deleteFile() {
 								<hr size="5px">
 								<div class="submitbtn_wrap">
 									<div>
-										<button type="submit" name="gobut" class="gobut">공고 작성 완료하기</button>
+										<button type="submit" name="gobut" class="btn btn-primary btn-lg" style="width:500px; height:100px;">공고 작성 완료하기</button>
+										<!-- <button type="submit" name="gobut" class="gobut">공고 작성 완료하기</button> -->
 									</div>
 								</div>
 							</form>

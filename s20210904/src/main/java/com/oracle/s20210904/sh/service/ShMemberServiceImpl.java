@@ -99,6 +99,15 @@ public class ShMemberServiceImpl implements ShMemberService {
 		return result;
 	}
 
+	@Override
+	public int gradecheck(String com_id) {
+		System.out.println("ShMemberServiceImpl의 gradecheck 시작됨!!");
+		
+		int gradenum =md.gradecheck(com_id);
+		
+		return gradenum ;
+	}
+
 	
 	
 

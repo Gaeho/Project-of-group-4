@@ -75,7 +75,7 @@ public class ShMemberController {
 		System.out.println("ShMemberController ComjoinSave Start...");
 	    int joincom = ms.joincom(company);
 		model.addAttribute("joincom", joincom);
-		return "sh/main";
+		return "Main";
 		
 	}
 	//개인로그인 
@@ -128,24 +128,37 @@ public class ShMemberController {
 		System.out.println("ShMemberController ComloginForm Start...");
 		
 		String rtnStr = "";
+		int gradenum = 0;
 		Company com  = new Company();
 		com.setCom_id(com_id);
 		com.setCom_pw(com_pw);
 		
 		//세션 
 		HttpSession session = request.getSession();
-		int result = ms.Comlogin(com);
 		
-		if(result == 1) {
-			rtnStr = "redirect:/main"; //성공 
-			// session에 user_id 저장 
-				session.setAttribute("cmid", com_id);
-			// session 가져올때
-			    System.out.println("session.getAttribute cmid : " + session.getAttribute("cmid"));
-		}else {
-			rtnStr = "sh/companylogin"; //실패 
-		}
+		System.out.println("com_id->"+com_id);
+		gradenum = ms.gradecheck(com_id);
+		//int gdck = 1;
 		
+		//기업 로그인 승인 
+		if(gradenum==1) {
+			System.out.println("gradenum=1 로그인 로직 정상작동 시작");
+					int result = ms.Comlogin(com);
+					
+					if(result == 1) {
+						rtnStr = "redirect:/main"; //성공 
+						// session에 user_id 저장 
+							session.setAttribute("cmid", com_id);
+						// session 가져올때
+						    System.out.println("session.getAttribute cmid : " + session.getAttribute("cmid"));
+					}else {
+						rtnStr = "sh/companylogin"; //실패 
+					}
+		} else if(gradenum !=1) {
+			System.out.println("인증회원이 아님 gradenum !=1");
+			rtnStr="redirect:/main";
+			
+		}	
 		return  rtnStr;
 	}
 	///로그아웃

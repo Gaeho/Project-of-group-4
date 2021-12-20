@@ -22,9 +22,6 @@
 <!-- 알람입니당 -->
 <script type="text/javascript">
 window.onload=function alramList(){
-	// var id = ${id};
-	//alert("id->"+id)
-	
 	str = "";
 	$.ajax({
 		url:"alramList",
@@ -63,14 +60,6 @@ window.onload=function alramList(){
 	});
 }
 </script>
-<script type="text/javascript">
-		var myModal = document.getElementById('myModal')
-		var myInput = document.getElementById('myInput')
-		
-		myModal.addEventListener('shown.bs.modal', function () {
-		  myInput.focus()
-		})
-</script>
 </head>
 <body>
   <!-- Navigation-->
@@ -88,48 +77,7 @@ window.onload=function alramList(){
               id = ${id } cnt = ${cnt }
               <c:choose>
               	<c:when test="${id == null || id =='' }"> 					<!-- 로그인 NO -->
-              		<a class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#exampleModal">Login</a>
-              		<!-- href="login" -->
-             
-              		<!-- 모달 실행 관련 -->
-              			<!-- Modal -->
-							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog modal-dialog-centered">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">로그인</h5>
-							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							      </div>
-							      <div class="modal-body">
-							        
-							        <form action="loginForm"  method="post">
-		       
-										<input type="button" value="회원" >
-										<input type="button" value="기업"  onclick="location.href='Comlogin'"><p>
-										
-										아이디 : <input type="text" id="id" name="user_id" placeholder="아이디를 입력하세요"><p>
-										
-										비밀번호 : <input type="password" name="user_pw" placeholder="비밀번호를 입력하세요" ><p>
-									
-										<input type="submit" value="로그인">
-										
-										<div class="btn">			
-											<input type="button" class="btn1" value="아이디 찾기" onclick="location.href='findId'">
-											<input type="button" class="btn2" value="비밀번호 찾기" onclick="location.href='findPw'"><p>
-											<img src="C:/Team project employment/Project-of-group-4/s20210904/src/main/webapp/upload/sh"  onclick="location.href='join'">
-											 <input type="button" class="btn3" value="회원가입" onclick="location.href='join'">
-										</div>			
-									</form> 
-							        
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-primary">Save changes</button>
-							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-							      </div>
-							    </div>
-							  </div>
-							</div>
-	
+              		<a class="btn btn-primary" href="login">Login</a>
               	</c:when>
               	<c:when test="${id == 'rhksflwk0000'}">						<!-- 관리자 한명만있음ㅋ -->
               		<ul class="nav">
