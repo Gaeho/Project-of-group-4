@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-.comMarkMemberMenu {
+/* .comMarkMemberMenu {
 	margin-top: 5%;
-	/* background: #FFD700; */
+	background: #FFD700;
 	
 }
 
@@ -15,7 +15,7 @@ table.bookmarkList{
 	border: solid black;
 	height: 300px;
 	width: 1025px;
-	/* background: green; */
+	background: green;
 	font-size: 18px;
 }
 
@@ -31,7 +31,7 @@ td{
 	text-align: center;
 	border: solid;
 	height: 60px;
-}
+} */
 
 
 
