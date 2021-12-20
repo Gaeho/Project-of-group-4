@@ -31,12 +31,7 @@
 						</form>
 					</div>
 					<div>
-						<%-- <c:if test="${not empty  }">
- 							<a href="logoutPro.do">LOGOUT</a>
- 						</c:if>
- 						<c:if test="${empty id }">
- 							<a href="loginForm.do">LOGIN</a>
- 						</c:if> --%>
+					
 					</div>
 				</div>
 			</div>

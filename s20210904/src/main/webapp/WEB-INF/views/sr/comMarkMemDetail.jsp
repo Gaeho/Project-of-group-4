@@ -27,8 +27,7 @@
 		
 		
 	 	$.ajax({
-			url:"<%=context%>
-	/bookmark",
+			url:"<%=context%>/bookmark",
 			data : {
 				com_id : com_id,
 				user_id : user_id,
@@ -82,24 +81,20 @@
 									<c:when test="${itbookmark eq 0}">
 										<input type="button" class="btn btn_light" id="likebtn"
 											value="북마크  ☆ " onclick="setBookmark()">
-										<%--   <input type="hidden" id="likecheck" value="${itbookmark}"> --%>
 									</c:when>
 
 									<c:when test="${itbookmark eq 1}">
 										<input type="button" class="btn btn_danger" id="likebtn"
 											value="북마크 ★" onclick="setBookmark()">
-										<%--     <input type="hidden" id="likecheck" value="${itbookmark}"> --%>
 									</c:when>
-								</c:choose> com_id : <input type="text" id="com_id" value="${com_id }">
-								<p>
-									user_id : <input type="text" id="user_id" value="${user_id }">
-								<p>
-									it_bookmark : <input type="text" id="it_bookmark"
-										value="${itbookmark }">
-								<p>
-									mrk_res_code : <input type="text" id="mrk_res_code"
-										value="${mrk_res_code }">
-								<p></td>
+								</c:choose> 
+								<div class="bookmark_info">
+									com_id : <input type="text" id="com_id" value="${com_id }"><p>
+									user_id : <input type="text" id="user_id" value="${user_id }"><p>
+									it_bookmark : <input type="text" id="it_bookmark" value="${itbookmark }"><p>
+									mrk_res_code : <input type="text" id="mrk_res_code" value="${mrk_res_code }"><p>
+								</div>
+							</td>
 						</tr>
 					</div>
 					<table class="user_info1">
