@@ -187,8 +187,6 @@
 			</div>
 		</div>
 	</div>
-
-	<%-- <div>
 					<div class="middleTitle_anno_text">
 						<label for="compimg3">회사 이미지</label>
 						<div class="input-group mb-3">
@@ -205,7 +203,7 @@
 							</form>
 						</div>
 					</div>
-				</div> --%>
+				</div>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

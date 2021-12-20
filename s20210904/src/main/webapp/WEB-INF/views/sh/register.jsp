@@ -118,11 +118,9 @@
 						<div class="main__member">
 							<h1>개인회원가입</h1>
 							
-							<div class="main__member__border"></div>
+						<div class="main__member__border"></div>
 							<div class="main__btn">
 								<button type="button" class="member">회원</button>
-								<button type="button" class="company"
-									onclick="location.href='Comjoin'">기업</button>
 							</div>
 						</div>
 						
