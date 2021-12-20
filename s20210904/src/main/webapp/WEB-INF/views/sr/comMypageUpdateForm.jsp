@@ -1,150 +1,210 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>       
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String context = request.getContextPath();
+%>
 <html>
 <head>
+<link href="css/sr/SrComInfo.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-	var img_path="";
-	var uploadsts="non";
-	var page_location="mypage";
 	function uploadFile() {
-	    alert('uploadFile Start...');
-	    var form = new FormData();
-	    /* var user_id = document.getElementById('user_id').value; */
-	    img_path=document.getElementById('user_img').value;
-	    alert('img_path>>'+img_path);
-	    alert('uploadsts>>'+uploadsts);
-	    
-	    form.append( "file1", $("#file1")[0].files[0] );
-		form.append( "img_path", img_path);
-		form.append( "uploadsts", uploadsts);
-		form.append( "page_location", page_location);
-		
+		alert('uploadFile Start...');
+		var form = new FormData();
+		var comId1 = document.getElementById('comId1').value;
+		alert('comId1>>' + comId1);
+
+		form.append("file1", $("#file1")[0].files[0]);
+		form.append("comId1", $("#comId1")[0].value);
+
 		$.ajax({
-		    url: "/mbMypageImguploadForm",
-		    type: "POST",
-		    data: form,
-		    enctype: 'multipart/form-data',
-		    processData: false,
-		    contentType: false,
-		    datatype:'text',
-		    success: function (data) {
-		     /*  $('input[name=com_img11]').attr('src',data); */
-		     	alert("성공 data->"+data);
-		    	document.getElementById('imagesquare1').src=data;
-		    	document.getElementById('user_img').value=data;
-		    	uploadsts="on";
-		    },
-		    error: function () {
-		    	alert("실패");
-		      // Handle upload error
-		    }
-		});
-	}
-	
-	function uploadDelete() {
-		alert('uploadDelete Start...');
-		if(uploadsts=="submit"){
-			img_path='${member.user_img}';
-		}else{
-			img_path=document.getElementById('user_img').value;
-		}
-		alert("uploadsts : "+uploadsts);
-		alert('삭제할 내용 img_path : '+img_path);
- 
-	   $.ajax({
-		   url: "mbMypageUploadDelete",
-		   type: "POST",
-		   data: {"img_path":img_path,"uploadsts":uploadsts},
-		   dataType:'text',
-		   success: function () {
-			   alert("삭제성공!!");
-			   document.getElementById('imagesquare1').src='src=/img/dj/no_Image.gif';
-			   document.getElementById('user_img').value=null;
-			   uploadsts="off";
-			   document.getElementById('uploadsts_id').value=uploadsts;
+			url : "/DjComImguploadForm",
+			type : "POST",
+			data : form,
+			enctype : 'multipart/form-data',
+			processData : false,
+			contentType : false,
+			datatype : 'text',
+			success : function(data) {
+				alert("성공");
+				/*  $('input[name=com_img11]').attr('src',data); */
+				alert("도대체 뭔가 들어있긴 하니?->" + data)
+				document.getElementById('imagesquare1').src = data;
+				document.getElementById('imagesquare1').value = data;
+
 			},
-		    error: function () {
-		    	alert("삭제실패ㅜㅜ");
-		      // Handle upload error
-		    }
+			error : function() {
+				alert("실패");
+				// Handle upload error
+				// ...
+			}
 		});
 	}
-	
-	// 창을 벗어날때 upload했던 img파일 삭제
-    $(window).on("beforeunload", function(){
-    	alert("나가기");
-    	if(uploadsts=="on"){
-    		uploadDelete();
-    	}
-    });
-	
- 	// submit 할 경우에는 원래 존재하던 img파일 삭제
-    $(document).on("submit", "form", function(){ 
-    	$(window).off("beforeunload");
-    	alert("submit");
-    	if(uploadsts!="non"){
-    		uploadsts="submit";
-    		uploadDelete();
-    	}
-    });
+
+	function deleteFile() {
+		alert('deleteFile Start...');
+		var form1 = new FormData();
+		alert('삭제할 내용' + document.getElementById('imagesquare1').value);
+
+		//form1.append( "comImg123", $("#imagesquare1")[0].value);
+
+		var comImg123 = {
+			"comImg123" : document.getElementById('imagesquare1').value
+					.toString()
+		}
+
+		/*    comImg123.value = null; */
+
+		/* 	 this.clearImage()  */
+
+		/* 	form1.append( "imgpath11", document.getElementById('imagesquare1').value);
+		 */
+		$
+				.ajax({
+					url : "DjComImguploadForm",
+					data : comImg123,
+					dataType : 'text',
+					success : function(data) {
+						alert("삭제성공!!" + data);
+						document.getElementById('imagesquare1').src = 'src=/img/dj/no_Image.gif';
+
+					},
+					error : function() {
+						alert("삭제실패ㅜㅜ");
+						// Handle upload error
+						// ...
+					}
+				});
+	}
 </script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/header.jsp"%>
-<h1>마이페이지수정페이지</h1>
-<form id="mypage_form" action="comMypageUpdate" method="post">
+	<%@ include file="/WEB-INF/views/header.jsp"%>
 
-	<input type="hidden" id="user_img" name="user_img" value="${member.user_img}">
-	<input type="image" class="imagesquare1" src="${member.user_img}" 
-		alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" ><p>						  
-	<input  type="file"  id="file1" name="file1" /><p> 
-	<input type="button" value="업로드" onclick="uploadFile()">
-	<input type="button" value="삭제" id="delImg12" onclick="uploadDelete()"> 
-	
-	아이디 <input type="hidden" value="${member.user_id }" name="user_id">${member.user_id }<br>
-	비밀번호 <input type="password" value="${member.user_pw}" name="user_pw"><br>
-	이름 <input type="text" value="${member.user_name }" name="user_name"><br>
-	생년월일 <input type="text" value="${member.user_brh }" name="user_brh"><br>
-	성별 
-	<c:if test="${member.user_sex eq 'F' }">
-		<label><input type="radio" value="F" name="user_sex" checked="checked">남성</label>
-		<label><input type="radio" value="M" name="user_sex">여성</label>
-	</c:if>
-	<c:if test="${member.user_sex eq 'M' }">
-		<label><input type="radio" value="F" name="user_sex" >남성</label>
-		<label><input type="radio" value="M" name="user_sex" checked="checked">여성</label>
-	</c:if>
-	<br>
-	학력
-	<select name="user_edu">
-		<c:forEach var="commlist" items="${user_edu_commlist }">
-			<c:if test="${member.user_edu eq commlist.sub_cat }">
-				<option value="${commlist.sub_cat }" selected="selected">${commlist.comm_ctx }</option>
-			</c:if>
-			<c:if test="${member.user_edu ne commlist.sub_cat }">
-				<option value="${commlist.sub_cat }">${commlist.comm_ctx }</option>
-			</c:if>
-		</c:forEach>
-	</select>
-	<br>
-	전화번호 <input type="text" value="${member.user_tel }" name="user_tel"><br>
-	이메일 <input type="text" value="${member.user_email }" name="user_email"><br>
-	주소 <input type="text" value="${member.user_addr }" name="user_addr"><br>
-	<input type="submit" value="확인" id="submit_btn"> <input type="button" value="취소"><br>
+	<div class="CompanyMypageContainer">
+		<div class="comInfoMenu">
+			<div class="comInfoUpper">
+				<div>
+					<h1>마이페이지 작업 중</h1>
+				</div>
+			</div>
+			<div class="comInfoUnder">
+				<div class="comInfoleft">
+					<%@ include file="myPageMenu.jsp"%>
+				</div>
+				<div class="comInforight">
+					<div class="divTableRow-top">
+						<div>
+							<div id="com_info-img">
+								<div>
+									<img class="comLogo" src="${commCompany1.com_img}" />
+								</div>
+							</div>
+							<div id="com_info-bus">
+								<div class="info-text-bus">사업내용</div>
+								<div class="info-value-bus"><textarea>${commCompany1.com_bus}</textarea></div>
+							</div>
+						</div>
+					</div>
+						<div class="hrTag">
+							<hr>
+						</div>
+						
+					<div class="divTableRow-mid">
+						<div>
+							<div class="divTableRow">
+								<div id="com_info">
+									<div class="info-text">아이디</div>
+									<div class="info-value"><input type="text" value="${commCompany1.com_id}"></div>
+								</div>
+							</div>
+							<div class="divTableRow">
+								<div id="com_info">
+									<div class="info-text">회사명</div>
+									<div class="info-value"><input type="text" value="${commCompany1.com_name}"></div>
+								</div>
+							</div>
+							<div class="divTableRow">
+								<div id="com_info">
+									<div class="info-text">전화번호</div>
+									<div class="info-value"><input type="text" value="${commCompany1.com_tel}"></div>
+								</div>
+							</div>
+							<div class="divTableRow">
+								<div id="com_info">
+									<div class="info-text">주소</div>
+									<div class="info-value"><input type="text" value="${commCompany1.com_addr}"></div>
+								</div>
+							</div>
+							<div class="divTableRow">
+								<div id="com_info">
+									<div class="info-text">이메일</div>
+									<div class="info-value"><input type="text" value="${commCompany1.com_email}"></div>
+								</div>
+							</div>
+							<div class="divTableRow">
+								<div id="com_info">
+									<div class="info-text">업종</div>
+									<div class="info-value"><input type="text" value="${commCompany1.comm_ctx}"></div>
+								</div>
+							</div>
+							<div class="divTableRow">
+								<div id="com_info">
+									<div class="info-text">담당자 전화번호</div>
+									<div class="info-value"><input type="text" value="${commCompany1.com_mgr_tel}"></div>
+								</div>
+							</div>
+							<div class="divTableRow">
+								<div id="com_info">
+									<div class="info-text">사이트</div>
+									<div class="info-value"><input type="text" value="${commCompany1.com_web}"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divTableRow_bottom">
+						<div>
+							<div id="com_info_imges">사내이미지</div>
+							<div>	
+								<img class="imges" src="${commCompany1.com_img1}" /> 
+								<img class="imges" src="${commCompany1.com_img2}" /> 
+								<img class="imges" src="${commCompany1.com_img3}" />
+								<br>
 
-</form>
-<%@ include file="/WEB-INF/views/footer.jsp"%>
+							</div>
+						</div>
+					</div>
+						<div class="middleTitle_anno_text">
+							<label for="compimg3">회사 이미지</label>
+							<div class="input-group mb-3">
+								<form id="fileForm" name="frm" method="post">
+									<input class="imagesquare1" name="com_img11" type="image" src="${compInfo.com_img}" alt="이미지 없음"
+										onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1"
+										value="${compInfo.com_img}">
+									<p>
+										<input type="file" class="form-control" id="file1" name="file1" />
+										<input type="hidden" id="comId1" name="comId1" value="${compInfo.com_id}">
+									<p>
+										<input type="button" value="업로드" onclick="uploadFile()"> 
+										<input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
+								</form>
+							</div>
+						</div>
+						<a class="mbMypageMenuBox" href="ComMypageUpdate">마이페이지수정</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
-
-		

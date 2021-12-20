@@ -13,7 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="/WEB-INF/views/header.jsp"%>
 	<div class="CompanyMypageContainer">
 		<div class="compAppStatus_out">
 		<%@ include file="myPageMenu.jsp" %>
