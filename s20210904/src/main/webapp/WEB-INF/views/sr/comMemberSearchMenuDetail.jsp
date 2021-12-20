@@ -1,32 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="header.jsp"%>
-<%@ include file="myPageMenu.jsp"%>
-<%@ include file="footer.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="css/sr/comMemberSearch.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>ComMypage</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<div class="CompanyMypageContainer">
-		<div class="compAppStatus_in">
-			<table>
-				<tr>
-					<th>회원프사</th>
-					<th>회원 아이디</th>
-					<th>이력서 제목</th>
-				</tr>
-				<c:forEach var="memResumeBmarkList" items="${memResumeBmarkList }">
-					<tr>
-						<td><img class="MemImg" src="${memResumeBmarkList.user_img }" /></td>
-						<td><a href="detail2?user_id=${memResumeBmarkList.user_id }&com_id=${com_id}&mrk_res_code=${memResumeBmarkList.mrk_res_code}&isResume=1">${memResumeBmarkList.user_id}</a></td>
-						<td>${memResumeBmarkList.res_title}</td>
-					</tr>
-				</c:forEach>
-			</table>
+		<div class="comInfoMenu">
+			<div class="comInfoUpper">
+				<div>
+					<h1>마이페이지 작업 중</h1>
+				</div>
+			</div>
+			
+			<div class="comInfoUnder">
+				<div class="comInfoleft">
+					<%@ include file="myPageMenu.jsp"%>
+				</div>
+				<div class="comInforight">
+					<div class="comInfoSearch">
+						<form class="search_form" action="SrSearch">
+								<input class="search_keyword" name="keyword" type="text" placeholder="검색어를 입력하세요" />
+								<button class="search_bnt" type="submit">search</button>
+						</form>
+					</div>
+					<table class="table table-hover">
+						<thead class="table-light">
+						<tr>
+							<th>회원프사</th>
+							<th>회원 아이디</th>
+							<th>이력서 제목</th>
+						</tr>
+						</thead>
+						<c:forEach var="memResumeBmarkList" items="${memResumeBmarkList }">
+						<tr>
+							<td><img class="MemImg" src="${memResumeBmarkList.user_img }" /></td>
+							<td><a href="detail2?user_id=${memResumeBmarkList.user_id }&com_id=${com_id}&mrk_res_code=${memResumeBmarkList.mrk_res_code}&isResume=1">${memResumeBmarkList.user_id}</a></td>
+							<td>${memResumeBmarkList.res_title}</td>
+						</tr>
+						</c:forEach>
+					</table>
+					<%-- <c:if test="${not empty }">
+ 						<a href="logoutPro.do">LOGOUT</a>
+ 					</c:if>
+ 					<c:if test="${empty }">
+ 						<a href="loginForm.do">LOGIN</a>
+ 					</c:if> --%>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="page11">
@@ -49,8 +75,8 @@
 			alert("keyword->"+keyword);
 			location.href="SrSearch?currentPage="+vCurrentPage+"&keyword="+key;
 			}
-													
 		</script>
 	</div>
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

@@ -31,10 +31,16 @@
 
 .comInforight{
 	width:70%;
-	border: 1px solid silver;
 }
 
-.memberImg{
+.search_form{
+	display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+
+.MemImg{
 	width: 150px;
 	height: 150px;
 	border: 1px solid black;
