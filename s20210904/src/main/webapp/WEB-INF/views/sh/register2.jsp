@@ -78,14 +78,13 @@
 						<div class="main__member">
 							<h1>기업회원가입</h1>
 							
-							<div class="main__member__border"></div>
+						<div class="main__member__border"></div>
 							<div class="main__btn">
-								<button type="button" class="member"  onclick="location.href='join'">회원</button>
 								<button type="button" class="company">기업</button>
 							</div>
 						</div>
 						
-						<form action="Comjoin" method="post" class="main__form">
+						<form action="ComjoinSave" method="post" class="main__form">
 			
 							<!-- 회사명 적는 칸  -->
 							<div class="main__form__top">
@@ -118,12 +117,9 @@
 								<div class="form__find__right">	
 									<input type="text"   placeholder="상세주소" >
 									<%@ include file="/WEB-INF/views/sh/ShAddr2.jsp"%>
-
-									
-
 									</div>
-								
-																
+								</div>
+																			
 								<!-- 사업자 등록번호 적는 칸 -->
 								<div class="main__form__find">
 									<div class="form__find__left">

@@ -25,14 +25,20 @@ function logincheck() {
 }
 
 </script>
+
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>					
 					
 					<div id="Shcontainer">
 							<div class="main">
+
+									
+
 									<form action="loginForm"  method="post" class="main__form" name="frm" onsubmit=" return logincheck()">
-											<h1>Login</h1>
+											<h1>개인로그인</h1>
+
 						
 										<div class="main__form__find">
 											<label for="sign_id">아이디</label>

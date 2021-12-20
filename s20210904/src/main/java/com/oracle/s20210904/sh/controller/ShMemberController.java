@@ -59,7 +59,7 @@ public class ShMemberController {
 		//System.out.println("ShMemberController joinmember"+joinmemeber.getUser_id());
 		model.addAttribute("joinmember", joinmember);
 		
-		return "sh/registerresult";
+		return "sh/memberlogin";
 	}
 	
 
@@ -75,7 +75,7 @@ public class ShMemberController {
 		System.out.println("ShMemberController ComjoinSave Start...");
 	    int joincom = ms.joincom(company);
 		model.addAttribute("joincom", joincom);
-		return "Main";
+		return "sh/companylogin";
 		
 	}
 	//개인로그인 
