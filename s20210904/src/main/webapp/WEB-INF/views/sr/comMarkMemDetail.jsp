@@ -28,8 +28,7 @@
 		
 		
 	 	$.ajax({
-			url:"<%=context%>
-	/bookmark",
+			url:"<%=context%>/bookmark",
 			data : {
 				com_id : com_id,
 				user_id : user_id,

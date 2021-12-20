@@ -187,12 +187,12 @@
 							<label for="compimg3">회사 이미지</label>
 							<div class="input-group mb-3">
 								<form id="fileForm" name="frm" method="post">
-									<input class="imagesquare1" name="com_img11" type="image" src="${compInfo.com_img}" alt="이미지 없음"
+									<input class="imagesquare1" name="com_img11" type="image" src="${commCompany1.com_img}" alt="이미지 없음"
 										onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1"
-										value="${compInfo.com_img}">
+										value="${commCompany1.com_img}">
 									<p>
 										<input type="file" class="form-control" id="file1" name="file1" />
-										<input type="hidden" id="comId1" name="comId1" value="${compInfo.com_id}">
+										<input type="hidden" id="comId1" name="comId1" value="${commCompany1.com_id}">
 									<p>
 										<input type="button" value="업로드" onclick="uploadFile()"> 
 										<input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
