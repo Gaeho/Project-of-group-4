@@ -34,8 +34,14 @@
 	border: 1px solid silver;
 }
 
-.memberImg{
+.MemImg{
 	width: 150px;
 	height: 150px;
 	border: 1px solid black;
+}
+
+.compAppStatus_btn{
+	display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 }

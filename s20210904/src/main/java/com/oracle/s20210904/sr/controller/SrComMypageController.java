@@ -329,7 +329,26 @@ public class SrComMypageController {
 			String currentPage/* , Bookmark bookmark */) {
 				
 				
-		String comid = (String) request.getSession().getAttribute("id");
+//		String comid = (String) request.getSession().getAttribute("id");
+		
+		
+		
+		// 경우에 따라 리턴 할 객체
+				String returnString = null;
+				String sessionCheck = "session_none";
+				// 세션 처리
+				String cid = checkId(request);
+				System.out.println("세션 잘 갖고 오는지 확인=>" + cid);
+
+				if (cid.equals(sessionCheck)) {
+					System.out.println("실행 완료");
+				} else if (cid != null) {
+					returnString = "sr/ComAppStatus";
+				}
+				
+				
+		appAnnMem.setCom_id(cid);
+				
 		System.out.println("SrComMypageController ComAppStatus START...");
 
 		// ----------------------------------------------------------------------------
@@ -337,7 +356,7 @@ public class SrComMypageController {
 		CommCompany commCompany1 = scms.comInfo(commCompany);
 
 		// 공고리스트 뿌려줄거
-		List<Announce> annoList = scms.AnnounceList(comid);
+		List<Announce> annoList = scms.AnnounceList(cid);
 		// 처음들어왔을때 디폴트값
 		if (appAnnMem.getAnno_code() == null) {
 			appAnnMem.setAnno_code(annoList.get(0).getAnno_code());
