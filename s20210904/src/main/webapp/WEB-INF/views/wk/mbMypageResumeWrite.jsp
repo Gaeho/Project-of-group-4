@@ -149,7 +149,7 @@
 	<div class="mbMypageMenu">
 		<div class="menu_profile">
 			<input type="image" class="profile_img" src="${profile}" 
-				alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" >
+				alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="profile_img" >
 			<div class="mbFormText">${mbid } 님</div>
 		</div>
 		
