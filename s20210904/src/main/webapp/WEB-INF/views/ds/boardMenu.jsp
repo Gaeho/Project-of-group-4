@@ -24,7 +24,7 @@
 				<c:if test="${qtotCnt > 0 }">
 					<c:forEach var="qList" items="${qnaList}">					
 						<tr>
-							<td>${qList.user_id}</td><td>${qList.post_title }</td><td><input type="button" value="답변하기"></td>
+							<td>${qList.user_id}</td><td>${qList.post_title }</td><td><input type="button" value="답변하기" onclick="location.href='<%=context%>/postView?post_code=${qList.post_code}'"></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -43,6 +43,7 @@
 		</div>
 		<div class="notice">
 			<span class="subject">공지사항</span>
+			
 			<table class="boardTable">
 				<tr class="title">
 					<th>작성자</th><th>제목</th><th></th>
@@ -55,11 +56,13 @@
 				<c:if test="${ntotCnt > 0 }">
 					<c:forEach var="nList" items="${noticeList}">					
 						<tr>
-							<td>${nList.user_id }</td><td>${nList.post_title }</td><td><input type="button" value="수정하기"></td>
+							<td>${nList.user_id }</td><td>${nList.post_title }</td><td><input type="button" value="수정하기"
+								onclick="location.href='<%=context%>/postUpdate?post_code=${nList.post_code}'"></td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</table>
+			<input type="button" value="작성하기" class="btn_notice" onclick="location.href='<%=context%>/postInsert'">
 			<ul class="pageBtn">
 						<li><c:if test="${pg2.startPage > pg2.pageBlock }">
 							<a href="boardMenu?currentPage2=${pg2.startPage-pg2.pageBlock}&currentPage=${pg.currentPage}">[이전]</a></c:if>

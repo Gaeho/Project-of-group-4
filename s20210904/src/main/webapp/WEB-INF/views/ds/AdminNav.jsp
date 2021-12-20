@@ -44,7 +44,7 @@
 				</span>
 			</div>
 			<div class=navBtn>
-				<a href="AdminMain" class="logo"><span><img src="<%=context%>/img/ds/logo.png" width="100%" height="50px"></span></a>
+				<a href="<%=context%>/main" class="logo"><span><img src="<%=context%>/img/ds/logo.png" width="100%" height="50px"></span></a>
 				<hr class="line"> 
 				<a href="AdminMain"><span>대시보드</span></a>
 				<hr class="line">

@@ -40,7 +40,7 @@ public class SrComMypageController {
 
 	private String checkId(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String cid = (String) session.getAttribute("cmid");
+		String cid = (String) session.getAttribute("id");
 		if (cid == null || cid.equals("")) {
 			return "session_none";
 		}
@@ -322,8 +322,14 @@ public class SrComMypageController {
 
 	}
 
+	@GetMapping(value="noticeDel")
+	public String noticeDel(String ntc_code) {
+		scms.noticeDel(ntc_code);
+		
+		return "redirect:ComAppStatus";
+	}
+	
 	// 지원현황 list
-
 	@GetMapping(value = "ComAppStatus")
 	public String ComAppStatus(Model model, AppAnnMem appAnnMem, CommCompany commCompany, HttpServletRequest request,
 			String currentPage/* , Bookmark bookmark */) {
@@ -629,54 +635,54 @@ public class SrComMypageController {
 	
 	
 	// 마이페이지 수정(비밀번호 확인 입력페이지로)d
-//		@RequestMapping(value = "ComMypageUpdate")
-//		public String mbMypageUpdate(HttpServletRequest request, Model model) {
-//			System.out.println("comMypageController comMypageUpdate()");
-//			String mbid=checkId(request);
-//			model.addAttribute("mbid", mbid);
-//			
-//			return "/sr/comMypageUpdatePwCheck"; 
-//		}
-//		
-//		// 마이페이지 수정(수정정보 입력페이지)
-//		@PostMapping(value = "ComMypageUpdatePwCheck")
-//		public String mbMypageUpdateForm(HttpServletRequest request, Model model, CommCompany commCompany) {
-//			
-//			System.out.println("comMypageController comMypageUpdateForm()");
-//			// 경우에 따라 리턴 할 객체
-//			String returnString = null;
-//			String sessionCheck = "session_none";
-//			// 세션 처리
-//			String cid = checkId(request);
-//			System.out.println("세션 잘 갖고 오는지 확인=>" + cid);
-//
-//			if (cid.equals(sessionCheck)) {
-//				System.out.println("실행 완료");
-//			} else if (cid != null) {
-//				returnString = "sr/ComInfo";
-//			}
-//			
-//			commCompany.setCom_id(cid);
-//			
-//			String returnpage=null;
-//			
-//			String com_pw=request.getParameter("com_pw");
-//			CommCompany commCompany1=scms.comInfo(commCompany);
-//			
-////			String main_cat="061";
-////			List<WkCommDto> commlist=scms.commList(main_cat);
-////			model.addAttribute("user_edu_commlist", commlist);
-//			
-//			if(com_pw.equals(commCompany.getCom_pw())) {
-//				model.addAttribute("commCompany1", commCompany1);
-//				returnpage="/sr/comMypageUpdateForm";
-//			}else {
-//				String msg="잘못된 비밀번호입니다";
-//				model.addAttribute("msg", msg);
-//				returnpage="/sr/comMypageUpdatePwCheck";
-//			}
-//			return returnpage; 
-//		}
+		@RequestMapping(value = "ComMypageUpdate")
+		public String mbMypageUpdate(HttpServletRequest request, Model model) {
+			System.out.println("comMypageController comMypageUpdate()");
+			String comid=checkId(request);
+			model.addAttribute("comid", comid);
+			return "/sr/comMypageUpdatePwCheck"; 
+		}
+		
+		// 마이페이지 수정(수정정보 입력페이지)
+		@PostMapping(value = "comMypageUpdateForm")
+		public String comMypageUpdateForm(HttpServletRequest request, Model model, CommCompany commCompany){
+			
+			System.out.println("comMypageController comMypageUpdateForm()");
+			// 경우에 따라 리턴 할 객체
+			String returnString = null;
+			String sessionCheck = "session_none";
+			// 세션 처리
+			String cid = checkId(request);
+			System.out.println("세션 잘 갖고 오는지 확인=>" + cid);
+
+			if (cid.equals(sessionCheck)) {
+				System.out.println("실행 완료");
+			} else if (cid != null) {
+				returnString = "sr/ComInfo";
+			}
+			
+			commCompany.setCom_id(cid);
+			
+			String returnpage=null;
+			
+			String com_pw=commCompany.getCom_pw();
+			CommCompany commCompany1=scms.comInfo(commCompany);
+			
+//			String main_cat="061";
+//			List<WkCommDto> commlist=scms.commList(main_cat);
+//			model.addAttribute("user_edu_commlist", commlist);
+			
+			if(com_pw.equals(commCompany1.getCom_pw())) {
+				model.addAttribute("commCompany1", commCompany1);
+				returnpage="/sr/comMypageUpdateForm";
+			}else {
+				String msg="잘못된 비밀번호입니다";
+				model.addAttribute("msg", msg);
+				returnpage="/sr/comMypageUpdatePwCheck";
+			}
+			
+			return returnpage; 
+		}
 	
 	// 마이페이지 수정 db작동
 //	@PostMapping(value = "comMypageUpdate")

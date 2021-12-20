@@ -97,35 +97,37 @@
 							</td>
 						</tr>
 					</div>
-					<table class="user_info1">
-						<h2>기본 정보</h2>
-						<tr>
-							<th>프로필</th>
-							<td><img id="memberDetailImg" src="${mem.user_img}"> <%-- <img class="memberImg" src="${mem.user_img}"/> --%></td>
-						</tr>
-						<tr>
-							<th>이름</th>
-							<td>${mem.user_name}</td>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td>${mem.user_email}</td>
-						</tr>
-						<tr>
-							<th>전화번호</th>
-							<td>${mem.user_tel}</td>
-						</tr>
-						<tr>
-							<th>주소</th>
-							<td>${mem.user_addr}</td>
-						</tr>
-					</table>
-					<table class="user_info2">
-						<tr>
-							<th>원하는 직종</th>
-							<td>${mem.jobTag}</td>
-						</tr>
-					</table>
+					<div>
+						<table class="user_info1">
+							<h2>기본 정보</h2>
+							<tr>
+								<th>프로필</th>
+								<td><img id="memberDetailImg" src="${mem.user_img}"> <%-- <img class="memberImg" src="${mem.user_img}"/> --%></td>
+							</tr>
+							<tr>
+								<th>이름</th>
+								<td>${mem.user_name}</td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td>${mem.user_email}</td>
+							</tr>
+							<tr>
+								<th>전화번호</th>
+								<td>${mem.user_tel}</td>
+							</tr>
+							<tr>
+								<th>주소</th>
+								<td>${mem.user_addr}</td>
+							</tr>
+						</table>
+						<table class="user_info2">
+							<tr>
+								<th>원하는 직종</th>
+								<td>${mem.jobTag}</td>
+							</tr>
+						</table>
+					</div>
 					<table class="resume">
 						<div class="resumeText"><h2>이력서</h2></div>
 						<tr>

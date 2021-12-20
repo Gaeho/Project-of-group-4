@@ -100,4 +100,10 @@ public class SyPostServiceImpl implements SyPostService {
 		List<Post> postSearch = syPostDaoImpl.postSearch(post);
 		return postSearch;
 	}
+	
+	@Override
+	public int max() {
+		int maxCount = syPostDaoImpl.max();
+		return maxCount;
+	}
 }

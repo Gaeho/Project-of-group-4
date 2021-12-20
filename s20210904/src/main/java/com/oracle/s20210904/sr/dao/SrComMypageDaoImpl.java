@@ -338,6 +338,11 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			Bookmark bookmark2=session.selectOne("SrBoo", bookmark);
 			return bookmark2;
 		}
+		
+		@Override
+		public void noticeDel(String ntc_code) {
+			session.delete("noticeDel",ntc_code);
+		}
 
 	
 

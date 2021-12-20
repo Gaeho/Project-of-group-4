@@ -12,7 +12,7 @@
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <h1>마이페이지수정</h1><p>
-<form action="ComMypageUpdateForm" method="post">
+<form action="comMypageUpdateForm" method="post">
 	비밀번호를 입력하세요<br>
 	<input type="password" name="com_pw"><br>
 	<c:if test="${not empty msg }">${msg }<p></c:if>
