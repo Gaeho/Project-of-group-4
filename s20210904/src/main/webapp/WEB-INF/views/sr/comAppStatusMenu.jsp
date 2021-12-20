@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="header.jsp"%>
-<%@ include file="footer.jsp" %>
-<%@ include file="myPageMenu.jsp" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +13,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
+<%@ include file="header.jsp"%>
 	<div class="CompanyMypageContainer">
 		<div class="compAppStatus_out">
+		<%@ include file="myPageMenu.jsp" %>
 			<div class="compAppStatus_in">
 				<div class="compAppStatus_btn">
 					<select onclick="location.href='ComAppStatus?anno_code='+this.value">
@@ -67,5 +68,6 @@
 			</div>
 		</div>
 	</div>
+		<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

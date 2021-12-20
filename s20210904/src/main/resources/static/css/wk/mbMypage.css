@@ -1,0 +1,126 @@
+@charset "UTF-8";
+/*     mypage 공통css       */
+
+.mb_center{
+	text-align: center;
+	align-self: center;
+}
+
+.mb_flex{
+	display: flex;
+}
+
+.mb_width4{
+	width: 400px;
+}
+
+.mb_width5{
+	width: 500px;
+}
+
+.mb_width6{
+	width: 600px;
+}
+
+.mb_height3{
+	height: 300px;
+}
+
+.mb_p1{
+	padding: 10px;
+}
+
+/*     mypage 공통css       */
+
+
+
+/*     mbForm       */
+.mbForm{
+	margin-left: 10%;
+	max-width: 700px;
+}
+
+
+.mbMypageTable_title{
+	margin: 10px 20px 10px;
+}
+
+.mbFormText{
+	font-size: 20px;
+	padding: 10px;
+	min-width: 150px;
+}
+
+.mbFormDate{
+	font-size: 20px;
+	padding: 10px;
+	min-width: 50px;
+	text-align: center;
+}
+
+.mbFormTitle {
+	font-size: 30px;
+	padding: 20px;
+	border: none;
+	background: #F1C40F;
+	font-weight: bold;
+}
+
+.mbFormSubTitle{
+	font-size: 24px;
+	padding: 10px;
+	min-width: 150px;
+	margin-left: 1em;
+}
+
+.mbConfirm{
+	padding: 150px 0 0;
+}
+
+.mbProfileBtn{
+	padding: 40px 30px 0;
+}
+
+.mbFormInput>input{
+	height: 30px;
+	margin: 10px 0 10px;
+}
+
+.mbFormInput>select{
+	margin: 10px 0 10px;
+}
+
+.mbFormInput>textarea{
+	margin: 10px 0 10px;
+	resize: none;
+}
+
+.mbBtnleft{
+	color: black !important;
+	margin: 20px 20px 30px;
+	margin-left: 150px;
+}
+
+.mbBtn{
+	color: black !important;
+	margin: 20px 20px 30px;
+}
+
+.mbDeleteBtn{
+	color: #fff;
+	border: 1px solid #717171;
+	background-color: #717171;
+	height: 35px;
+	widows: 70px;
+	
+}
+
+.mbDeleteBtn_area{
+	text-align: right;
+	padding: 10px 30px;
+}
+
+
+/*     mbForm       */
+
+

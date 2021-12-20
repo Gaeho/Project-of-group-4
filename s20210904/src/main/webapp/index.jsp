@@ -14,9 +14,8 @@
 	 <%-- <%response.sendRedirect("GmAnnoList"); %>  --%> 
 	<%-- <%response.sendRedirect("DjAnnoWrite"); %> --%>
 
-	<%--  <%response.sendRedirect("ComInfo"); %>  --%>
-    <%-- <%response.sendRedirect("join");%> --%>  
-	<%response.sendRedirect("main"); %>
+	 <%response.sendRedirect("main"); %> 
+
 	<%--  <%response.sendRedirect("applyDetail"); %>  --%>
 
 	<%-- <%response.sendRedirect("applyDetail"); %>  --%>
