@@ -82,11 +82,11 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	
 	// 북마크 List
 	@Override
-	public List<MemBmark> bookmarkList(MemBmark memBmark ) {
+	public List<MemResumeBmark> bookmarkList(MemResumeBmark memResumeBmark ) {
 		
-		List<MemBmark> bookmarkList = null;
+		List<MemResumeBmark> bookmarkList = null;
 		System.out.println("SrComMypageServiceImpl bookmarkList Start...");
-		bookmarkList = scmd.bookmarkList(memBmark);
+		bookmarkList = scmd.bookmarkList(memResumeBmark);
 		System.out.println("SrComMypageServiceImpl bookmarkList.size"+bookmarkList.size());
 		
 		

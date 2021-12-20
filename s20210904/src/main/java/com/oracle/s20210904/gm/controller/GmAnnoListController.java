@@ -116,7 +116,7 @@ public class GmAnnoListController {
 	}
 	
 	@GetMapping(value = "detail")
-	public String detail(HttpServletRequest request, String anno_code, ComAnnounce com, Model model) {
+	public String detail(HttpServletRequest request, String anno_code, ComAnnounce com, Resume resume, Model model) {
 		
 		//String user_id ="dmdtla054";
 		String id=check_userid(request);
@@ -187,6 +187,37 @@ public class GmAnnoListController {
 		model.addAttribute("comsec", comsec);
 		System.out.println("------------------------------------");
 		
+		System.out.println("GmAnnoListController apply Start List...");
+		int tot = as.applytotal();
+		System.out.println("applyList tot->"+tot);
+		System.out.println("----------------------------------");
+			
+		System.out.println("GmAnnoListController applyList Start...");
+		System.out.println("GmAnnoListController applyList resume.getUser_id()->"+resume.getUser_id());
+		
+		String user_id = "";
+		// 이력서 List
+		List<Resume> listres = as.listres(resume); 
+		
+		System.out.println("GmAnnoListController applyList listres.size->"+listres.size());
+		for(Resume res : listres) {
+			if (user_id.isEmpty()) { // user_id 값이 없을 때 
+				user_id = res.getUser_id();
+				System.out.println("GmAnnoListController user_id->"+user_id);
+			}
+			System.out.println("---------applyList Start -------------");
+			System.out.println("res.getUser_id()->"+res.getUser_id());
+			System.out.println("res.getRes_title()-> "+res.getRes_title());
+			System.out.println("res.getRes_date()->"+res.getRes_date());
+			System.out.println("----------applyList End------------------");
+			
+		}
+		
+		model.addAttribute("tot", tot);
+		model.addAttribute("listres", listres);
+		model.addAttribute("anno_code", anno_code); // 따로 가져온 값들을 저장해서 넘겨야함
+		model.addAttribute("user_id", user_id); // 따로 가져온 값들을 저장해서 넘겨야함
+		
 		return "gm/GmAnnoDetail";
 		
 	}
@@ -220,12 +251,16 @@ public class GmAnnoListController {
 
 		 }
 		
+		/*
 		// 이력서 List
 		@RequestMapping(value = "GmApplyList")
-		public String apply(HttpServletRequest request, Resume resume, String anno_code, String currentPage, Model model) {
-			
+		public String apply(HttpServletRequest request, Resume resume, String anno_code, Model model) {
+		
 			String id=check_userid(request);
 			System.out.println("세션 확인 아이디를 갖고오는지->"+id);
+			
+			System.out.println("GmAnnoListController datacarry anno_code->"+anno_code);
+			System.out.println("GmAnnoListController datacarry user_id->"+id);
 			
 			System.out.println("GmAnnoListController apply Start List...");
 			int tot = as.applytotal();
@@ -258,10 +293,11 @@ public class GmAnnoListController {
 			model.addAttribute("anno_code", anno_code); // 따로 가져온 값들을 저장해서 넘겨야함
 			model.addAttribute("user_id", user_id); // 따로 가져온 값들을 저장해서 넘겨야함
 			
-			return "gm/GmApplyList";
+			return "gm/GmAnnoDetail";
 			
 		}
-	
+		*/
+		
 		// 알림
 		@GetMapping(value = "applyDetail")
 		public String applyDetail(Apply apply,Model model) {

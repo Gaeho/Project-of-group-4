@@ -1,39 +1,70 @@
 @charset "UTF-8";
 
-.ComBookmarkDetail {
 
-	/* background: #FFD700; */
-	
+.CompanyMypageContainer{
+	display: flex;
+	margin-bottom: 30px;
 }
 
-.user {
-	align-items: center;
-	text-align: center;
-	/* border: solid black; */
-}
-
-.bookmark{
-	align-items: center;
-	text-align: center;
+.CompanyMypageContainer > div {
+	margin: 0 auto;
+	width: 1000px;
 }
 
 
-table.user_info{
-	margin-left: 17%;
-	margin-top: 2%;
+.comInfoUpper{
+	display: flex
+	min-height: 200px;
+}
+
+.comInfoUpper > div{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.comInfoUnder{
+	display: flex;
+}
+
+.comInfoleft{
+	width: 30%;
+}
+
+.comInforight{
+	display:flex;
+	width:70%;
+	border: 1px solid silver;
+	/* border: hidden; */
+	flex-direction: column;
+	align-items: center;
+}
+
+#memberDetailImg{
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+}
+
+--------------------------------------
+
+
+.user_info1{
 	align-items: center;
 	text-align: center;
-	border: solid black;
+	border: 1px solid black;
 	height: 300px;
-	width: 1025px;
+	width: 700px;
 	/* background: green; */
 	font-size: 18px;
 }
 
 h2{
-	margin-top: 2%;
 	font-size: 30px;
 	font-style: bold;
+}
+
+.resumeText{
+	margin-top: 30px;
 }
 
 th{
@@ -49,26 +80,23 @@ td{
 	height: 60px;
 }
 
-table.user_info2{
-	margin-left: 17%;
-	margin-top: 2%;
+.user_info2{
+	margin-top: 30px;
 	align-items: center;
 	text-align: center;
 	border: solid black;
 	height: 100px;
-	width: 1025px;
+	width: 700px;
 	/* background: green; */
 	font-size: 18px;
 }
 
-table.resume{
-	margin-left: 17%;
-	margin-top: 2%;
+.resume{
 	align-items: center;
 	text-align: center;
 	border: solid black;
 	height: 100px;
-	width: 1025px;
+	width: 700px;
 	/* background: green; */
 	font-size: 18px;
 }

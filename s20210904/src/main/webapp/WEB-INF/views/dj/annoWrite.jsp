@@ -189,7 +189,7 @@ function deleteFile() {
 											공고 제목
 										</div>
 										<input type="text" class="anno_title_insert" name="anno_title"
-											placeholder="공고 제목을 입력하세요." required="required">
+											placeholder="공고 제목을 입력하세요." required="required" maxlength="25">
 									</div>
 				
 									<div>
