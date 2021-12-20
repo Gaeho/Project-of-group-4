@@ -205,7 +205,7 @@
 					
 					
 					<div class="mbFormTitle"><a>기본 정보</a></div>
-					<div class="mbFormText">이력서 사진</div>
+					<div class="mbFormText">프로필 사진</div>
 					<div class="mb_flex mb_p1">
 						<input type="hidden" id="res_img" name="res_img" value="${resumedetail.res_img}">
 						<input type="image" class="profile_img" src="${resumedetail.res_img}" 
