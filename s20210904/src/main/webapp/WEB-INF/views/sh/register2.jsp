@@ -84,7 +84,7 @@
 							</div>
 						</div>
 						
-						<form action="ComjoinSave" method="post" class="main__form">
+						<form action="Comjoin" method="post" class="main__form">
 			
 							<!-- 회사명 적는 칸  -->
 							<div class="main__form__top">
@@ -113,13 +113,12 @@
 									<input type="text" id = "addr2" placeholder="도로명 주소"	 name="com_addr"  readonly="readonly">
 									</div>
 									
-
 								<div class="form__find__right">	
 									<input type="text"   placeholder="상세주소" >
 									<%@ include file="/WEB-INF/views/sh/ShAddr2.jsp"%>
 									</div>
 								</div>
-																			
+																
 								<!-- 사업자 등록번호 적는 칸 -->
 								<div class="main__form__find">
 									<div class="form__find__left">
