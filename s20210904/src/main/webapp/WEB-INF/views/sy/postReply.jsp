@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>답글 등록</title>
+<link href="css/sy/post.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-<div class="container">
+<br>
+<div class="container-sm">
+<!-- 	<a href="postList"><h2 class="h2-style">코딩톡</h2></a> -->
 	<form role="form" action="postInsert" method="post">
 		<input type="hidden" name="post_code" value="${postViewReply.post_code}">
 		<input type="hidden" name="brd_code" value="Q&A">
@@ -24,6 +24,7 @@
 		<input type="hidden" name="ref_lev" value="${postViewReply.ref_lev}">
     <div class="table-responsive">
 	<table class="table table-borderless">
+		<a href="postList"><tr class="table-category" name="brd_code">게시판 > ${postViewReply.brd_code} > ${postViewReply.post_title}</tr></a>
 		<tr class="table-heading"><td>제목</td></tr>
 		<tr><td><input type="text" class="form-control" name="post_title" id="post_title" value="[답글] ${postViewReply.post_title}"></td></tr>
 		<tr class="table-heading"><td>내용</td></tr>
@@ -38,6 +39,8 @@
    		<button type="submit" class="btn btn-sm btn-primary">저장</button>
    </div>
 	</form>
+	</div>
+<br><br><br><br>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
