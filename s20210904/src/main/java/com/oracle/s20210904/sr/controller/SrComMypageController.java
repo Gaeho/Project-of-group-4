@@ -81,6 +81,9 @@ public class SrComMypageController {
 	@GetMapping(value = "ComAnn")
 	public String ComAnn(HttpServletRequest request, CommCompany commCompany, Model model, Announce announce, String currentPage) {
 
+//		String com_id="tlstprp5184";
+//		announce.setCom_id(com_id);
+		
 		System.out.println("SrComMypageController ComAnn START...");
 		
 		// 경우에 따라 리턴 할 객체
@@ -253,8 +256,9 @@ public class SrComMypageController {
 	// 북마크 List
 	@GetMapping(value = "bookmarkList")
 	public String bookmarkList(HttpServletRequest request, String currentPage, MemBmark memBmark, Model model,
-			CommCompany commCompany) {
+			CommCompany commCompany, MemResumeBmark memResumeBmark) {
 
+		
 		// 경우에 따라 리턴 할 객체
 		String returnString = null;
 		String sessionCheck = "session_none";
@@ -267,19 +271,20 @@ public class SrComMypageController {
 		} else if (cid != null) {
 			returnString = "sr/bookmarkList";
 		}
+		
 
 		System.out.println("SrComMypageController bookmarkList START...");
-		System.out.println("memBmark내용물->memBmark.getCom_id()" + memBmark.getCom_id());
-		System.out.println("memBmark내용물->memBmark.getStart()" + memBmark.getStart());
-		System.out.println("memBmark내용물->memBmark.getEnd()" + memBmark.getEnd());
+		System.out.println("memBmark내용물->memBmark.getCom_id()" + memResumeBmark.getCom_id());
+		System.out.println("memBmark내용물->memBmark.getStart()" + memResumeBmark.getStart());
+		System.out.println("memBmark내용물->memBmark.getEnd()" + memResumeBmark.getEnd());
 
-		memBmark.setCom_id(cid);
+		memResumeBmark.setCom_id(cid);
 
-		List<MemBmark> bookmarkList = scms.bookmarkList(memBmark);
+		List<MemResumeBmark> bookmarkList = scms.bookmarkList(memResumeBmark);
 
 		System.out.println("SrComMypageController bookmarkList.size()->" + bookmarkList.size());
 		System.out.println("---------------------------------------------------------------");
-		for (MemBmark MemBmark : bookmarkList) {
+		for (MemResumeBmark MemBmark : bookmarkList) {
 			System.out.println("SrComMypageController MemBmark.getUser_id()-> " + MemBmark.getUser_id());
 			System.out.println("SrComMypageController MemBmark.getCom_id()->" + MemBmark.getCom_id());
 			System.out.println("SrComMypageController MemBmark.getIt_bookmark()->" + MemBmark.getIt_bookmark());

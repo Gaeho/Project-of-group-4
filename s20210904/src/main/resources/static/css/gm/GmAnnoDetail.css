@@ -21,6 +21,7 @@
 		padding-bottom: 10px;
 		border-bottom: 3px solid silver;
 		max-width: 1200px;
+		height:150px;
 }
 
 .TopContainer > div {
@@ -42,7 +43,7 @@
 
 
 .table th { 
-/* 	min-width:100px;  */
+ 	min-width:100px;  
 	width:100px; 
 }
 
@@ -52,13 +53,20 @@
 	display: flex;
 }
 
-.Topupper > div {
+
+/* .Topupper > div {
 	
 	width: 50%;
 	
+} */
+
+.Topupper_left{
+	width:40%;
 }
-
-
+.Topupper_right{
+	width:60%;
+	padding-left: 10px;
+}
 
 .MenuContainer {
 		display: inline-block;
@@ -107,8 +115,9 @@
 
 .GmContainer > div {
 	
-	max-width: 90%;
+/* 	max-width: 90%; */
 	padding: 10px;
+	padding-top: 30px;
 	
 }
 
@@ -117,3 +126,17 @@
 	width: 70%;
 }
 
+.Top2s{
+	margin-top: 50px;
+}
+
+.h1-style{
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 40px;
+	margin-top: 50px;
+}
+
+.anno_info11{max-width: 90%;}
+.anno_recruit11{max-width: 90%;}
+.anno_deadline11{max-width: 90%;}
+.anno_applys{max-width: 90%;}

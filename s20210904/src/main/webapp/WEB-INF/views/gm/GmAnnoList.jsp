@@ -6,15 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/gm/GmAnnoList.css" rel="stylesheet" type="text/css">
+<!-- font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
 <title>코딩몬</title>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 	/* pageMove */
 	function pageMove(vCurrentPage){
 		// console.log(vCurrentPage);
-    		alert("vCurrentPage->"+vCurrentPage);  
+    		/* alert("vCurrentPage->"+vCurrentPage);  */ 
 		var  annosearch = $('#annosearch').val();
-		 alert("annosearch->"+annosearch); 
+		/*  alert("annosearch->"+annosearch);  */
 		location.href="GmAnnoList?currentPage="+vCurrentPage+"&annosearch="+annosearch;
 	}
 
@@ -30,7 +35,7 @@
 	<div class="annolistContainer">
 		<div class="annolist1">
 				<div class="annolisttitle">
-					<h2> 공고 </h2>
+					<h2 class="h2-style"> 공고 </h2>
 				</div>
 				
 				<div class="annolist1">
@@ -60,12 +65,13 @@
 				<div>
 					<div class="anno_search1">
 						
-<!-- 							<form action="annolistsearch" method="post">
+<!-- 							
  -->						<form action="GmAnnoList" method="post">
-							  <input type="hidden" name="currentPage" value="${pg.currentPage}" >
-							  <input type="text" class="form-control" value="${annosearch1}" name="annosearch" id="annosearch" placeholder="검색어를 입력하세요">
-							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
-				
+ 							 <div class="searchset11">	
+							 	<div><input type="hidden" name="currentPage" value="${pg.currentPage}" ></div>
+							  	<div><input type="text" class="form-control" value="${annosearch1}" name="annosearch" id="annosearch" placeholder="검색어를 입력하세요" style="width:300px"></div>
+								<div><button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button></div>
+							 </div>
 							</form>
 						
 					</div>

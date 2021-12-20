@@ -32,7 +32,7 @@ public interface SrComMypageService {
 	List<AppAnnMem> appAnnMemCReg(AppAnnMem appAnnMem);
 
 	
-	List<MemBmark> bookmarkList(MemBmark memBmark);
+	List<MemResumeBmark> bookmarkList(MemResumeBmark memResumeBmark);
 
 	CommResMemBook userdetail(CommResMemBook commResMemBook, Integer isResume);
 

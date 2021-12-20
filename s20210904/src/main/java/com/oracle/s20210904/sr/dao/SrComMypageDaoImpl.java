@@ -126,11 +126,11 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		// 북마크 List
 
 		@Override
-		public List<MemBmark> bookmarkList(MemBmark memBmark) {
-			List<MemBmark> bookmarkList = null;
+		public List<MemResumeBmark> bookmarkList(MemResumeBmark memResumeBmark) {
+			List<MemResumeBmark> bookmarkList = null;
 			System.out.println("SrComMypageDaoImpl bookmarkList Start...");
 			try {
-				bookmarkList = session.selectList("SrBmarkList", memBmark);
+				bookmarkList = session.selectList("SrBmarkList", memResumeBmark);
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl bookmarkList error"+e.getMessage());
 			}

@@ -26,6 +26,9 @@ public class CommCompany {
 	private String com_web;
 	private String com_img;
 	private int com_grade;
+	private String com_img1;
+	private String com_img2;
+	private String com_img3;
 	
 	//조회용
 	private int start;

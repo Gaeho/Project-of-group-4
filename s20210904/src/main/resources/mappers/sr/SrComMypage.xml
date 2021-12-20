@@ -65,17 +65,17 @@
 		and anno.ANNO_C_REGDATE < sysdate
 		]]>
 	</select>
-	<select id="SrBmarkList" parameterType="MemBmark" resultType="MemBmark">
-		select *
-		from 
-    		(
-    		 select rownum rn, a.*
-    		 from (select b.com_id, m.user_img, b.user_id, b.mrk_date, b.MRK_RES_CODE
-                    from member m, bookmark b
-                    where m.user_id = b.user_id
-                    and b.com_id = #{com_id}) a
-    		        )
-		where rn between #{start} and #{end}
+	<select id="SrBmarkList" parameterType="MemResumeBmark" resultType="MemResumeBmark">
+		select DISTINCT mem.user_id, mem.user_img, boo.COM_ID, boo.IT_BOOKMARK, boo.MRK_DATE, boo.MRK_RES_CODE ,res.RES_TITLE --, res.RES_CODE, res.USER_ID
+		from member mem
+		left join bookmark boo
+		on mem.user_id=boo.user_id
+		left join resume res  -- 이력서
+		on (
+			boo.MRK_RES_CODE=res.RES_CODE
+  			and  boo.user_id=res.user_id
+  			)
+		where boo.COM_ID=#{com_id}
 	</select>
 	
 	<select id="SrUserDetail" parameterType="CommResMemBook" resultType="CommResMemBook">
