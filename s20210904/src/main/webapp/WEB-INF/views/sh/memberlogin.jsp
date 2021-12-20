@@ -8,6 +8,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>개인 로그인 </title>
 <link rel="stylesheet" href="css/sh/login.css" type="text/css">
+<script type="text/javascript">
+
+function logincheck() {
+	if (!frm.user_id.value) {
+		alert("id를 입력해 주십시오.");
+		frm.user_id.focus();
+		return false;
+	}
+	if (!frm.user_pw.value) {
+		alert("비밀번호를 입력해 주십시오.");
+		frm.user_pw.focus();
+		return false;
+	}
+	return true;
+}
+
+</script>
+
 
 </head>
 <body>
@@ -15,8 +33,12 @@
 					
 					<div id="Shcontainer">
 							<div class="main">
-									<form action="loginForm"  method="post" class="main__form"  onsubmit="my_check()">
+
+									
+
+									<form action="loginForm"  method="post" class="main__form" name="frm" onsubmit=" return logincheck()">
 											<h1>개인로그인</h1>
+
 						
 										<div class="main__form__find">
 											<label for="sign_id">아이디</label>
@@ -25,7 +47,7 @@
 						
 										<div class="main__form__find">
 											<label for="sign_pw">비밀번호</label>
-											<input type="password"  name="user_pw"  placeholder="Enter password">
+											<input type="password"  id="password" name="user_pw"  placeholder="Enter password">
 										</div>
 						
 										<div class="main__form__link">
@@ -35,7 +57,7 @@
 										</div>
 						
 										<div class="form__find__button">
-											<button type="submit" class="form__find__btn">LOGIN</button>
+											<button type="submit" class="form__find__btn" >LOGIN</button>
 										</div>
 						
 										<div class="form__find__border">
