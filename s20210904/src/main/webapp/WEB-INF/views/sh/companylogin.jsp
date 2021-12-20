@@ -15,7 +15,7 @@
 					<div id="Shcontainer">
 							<div class="main">
 									<form action="ComloginForm"  method="post" class="main__form">
-											<h1>Login</h1>
+											<h1>기업로그인</h1>
 						
 										<div class="main__form__find">
 											<label for="sign_id">아이디</label>

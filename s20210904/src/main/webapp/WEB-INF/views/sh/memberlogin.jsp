@@ -8,14 +8,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>개인 로그인 </title>
 <link rel="stylesheet" href="css/sh/login.css" type="text/css">
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>					
 					
 					<div id="Shcontainer">
 							<div class="main">
-									<form action="loginForm"  method="post" class="main__form">
-											<h1>Login</h1>
+									<form action="loginForm"  method="post" class="main__form"  onsubmit="my_check()">
+											<h1>개인로그인</h1>
 						
 										<div class="main__form__find">
 											<label for="sign_id">아이디</label>
