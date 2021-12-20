@@ -95,50 +95,31 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="text" id="user_id" placeholder="회사명을 입력하세요">
+										<input type="text" id="com_id"  name="com_id" placeholder="회사명을 입력하세요">
 									</div>
 								</div>
 			
 								<!-- 주소 적는 칸 --> <!--수리 중  -->
 								<div class="main__form__find">
 									<div class="form__find__left">
-										<label for="user_addr">주소</label>
+										<label for="com_addr">주소</label>
 									</div>
+								
 								<div class="form__find__right">
-									<input type="text" id = "addr1" placeholder="우편번호"	 name="user_addr">
+									<input type="text" id = "addr1" placeholder="우편번호"	 name="com_addr"   id ="addr1"    readonly="readonly">
 									<button type="button" onclick="execPostCode();">우편번호 찾기</button>
 								</div>
+								
 								<div class="form__find__right">	 
-									<input type="text" id = "addr2" placeholder="도로명 주소"	 name="user_addr">
-									</div>
-									<div class="form__find__right">	
-									<input type="text" id="addr3" name="user_addr"  placeholder="상세주소">
+									<input type="text" id = "addr2" placeholder="도로명 주소"	 name="com_addr"  readonly="readonly">
 									</div>
 									
-									<!-- <div class="form__find__right">
-										<input type="text" id="user_addr"  name="user_addr" id="addr1" placeholder="우편번호">
+								<div class="form__find__right">	
+									<input type="text"   placeholder="상세주소" >
+									<%@ include file="/WEB-INF/views/sh/ShAddr2.jsp"%>
 									</div>
-									<button type="button"  onclick="execPostCode();" >우편번호 찾기</button>  -->
-											
-											<%-- <input class="form-control" style="width: 50%; display: inline;"
-												placeholder="우편번호" name="user_addr" id="addr1" type="text"
-												readonly="readonly">
-											<button type="button" class="btn btn-default"
-												onclick="execPostCode();">
-												<i class="fa fa-search"></i> 우편번호 찾기
-											</button>
-										<div class="form-group">
-											<input class="form-control" style="top: 7px;"
-												placeholder="도로명 주소" name="user_addr" id="addr2" type="text"
-												readonly="readonly" />
-										</div>
-										<div class="form-group">
-											<input class="form-control" placeholder="상세주소" name="user_addr"
-												id="addr3" type="text" />
-											<%@ include file="/WEB-INF/views/sh/ShAddr2.jsp"%>
-										</div> --%>
-									</div>
-									
+								</div>
+																
 								<!-- 사업자 등록번호 적는 칸 -->
 								<div class="main__form__find">
 									<div class="form__find__left">
@@ -146,7 +127,7 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="password" id="com_regnum" placeholder="사업자등록번호를 입력하세요">
+										<input type="password" id="com_regnum" name="com_regnum" placeholder="사업자등록번호를 입력하세요">
 									</div>
 								</div>
 								
@@ -159,7 +140,7 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="text" id="com_id" placeholder="아이디를 입력하세요">
+										<input type="text" id="com_id"  name="com_id" placeholder="아이디를 입력하세요">
 									</div>
 								</div>
 						
@@ -170,7 +151,7 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="text" id="com_pw" placeholder="비밀번호를 입력하세요">
+										<input type="text" id="com_pw" name="com_pw"  placeholder="비밀번호를 입력하세요">
 									</div>
 								</div>
 			
@@ -181,7 +162,7 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="text" id="com_user" placeholder="가입자명을 입력하세요">
+										<input type="text" id="com_user"  name="com_user" placeholder="가입자명을 입력하세요">
 									</div>
 								</div>
 								
@@ -192,18 +173,18 @@
 									</div>
 			
 									<div class="form__find__right">
-										<input type="text" id="com_mgr_tel" placeholder="가입자명을 입력하세요">
+										<input type="text" id="com_mgr_tel" name="com_mgr_tel"  placeholder="가입자명을 입력하세요">
 									</div>
 								</div>
 						
 								<!-- 이메일 적는 칸 -->
 								<div class="main__form__find">
 									<div class="form__find__left">
-										<label for="user_email">이메일</label>
+										<label for="com_email">이메일</label>
 									</div>
 			
 									<div class="form__find__right">
-										<input type="email" id="user_email" placeholder="이메일을 입력하세요">
+										<input type="email" id="com_email"  name="com_email" placeholder="이메일을 입력하세요">
 										<button type="button" onclick="memberVerify2()">이메일 인증하기</button>
 									</div>
 								</div>
@@ -223,8 +204,8 @@
 										
 								</div><p>
 						
-						<div class="form__find__right">			
-						<button type="submit"  value="회원가입 "  disabled="disabled" >회원가입</button>
+						<div class="form__find__right2">			
+						<input type="submit"  value="회원가입 "  disabled="disabled" >
 						</div>
 								</div>		
 						</form>

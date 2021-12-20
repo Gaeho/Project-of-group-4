@@ -14,10 +14,10 @@
 		
 	<insert id="ShJoinCompany" parameterType="Company">
 		insert into COMPANY(com_id,com_pw,com_name,com_addr,
-												  com_regnum,com_sec,com_user,com_mgr_tel,com_email
+												  com_regnum,com_user,com_mgr_tel,com_email
 												  ) 
 							values (#{com_id},#{com_pw},#{com_name},#{com_addr},#{com_regnum},
-											#{com_sec},#{com_user},#{com_mgr_tel},#{com_email})
+											#{com_user},#{com_mgr_tel},#{com_email})
 	</insert>
 	
 	<select id="ShLogin"  parameterType="Member"  resultType="int"> 
