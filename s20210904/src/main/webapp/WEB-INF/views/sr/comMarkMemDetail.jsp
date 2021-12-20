@@ -8,8 +8,7 @@
 %>
 <head>
 <meta charset="UTF-8">
-<link href="css/sr/comMarkMemDetail.css" rel="stylesheet"
-	type="text/css">
+<link href="css/sr/comMarkMemDetail.css" rel="stylesheet" type="text/css">
 <title>ComMypage</title>
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">

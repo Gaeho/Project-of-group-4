@@ -1,22 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="header.jsp"%>
-<%@ include file="myPageMenu.jsp"%>
-<%@ include file="footer.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="css/sr/comMemberSearch.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>ComMypage</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<div class="CompanyMypageContainer">
-		<div class="comMemberSearch">
-			<form class="search_form" action="SrSearch">
-				<input class="search_keyword" name="keyword" type="text" placeholder="검색어를 입력하세요" />
-				<button class="search_bnt" type="submit">search</button>
-			</form>
+		<div class="comInfoMenu">
+			<div class="comInfoUpper">
+				<div>
+					<h1>마이페이지 작업 중</h1>
+				</div>
+			</div>
+
+			<div class="comInfoUnder">
+				<div class="comInfoleft">
+					<%@ include file="myPageMenu.jsp"%>
+				</div>
+				<div class="comInforight">
+					<div class="comInfoSearch">
+						<form class="search_form" action="SrSearch">
+							<input class="search_keyword" name="keyword" type="text"
+								placeholder="검색어를 입력하세요" />
+							<button class="search_bnt" type="submit">search</button>
+						</form>
+					</div>
+					<div>
+						<%-- <c:if test="${not empty  }">
+ 							<a href="logoutPro.do">LOGOUT</a>
+ 						</c:if>
+ 						<c:if test="${empty id }">
+ 							<a href="loginForm.do">LOGIN</a>
+ 						</c:if> --%>
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
+		<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
