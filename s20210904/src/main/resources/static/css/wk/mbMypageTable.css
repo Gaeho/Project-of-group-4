@@ -10,3 +10,7 @@
 	text-align: center !important;
 }
 
+.mbMypageTable th{
+	white-space:nowrap !important;
+}
+

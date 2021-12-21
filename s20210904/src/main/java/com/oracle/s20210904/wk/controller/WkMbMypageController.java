@@ -375,7 +375,7 @@ public class WkMbMypageController {
 		return "forward:mbMypage";
 	}
 	
-
+	// 프로필사진을 이력서 사진으로 복사
 	private String mbMypageCopyfile(HttpServletRequest request, String user_img) {
 		System.out.println("WkMbMypageController mbMypageCopyfile()");
 		UUID uid = UUID.randomUUID();

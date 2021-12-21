@@ -90,7 +90,7 @@
 		<div class="menu_profile">
 			<input type="image" class="profile_img" src="${profile}" 
 				alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="profile_img" >
-			<div class="mbFormText">${mbid } 님</div>
+			<div class="mbFormText mb_center">${mbid } 님</div>
 		</div>
 		
 		<p>
@@ -148,7 +148,7 @@
 						<li>
 							<a href="mbMypageApply">
 								<em>${countapply[0].applying}</em>
-								<span>지원 완료</span>
+								<span>지원중</span>
 							</a>
 						</li>
 						<li>
@@ -179,7 +179,11 @@
 						</tr>
 						<c:forEach var="applyList" items="${applyList }">
 							<tr>
-								<td><c:if test="${not empty applyList.user_ntc_code }">O</c:if></td>
+								<td>
+									<c:if test="${not empty applyList.user_ntc_code }">
+										<input type="image" class="notice_img" src="./img/ds/on.png">
+									</c:if>
+								</td>
 								<td>${applyList.com_name}</td><td><a href="detail?anno_code=${applyList.anno_code }">${applyList.anno_title}</a></td>
 								<td>${applyList.comm_ctx}</td><td>${applyList.res_title}</td>
 								<td>${applyList.app_regdate}</td><td>${applyList.com_app_sts}</td>
@@ -196,7 +200,11 @@
 							<th> </th><th>이력서</th><th>회사명</th><th>주소</th><th>업종</th><th>열람일</th>
 							<c:forEach var="resConList" items="${resConList }">
 								<tr>
-									<td><c:if test="${not empty resConList.ntc_code }">O</c:if></td>
+									<td>
+										<c:if test="${not empty resConList.ntc_code }">
+											<input type="image" class="notice_img" src="./img/ds/on.png">
+										</c:if>
+									</td>
 									<td>${resConList.res_title}</td><td>${resConList.com_name}</td>
 									<td>${resConList.com_addr}</td><td>${resConList.comm_ctx}</td>
 									<td>${resConList.res_date}</td>
