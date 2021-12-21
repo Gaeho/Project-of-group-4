@@ -359,6 +359,7 @@ public class SrComMypageController {
 		// ----------------------------------------------------------------------------
 		model.addAttribute("commCompany1", commCompany1);
 		model.addAttribute("appAnnMember", appAnnMember);
+		model.addAttribute("annoCode",appAnnMem.getAnno_code());
 
 		return "sr/comAppStatusMenu";
 	}
