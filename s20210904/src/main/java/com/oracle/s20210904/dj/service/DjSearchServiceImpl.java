@@ -27,5 +27,17 @@ public class DjSearchServiceImpl implements DjSearchService {
 		
 		return dsd.searchCom(company);
 	}
+
+	@Override
+	public int annocnt(DjSearch djsearch) {
+		System.out.println("DjSearchServiceImpl의 annocnt 시작되었습니다.");
+		return dsd.annocnt(djsearch);
+	}
+
+	@Override
+	public int comcnt(Company company) {
+		System.out.println("DjSearchServiceImpl의 comcnt 시작되었습니다.");
+		return dsd.comcnt(company);
+	}
 	  
 }

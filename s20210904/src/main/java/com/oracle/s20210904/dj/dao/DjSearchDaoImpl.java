@@ -64,6 +64,40 @@ public class DjSearchDaoImpl implements DjSearchDao {
 		
 		return result1;
 	}
+
+	@Override
+	public int annocnt(DjSearch djsearch) {
+		
+		int annocnt_result = 0;
+		
+		try {
+			annocnt_result = session.selectOne("DjAnnocnt", djsearch);
+			System.out.println("annocnt에서 리턴 받은 검색된 결과 수->"+annocnt_result);
+			
+		} catch (Exception e) {
+			System.out.println("DjSearchDaoImpl의  annocnt에서 에러 발생!!->"+e.getMessage());
+		}
+		
+		
+		return annocnt_result;
+	}
+
+	@Override
+	public int comcnt(Company company) {
+		
+		int comcnt_result = 0;
+		
+		try {
+			comcnt_result = session.selectOne("DjComcnt", company);
+			System.out.println("annocnt에서 리턴 받은 검색된 결과 수->"+comcnt_result);
+			
+		} catch (Exception e) {
+			System.out.println("DjSearchDaoImpl의  annocnt에서 에러 발생!!->"+e.getMessage());
+		}
+		
+		
+		return comcnt_result;
+	}
 	
 	
 	

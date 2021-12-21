@@ -41,7 +41,7 @@
 										<td colspan="2"><a href="detail2?user_id=${bookmarkList.user_id }&com_id=${bookmarkList.com_id}&mrk_res_code=${bookmarkList.mrk_res_code}">${bookmarkList.res_title}</a></td>
 										<td>${bookmarkList.mrk_date}</td>
 									</tr>
-									</div>
+								</div>
 								</c:forEach>
 							</tbody>
 						</table>

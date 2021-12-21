@@ -11,4 +11,8 @@ public interface DjSearchDao {
 
 	List<Company> searchCom(Company company);
 
+	int annocnt(DjSearch djsearch);
+
+	int comcnt(Company company);
+
 }

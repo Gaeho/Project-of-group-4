@@ -32,11 +32,14 @@
 				                 where main_cat = 071) f
 				on a.emp_type=f.sub_cat
 				
-				where c.com_name  like '%'||#{mainsearch}||'%'
+				where 
+				a.anno_title is not null 
+				and
+				(c.com_name  like '%'||#{mainsearch}||'%'
 				or a.anno_title like '%'||#{mainsearch}||'%'           
 				or a.rec_dtl like '%'||#{mainsearch}||'%'            
 				or a.work_cdt like '%'||#{mainsearch}||'%'            
-				or a.etc_cdt like '%'||#{mainsearch}||'%'    
+				or a.etc_cdt like '%'||#{mainsearch}||'%') 
 				) z
 	 
 			)
@@ -44,10 +47,79 @@
 	
 	</select>
 	
+	
+	<select id="DjAnnocnt" parameterType="DjSearch" resultType="int">
+
+	select count(*)
+			from(
+			select rownum rn, z.*
+				from (	
+
+				select a.anno_title anno_title, c.com_name com_name,  c.com_img com_img, a.rec_vol rec_vol, a.emp_type emp_type, a.rec_edu rec_edu, a.anno_code anno_code, 
+				d.comm_ctx jobgroup , e.comm_ctx workex, f.comm_ctx  employform
+				
+				from Company c 
+				
+				left outer join Announce a
+				on c.com_id=a.com_id
+				
+				left outer join (select sub_cat,comm_ctx
+				            from comm 
+				            where main_cat = 001) d
+				on a.job_tag=d.sub_cat
+				
+				left outer join (select sub_cat,comm_ctx
+				            from comm 
+				            where main_cat = 070) e
+				on a.career=e.sub_cat  
+				
+				left outer join (select sub_cat,comm_ctx
+				                 from comm 
+				                 where main_cat = 071) f
+				on a.emp_type=f.sub_cat
+				
+				where 
+				a.anno_title is not null 
+				and
+				(c.com_name  like '%'||#{mainsearch}||'%'
+				or a.anno_title like '%'||#{mainsearch}||'%'           
+				or a.rec_dtl like '%'||#{mainsearch}||'%'            
+				or a.work_cdt like '%'||#{mainsearch}||'%'            
+				or a.etc_cdt like '%'||#{mainsearch}||'%') 
+				) z
+	 
+			)
+			where rn between #{start} and #{end} 	
+	
+	</select>
+	
+	
+	
+	
 	<select id="DjMainComSearch" parameterType="Company" resultType="Company">
 	
 		
 			select *
+			from(
+			select rownum rn, z.*
+			from (	
+			
+			select com_name, com_addr, com_bus, com_img , com_id
+					from company
+					where com_name Like '%'||#{mainsearch}||'%'
+					or com_addr Like '%'||#{mainsearch}||'%'
+					or com_bus Like '%'||#{mainsearch}||'%'
+			
+					) z
+				 )
+			where rn between #{start} and #{end}
+	
+	</select>
+	
+	<select id="DjComcnt" parameterType="Company" resultType="int">
+	
+		
+			select count(*)
 			from(
 			select rownum rn, z.*
 			from (	
