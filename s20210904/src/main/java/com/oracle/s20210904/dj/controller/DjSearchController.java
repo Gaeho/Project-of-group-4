@@ -54,60 +54,33 @@ public class DjSearchController {
 		
 		djsearch.setMainsearch(mainsearch1);
 		djsearch.setStart(1);//스타트1
-		djsearch.setEnd(10);// 끝 10
+		djsearch.setEnd(999);// 끝 10
 		
+		
+		System.out.println("---공고 검색 시작---");
 		//검색어를 이용한 공고 결과	DjSearch djsearch
 		List<DjSearch> annoResult = dss.searchAnno(djsearch);
 		model.addAttribute("annoResult", annoResult);
 		model.addAttribute("mainsearch1", mainsearch1);
+		System.out.println("---공고 갯수 확인 시작---");
+		int annocnt = dss.annocnt(djsearch);
+		System.out.println("검색된 공고 개수:"+annocnt);
+		model.addAttribute("annocnt", annocnt);
 		
+		System.out.println("---회사 검색 시작---");
 		//검색어를 이용한 회사 결과
 		company.setMainsearch(mainsearch1);//변경한 검색어 주입
 		company.setStart(1); //스타트1
-		company.setEnd(10); // 끝 10
+		company.setEnd(999); // 끝 10
 		List<Company> comResult = dss.searchCom(company); 
 		model.addAttribute("comResult", comResult);
+		System.out.println("---공고 갯수 확인 시작---");
+		int comcnt = dss.comcnt(company);
+		System.out.println("검색된 회사 개수:"+comcnt);
+		model.addAttribute("comcnt", comcnt);
 System.out.println("--------------------------------------");
 		
-       //페이징 준비
-		if(currentPage == null) {
-			currentPage = "1";
-		}
-
-		
-		System.out.println("메인서치 페이징처리 시작");
-		//검색어의 수를 검색해서 세야 함. 검색을 처리해서 
-		//int total = dss.total();
-		//System.out.println("GmAnnoList total->"+total);
-		//total을 따로 질의하지 않아도 됨 위에서 가져온 검색결과의 로우 수만 세면 그것이 곧 검색된 결과 수임 = total
-		int total = annoResult.size();
-		System.out.println("annoResult.size()의 값은?->"+total);
-		
-		// Paging
-		Paging pg = new Paging(total, currentPage);
-		
-		
-		model.addAttribute("pg", pg);
-		
-		System.out.println("-------pg내용물확인---------");
-		System.out.println(""+pg.getCurrentPage());
-		System.out.println(""+pg.getEnd());
-		System.out.println(""+pg.getEndPage());
-		System.out.println(""+pg.getPageBlock());
-		System.out.println(""+pg.getRowPage());
-		System.out.println(""+pg.getStart());
-		System.out.println(""+pg.getStartPage());
-		System.out.println(""+pg.getTotal());
-		System.out.println(""+pg.getTotalPage());
-		System.out.println("-------pg내용물확인--끝-------");		
-		
-		Paging pg2 = new Paging(total, currentPage);
-		model.addAttribute("pg2", pg2);
-		
-		//List<DjSearch> searchlist = dss.searchlist(djsearch); 
-		
-		
-		//return "searchResponse";
+	
 		return "dj/mainsearchtap";
 	}
 	
