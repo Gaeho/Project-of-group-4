@@ -8,11 +8,19 @@
 <title>개인 비밀번호 찾기</title>
 <link rel="stylesheet" href="css/sh/findPw.css" type="text/css">
 </head>
+<script type="text/javascript">
+	function emaiㅣ_chk() {
+		alert("성공적으로 전송되었습니다. 이메일을 확인해주세요.")
+	}
+
+</script>
 <body>
    <%@ include file="/WEB-INF/views/header.jsp"%>
     <div class="container">
-        <h2>비밀번호 찾기</h2>
-        <form action="findPwForm">
+      <div class="main">
+        <h2>개인비밀번호 찾기</h2>
+        <form action="findPwForm" onsubmit="return emaiㅣ_chk()">
+        
             <div>
                 <input type="text" name="" id="user_name"  required>
                 <label for="user_name">이름</label>
@@ -28,9 +36,10 @@
                 <label for="user_email">이메일</label>
             </div>
             
-            <input type="submit" name="" value="비밀번호 찾기">
+            <input type="submit"  value="비밀번호 찾기">
         </form>
-    </div>
+        </div>
+        </div>
 	
 		<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>

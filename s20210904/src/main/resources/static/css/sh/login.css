@@ -12,18 +12,22 @@
     align-items: center;
 }
 .main{
+	margin-top:5%;
+	margin-bottom:5%;
     background-color: #FFF9D4;
     border-radius: 30px;
 }
 
 .main__form > h1{
-    font-size: 36px;
+     font-size: 36px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .main__form{
+	margin-top:10%;
+	margin-bottom:10%;
     width: 400px;
     height: 480px;
     border-radius: 10px;
