@@ -99,7 +99,7 @@
 					</div>
 					<div>
 						<table class="user_info1">
-							<h2>기본 정보</h2>
+							<div class="h2div"><h2>기본 정보</h2></div>
 							<tr>
 								<th>프로필</th>
 								<td><img id="memberDetailImg" src="${mem.user_img}"> <%-- <img class="memberImg" src="${mem.user_img}"/> --%></td>
