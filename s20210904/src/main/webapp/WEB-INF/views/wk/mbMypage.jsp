@@ -27,7 +27,7 @@
 		<div class="menu_profile">
 			<input type="image" class="profile_img" src="${profile}" 
 				alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="profile_img" >
-			<div class="mbFormText">${mbid } 님</div>
+			<div class="mbFormText mb_center">${mbid } 님</div>
 		</div>
 		
 		<p>
@@ -70,7 +70,7 @@
 				<li>
 					<a href="mbMypageApply">
 						<em>${countapply[0].applying}</em>
-						<span>지원 완료</span>
+						<span>지원중</span>
 					</a>
 				</li>
 				<li>

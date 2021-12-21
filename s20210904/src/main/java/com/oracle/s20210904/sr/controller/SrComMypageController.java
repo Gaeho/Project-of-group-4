@@ -117,15 +117,34 @@ public class SrComMypageController {
 		// ----------------------------------------------------------------------------
 
 		model.addAttribute("listAnn", listAnn);
+		model.addAttribute("commCompany1", commCompany1);
 
 		return "sr/comAnnMenu";
 	}
 
 	// 회원검색
 	@RequestMapping(value = "ComMemSearch")
-	public String ComMemberSearch1() {
+	public String ComMemberSearch1(CommCompany commCompany, Model model, HttpServletRequest request) {
+		
+		// 경우에 따라 리턴 할 객체
+				String returnString = null;
+				String sessionCheck = "session_none";
+				// 세션 처리
+				String cid = checkId(request);
+				System.out.println("세션 잘 갖고 오는지 확인=>" + cid);
+
+				if (cid.equals(sessionCheck)) {
+					System.out.println("실행 완료");
+				} else if (cid != null) {
+					returnString = "sr/SrSearch";
+				}
+				
+		commCompany.setCom_id(cid);
 
 		System.out.println("SrComMypageController ComMemberSearch START...");
+		CommCompany commCompany1 = null;
+		commCompany1 = scms.comInfo(commCompany);
+		model.addAttribute("commCompany1", commCompany1);
 
 		return "sr/comMemberSearchMenu";
 	}
@@ -155,6 +174,7 @@ public class SrComMypageController {
 
 		System.out.println("변환한 keyword의 값->" + keyword1);
 
+		commCompany.setCom_id(cid);
 		// company+comm JOIN
 		CommCompany commCompany1 = null;
 		commCompany1 = scms.comInfo(commCompany);
@@ -202,6 +222,7 @@ public class SrComMypageController {
 
 		String com_id = "tlstprp5184";
 		model.addAttribute("com_id", com_id);
+		model.addAttribute("commCompany1", commCompany1);
 
 		return "sr/comMemberSearchMenuDetail";
 
@@ -265,10 +286,15 @@ public class SrComMypageController {
 		System.out.println("" + pg.getTotal());
 		System.out.println("" + pg.getTotalPage());
 		System.out.println("-------pg내용물확인--끝-------");
+		
+		commCompany.setCom_id(cid);
+		CommCompany commCompany1 = null;
+		commCompany1 = scms.comInfo(commCompany);
 
 		model.addAttribute("total", total);
 		model.addAttribute("bookmarkList", bookmarkList);
 		model.addAttribute("pg", pg);
+		model.addAttribute("commCompany1", commCompany1);
 
 		return "sr/comMarkMemberMenu";
 
@@ -305,6 +331,7 @@ public class SrComMypageController {
 
 		// ----------------------------------------------------------------------------
 		// company img 보여주기용
+		commCompany.setCom_id(cid);
 		CommCompany commCompany1 = scms.comInfo(commCompany);
 
 		// 공고리스트 뿌려줄거
@@ -353,6 +380,7 @@ public class SrComMypageController {
 		insertResumeContect(rc);
 		// -------------------------------------
 
+		commCompany.setCom_id(com_id);
 		// company+comm JOIN
 		CommCompany commCompany1 = null;
 		commCompany1 = scms.comInfo(commCompany);
@@ -393,7 +421,7 @@ public class SrComMypageController {
 		model.addAttribute("com_id", com_id);
 		model.addAttribute("user_id", user_id);
 		model.addAttribute("mrk_res_code", mrk_res_code);
-		model.addAttribute("commCompany", commCompany);
+		model.addAttribute("commCompany1", commCompany1);
 
 		return "sr/comMarkMemDetail";
 	}
