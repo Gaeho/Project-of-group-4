@@ -35,16 +35,13 @@
 		</table>
 	</div>
 	<div>
-		<%-- <c:if test="${id != null}">
+		<c:if test="${id != null}">
 		<button type="submit" class="btn btn-sm btn-primary" id="btnReply">답글</button>
 		</c:if>	
 		<c:if test="${postView.user_id == id }">
 			<button type="submit" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 			<button type="submit" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-		</c:if> --%>
-		<button type="submit" class="btn btn-sm btn-primary" id="btnReply">답글</button>
-		<button type="submit" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
-		<button type="submit" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+		</c:if>
 	</div>
 	</form>
 </div>
