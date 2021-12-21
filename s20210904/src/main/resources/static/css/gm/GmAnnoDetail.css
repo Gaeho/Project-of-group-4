@@ -30,6 +30,11 @@
 		
 }
 
+.modal fade{
+	z-index: 3;
+	
+}
+
 .TopContainer > div {
 	
 	display: flex;
