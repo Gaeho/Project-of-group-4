@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <title>게시글 등록</title>
 <link href="css/sy/post.css" rel="stylesheet" type="text/css">
+<!-- Font Link -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -25,13 +29,13 @@
 			<tr class="table-heading"><td>내용</td></tr>
 			<tr><td><textarea class="form-control" row="10" name="post_ctx" id="post_ctx" placeholder="내용을 입력하세요."></textarea></td></tr>
 		</table>
-		</div>
+	</div>
 	<div class="row">
-    <div class="col text-left">
-		<button type="submit" class="btn btn-sm btn-primary">저장</button>
+	    <div class="col text-left">
+			<button type="submit" class="btn btn-sm btn-primary">저장</button>
+		</div>
 	</div>
-	</div>
-		</form>
+	</form>
 </div>
 <script type="text/javascript">
 	$(document).ready(function () {	

@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 <link href="css/sy/post.css" rel="stylesheet" type="text/css">
+<!-- Font Link -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,12 +18,12 @@
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <br>
 <div class="container-sm">
-<!-- 	<a href="postList"><h2 class="h2-style">코딩톡</h2></a> -->
+	<a href="postList"><h2 class="h2-style">코딩톡</h2></a>
 	<form role="form" action="postUpdate" method="post">
 		<input type="hidden" name="post_code" value="${post.post_code}">
 	<div class="table-responsive">
 		<table class="table table-borderless">
-			<a href="postList"><tr class="table-category" name="brd_code">게시판  >  ${post.brd_code}</tr></a>
+			<tr class="table-category" name="brd_code">게시판  >  ${post.brd_code}</tr>
 			<tr class="table-heading"><td>제목</td></tr>
 			<tr><td><input type="text" class="form-control" name="post_title" value="${post.post_title}" /></td><tr>
 			<tr class="table-heading"><td>내용</td></tr>
