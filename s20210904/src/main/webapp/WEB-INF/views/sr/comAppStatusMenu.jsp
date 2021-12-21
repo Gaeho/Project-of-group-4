@@ -37,7 +37,7 @@
 				</div>
 				<div class="comInforight">
 					<div class="compAppStatus_in">
-						<table class="table table-hover">
+						<table class="table table-hover" style="vertical-align:middle">
 							<thead class="table-light">
 							<tr>
 								<th>회원프사</th>

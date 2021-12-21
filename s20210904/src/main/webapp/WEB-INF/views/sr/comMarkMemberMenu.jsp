@@ -34,7 +34,7 @@
 							</thead>
 							<tbody>
 								<c:forEach var="bookmarkList" items="${bookmarkList }">
-								<div clas="bmarkAtt">
+								<div class="bmarkAtt">
 									<tr>
 										<td><img class="memberImg" src="${bookmarkList.user_img}" /></td>
 										<div><td>${bookmarkList.user_id}</td></div>
