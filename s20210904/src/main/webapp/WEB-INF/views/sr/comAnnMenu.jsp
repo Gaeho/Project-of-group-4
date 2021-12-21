@@ -14,7 +14,7 @@
 		<div class="comAnnMenu">
 			<div class="comInfoUpper">
 				<div>
-					<h1>마이페이지 작업 중</h1>
+					<h1>마이페이지</h1>
 				</div>
 			</div>
 			<div class="comInfoUnder">
