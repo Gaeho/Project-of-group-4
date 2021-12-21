@@ -7,7 +7,7 @@
 %>
 <html>
 <head>
-<link href="css/sr/SrComInfo.css" rel="stylesheet" type="text/css">
+<link href="css/sr/comMypageUpdate.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -97,6 +97,7 @@
 					<h1>마이페이지 작업 중</h1>
 				</div>
 			</div>
+			<form action="comMypageUpdate2" method="post">
 			<div class="comInfoUnder">
 				<div class="comInfoleft">
 					<%@ include file="myPageMenu.jsp"%>
@@ -106,12 +107,29 @@
 						<div>
 							<div id="com_info-img">
 								<div>
-									<img class="comLogo" src="${commCompany1.com_img}" />
+									<div class="middleTitle_anno_text">
+										<!-- <label for="compimg3">사내 이미지</label> -->
+										<div class="input-group mb-3">
+											<form id="fileForm" name="frm" method="post">
+												<input class="imagesquare1" name="com_img11" 
+														type="image"src="${commCompany1.com_img1}" alt="이미지 없음" 
+														onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" 
+														value="${commCompany1.com_img1}"><p>
+												<input type="file" class="form-control" id="file1" name="file1" /> 
+												<input type="hidden" id="comId1" name="comId1" value="${commCompany1.com_id}"><p>
+												<input type="button" value="업로드" onclick="uploadFile()"> 
+												<input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
+											</form>
+										</div>
+									</div>
+									<%-- <img class="comLogo" src="${commCompany1.com_img}" /> --%>
 								</div>
 							</div>
 							<div id="com_info-bus">
 								<div class="info-text-bus">사업내용</div>
-								<div class="info-value-bus"><textarea>${commCompany1.com_bus}</textarea></div>
+								<div class="info-value-bus">
+									<textarea name="com_bus">${commCompany1.com_bus}</textarea>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -124,54 +142,75 @@
 							<div class="divTableRow">
 								<div id="com_info">
 									<div class="info-text">아이디</div>
-									<div class="info-value"><input type="text" value="${commCompany1.com_id}"></div>
+									<div class="info-value">
+										<input type="text" name="com_id" value="${commCompany1.com_id}">
+									</div>
 								</div>
 							</div>
 							<div class="divTableRow">
 								<div id="com_info">
 									<div class="info-text">회사명</div>
-									<div class="info-value"><input type="text" value="${commCompany1.com_name}"></div>
+									<div class="info-value">
+										<input type="text" name="com_name" value="${commCompany1.com_name}">
+									</div>
 								</div>
 							</div>
 							<div class="divTableRow">
 								<div id="com_info">
 									<div class="info-text">전화번호</div>
-									<div class="info-value"><input type="text" value="${commCompany1.com_tel}"></div>
+									<div class="info-value">
+										<input type="text" name="com_tel" value="${commCompany1.com_tel}">
+									</div>
 								</div>
 							</div>
 							<div class="divTableRow">
 								<div id="com_info">
 									<div class="info-text">주소</div>
-									<div class="info-value"><input type="text" value="${commCompany1.com_addr}"></div>
+									<div class="info-value">
+										<input type="text" name="com_addr" value="${commCompany1.com_addr}">
+									</div>
 								</div>
 							</div>
 							<div class="divTableRow">
 								<div id="com_info">
 									<div class="info-text">이메일</div>
-									<div class="info-value"><input type="text" value="${commCompany1.com_email}"></div>
+									<div class="info-value">
+										<input type="text" name="com_email" value="${commCompany1.com_email}">
+									</div>
 								</div>
 							</div>
 							<div class="divTableRow">
 								<div id="com_info">
 									<div class="info-text">업종</div>
-									<div class="info-value"><input type="text" value="${commCompany1.comm_ctx}"></div>
+									<%-- <div class="info-value">
+										<input type="text" value="${commCompany1.comm_ctx}">
+									</div> --%>
+									<select name="com_sec">
+											<c:forEach var="commList" items="${commList}">
+												<option value="${commList.sub_cat}" selected="selected">${commList.comm_ctx}</option>
+											</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="divTableRow">
 								<div id="com_info">
 									<div class="info-text">담당자 전화번호</div>
-									<div class="info-value"><input type="text" value="${commCompany1.com_mgr_tel}"></div>
+									<div class="info-value">
+										<input type="text" name="com_mgr_tel" value="${commCompany1.com_mgr_tel}">
+									</div>
 								</div>
 							</div>
 							<div class="divTableRow">
 								<div id="com_info">
 									<div class="info-text">사이트</div>
-									<div class="info-value"><input type="text" value="${commCompany1.com_web}"></div>
+									<div class="info-value">
+										<input type="text" name="com_web" value="${commCompany1.com_web}">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="divTableRow_bottom">
+					<%-- <div class="divTableRow_bottom">
 						<div>
 							<div id="com_info_imges">사내이미지</div>
 							<div>	
@@ -182,29 +221,34 @@
 
 							</div>
 						</div>
-					</div>
-						<div class="middleTitle_anno_text">
-							<label for="compimg3">회사 이미지</label>
+					</div> --%>
+						<%-- <div class="middleTitle_anno_text">
+							<!-- <label for="compimg3">사내 이미지</label> -->
 							<div class="input-group mb-3">
 								<form id="fileForm" name="frm" method="post">
-									<input class="imagesquare1" name="com_img11" type="image" src="${commCompany1.com_img}" alt="이미지 없음"
-										onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1"
-										value="${commCompany1.com_img}">
+									<input class="imagesquare2" name="com_img11" type="image"
+										src="${commCompany1.com_img1}" alt="이미지 없음"
+										onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" value="${commCompany1.com_img1}">
 									<p>
 										<input type="file" class="form-control" id="file1" name="file1" />
 										<input type="hidden" id="comId1" name="comId1" value="${commCompany1.com_id}">
 									<p>
-										<input type="button" value="업로드" onclick="uploadFile()"> 
+										<input type="button" value="업로드" onclick="uploadFile()">
 										<input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
 								</form>
 							</div>
+						</div> --%>
+					</div>
+					<div class="comInfoCheck">
+						<div class="comInfocheck-in">
+							<div class="btnUpdate"><input class="ComBtnleft btn btn-primary" type="submit" value="확인" id="submit_btn"> </div>
+							<div class="btnUpdate"><input class="ComBtn btn btn-primary" type="button" value="취소" onclick="location.href='ComInfo'"></div>
 						</div>
-						<a class="mbMypageMenuBox" href="ComMypageUpdate">마이페이지수정</a>
-				</div>
+					</div>
+					</div>
+				</form>
 			</div>
 		</div>
-	</div>
-
-	<%@ include file="/WEB-INF/views/footer.jsp"%>
+	<%-- <%@ include file="/WEB-INF/views/footer.jsp"%> --%>
 </body>
 </html>

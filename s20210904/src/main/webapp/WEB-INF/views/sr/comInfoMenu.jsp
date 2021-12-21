@@ -16,7 +16,7 @@
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function uploadFile() {
 		alert('uploadFile Start...');
 		var form = new FormData();
@@ -85,7 +85,7 @@
 					}
 				});
 	}
-</script>
+</script> -->
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>
@@ -171,7 +171,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="divTableRow_bottom">
+					<%-- <div class="divTableRow_bottom">
 						<div>
 							<div id="com_info_imges">사내이미지</div>
 							<div>	
@@ -179,15 +179,20 @@
 								<img class="imges" src="${commCompany1.com_img2}" /> 
 								<img class="imges" src="${commCompany1.com_img3}" />
 								<br>
-							<a class="mbMypageMenuBox" href="ComMypageUpdate">마이페이지수정</a>
 							</div>
 						</div>
-					</div>
+					</div> --%>
 				</div>
 			</div>
+			<div class="comUpdatedivOUT">
+				<div class="comUpdatediv">
+					<a class="comMypageUpdateBox" href="ComMypageUpdate">마이페이지수정</a>
+				</div>
+			</div>
+			
 		</div>
 	</div>
-					<div class="middleTitle_anno_text">
+					<%-- <div class="middleTitle_anno_text">
 						<label for="compimg3">회사 이미지</label>
 						<div class="input-group mb-3">
 							<form id="fileForm" name="frm" method="post">
@@ -202,8 +207,7 @@
 									<input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
 							</form>
 						</div>
-					</div>
-				</div>
+					</div> --%>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
