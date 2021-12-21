@@ -24,7 +24,7 @@
 			<div class="comInfomid">
 				<div class="compAppStatus_btn">
 						<select
-							onclick="location.href='ComAppStatus?anno_code='+this.value">
+							onchange="location.href='ComAppStatus?anno_code='+this.value">
 							<c:forEach var="annolist" items="${annoList}">
 								<option value="${annolist.anno_code}">${annolist.anno_title }</option>
 							</c:forEach>
