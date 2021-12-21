@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.Bookmark;
+import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
@@ -60,24 +62,24 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 	}
 
 	// 채용공고
-	@Override
-	public List<Announce> listAnnReg(Announce announce) {
-		System.out.println("SrComMypageDaoImpl listAnnReg START....");
-		List<Announce> listAnnReg = session.selectList("SrComAnnReg", announce);
-		System.out.println(listAnnReg);
-		System.out.println("SrComMypageDaoImpl listAnnReg CHECK....");
-		return listAnnReg;
-	}
-
-	// 채용공고
-	@Override
-	public List<Announce> listAnnCReg(Announce announce) {
-		System.out.println("SrComMypageDaoImpl listAnnCReg START....");
-		List<Announce> listAnnCReg = session.selectList("SrComAnnCReg", announce);
-		System.out.println(listAnnCReg);
-		System.out.println("SrComMypageDaoImpl listAnnCReg CHECK....");
-		return listAnnCReg;
-	}
+//	@Override
+//	public List<Announce> listAnnReg(Announce announce) {
+//		System.out.println("SrComMypageDaoImpl listAnnReg START....");
+//		List<Announce> listAnnReg = session.selectList("SrComAnnReg", announce);
+//		System.out.println(listAnnReg);
+//		System.out.println("SrComMypageDaoImpl listAnnReg CHECK....");
+//		return listAnnReg;
+//	}
+//
+//	// 채용공고
+//	@Override
+//	public List<Announce> listAnnCReg(Announce announce) {
+//		System.out.println("SrComMypageDaoImpl listAnnCReg START....");
+//		List<Announce> listAnnCReg = session.selectList("SrComAnnCReg", announce);
+//		System.out.println(listAnnCReg);
+//		System.out.println("SrComMypageDaoImpl listAnnCReg CHECK....");
+//		return listAnnCReg;
+//	}
 
 
 
@@ -130,7 +132,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			List<MemResumeBmark> bookmarkList = null;
 			System.out.println("SrComMypageDaoImpl bookmarkList Start...");
 			try {
-				bookmarkList = session.selectList("SrBmarkList", memResumeBmark);
+				bookmarkList = session.selectList("BookMarkList", memResumeBmark);
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl bookmarkList error"+e.getMessage());
 			}
@@ -190,7 +192,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 			System.out.println("북마크 추가 내용=>"+bookmark.getIt_bookmark());
 			System.out.println("북마크 추가 내용=>"+bookmark.getMrk_res_code());
 			try {
-				session.insert("SrBminsert", bookmark);
+				session.insert("BookMarkInsert", bookmark);
 				System.out.println("Dao.bookmark.getIt_bookmark()->"+bookmark.getIt_bookmark());
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl bookmarkinsert error"+e.getMessage());
@@ -204,7 +206,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		public void bookmarkdelete(Bookmark bookmark) {
 			System.out.println("SrComMypageDaoImpl bookmarkdelete Start...");
 			try {
-				session.delete("SrBmdelete", bookmark);
+				session.delete("BookMarkDelete", bookmark);
 			} catch (Exception e) {
 				System.out.println("SrComMypageDaoImpl bookmarkdelete error"+e.getMessage());
 			}
@@ -310,7 +312,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 
 		@Override
 		public void applyStsUpdate(Apply apply) {
-			session.insert("SrApplyStsUpdate",apply);
+			session.insert("ApplyStatusInsert",apply);
 		}
 
 
@@ -318,7 +320,7 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 		public List<Announce> listAnn(Announce announce) {
 			System.out.println("SrComMypageDaoImpl listAnnReg START....");
 			System.out.println("다오 회사 아이디=>"+announce.getCom_id());
-			List<Announce> listAnn = session.selectList("SrComAnn", announce);
+			List<Announce> listAnn = session.selectList("ComAnnounceList", announce);
 			System.out.println(listAnn);
 			System.out.println("사이즈~~~"+listAnn.size());
 			for(Announce aaa:listAnn) {
@@ -335,19 +337,34 @@ public class SrComMypageDaoImpl implements SrComMypageDao {
 
 		@Override
 		public Bookmark bookmark(Bookmark bookmark) {
-			Bookmark bookmark2=session.selectOne("SrBoo", bookmark);
+			Bookmark bookmark2=session.selectOne("CheckAfterBookMark", bookmark);
 			return bookmark2;
 		}
 		
 		@Override
 		public void noticeDel(String ntc_code) {
-			session.delete("noticeDel",ntc_code);
+			session.delete("NoticeDelete",ntc_code);
 		}
 
-	
 
-	
-	
-	
+		@Override
+		public int comMyInfoUpdate(CommCompany commCompany) {
+			System.out.println("SrComMypageDaoImpl comInfo UPDATE START...");
+			int result=0;
+			try {
+				result=session.update("ComInfoUpdate", commCompany);
+				System.out.println("rComMypageDaoImpl comInfo UPDATE 성공...?"+result);
+			} catch (Exception e) {
+				System.out.println("SrComMypageDaoImpl comInfo UPDATE ERROR..."+e.getMessage());
+				result=0;
+			}
+			return result;
+		}
+
+		@Override
+		public List<Comm> commList(Comm comm) {
+			List<Comm> commList=session.selectList("CommListWithMAIN_CAT_050", comm);
+			return commList;
+		}
 	
 }

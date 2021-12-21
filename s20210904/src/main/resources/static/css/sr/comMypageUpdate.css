@@ -112,7 +112,58 @@
 	width: 600px;
 	margin: 0px auto;
 }
+.divTableRow-top > div {
+	
+	width: 100%;
+}
 
-.comUpdatedivOUT{
+
+#com_info-bus{
+	margin-left: 20px;
+}
+
+
+.imagesquare1{
+	width: 200px;
+	height: 200px;
+	margin-bottom: 10px;
+}
+
+.middleTitle_anno_text{
 	display: flex;
+}
+
+.input-group mb-3{
+	margin: 0 auto;
+	margin-left: 35px;	
+}
+
+#fileForm{
+	margin-left: 100px;
+}
+
+#file1{
+	width: 220px;
+}
+
+textarea {
+	max-width: 250px;
+    max-height: 200px;
+    min-width: 250px;
+    min-height: 200px;
+}
+
+.imagesquare2{
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+}
+
+.comInfocheck-in{
+	display: flex;
+	flex-direction: row;
+}
+
+.comInfoCheck{
+	flex-direction: column;
 }

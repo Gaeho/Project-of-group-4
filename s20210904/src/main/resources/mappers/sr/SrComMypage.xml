@@ -6,40 +6,28 @@
 		select count(*)
 		from company
 	</select>
-	
+
 	<select id="SrComInfo" resultType="CommCompany">
 		select company.*, comm.*
-		from COMPANY
+		from
+		COMPANY
 		left join comm
 		on company.com_sec=comm.SUB_CAT
-		where comm.MAIN_CAT='050'
+		where
+		comm.MAIN_CAT='050'
 		and company.com_id=#{com_id}
 	</select>
-	
-	<select id="SrComAnnReg" parameterType="Announce" resultType="Announce">
-    	select * 
-		from announce
-		where com_id = #{com_id}
-	</select>
-	
-	<select id="SrComAnnCReg" parameterType="Announce" resultType="Announce">
-		<![CDATA[
-		select *
-		from 
-    		(
-    		 select rownum rn, z.*
-    		 from ( 
-    		 		select * 
-			 		from announce
-			 		where ANNO_C_REGDATE < sysdate
-			 		and com_id = 'tlstprp5184'
-			       ) z
-    		 )
-		where rn between #{start} and #{end}    		 
-		]]>
-	</select>
-	
-	<select id="SrAppAnnMemReg" parameterType="AppAnnMem" resultType="AppAnnMem">
+
+	<!-- <select id="SrComAnnReg" parameterType="Announce" resultType="Announce"> 
+		select * from announce where com_id = #{com_id} </select> -->
+
+	<!-- <select id="SrComAnnCReg" parameterType="Announce" resultType="Announce"> 
+		<![CDATA[ select * from ( select rownum rn, z.* from ( select * from announce 
+		where ANNO_C_REGDATE < sysdate and com_id = 'tlstprp5184' ) z ) where rn 
+		between #{start} and #{end} ]]> </select> -->
+
+	<select id="SrAppAnnMemReg" parameterType="AppAnnMem"
+		resultType="AppAnnMem">
 		<![CDATA[
 		select * from(select rownum rn, mem.user_id, mem.user_img, app.APP_REGDATE, app.res_code as mrk_res_code , anno.ANNO_CODE
 		, anno.ANNO_C_REGDATE, anno.ANNO_REGDATE, anno.com_id, anno.ANNO_TITLE, app.app_sts
@@ -51,8 +39,9 @@
 		where anno.anno_code=#{anno_code}) where rn between #{start} and #{end}
 		]]>
 	</select>
-	
-	<select id="SrAppAnnMemCReg" parameterType="AppAnnMem" resultType="AppAnnMem">
+
+	<select id="SrAppAnnMemCReg" parameterType="AppAnnMem"
+		resultType="AppAnnMem">
 		<![CDATA[
 		select mem.user_id, mem.user_img, app.APP_REGDATE, app.res_code as mrk_res_code, anno.ANNO_CODE
 		, anno.ANNO_C_REGDATE, anno.ANNO_REGDATE, anno.com_id
@@ -65,223 +54,278 @@
 		and anno.ANNO_C_REGDATE < sysdate
 		]]>
 	</select>
-	<select id="SrBmarkList" parameterType="MemResumeBmark" resultType="MemResumeBmark">
-		select DISTINCT mem.user_id, mem.user_img, boo.COM_ID, boo.IT_BOOKMARK, boo.MRK_DATE, boo.MRK_RES_CODE ,res.RES_TITLE --, res.RES_CODE, res.USER_ID
+	<select id="BookMarkList" parameterType="MemResumeBmark" resultType="MemResumeBmark">
+		select DISTINCT mem.user_id, mem.user_img, boo.COM_ID,
+		boo.IT_BOOKMARK, boo.MRK_DATE, boo.MRK_RES_CODE ,res.RES_TITLE,
+		res.RES_CODE, res.USER_ID
 		from member mem
 		left join bookmark boo
-		on mem.user_id=boo.user_id
-		left join resume res  -- 이력서
+		on
+		mem.user_id=boo.user_id
+		left join resume res -- 이력서
 		on (
-			boo.MRK_RES_CODE=res.RES_CODE
-  			and  boo.user_id=res.user_id
-  			)
+		boo.MRK_RES_CODE=res.RES_CODE
+		and boo.user_id=res.user_id
+		)
 		where boo.COM_ID=#{com_id}
 	</select>
-	
+
 	<select id="SrUserDetail" parameterType="CommResMemBook" resultType="CommResMemBook">
-		select DISTINCT mem.user_name, mem.user_img, mem.user_email, mem.USER_TEL, mem.user_addr,res.res_title,res.res_email, res.univ_name
-		,res.univ_date, res.HS_NAME, res.cov_let, boo.MRK_RES_CODE, jobTag.comm_ctx as jobTag, hsMjr.comm_ctx as hsMjr,
-		tag1.comm_ctx as tag1, tag2.comm_ctx as tag2, tag3.comm_ctx as tag3,res.univ_mjr
-		from member mem
+		select DISTINCT mem.user_name, mem.user_img,
+		mem.user_email, mem.USER_TEL,
+		mem.user_addr,res.res_title,res.res_email, res.univ_name
+		,res.univ_date, res.HS_NAME, res.cov_let, boo.MRK_RES_CODE,
+		jobTag.comm_ctx as jobTag, hsMjr.comm_ctx as hsMjr,
+		tag1.comm_ctx as
+		tag1, tag2.comm_ctx as tag2, tag3.comm_ctx as tag3,res.univ_mjr
+		from
+		member mem
 		left outer join resume res
 		on res.user_id = mem.user_id
-		left outer join BOOKMARK boo
+		left
+		outer join BOOKMARK boo
 		on res.res_code = boo.MRK_RES_CODE
-   		left outer join 
-   						(
-   							select comm_ctx, SUB_CAT
-        					from comm
-        					where main_cat = 001
-        				) jobTag
-   		on jobTag.SUB_CAT = mem.USER_JOB_TAG
-    	left outer join 
-    					(
-    						select comm_ctx, SUB_CAT
-        					from comm
-        					where main_cat = 062
-        				) hsMjr
-   		on hsMjr.SUB_CAT = res.HS_MJR
-		left outer join 
-						(
-							select comm_ctx, SUB_CAT
-       		 				from comm
-        					where main_cat = 001
-        				) tag1
-    	on tag1.SUB_CAT = res.RES_TAG1
-    	left outer join 
-    					(
-    						select comm_ctx, SUB_CAT
-        					from comm
-        					where main_cat = 002
-        				) tag2
-    	on tag2.SUB_CAT = res.RES_TAG2
-    	left outer join 
-    					(
-    						select comm_ctx, SUB_CAT
-        					from comm
-       	 					where main_cat = 002
-       	 				) tag3
-    	on tag3.SUB_CAT = res.RES_TAG3
-		where mem.user_id = #{user_id} and boo.mrk_res_code = #{mrk_res_code}
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 001
+		) jobTag
+		on jobTag.SUB_CAT = mem.USER_JOB_TAG
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 062
+		) hsMjr
+		on hsMjr.SUB_CAT = res.HS_MJR
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 001
+		) tag1
+		on tag1.SUB_CAT = res.RES_TAG1
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 002
+		) tag2
+		on tag2.SUB_CAT = res.RES_TAG2
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 002
+		) tag3
+		on tag3.SUB_CAT = res.RES_TAG3
+		where mem.user_id = #{user_id} and
+		boo.mrk_res_code = #{mrk_res_code}
 	</select>
-	
-	<select id="SrUserDetail2" parameterType="CommResMemBook" resultType="CommResMemBook">
-		select DISTINCT mem.user_name, mem.user_img, mem.user_email, mem.USER_TEL, mem.user_addr,res.res_title,res.res_email, res.univ_name
-		,res.univ_date, res.HS_NAME, res.cov_let, res.RES_CODE as mrk_res_code, jobTag.comm_ctx as jobTag, hsMjr.comm_ctx as hsMjr,
-		tag1.comm_ctx as tag1, tag2.comm_ctx as tag2, tag3.comm_ctx as tag3,res.univ_mjr
+
+	<select id="SrUserDetail2" parameterType="CommResMemBook"
+		resultType="CommResMemBook">
+		select DISTINCT mem.user_name, mem.user_img,
+		mem.user_email, mem.USER_TEL,
+		mem.user_addr,res.res_title,res.res_email, res.univ_name
+		,res.univ_date, res.HS_NAME, res.cov_let, res.RES_CODE as
+		mrk_res_code, jobTag.comm_ctx as jobTag, hsMjr.comm_ctx as hsMjr,
+		tag1.comm_ctx as tag1, tag2.comm_ctx as tag2, tag3.comm_ctx as
+		tag3,res.univ_mjr
 		from member mem
 		left outer join resume res
-		on res.user_id = mem.user_id
-   		left outer join 
-   						(
-   							select comm_ctx, SUB_CAT
-        					from comm
-        					where main_cat = 001
-        				) jobTag
-   		on jobTag.SUB_CAT = mem.USER_JOB_TAG
-    	left outer join 
-    					(
-    						select comm_ctx, SUB_CAT
-        					from comm
-        					where main_cat = 062
-        				) hsMjr
-   		on hsMjr.SUB_CAT = res.HS_MJR
-		left outer join 
-						(
-							select comm_ctx, SUB_CAT
-       		 				from comm
-        					where main_cat = 001
-        				) tag1
-    	on tag1.SUB_CAT = res.RES_TAG1
-    	left outer join 
-    					(
-    						select comm_ctx, SUB_CAT
-        					from comm
-        					where main_cat = 002
-        				) tag2
-    	on tag2.SUB_CAT = res.RES_TAG2
-    	left outer join 
-    					(
-    						select comm_ctx, SUB_CAT
-        					from comm
-       	 					where main_cat = 002
-       	 				) tag3
-    	on tag3.SUB_CAT = res.RES_TAG3
-		where mem.user_id = #{user_id} and res.res_code = #{mrk_res_code}
+		on
+		res.user_id = mem.user_id
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 001
+		) jobTag
+		on jobTag.SUB_CAT = mem.USER_JOB_TAG
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 062
+		) hsMjr
+		on hsMjr.SUB_CAT = res.HS_MJR
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 001
+		) tag1
+		on tag1.SUB_CAT = res.RES_TAG1
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 002
+		) tag2
+		on tag2.SUB_CAT = res.RES_TAG2
+		left outer join
+		(
+		select comm_ctx, SUB_CAT
+		from comm
+		where main_cat = 002
+		) tag3
+		on tag3.SUB_CAT = res.RES_TAG3
+		where mem.user_id = #{user_id} and
+		res.res_code = #{mrk_res_code}
 	</select>
-	
+
 	<select id="SrGetInfo" parameterType="Bookmark" resultType="int">
 		select count(*)
-		from bookmark 
-		where com_id =  #{com_id}
+		from bookmark
+		where com_id = #{com_id}
 		and user_id = #{user_id}
-   		and MRK_RES_CODE = #{mrk_res_code}
+		and MRK_RES_CODE = #{mrk_res_code}
 	</select>
-	
-	<insert id="SrBminsert" parameterType="Bookmark">
-		insert into bookmark 
+
+	<insert id="BookMarkInsert" parameterType="Bookmark">
+		insert into bookmark
 		values (#{com_id},#{user_id},1,sysdate,#{mrk_res_code})
 	</insert>
-	
-	<delete id="SrBmdelete" parameterType="Bookmark">
-		delete 
-		from bookmark 
-		where com_id = #{com_id} 
+
+	<delete id="BookMarkDelete" parameterType="Bookmark">
+		delete
+		from bookmark
+		where com_id = #{com_id}
 		and user_id = #{user_id}
 		and mrk_res_code = ${mrk_res_code}
 	</delete>
-	
+
 	<!-- 열람이력 확인~ -->
-	<select id="SrFindRC" parameterType="ResumeContect" resultType="ResumeContect">
+	<select id="SrFindRC" parameterType="ResumeContect"
+		resultType="ResumeContect">
 		select * from resume_contect
-		where user_id=#{user_id} and res_code=#{res_code} and com_id=#{com_id}
+		where user_id=#{user_id} and
+		res_code=#{res_code} and com_id=#{com_id}
 	</select>
-	
-	<!-- 이력서열람 추가요-->
+
+	<!-- 이력서열람 추가요 -->
 	<insert id="SrResumeContectInsert" parameterType="ResumeContect">
-		insert into Resume_Contect 
+		insert into
+		Resume_Contect
 		values(#{com_id},#{user_id},#{res_code},sysdate,not_seq.nextval)
 	</insert>
-	
+
 	<!-- 알림추가요~ -->
 	<insert id="SrInsertNotice" parameterType="Notice">
 		insert into notice
 		values(#{ntc_code},#{user_id},#{anno_code},#{ntc_ctg},sysdate)
 	</insert>
-	
-	<select id="SrMemResumeBmarkList" parameterType="MemResumeBmark" resultType="MemResumeBmark">
-		<!-- select mem.user_id, mem.user_img, res.RES_DATE,res.res_code,bmark.com_id, bmark.MRK_DATE, 
-		bmark.IT_BOOKMARK, res.RES_TITLE
+
+	<select id="SrMemResumeBmarkList" parameterType="MemResumeBmark"
+		resultType="MemResumeBmark">
+		select DISTINCT mem.user_id, res.RES_CODE mrk_res_code, res.RES_TITLe,
+		mem.USER_IMG, res.RES_DATE,res.REP_RES
 		from member mem
-		left JOIN RESUME res
+		left join resume
+		res
 		on mem.user_id=res.user_id
 		left join bookmark bmark
-		on mem.user_id=bmark.user_id
-		where res.res_title like '%'||#{keyword1}||'%'
-    	and bmark.com_id='tkstjd234' -->
-    	select DISTINCT mem.user_id, res.RES_CODE mrk_res_code, res.RES_TITLe, mem.USER_IMG, res.RES_DATE,res.REP_RES
-		from member mem
-		left join resume res
-		on mem.user_id=res.user_id
-		left join bookmark bmark
-		on res.RES_CODE=bmark.MRK_RES_CODE
-		where res.RES_TITLE like '%'||#{keyword1}||'%'
-		<!-- and res.rep_res='1' -->
+		on
+		res.RES_CODE=bmark.MRK_RES_CODE
+		where res.RES_TITLE like
+		'%'||#{keyword1}||'%'
+		and res.rep_res='1'
 	</select>
-	
-	<select id="SrUser_idListByResume" parameterType="Resume" resultType="Resume">
+
+	<select id="SrUser_idListByResume" parameterType="Resume"
+		resultType="Resume">
 		select distinct user_id
 		from resume
 	</select>
-	
-	<select id="SrComAppStatusListDetail" parameterType="java.lang.String" resultType="CommMemResume">
-		select DISTINCT mem.*, bmark.IT_BOOKMARK, bmark.MRK_DATE, bmark.com_id
+
+	<select id="SrComAppStatusListDetail"
+		parameterType="java.lang.String" resultType="CommMemResume">
+		select DISTINCT mem.*,
+		bmark.IT_BOOKMARK, bmark.MRK_DATE, bmark.com_id
 		from bookmark bmark
 		left join member mem
 		on mem.user_id=bmark.user_id
 		left join resume res
 		on mem.user_id=res.user_id
 		where bmark.com_id='tlstprp5184'
-		and mem.user_id=#{user_id}
+		and
+		mem.user_id=#{user_id}
 	</select>
-	
-	<select id="SrAnnoList" parameterType="String" resultType="Announce">
+
+	<select id="SrAnnoList" parameterType="String"
+		resultType="Announce">
 		select * from Announce where com_id=#{comid}
 	</select>
-	
+
 	<select id="SrApplyCnt" parameterType="String" resultType="int">
 		select count(*) from apply where anno_code=#{anno_code}
 	</select>
-	
+
 	<update id="SrMemPass" parameterType="Apply">
-		update apply set app_sts='003' where user_id=#{user_id} and res_code=#{res_code}
+		update apply set
+		app_sts='003' where user_id=#{user_id} and res_code=#{res_code}
 	</update>
-	
+
 	<update id="SrMemFail" parameterType="Apply">
-		update apply set app_sts='004' where user_id=#{user_id} and res_code=#{res_code}
+		update apply set
+		app_sts='004' where user_id=#{user_id} and res_code=#{res_code}
 	</update>
-	
-	<insert id="SrApplyStsUpdate" parameterType="Apply">
-		insert into Notice values(not_seq.nextval,#{user_id},#{anno_code},'002',sysdate)
+
+	<insert id="ApplyStatusInsert" parameterType="Apply">
+		insert into Notice
+		values(not_seq.nextval,#{user_id},#{anno_code},'002',sysdate)
 	</insert>
-	<select id="SrComAnn" parameterType="Announce" resultType="Announce">
-		select * 
+	<select id="ComAnnounceList" parameterType="Announce"
+		resultType="Announce">
+		select *
 		from announce
 		where com_id = #{com_id}
 	</select>
-	<select id="SrBoo" parameterType="Bookmark" resultType="Bookmark">
-	select bookmark.*
-	from bookmark
-	where com_id=#{com_id}
-	and user_id=#{user_id}
-	and mrk_res_code=#{mrk_res_code}
-	and it_bookmark='1'
+	<select id="CheckAfterBookMark" parameterType="Bookmark"
+		resultType="Bookmark">
+		select bookmark.*
+		from bookmark
+		where com_id=#{com_id}
+		and user_id=#{user_id}
+		and mrk_res_code=#{mrk_res_code}
+		and it_bookmark='1'
 	</select>
-	
-	<delete id="noticeDel" parameterType="String">
-		delete from notice where ntc_code=#{ntc_code}
+
+	<delete id="NoticeDelete" parameterType="String">
+		delete from notice where
+		ntc_code=#{ntc_code}
 	</delete>
-	
-	
-	
+
+	<update id="ComInfoUpdate" parameterType="CommCompany">
+		update company
+		set
+		com_id=#{com_id}, com_name=#{com_name},com_tel=#{com_tel},
+		com_addr=#{com_addr},com_email=#{com_email},com_sec=#{com_sec},
+		com_bus=#{com_bus},com_web=#{com_web}, com_mgr_tel=#{com_mgr_tel}
+		where com_id=#{com_id}
+	</update>
+	<select id="CommListWithMAIN_CAT_050" parameterType="Comm"
+		resultType="Comm">
+		select comm.*
+		from comm
+		where MAIN_CAT='050'
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

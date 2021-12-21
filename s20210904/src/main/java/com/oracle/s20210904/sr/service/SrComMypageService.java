@@ -6,6 +6,8 @@ import java.util.List;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.Bookmark;
+import com.oracle.s20210904.comm.model.Comm;
+import com.oracle.s20210904.comm.model.Company;
 import com.oracle.s20210904.comm.model.MemBmark;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
@@ -23,9 +25,11 @@ public interface SrComMypageService {
 
 	CommCompany comInfo(CommCompany commCompany);
 
-	List<Announce> listAnnReg(Announce announce);
-
-	List<Announce> listAnnCReg(Announce announce);
+	/*
+	 * List<Announce> listAnnReg(Announce announce);
+	 * 
+	 * List<Announce> listAnnCReg(Announce announce);
+	 */
 
 	List<AppAnnMem> appAnnMemReg(AppAnnMem appAnnMem);
 
@@ -71,6 +75,12 @@ public interface SrComMypageService {
 	Bookmark bookmark(Bookmark bookmark);
 
 	void noticeDel(String ntc_code);
+
+	int comMyInfoUpdate(CommCompany commCompany);
+
+	List<Comm> commList(Comm comm);
+
+	/* int comMyInfoUpdate(CommCompany commCompany); */
 
 	
 
