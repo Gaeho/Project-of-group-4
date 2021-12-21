@@ -95,7 +95,7 @@
 			<div class="comInfoUpper">
 				<div>
 					<h1>마이페이지 작업 중</h1>
-				</div>
+				</div>m
 			</div>
 			<form action="comMypageUpdate2" method="post">
 			<div class="comInfoUnder">
@@ -103,20 +103,22 @@
 					<%@ include file="myPageMenu.jsp"%>
 				</div>
 				<div class="comInforight">
+				<div class="info">
 					<div class="divTableRow-top">
 						<div>
 							<div id="com_info-img">
 								<div>
 									<div class="middleTitle_anno_text">
 										<!-- <label for="compimg3">사내 이미지</label> -->
-										<div class="input-group mb-3">
+										<div class="input-group mb-3" style="flex-direction:column;">
 											<form id="fileForm" name="frm" method="post">
 												<input class="imagesquare1" name="com_img11" 
 														type="image"src="${commCompany1.com_img1}" alt="이미지 없음" 
 														onerror="this.src='./img/dj/no_Image.gif'" id="imagesquare1" 
 														value="${commCompany1.com_img1}"><p>
 												<input type="file" class="form-control" id="file1" name="file1" /> 
-												<input type="hidden" id="comId1" name="comId1" value="${commCompany1.com_id}"><p>
+												<input type="hidden" id="comId1" name="comId1" value="${commCompany1.com_id}">
+												<p style="display:flex; justify-content: center;">
 												<input type="button" value="업로드" onclick="uploadFile()"> 
 												<input type="button" value="삭제" id="delImg12" onclick="deleteFile()">
 											</form>
@@ -185,7 +187,7 @@
 									<%-- <div class="info-value">
 										<input type="text" value="${commCompany1.comm_ctx}">
 									</div> --%>
-									<select name="com_sec">
+									<select name="com_sec" class="com_sec">
 											<c:forEach var="commList" items="${commList}">
 												<option value="${commList.sub_cat}" selected="selected">${commList.comm_ctx}</option>
 											</c:forEach>
@@ -209,6 +211,7 @@
 								</div>
 							</div>
 						</div>
+					</div>
 					</div>
 					<%-- <div class="divTableRow_bottom">
 						<div>
@@ -238,17 +241,18 @@
 								</form>
 							</div>
 						</div> --%>
-					</div>
 					<div class="comInfoCheck">
 						<div class="comInfocheck-in">
-							<div class="btnUpdate"><input class="ComBtnleft btn btn-primary" type="submit" value="확인" id="submit_btn"> </div>
+							<div class="btnUpdate"><input class="ComBtnleft btn btn-primary" type="submit" value="확인" id="submit_btn" style="margin-right: 5px;'"> </div>
 							<div class="btnUpdate"><input class="ComBtn btn btn-primary" type="button" value="취소" onclick="location.href='ComInfo'"></div>
 						</div>
 					</div>
 					</div>
+					</div>
+					
 				</form>
 			</div>
 		</div>
-	<%-- <%@ include file="/WEB-INF/views/footer.jsp"%> --%>
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
