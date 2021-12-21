@@ -1,24 +1,23 @@
-@charset "UTF-8";
-
-* {
-	text-decoration: none;
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
+*{
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #1d1d1d;
 }
 
-#Shcontainer{
-    position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    background: #fff;
-    padding: 40px;
-    box-sizing: border-container;
-    border: 1px solid rgba(0, 0, 0 , .1);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+.Shcontainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.main{
+	 margin-top:5%;
+	 margin-bottom:5%;
+	  height: 400px;;
+	  width: 800px;
+}
+
 .Shcontainer h2{
     margin: 0 0 40px;
     padding: 0;
@@ -45,7 +44,7 @@
 .Shcontainer textarea{
     margin-bottom: 20px;
 }
-.SHcontainer input[type="submit"]{
+.Shcontainer input[type="submit"]{
     border-bottom: none;
     cursor: pointer;
     background: #FFD42C;
@@ -66,8 +65,8 @@
 }
 .Shcontainer input:focus ~ label,
 .Shcontainer textarea:focus ~ label,
-.Shcontainerinput:valid ~ label,
-.Shcontainertextarea:valid ~ label{
+.Shcontainer input:valid ~ label,
+.Shcontainer textarea:valid ~ label{
     top: -12px;
     left: 0;
     color: #FFD42C;
@@ -75,9 +74,9 @@
     font-weight: bold;
 }
 .Shcontainer input:focus,
-.Shcontainertextarea:focus,
-.Shcontainerinput:valid,
-.Shcontainertextarea:valid{
+.Shcontainer textarea:focus,
+.Shcontainer input:valid,
+.Shcontainer textarea:valid{
     border-bottom: 2px solid #FFD42C;
 }
 input:focus,
