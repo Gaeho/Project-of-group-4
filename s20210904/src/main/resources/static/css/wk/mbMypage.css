@@ -30,6 +30,10 @@
 	padding: 10px;
 }
 
+.mb_p_2{
+	padding: 2px 2px !important;
+}
+
 /*     mypage 공통css       */
 
 
@@ -118,6 +122,11 @@
 .mbDeleteBtn_area{
 	text-align: right;
 	padding: 10px 30px;
+}
+
+.notice_img{
+	height: 12px;
+	width: 12px;
 }
 
 
