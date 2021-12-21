@@ -150,7 +150,7 @@
 		<div class="menu_profile">
 			<input type="image" class="profile_img" src="${profile}" 
 				alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="profile_img" >
-			<div class="mbFormText">${mbid } 님</div>
+			<div class="mbFormText mb_center">${mbid } 님</div>
 		</div>
 		
 		<p>
@@ -192,7 +192,7 @@
 				<input type="hidden" name="uploadstate" id="uploadstate" value="non">
 				
 				<div class="mbFormTitle"><a>기본 정보</a></div>
-				<div class="mbFormText">프로필 사진</div>
+				<div class="mbFormText">이력서 사진</div>
 				<div class="mb_flex mb_p1">
 					<input type="hidden" id="res_img" name="res_img" value="${memberdetail.user_img}">
 					<input type="image" class="profile_img" src="${memberdetail.user_img}" 

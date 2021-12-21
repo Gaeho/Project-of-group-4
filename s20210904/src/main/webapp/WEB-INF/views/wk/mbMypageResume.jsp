@@ -103,7 +103,7 @@
 		<div class="menu_profile">
 			<input type="image" class="profile_img" src="${profile}" 
 				alt="이미지 없음" onerror="this.src='./img/dj/no_Image.gif'" id="profile_img" >
-			<div class="mbFormText">${mbid } 님</div>
+			<div class="mbFormText mb_center">${mbid } 님</div>
 		</div>
 		
 		<p>
@@ -161,18 +161,18 @@
 							<td><c:if test="${resumelist.rep_res eq 1}">대표이력서</c:if></td>
 							<td>
 								<c:if test="${resumelist.rep_res eq 1}">
-									<input type="button" value="대표이력서 해제" onclick="rep_resume_del(${resumelist.res_code})">
+									<input class="btn btn-outline-secondary mb_p_2" type="button" value="대표이력서 해제" onclick="rep_resume_del(${resumelist.res_code})">
 									<input type="hidden" id="rep_res" value="${resumelist.res_code}">
 								</c:if>
 								<c:if test="${resumelist.rep_res eq 0}">
-									<input type="button" value="대표이력서로 설정" onclick="rep_resume(${resumelist.res_code})">
+									<input class="btn btn-outline-secondary mb_p_2" type="button" value="대표이력서로 설정" onclick="rep_resume(${resumelist.res_code})">
 								</c:if>
 							</td>
 							<td>
-								<input type="submit" onclick="location.href='mbMypageResumeUpdate?res_code=${resumelist.res_code}'" value="수정">
+								<input class="btn btn-outline-secondary mb_p_2" type="button" onclick="location.href='mbMypageResumeUpdate?res_code=${resumelist.res_code}'" value="수정">
 							</td>
 							<td>	
-								<input type="button" onclick="resume_delete(${resumelist.res_code})" value="삭제">
+								<input class="btn btn-outline-secondary mb_p_2" type="button" onclick="resume_delete(${resumelist.res_code})" value="삭제">
 							</td>
 						</tr>
 					</c:forEach>
