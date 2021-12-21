@@ -31,7 +31,6 @@
 
 .comInforight{
 	width:70%;
-	border: 1px solid silver;
 }
 
 .divTableRow-mid > div{
@@ -115,4 +114,9 @@
 
 .comUpdatedivOUT{
 	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+.info{
+	border: 1px solid black;
 }

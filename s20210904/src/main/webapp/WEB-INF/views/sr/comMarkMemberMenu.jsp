@@ -23,7 +23,7 @@
 				</div>
 				<div class="comInforight">
 					<div class="annolist1">
-						<table class="table table-hover">
+						<table class="table table-hover" style="vertical-align:middle">
 							<thead class="table-light">
 								<tr>
 									<th scope="col">회원 사진</th>

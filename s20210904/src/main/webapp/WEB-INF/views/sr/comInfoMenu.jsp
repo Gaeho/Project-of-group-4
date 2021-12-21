@@ -102,6 +102,7 @@
 					<%@ include file="myPageMenu.jsp"%>
 				</div>
 				<div class="comInforight">
+					<div class="info">
 					<div class="divTableRow-top">
 						<div>
 							<div id="com_info-img">
@@ -171,6 +172,12 @@
 							</div>
 						</div>
 					</div>
+					</div>
+					<div class="comUpdatedivOUT">
+						<div class="comUpdatediv">
+							<a class="comMypageUpdateBox" href="ComMypageUpdate">마이페이지수정</a>
+						</div>
+					</div>
 					<%-- <div class="divTableRow_bottom">
 						<div>
 							<div id="com_info_imges">사내이미지</div>
@@ -184,11 +191,7 @@
 					</div> --%>
 				</div>
 			</div>
-			<div class="comUpdatedivOUT">
-				<div class="comUpdatediv">
-					<a class="comMypageUpdateBox" href="ComMypageUpdate">마이페이지수정</a>
-				</div>
-			</div>
+			
 			
 		</div>
 	</div>
