@@ -20,8 +20,14 @@
 		display: flex;	
 		padding-bottom: 10px;
 		border-bottom: 3px solid silver;
-		max-width: 1200px;
+		max-width: 1300px;
 		height:150px;
+		position: sticky;
+   		top: 0;
+   		background: white;
+   		justify-content: space-between;
+   		z-index: 2;
+		
 }
 
 .TopContainer > div {
@@ -134,7 +140,16 @@
 	font-family: 'Black Han Sans', sans-serif;
 	font-size: 40px;
 	margin-top: 50px;
+	height: 120%;
 }
+
+.recruit_detail1 {
+	
+	border: 1px solid silver;
+	border-radius: 5px;
+	padding: 5px;
+	
+} 
 
 .anno_info11{max-width: 90%;}
 .anno_recruit11{max-width: 90%;}
