@@ -10,6 +10,10 @@ public interface DjSearchService {
     List<DjSearch> searchAnno(DjSearch djsearch);
 
 	List<Company> searchCom(Company company);
+
+	int annocnt(DjSearch djsearch);
+
+	int comcnt(Company company);
 	
 
 }

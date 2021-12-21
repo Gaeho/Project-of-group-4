@@ -2120,7 +2120,7 @@ progress {
 }
 
 .table-responsive {
-  overflow-x: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -5547,8 +5547,8 @@ textarea.form-control-lg {
   top: 0;
   left: 0;
   z-index: 1050;
-  width: 100vw;
-  height: 100vh;
+/*   width: 100vw; */
+/*   height: 100vh; */
   background-color: #000;
 }
 .modal-backdrop.fade {

@@ -36,5 +36,7 @@ public interface SyPostDao {
 
 	int max();
 
+	int searchTotal(String searchText);
+
 }
 

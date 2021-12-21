@@ -15,15 +15,15 @@
 
 	/* EmpController */
 	function setBookmark(){
-		alert("setBookmark Start..");  
+	/* 	alert("setBookmark Start..");   */
 		var com_id = $('#com_id').val()
 		var user_id = $('#user_id').val()
 		var it_bookmark = $('#it_bookmark').val()
 		var mrk_res_code = $('#mrk_res_code').val()
-		alert("setBookmark com_id->"+ com_id);  
+		/* alert("setBookmark com_id->"+ com_id);  
 		alert("setBookmark user_id->"+user_id);  
 		alert("setBookmark it_bookmark->"+it_bookmark);
-		alert("setBookmark mrk_res_code->"+mrk_res_code); 
+		alert("setBookmark mrk_res_code->"+mrk_res_code);  */
 		
 		
 	 	$.ajax({
@@ -37,16 +37,16 @@
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			dataType : "json", /* 서버에서 내려온 data 형식 */
 			success : function(data) { /* 요청이 성공됬을때 실행되는 callback 함수 */
-				alert("success data" + data);
+			/* 	alert("success data" + data);
 				alert("setBookmark com_id->" + data.com_id);
 				alert("setBookmark user_id->" + data.user_id);
 				alert("setBookmark it_bookmark->" + data.it_bookmark);
-				alert("setBookmark mrk_res_code->" + data.mrk_res_code);
+				alert("setBookmark mrk_res_code->" + data.mrk_res_code); */
 				$("#com_id").text(data.com_id);
 				$("#user_id").text(data.user_id);
 				$("#it_bookmark").val(data.it_bookmark);
 				$("#mrk_res_code").text(data.mrk_res_code);
-				alert("성공");
+				/* alert("성공"); */
 				/* 	$('#it_bookmark').val(data); */
 
 				location.reload(); // 페이지 리로드
@@ -67,7 +67,7 @@
 		<div class="comInfoMenu">
 			<div class="comInfoUpper">
 				<div>
-					<h1>마이페이지 작업 중</h1>
+					<h1>마이페이지</h1>
 				</div>
 			</div>
 			<div class="comInfoUnder">
@@ -79,12 +79,12 @@
 						<tr>
 							<td><c:choose>
 									<c:when test="${itbookmark eq 0}">
-										<input type="button" class="btn btn_light" id="likebtn"
+										<input type="button" class="btn btn-outline-warning" id="likebtn"
 											value="북마크  ☆ " onclick="setBookmark()">
 									</c:when>
 
 									<c:when test="${itbookmark eq 1}">
-										<input type="button" class="btn btn_danger" id="likebtn"
+										<input type="button" class="btn btn-warning" id="likebtn"
 											value="북마크 ★" onclick="setBookmark()">
 									</c:when>
 								</c:choose> 
@@ -99,7 +99,7 @@
 					</div>
 					<div>
 						<table class="user_info1">
-							<h2>기본 정보</h2>
+							<div class="h2div"><h2>기본 정보</h2></div>
 							<tr>
 								<th>프로필</th>
 								<td><img id="memberDetailImg" src="${mem.user_img}"> <%-- <img class="memberImg" src="${mem.user_img}"/> --%></td>

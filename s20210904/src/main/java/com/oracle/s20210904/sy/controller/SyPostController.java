@@ -37,19 +37,23 @@ public class SyPostController {
 
 		String id = (String) session.getAttribute("id");
 		if(id==null || id.equals("")){              
-			return "dmdtla054"; 
+			return null; 
 		}
 		return id;
 	}
 	
 	// 게시글 목록
 	@RequestMapping(value = "postList", method = RequestMethod.GET)
-	public String postSelect(Post post, Model model, String currentPage, String searchText) throws Exception {
-
+	public String postSelect(HttpServletRequest request, Post post, Model model, String currentPage, String searchText) throws Exception {
+		
+		String id = idCheck(request);
+		int totalCount = 0;
 		
 		logger.info("postList");
-		int totalCount = syPostServiceImpl.total();
-		
+		if(searchText==null) {
+			totalCount = syPostServiceImpl.total();
+		}else
+			totalCount = syPostServiceImpl.searchTotal(searchText);
 
 		Paging paging = new Paging(totalCount, currentPage);
 
@@ -81,6 +85,7 @@ public class SyPostController {
 		model.addAttribute("total", totalCount);
 		model.addAttribute("postSelect", postSelect);
 		model.addAttribute("paging", paging);
+		model.addAttribute("id",id);
 		
 		return "sy/postList";
 	}

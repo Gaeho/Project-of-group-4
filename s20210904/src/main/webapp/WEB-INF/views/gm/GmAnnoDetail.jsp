@@ -214,7 +214,7 @@
 				
 				<div class="anno_recruit11">
 					<div><h3>모집 상세</h3></div>
-					<div>${comanno.rec_dtl}</div>
+					<div class="recruit_detail1">${comanno.rec_dtl}</div>
 				</div>
 	
 				<!----------------------------------------------------------------------------------->

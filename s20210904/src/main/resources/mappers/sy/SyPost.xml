@@ -33,6 +33,14 @@
 		select count(*) from post where brd_code='Q&A'
 		]]>
 	</select>
+	
+	<select id="searchTotal" parameterType="String" resultType="int">
+		<![CDATA[
+		select count(*) from post
+		where post_title like '%' || #{searchText} || '%'
+		and   brd_code='Q&A'
+		]]>
+	</select>
 		
   	<insert id="postInsert" parameterType="Post">
 		insert into post(

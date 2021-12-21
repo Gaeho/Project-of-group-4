@@ -14,7 +14,7 @@
 		<div class="comAnnMenu">
 			<div class="comInfoUpper">
 				<div>
-					<h1>마이페이지 작업 중</h1>
+					<h1>마이페이지</h1>
 				</div>
 			</div>
 			<div class="comInfoUnder">
@@ -23,7 +23,7 @@
 				</div>
 				<div class="comInforight">
 					<div class="annolist1">
-						<table class="table table-hover">
+						<table class="table table-hover" style="vertical-align:middle">
 							<thead class="table-light">
 								<tr>
 									<th scope="col">회원 사진</th>
@@ -34,14 +34,14 @@
 							</thead>
 							<tbody>
 								<c:forEach var="bookmarkList" items="${bookmarkList }">
-								<div clas="bmarkAtt">
+								<div class="bmarkAtt">
 									<tr>
 										<td><img class="memberImg" src="${bookmarkList.user_img}" /></td>
 										<div><td>${bookmarkList.user_id}</td></div>
 										<td colspan="2"><a href="detail2?user_id=${bookmarkList.user_id }&com_id=${bookmarkList.com_id}&mrk_res_code=${bookmarkList.mrk_res_code}">${bookmarkList.res_title}</a></td>
 										<td>${bookmarkList.mrk_date}</td>
 									</tr>
-									</div>
+								</div>
 								</c:forEach>
 							</tbody>
 						</table>

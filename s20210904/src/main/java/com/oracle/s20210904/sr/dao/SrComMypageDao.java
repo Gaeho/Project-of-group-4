@@ -1,12 +1,11 @@
 package com.oracle.s20210904.sr.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.Bookmark;
-import com.oracle.s20210904.comm.model.MemBmark;
+import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.Resume;
@@ -23,9 +22,9 @@ public interface SrComMypageDao {
 
 	CommCompany comInfo(CommCompany commCompany);
 
-	List<Announce> listAnnReg(Announce announce);
-
-	List<Announce> listAnnCReg(Announce announce);
+//	List<Announce> listAnnReg(Announce announce);
+//
+//	List<Announce> listAnnCReg(Announce announce);
 
 	List<AppAnnMem> appAnnMemReg(AppAnnMem appAnnMem);
 
@@ -70,6 +69,12 @@ public interface SrComMypageDao {
 	Bookmark bookmark(Bookmark bookmark);
 
 	void noticeDel(String ntc_code);
+
+	int comMyInfoUpdate(CommCompany commCompany);
+
+	List<Comm> commList(Comm comm);
+
+	/* int comMyInfoUpdate(CommCompany commCompany); */
 
 	
 

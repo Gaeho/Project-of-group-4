@@ -20,37 +20,31 @@
 <br>
 <div class="container-sm">
 	<a href="main"><h2 class="h2-style">코딩톡</h2></a>
-	<form action="postList" class="form-inline ml-auto">
-		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
-		 <div class="col-lg-4">
-		<input type="text" class="form-control" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요">
-		</div>	
-		<button type="submit" class="btn btn-sm btn-primary">검색</button>	
-		
-<div class="table-responsive">
-	<table class="table table-hover">	
-		<c:forEach items="${postNotice}" var="postnotice">                     
-             <tr>
-                <td><c:out value="${postnotice.brd_code }"/></td>
-                <td><c:out value="${postnotice.user_id}"/></td>
-                <td><a href="postView?post_code=${postnotice.post_code}">${postnotice.post_title}</a></td>
-                <td><c:out value="${postnotice.post_view}"></c:out></td>
-                <td><c:out value="${postnotice.post_regdate}"/></td>
-             </tr>
-       </c:forEach>
-		 <c:forEach items="${postSelect}" var="post">
-			<tr>
-				<td><c:out value="${post.brd_code }"/></td>
-			    <td><c:out value="${post.user_id}"/></td>
-				<td><a href="postView?post_code=${post.post_code}">${post.post_title}</a></td>
-				<td><c:out value="${post.post_view}"></c:out></td>
-				<td><c:out value="${post.post_regdate}"/></td>
-			</tr>
-		</c:forEach>	
-	</table>
+	<form action="postList">
+	<div class="table-responsive">
+		<table class="table table-hover">	
+			<c:forEach items="${postNotice}" var="postnotice">                     
+	             <tr>
+	                <td><c:out value="${postnotice.brd_code }"/></td>
+	                <td><c:out value="${postnotice.user_id}"/></td>
+	                <td><a href="postView?post_code=${postnotice.post_code}">${postnotice.post_title}</a></td>
+	                <td><c:out value="${postnotice.post_view}"></c:out></td>
+	                <td><c:out value="${postnotice.post_regdate}"/></td>
+	             </tr>
+	       </c:forEach>
+			 <c:forEach items="${postSelect}" var="post">
+				<tr>
+					<td><c:out value="${post.brd_code }"/></td>
+				    <td><c:out value="${post.user_id}"/></td>
+					<td><a href="postView?post_code=${post.post_code}">${post.post_title}</a></td>
+					<td><c:out value="${post.post_view}"></c:out></td>
+					<td><c:out value="${post.post_regdate}"/></td>
+				</tr>
+			</c:forEach>	
+		</table>
 	</div>
-		<div class="row">
-			<div class='col-md-12 text-center'>
+	<div class="row">
+		<div class='col-md-12 text-center'>
 			<c:if test="${paging.startPage > paging.pageBlock }">
 			<a href="postList?currentPage=${paging.startPage-paging.pageBlock}">이전</a>
 			</c:if>
@@ -59,12 +53,19 @@
 			</c:forEach>
 			<c:if test="${paging.endPage < paging.totalPage}">
 			<a href="postList?currentPage=${paging.startPage + paging.pageBlock}">다음</a>
-			</c:if>
+		</c:if>
 		</div>
+	</div>		
+	<div class="search-section">
+		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
+		<input type="text" class="form-control" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요" style="width:300px">	
+		<button type="submit" class="btn btn-sm btn-primary">검색</button>
 	</div>
-	<div>
-		<button type="button" class="btn btn-sm btn-light"><a href="postInsert">글쓰기</button>
-	</div>
+	<c:if test="${id!=null}">	
+		<div>
+			<button type="button" class="btn btn-sm btn-light"><a href="postInsert">글쓰기</button>
+		</div>
+	</c:if>
 	</form>
 </div>
 <script type="text/javascript">
@@ -77,10 +78,10 @@
 	        form.attr("method", "get");
 	        form.submit();
 	    });
+	    
 	});
-
 </script>
-<br>
+<br><br>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

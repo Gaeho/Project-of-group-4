@@ -20,6 +20,7 @@
          and a.anno_c_regdate >= sysdate) a
 		)
 		where rn between #{start} and #{end}
+		
 	</select>
 	
 	<!-- 공고 List 검색 -->
@@ -36,10 +37,11 @@
 		        where a.anno_c_regdate >= sysdate 
                 and(a.anno_title LIKE '%'||#{annosearch}||'%'
 		        or c.com_name LIKE '%'||#{annosearch}||'%')
+		        order by to_number (a.anno_code) desc
               
          ) z
 		)
-		where rn between #{start} and #{end}
+		where rn between #{start} and #{end}		
 		
 	</select>
 	

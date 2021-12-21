@@ -20,7 +20,7 @@
 <div class="bigContainer_mainsearch">
 	<div class="DjContainer">
 			<div class="search_result_upper">
-				<div class="search_title">
+				<div class="search_title" id="search_home">
 					<h1 class="h1-style">검색결과</h1>
 					 <h4>검색어: ${mainsearch1}</h4><p>
 				</div>
@@ -31,7 +31,7 @@
                             	 <div class="row">
                                 		<div class="col">  
                                 			<div class="input-group has-validation">                        
-                                        		<input class="form-control form-control-lg" name="mainsearch" id="mainsearch" type="text" placeholder="검색어를 입력하세요" required="required" />
+                                        		<input class="form-control form-control-lg" name="mainsearch" id="mainsearch" type="text" placeholder="검색어를 입력하세요" style="width:40%" required="required" />
                                         		<div class="invalid-feedback">
 												     검색어를 입력해주세요.
 												</div>
@@ -63,15 +63,15 @@
 			</div>
 			<div class="tab_content">
 				<input type="radio" name="tabmenu" id="tab01" checked="checked">
-				<label for="tab01">공고버튼 </label>
+				<label for="tab01">공고 사항</label>
 				<input type="radio"  name="tabmenu" id="tab02">
-				<label for="tab02">회사버튼 </label>
+				<label for="tab02">기업 정보</label>
 			
 					<div class="conbox con1">
 							   <div class="anno_search_result">
-								<table class="table">
-									<tr>
-										<th>이미지</th>
+								<table class="table align-middle" style="width: 1500px;">
+									<tr class="search_tr1"  style="text-align: center;">
+										<th style="text-align: center;">이미지</th>
 										<th>제목</th>
 										<th>회사명</th>
 										<th>직종</th>
@@ -80,16 +80,19 @@
 										<th>고용형태</th>
 										<th>고용인원</th>
 									</tr>
-									 <c:forEach var="annoResult" items="${annoResult}">
+											<c:if test="${annocnt==0}">
+												<tr><td colspan="8"><div class="no_result12"><i class="bi bi-exclamation-diamond-fill"></i>검색된 공고가 없습니다</div></td></tr>
+											</c:if>
+									 <c:forEach var="annoResult" items="${annoResult}">	
 										<tr>
-										    <td><img class="img-thumbnail" alt="이미지없음" src="${annoResult.com_img}" style="widows:50px; height:50px;">  </td>
+										    <td style="text-align: center;"><img class="img-thumbnail" alt="이미지없음" src="${annoResult.com_img}" style="widows:50px; height:50px;">  </td>
 											<td><a href="detail?anno_code=${annoResult.anno_code}">${annoResult.anno_title}</a></td>
-											<td>${annoResult.com_name}</td>
-											<td>${annoResult.jobgroup}</td>
-											<td>${annoResult.workex}</td>
-											<td>${annoResult.rec_edu}</td>
-											<td>${annoResult.employform}</td>
-											<td>${annoResult.rec_vol}</td>
+											<td style="text-align: center;">${annoResult.com_name}</td>
+											<td style="text-align: center;">${annoResult.jobgroup}</td>
+											<td style="text-align: center;">${annoResult.workex}</td>
+											<td style="text-align: center;">${annoResult.rec_edu}</td>
+											<td style="text-align: center;">${annoResult.employform}</td>
+											<td style="text-align: center;">${annoResult.rec_vol}</td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -97,7 +100,7 @@
 								
 								
 								
-								<div class="page11">
+								<%-- <div class="page11">
 									<input type="hidden" id="mainsearch" value="${mainsearch1}">
 									<c:if test="${pg.startPage > pg.pageBlock }">
 										<a href="search?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
@@ -118,25 +121,26 @@
 										}
 													
 								</script>
-								</div>
+								</div> --%>
 					     </div> 
 				
 			   
 			    <div class="conbox con2">
-			    		<h2> 검색된 회사 </h2>
-						   <h4>검색어: ${mainsearch1}</h4><p>
 							<div class="com_search_result">
-							<table class="table">
-								<tr>
+							<table class="table align-middle" style="width: 1500px;">
+								<tr class="search_tr1" style="text-align: center;">
 									<th>이미지</th>
 									<th>회사명</th>
 									<th>주소</th>
 									<th>세부내용</th>
 								</tr>
+									<c:if test="${comcnt==0}">
+										<tr><td colspan="8"><div class="no_result12"><i class="bi bi-exclamation-diamond-fill"></i>검색된 회사가 없습니다</div></td></tr>
+									</c:if>
 								 <c:forEach var="comResult" items="${comResult}">
 									<tr>
-									    <td><img class="img-thumbnail" alt="이미지없음" src="${comResult.com_img}" style="widows:50px; height:50px;"></td>
-										<td><a href="#">${comResult.com_name}</a></td>
+									    <td style="text-align: center;"><img class="img-thumbnail" alt="이미지없음" src="${comResult.com_img}" style="widows:50px; height:50px;"></td>
+										<td style="text-align: center;"><a href="#">${comResult.com_name}</a></td>
 										<td>${comResult.com_addr}</td>
 										<td>${comResult.com_bus}</td>
 									</tr>
@@ -149,37 +153,44 @@
 							
 							</script>
 							<!--  -->
-							<div class="page22">
-							<input type="hidden" id="mainsearch2" value="${mainsearch1}">
-								<c:if test="${pg.startPage > pg.pageBlock }">
-									<a href="search?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
-								</c:if>
-								<c:forEach var="j" begin="${pg.startPage}" end="${pg.endPage}">
-									<a href="#" onclick="pageMove2(${j})">[${j}]</a>
-								</c:forEach>
-								<c:if test="${pg.endPage < pg.totalPage}">
-									<a href="search?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
-								</c:if>
-								
-								<script type="text/javascript">
-									function pageMove2(vCurrentpage1){
-										alert("vCurrentpage1->"+vCurrentpage1);
-										var mainsearch = $('#mainsearch2').val();
-										alert("mainsearch->"+mainsearch);
-										location.href="search?currentPage="+vCurrentPage1+"&mainsearch="+mainsearch;
-										}
-													
-								</script>
-							</div>
+						<%-- 	<div class="page22">
+								<input type="hidden" id="mainsearch2" value="${mainsearch1}">
+									<c:if test="${pg.startPage > pg.pageBlock }">
+										<a href="search?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
+									</c:if>
+									<c:forEach var="j" begin="${pg.startPage}" end="${pg.endPage}">
+										<a href="#" onclick="pageMove2(${j})">[${j}]</a>
+									</c:forEach>
+									<c:if test="${pg.endPage < pg.totalPage}">
+										<a href="search?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
+									</c:if>
+									
+									<script type="text/javascript">
+										function pageMove2(vCurrentpage1){
+											alert("vCurrentpage1->"+vCurrentpage1);
+											var mainsearch = $('#mainsearch2').val();
+											alert("mainsearch->"+mainsearch);
+											location.href="search?currentPage="+vCurrentPage1+"&mainsearch="+mainsearch;
+											}
+														
+									</script>
+							</div> --%>
 								    
 				    </div>
 				</div>
-			</div>			
+			</div>	
+			
+				<div class="floating12" style="position:fixed; bottom:5px; right: 5px; "> 
+					<a href="#search_home"><button class="btn btn-primary btn-sm" style="width:50px;height:40px;">TOP</button> </a>
+				</div>
+					
 </div>	
 <!-- </div> -->	
 
-	
-	
+<!-- 플로팅 메뉴 부분  -->	
+
+
+<!-- 플로팅 메뉴 부분   -->	
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

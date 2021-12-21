@@ -1,6 +1,5 @@
 package com.oracle.s20210904.sr.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.oracle.s20210904.comm.model.Announce;
 import com.oracle.s20210904.comm.model.Apply;
 import com.oracle.s20210904.comm.model.Bookmark;
-import com.oracle.s20210904.comm.model.MemBmark;
+import com.oracle.s20210904.comm.model.Comm;
 import com.oracle.s20210904.comm.model.Member;
 import com.oracle.s20210904.comm.model.Notice;
 import com.oracle.s20210904.comm.model.Resume;
@@ -49,22 +48,21 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	}
 
 	//채용공고 조인
-	@Override
-	public List<Announce> listAnnReg(Announce announce) {
-		System.out.println("SrComMypageServiceImpl listAnnReg이 시작되었댱~~~");
-		List<Announce> listAnnReg=scmd.listAnnReg(announce);
-		System.out.println("SrComMypageServiceImpl listAnnReg CHECK....");
-		return listAnnReg;
-	}
-
-	//채용공고 조인
-	@Override
-	public List<Announce> listAnnCReg(Announce announce) {
-		System.out.println("SrComMypageServiceImpl listCAnnReg이 시작되었댱~~~");
-		List<Announce> listAnnCReg=scmd.listAnnCReg(announce);
-		System.out.println("SrComMypageServiceImpl listCAnnReg CHECK....");
-		return listAnnCReg;
-	}
+	/*
+	 * @Override public List<Announce> listAnnReg(Announce announce) {
+	 * System.out.println("SrComMypageServiceImpl listAnnReg이 시작되었댱~~~");
+	 * List<Announce> listAnnReg=scmd.listAnnReg(announce);
+	 * System.out.println("SrComMypageServiceImpl listAnnReg CHECK...."); return
+	 * listAnnReg; }
+	 * 
+	 * //채용공고 조인
+	 * 
+	 * @Override public List<Announce> listAnnCReg(Announce announce) {
+	 * System.out.println("SrComMypageServiceImpl listCAnnReg이 시작되었댱~~~");
+	 * List<Announce> listAnnCReg=scmd.listAnnCReg(announce);
+	 * System.out.println("SrComMypageServiceImpl listCAnnReg CHECK...."); return
+	 * listAnnCReg; }
+	 */
 	
 	//지원현황 조인
 	@Override
@@ -207,6 +205,7 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 		scmd.applyStsUpdate(apply);
 	}
 
+	// Announce List
 	@Override
 	public List<Announce> listAnn(Announce announce) {
 		System.out.println("SrComMypageServiceImpl listAnnReg이 시작되었댱~~~");
@@ -225,6 +224,23 @@ public class SrComMypageServiceImpl implements SrComMypageService {
 	public void noticeDel(String ntc_code) {
 		scmd.noticeDel(ntc_code);
 	}
+
+	@Override
+	public int comMyInfoUpdate(CommCompany commCompany) {
+		System.out.println("SrComMypageServiceImpl comInfo UPDATE START...");
+		return scmd.comMyInfoUpdate(commCompany);
+	}
+
+	@Override
+	public List<Comm> commList(Comm comm) {
+		List<Comm> commList=scmd.commList(comm);
+		return commList;
+	}
+
+	/*
+	 * @Override public int comMyInfoUpdate(CommCompany commCompany) { return
+	 * scmd.comMyInfoUpdate(commCompany); }
+	 */
 
 	
 }

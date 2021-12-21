@@ -14,7 +14,7 @@
 		<div class="comInfoMenu">
 			<div class="comInfoUpper">
 				<div>
-					<h1>마이페이지 작업 중</h1>
+					<h1>마이페이지</h1>
 				</div>
 			</div>
 			
@@ -29,7 +29,7 @@
 								<button class="search_bnt" type="submit">search</button>
 						</form>
 					</div>
-					<table class="table table-hover">
+					<table class="table table-hover" style="vertical-align:middle">
 						<thead class="table-light">
 						<tr>
 							<th>회원프사</th>

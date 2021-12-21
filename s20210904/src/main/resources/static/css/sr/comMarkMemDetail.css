@@ -47,7 +47,7 @@
 .user_info1{
 		align-items: center;
 	text-align: center;
-	border: 1px solid black;
+	border: 3px solid black;
 	height: 300px;
 	width: 700px;
 	font-size: 18px;
@@ -68,7 +68,13 @@
 h2{
 	font-size: 30px;
 	font-style: bold;
+	
 }
+
+.h2div{
+	text-align: center;
+}
+
 
 .resumeText{
 	margin-top: 30px;
