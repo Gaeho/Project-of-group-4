@@ -46,10 +46,12 @@ public class SyPostController {
 	@RequestMapping(value = "postList", method = RequestMethod.GET)
 	public String postSelect(Post post, Model model, String currentPage, String searchText) throws Exception {
 
-		
+		int totalCount = 0;
 		logger.info("postList");
-		int totalCount = syPostServiceImpl.total();
-		
+		if(searchText==null) {
+			totalCount = syPostServiceImpl.total();
+		}else
+			totalCount = syPostServiceImpl.searchTotal(searchText);
 
 		Paging paging = new Paging(totalCount, currentPage);
 

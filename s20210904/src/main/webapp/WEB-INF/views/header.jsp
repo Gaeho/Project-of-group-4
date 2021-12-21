@@ -89,7 +89,7 @@ window.onload=function alramList(){
                  </c:when>
                  <c:otherwise>                  <!-- 로그인 OK -->
                     <ul class="nav">
-                       <li> ${id } 님 반갑습니다 </li>
+                       <li style="margin-top: 10px;"> ${id } 님 반갑습니다 </li>
                   <li class="nav-item dropdown">
                      <a   class="nav-link" data-bs-toggle="dropdown"   href="#" role="button" aria-expanded="false"><img src="img/ds/alram-on.png" width="30px" height="30px" id="alramImg"></a>
                      <ul class="dropdown-menu">
