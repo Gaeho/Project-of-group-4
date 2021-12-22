@@ -95,7 +95,7 @@
 			<div class="comInfoUpper">
 				<div>
 					<h1>마이페이지</h1>
-				</div>m
+				</div>
 			</div>
 			<form action="comMypageUpdate2" method="post">
 			<div class="comInfoUnder">
