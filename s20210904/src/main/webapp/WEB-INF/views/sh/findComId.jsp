@@ -10,10 +10,10 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-	<c:if test="${user_id!=null }"> 찾는 개인 아이디 : ${user_id}</c:if><p>
+	<%-- <c:if test="${user_id!=null }"> 찾는 개인 아이디 : ${user_id}</c:if><p> --%>
 		
 		<div class="Shcontainer">
-			
+			<div class="main">
 				<h2>기업아이디 찾기</h2>
 				<form action="findComIdForm" >
 					
@@ -40,8 +40,14 @@
 					
 					<input type="submit" value="아이디 찾기">
 				</form>
-	
-			</div>
+				<c:if test="${com_id!=null }">
+				<div >
+					<label for="com_id">찾는 기업 아이디</label> <input type="text" name="findComId" id="findComId"  value="${com_id}"  >
+					
+				</div>
+	      </c:if>
+	  </div>
+  </div>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

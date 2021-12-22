@@ -88,7 +88,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		String user_id = "";
 		try {
 			user_id = session.selectOne("ShFindId",member);
-			if (user_id ==null) user_id = "존재하는 아이디가 없네요 ㅠㅠ 회원가입 먼저 하실래요?";
+			if (user_id ==null) user_id = "존재하는 아이디가 없어요 :( 회원가입 먼저 하실래요?";
 			System.out.println("ShMemberDaoImpl findId user_id->"+user_id);
 		} catch (Exception e) {
 		System.out.println("ShMemberDaoImpl findId Exception->" + e.getMessage());
@@ -106,7 +106,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		
 		try {
 			com_id = session.selectOne("ShFindComId", company);
-			if(com_id == null) com_id = "존재하는 아이디가 없네요 ㅠㅠ 회원가입 먼저 하실래요?";
+			if(com_id == null) com_id = "존재하는 아이디가 없어요 :( 회원가입 먼저 하실래요?";
 					System.out.println("ShMemberDaoImpl findComId com_id->"+com_id);
 		} catch (Exception e) {
 			System.out.println("ShMemberDaoImpl findComId Exception->" + e.getMessage());
@@ -148,7 +148,7 @@ public class ShMemberDaoImpl implements ShMemberDao {
 		
 		return result;
 	}
-
+	//기업 승인
 	@Override
 	public int gradecheck(String com_id) {
 		System.out.println("ShMemberDaoImpl의 gradecheck시작함!!");
