@@ -21,12 +21,12 @@
 			<form action="findIdForm"  >
 				
 				<div>
-					<input type="text" name="user_name" id="user_name"  placeholder="이름을 입력하세요"  >
+					<input type="text" name="user_name" id="user_name"   >
 					<label for="user_name">이름</label>
 				</div>
 				
 				<div>					
-					<input type="email" name="user_email" id="user_email"  placeholder="이메일을 입력하세요">
+					<input type="email" name="user_email" id="user_email"  >
 					<label for="user_email">이메일</label>
 				</div>
 				
