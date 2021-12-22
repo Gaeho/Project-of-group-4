@@ -220,9 +220,9 @@ public class ShMemberController {
 	@GetMapping(value="findPwForm")
 	public String findPwForm(Member member , Model model) {
 		System.out.println("mailSending...");  //받는 사람이메일 
-		String tomail = "gimsanghyun1221@gmail.com";
+		String tomail = "mark1221@naver.com";
 		System.out.println(tomail);
-		String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
+		String setfrom = "gimsanghyun1221@gmail.com"; //보내는 사람 
 		String title = "임시 비밀번호입니다"; //제목
 		int tempSavePwStatus = 0;     //저장상황
 		System.out.println("member.getUser_id()->" + member.getUser_id()); 
@@ -262,9 +262,9 @@ public class ShMemberController {
 		@GetMapping(value="findComPwForm")
 		public String findComPwForm(Company company , Model model) {
 			System.out.println("mailSending...");  //받는 사람이메일 
-			String tomail = "gimsanghyun1221@gmail.com";
+			String tomail = "mark1221@naver.com";
 			System.out.println(tomail);
-			String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
+			String setfrom = "gimsanghyun1221@gmail.com"; //보내는 사람 
 			String title = "임시 비밀번호입니다"; //제목
 			int tempSavePwStatus = 0;     //저장상황
 			System.out.println("company.getCom_id()->" + company.getCom_id()); 
@@ -300,7 +300,7 @@ public class ShMemberController {
 			System.out.println("mailSending...");  //받는사람이메일
 			String tomail = user_email;
 			System.out.println("verifyEmail tomail->"+tomail);
-			String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
+			String setfrom = "gimsanghyun1221@gmail.com"; //보내는 사람 
 			String title = "인증 번호입니다"; //제목
 			String tempVerifyStatus= "0";    
 										
@@ -335,7 +335,7 @@ public class ShMemberController {
 		        System.out.println("mailSending...");  //받는사람이메일
 				String tomail = com_email;
 				System.out.println("verifyEmail2 tomail->"+tomail);
-				String setfrom = "mingyeongmin285@gmail.com"; //보내는 사람 
+				String setfrom = "gimsanghyun1221@gmail.com"; //보내는 사람 
 				String title = "인증 번호입니다"; //제목
 				String tempVerifyStatus = "0";     
 						

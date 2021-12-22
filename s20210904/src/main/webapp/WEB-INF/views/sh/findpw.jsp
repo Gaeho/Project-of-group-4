@@ -22,17 +22,17 @@
         <form action="findPwForm" onsubmit="return emaiㅣ_chk()">
         
             <div>
-                <input type="text" name="" id="user_name"  required>
+                <input type="text" name="user_name" id="user_name"  required>
                 <label for="user_name">이름</label>
             </div>
 
             <div>
-                <input type="text" name="" id="user_id" required>
+                <input type="text" name="user_id" id="user_id" required>
                 <label for="user_id">아이디</label>
             </div>
 
             <div>
-                <input type="email" name="" id="user_email" required>
+                <input type="email" name="user_email" id="user_email" required>
                 <label for="user_email">이메일</label>
             </div>
             

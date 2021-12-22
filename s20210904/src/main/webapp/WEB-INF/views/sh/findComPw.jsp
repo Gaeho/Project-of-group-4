@@ -21,27 +21,27 @@
         <h2>기업 비밀번호 찾기</h2>
         	<form action="findComPwForm" onsubmit="return emaiㅣ_chk2()">
            		 <div>
-		                <input type="text" name="" id="com_name"   required>
+		                <input type="text" name="com_name" id="com_name"   required>
 		                <label for="com_name">회사명</label>
             	  </div>
 
             		<div>
-		                <input type="text" name="" id="com_user"  required>
+		                <input type="text" name="com_user" id="com_user"  required>
 		                <label for="com_user">가입자명</label>
             		</div>
 
             		<div>
-		                <input type="text" name="" id="com_id"  required>
+		                <input type="text" name="com_id" id="com_id"  required>
 		                <label for="com_id">아이디</label>
            		    </div>
             
             		<div>
-		                <input type="text" name="" id="com_regnum"  required>
+		                <input type="text" name="com_regnum" id="com_regnum"  required>
 		                <label for="com_regnum">사업자등록번호</label>
             		</div>
             
             		<div>
-		                <input type="text" name="" id="com_email"  required>
+		                <input type="text" name="com_email" id="com_email"  required>
 		                <label for="com_email">이메일</label>
            		    </div>
             
