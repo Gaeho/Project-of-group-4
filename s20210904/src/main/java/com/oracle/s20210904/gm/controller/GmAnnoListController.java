@@ -71,10 +71,12 @@ public class GmAnnoListController {
 		}
 		
 		System.out.println("----------------------------------");
+		System.out.println("페이징에 들어가는 total->"+total);
+		System.out.println("페이징에 들어가는 currentPage->"+currentPage);
 		
 		Paging pg = new Paging(total, currentPage);
 		comAnnounce.setStart(pg.getStart()); // 1 
-		comAnnounce.setEnd(pg.getEnd()); // 5
+		comAnnounce.setEnd(pg.getEnd()); // 10
 		
 
 		System.out.println("GmAnnoListController GmAnnoList Start...");

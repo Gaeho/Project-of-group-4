@@ -60,10 +60,12 @@
 		<input type="hidden" name="currentPage" value="${paging.currentPage}" >
 		<input type="text" class="form-control" value="${post_search}" name="searchText" id="post_search" placeholder="검색어를 입력하세요" style="width:300px">	
 		<button type="submit" class="btn btn-sm btn-primary">검색</button>
-	</div>	
-	<div>
-		<button type="button" class="btn btn-sm btn-light"><a href="postInsert">글쓰기</button>
 	</div>
+	<c:if test="${id!=null}">	
+		<div>
+			<button type="button" class="btn btn-sm btn-light"><a href="postInsert">글쓰기</button>
+		</div>
+	</c:if>
 	</form>
 </div>
 <script type="text/javascript">

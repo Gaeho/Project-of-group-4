@@ -179,3 +179,19 @@ textarea {
 .com_sec{
 	margin-left: 80px;
 }
+
+.comInfoUpdate-items-in{
+	 display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 445px;
+}
+
+.updateInput{
+margin-left: 40px;
+}
+
+.pwinput{
+	margin-bottom: 10px;
+}

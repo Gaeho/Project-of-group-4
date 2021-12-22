@@ -180,4 +180,10 @@ public class SyPostDaoImpl implements SyPostDao {
 		int maxCount = sqlSession.selectOne("max");
 		return maxCount;
 	}
+	
+	@Override
+	public int searchTotal(String searchText) {
+		int total = sqlSession.selectOne("searchTotal",searchText);
+		return total;
+	}
 }

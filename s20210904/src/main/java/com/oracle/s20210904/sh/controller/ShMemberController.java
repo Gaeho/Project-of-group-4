@@ -247,7 +247,7 @@ public class ShMemberController {
 			model.addAttribute("check",2);//메일 전달 실패
 		}
 		
-		return "sh/findPwForm";
+		return "sh/memberlogin";
 	}
 	
 	//기업 회원 비밀번호 찾기 
@@ -289,7 +289,7 @@ public class ShMemberController {
 				model.addAttribute("check",2);//메일 전달 실패
 			}
 			
-			return "sh/findComPwForm";
+			return "sh/companylogin";
 		}
 		
 		//Mail Ajax(개인회원가입 이메일인증)

@@ -35,4 +35,6 @@ public interface SyPostService {
 	List<Post> postSearch(Post post);
 
 	int max();
+
+	int searchTotal(String searchText);
 }

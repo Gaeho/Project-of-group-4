@@ -8,12 +8,15 @@
 <meta charset="UTF-8">
 <title>ComMypage</title>
 <link href="css/sr/comMypage.css" rel="stylesheet" type="text/css">
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>
+	
+	<script type="text/javascript">
+		window.addEventListener('load',function(){
+			 $('.annolist').val('${annoCode}').prop("selected",true);
+		});
+	</script>
 	<div class="CompanyMypageContainer">
 		<div class="comInfoMenu">
 			<div class="comInfoUpper">
@@ -24,7 +27,7 @@
 			<div class="comInfomid">
 				<div class="compAppStatus_btn">
 						<select
-							onchange="location.href='ComAppStatus?anno_code='+this.value">
+							onchange="location.href='ComAppStatus?anno_code='+this.value" class="annolist">
 							<c:forEach var="annolist" items="${annoList}">
 								<option value="${annolist.anno_code}">${annolist.anno_title }</option>
 							</c:forEach>
@@ -37,7 +40,7 @@
 				</div>
 				<div class="comInforight">
 					<div class="compAppStatus_in">
-						<table class="table table-hover">
+						<table class="table table-hover" style="vertical-align:middle">
 							<thead class="table-light">
 							<tr>
 								<th>회원프사</th>

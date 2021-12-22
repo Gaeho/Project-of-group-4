@@ -106,4 +106,10 @@ public class SyPostServiceImpl implements SyPostService {
 		int maxCount = syPostDaoImpl.max();
 		return maxCount;
 	}
+	
+	@Override
+	public int searchTotal(String searchText) {
+		int total = syPostDaoImpl.searchTotal(searchText);
+		return total;
+	}
 }
