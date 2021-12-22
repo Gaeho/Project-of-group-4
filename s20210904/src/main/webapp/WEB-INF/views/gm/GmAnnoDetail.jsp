@@ -227,7 +227,8 @@
 				</div>
 				<div class="anno_applys">
 						<div class="d-grid gap-2">
-							<button class="anno_apply_btn1" type="button" onclick="location.href='GmApplyList'">지원하기</button>
+							<button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#test_modal" style="width:500px; height:100px;">지원하기</button>
+							<!-- onclick="location.href='GmApplyList'" -->
 						</div>
 				</div>
 		
