@@ -151,12 +151,12 @@
 								<span>지원중</span>
 							</a>
 						</li>
-						<li>
+						<%-- <li>
 							<a href="mbMypageApply">
 								<em>${countapply[0].passdoc}</em>
 								<span>서류 통과</span>
 							</a>
-						</li>
+						</li> --%>
 						<li>
 							<a href="mbMypageApply">
 								<em>${countapply[0].failed}</em>
