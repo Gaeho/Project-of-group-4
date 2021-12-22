@@ -247,12 +247,15 @@
 						<div class="mbFormText">자기소개</div>
 						<textarea class="mb_width6 mb_height3" name="cov_let">${resumedetail.cov_let }</textarea>
 					</div>
-					<p><p>
 					
 					
-					<div class="mbFormTitle">학력사항</div>
+					
+					
 					
 					<c:if test="${memberdetail.user_edu >= 2 }">
+						<p><p>
+						<div class="mbFormTitle">학력사항</div>
+						
 						<div class="mbFormSubTitle">고등학교</div>
 					
 						<div class="mbFormInput mb_flex">
