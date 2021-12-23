@@ -18,10 +18,10 @@
 
 <script type="text/javascript">
 	function uploadFile() {
-		alert('uploadFile Start...');
+		/* alert('uploadFile Start...'); */
 		var form = new FormData();
 		var comId1 = document.getElementById('comId1').value;
-		alert('comId1>>' + comId1);
+		/* alert('comId1>>' + comId1); */
 
 		form.append("file1", $("#file1")[0].files[0]);
 		form.append("comId1", $("#comId1")[0].value);
@@ -35,15 +35,15 @@
 			contentType : false,
 			datatype : 'text',
 			success : function(data) {
-				alert("성공");
+				/* alert("성공"); */
 				/*  $('input[name=com_img11]').attr('src',data); */
-				alert("도대체 뭔가 들어있긴 하니?->" + data)
+				/* alert("도대체 뭔가 들어있긴 하니?->" + data) */
 				document.getElementById('imagesquare1').src = data;
 				document.getElementById('imagesquare1').value = data;
 
 			},
 			error : function() {
-				alert("실패");
+				/* alert("실패"); */
 				// Handle upload error
 				// ...
 			}
@@ -51,9 +51,9 @@
 	}
 
 	function deleteFile() {
-		alert('deleteFile Start...');
+		/* alert('deleteFile Start...'); */
 		var form1 = new FormData();
-		alert('삭제할 내용' + document.getElementById('imagesquare1').value);
+		/* alert('삭제할 내용' + document.getElementById('imagesquare1').value); */
 
 		//form1.append( "comImg123", $("#imagesquare1")[0].value);
 
@@ -74,12 +74,12 @@
 					data : comImg123,
 					dataType : 'text',
 					success : function(data) {
-						alert("삭제성공!!" + data);
+						/* alert("삭제성공!!" + data); */
 						document.getElementById('imagesquare1').src = 'src=/img/dj/no_Image.gif';
 
 					},
 					error : function() {
-						alert("삭제실패ㅜㅜ");
+						/* alert("삭제실패ㅜㅜ"); */
 						// Handle upload error
 						// ...
 					}

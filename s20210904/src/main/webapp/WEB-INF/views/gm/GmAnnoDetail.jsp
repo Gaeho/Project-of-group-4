@@ -23,9 +23,9 @@
 		var anno_code = $('#anno_code').val()
 		var user_id = $('#user_id').val()
 		var it_like = $('#it_like').val()
-		alert("setScrap anno_code->"+ anno_code);  
-		alert("setScrap user_id->"+user_id);  
-		alert("setScrap it_like->"+it_like);  
+		/* alert("setScrap anno_code->"+ anno_code); */  
+		/* alert("setScrap user_id->"+user_id); */  
+		/* alert("setScrap it_like->"+it_like); */  
 	
 	 	$.ajax({
 			url:"<%=context%>/scrap",
@@ -35,13 +35,13 @@
 			    },	/*  */
 			dataType:'text',			/* 서버에서 내려온 data 형식 */
 			success:function(data){		/* 요청이 성공됬을때 실행되는 callback 함수 */
-					alert("success data"+data);  
-					alert("성공");
+					/* alert("success data"+data); */  
+					/* alert("성공"); */
 					/* $('#likebtn').val(data); */
 					location.reload(); // 페이지 리로드
 			},
 			error:function(){
-				alert("에러 발생");
+				/* alert("에러 발생"); */
 			}
 			
 		}); 
